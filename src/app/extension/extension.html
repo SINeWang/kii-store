@@ -1,0 +1,10 @@
+<md-toolbar>
+  <span
+    *ngIf="extension">{{extension.ownerId}}/{{extension.group}}/{{extension.name}}/{{extension.tree}}
+  </span>
+</md-toolbar>
+<md-list *ngIf="extension">
+  <md-list-item *ngFor="let intension of extension.intensions">
+    {{intension.visibility}} {{intension.field}} : {{intension.structure}}<span *ngIf="!intension.single">[]</span>
+  </md-list-item>
+</md-list>
