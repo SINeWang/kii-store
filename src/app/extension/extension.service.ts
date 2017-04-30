@@ -13,7 +13,9 @@ export class ExtensionService {
   constructor(private http: Http) {
   }
 
-  get(authorization: string): Observable<Extension> {
+  get(authorization: string,
+      ownerId: string,
+      group: string): Observable<Extension> {
 
     const headers = new Headers({
       // 'Authorization': authorization,

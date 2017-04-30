@@ -8,6 +8,15 @@ import {MdButtonModule, MdCardModule, MdListModule, MdToolbarModule} from '@angu
 
 import {AppComponent} from './app.component';
 import {ExtensionComponent} from './extension/extension.component';
+import {RouterModule, Routes} from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: ':ownerId/:group',
+    component: ExtensionComponent
+  },
+
+];
 
 @NgModule({
   declarations: [
@@ -22,7 +31,9 @@ import {ExtensionComponent} from './extension/extension.component';
     MdButtonModule,
     MdCardModule,
     MdListModule,
-    MdToolbarModule],
+    MdToolbarModule,
+    RouterModule.forRoot(routes)
+  ],
   exports: [MdButtonModule, MdCardModule, MdListModule, MdToolbarModule],
   providers: [],
   bootstrap: [AppComponent]

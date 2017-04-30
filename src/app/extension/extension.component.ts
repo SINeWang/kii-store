@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ExtensionService} from './extension.service';
 import {Extension} from './extension.data';
-// import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   providers: [ExtensionService],
-  selector: 'app-extension',
   templateUrl: 'extension.html'
 })
 export class ExtensionComponent implements OnInit {
@@ -14,19 +13,23 @@ export class ExtensionComponent implements OnInit {
 
   extension: Extension;
 
-  constructor(
-    // private activatedRoute: ActivatedRoute,
+  ownerId: string;
+
+  group: string;
+
+  constructor(private activatedRoute: ActivatedRoute,
               private extensionService: ExtensionService) {
   }
 
   ngOnInit(): void {
     const authorization = localStorage.getItem('authorization');
-    // this.activatedRoute.queryParams.subscribe(
-    //   (params: Params) => {
-    //   }
-    // );
+    this.activatedRoute.params.subscribe(params => {
+        this.ownerId = params['ownerId'];
+        this.group = params['group'];
+      }
+    );
 
-    this.extensionService.get(authorization).subscribe(
+    this.extensionService.get(authorization, this.ownerId, this.group).subscribe(
       data => this.handleData(data),
       error => this.errorMessage = <any>error
     );
