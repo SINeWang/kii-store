@@ -23,7 +23,7 @@ export class ExtensionService {
     });
     const options = new RequestOptions({headers: headers});
 
-    return this.http.get(this.URL + '/wangyj/intension/one.euler.git.access-token', options)
+    return this.http.get(this.URL + '/' + ownerId + '/intension/' + group, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 

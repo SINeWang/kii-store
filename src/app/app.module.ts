@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdButtonModule, MdCardModule, MdChipsModule, MdListModule, MdToolbarModule} from '@angular/material';
+import {MdButtonModule, MdCardModule, MdChipsModule, MdInputModule, MdListModule, MdToolbarModule} from '@angular/material';
 
 
 import {AppComponent} from './app.component';
@@ -11,6 +11,11 @@ import {ExtensionComponent} from './extension/extension.component';
 import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    component: ExtensionComponent
+  },
   {
     path: ':ownerId/:group',
     component: ExtensionComponent
@@ -31,6 +36,7 @@ const routes: Routes = [
     MdButtonModule,
     MdCardModule,
     MdChipsModule,
+    MdInputModule,
     MdListModule,
     MdToolbarModule,
     RouterModule.forRoot(routes)

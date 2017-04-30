@@ -22,17 +22,26 @@ export class ExtensionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const authorization = localStorage.getItem('authorization');
     this.activatedRoute.params.subscribe(params => {
         this.ownerId = params['ownerId'];
         this.group = params['group'];
+        this.fetchData();
       }
     );
+  }
 
-    this.extensionService.get(authorization, this.ownerId, this.group).subscribe(
-      data => this.handleData(data),
-      error => this.errorMessage = <any>error
-    );
+  submit(): void {
+    this.fetchData();
+  }
+
+  fetchData(): void {
+    const authorization = localStorage.getItem('authorization');
+    if (this.ownerId !== '' && this.group !== '' && this.ownerId != null && this.group != null) {
+      this.extensionService.get(authorization, this.ownerId, this.group).subscribe(
+        data => this.handleData(data),
+        error => this.errorMessage = <any>error
+      );
+    }
   }
 
   handleData(extension: Extension) {
