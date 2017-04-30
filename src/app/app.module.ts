@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdButtonModule, MdCardModule, MdListModule, MdToolbarModule} from '@angular/material';
+import {MdButtonModule, MdCardModule, MdChipsModule, MdListModule, MdToolbarModule} from '@angular/material';
 
 
 import {AppComponent} from './app.component';
@@ -30,6 +30,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MdButtonModule,
     MdCardModule,
+    MdChipsModule,
     MdListModule,
     MdToolbarModule,
     RouterModule.forRoot(routes)

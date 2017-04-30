@@ -1,10 +1,18 @@
 <md-toolbar>
   <span
-    *ngIf="extension">{{extension.ownerId}}/{{extension.group}}/{{extension.name}}/{{extension.tree}}
+    *ngIf="extension">{{extension.ownerId}}/{{extension.group}}/{{extension.name}}
   </span>
+  <md-chip-list>
+    <md-chip *ngIf="extension">
+      {{extension.tree}}
+    </md-chip>
+  </md-chip-list>
 </md-toolbar>
 <md-list *ngIf="extension">
   <md-list-item *ngFor="let intension of extension.intensions">
-    {{intension.visibility}} {{intension.field}} : {{intension.structure}}<span *ngIf="!intension.single">[]</span>
+    <md-chip>
+    {{intension.visibility}}
+    </md-chip>
+    {{intension.field}} : {{intension.structure}}<span *ngIf="!intension.single">[]</span>
   </md-list-item>
 </md-list>
