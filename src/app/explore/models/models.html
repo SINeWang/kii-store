@@ -23,14 +23,14 @@
 </div>
 
 <br>
-<div *ngIf="extension">
+<div *ngIf="model">
   <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--8-col">
       <div class="content-grid mdl-grid" mdl-shadow="2">
         <div class="mdl-cell mdl-cell--12-col">
           <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--11-col">
-              <h4>{{extension.group}} / {{extension.name}} </h4>
+              <h4>{{model.group}} / {{model.name}} </h4>
             </div>
             <div class="mdl-cell mdl-cell--1-col">
               <button mdl-button mdl-button-type="icon" mdl-ripple>
@@ -38,7 +38,7 @@
               </button>
             </div>
           </div>
-          <pre *ngFor="let intension of extension.intensions">
+          <pre *ngFor="let intension of model.intensions">
     <strong>{{intension.visibility}}</strong> {{intension.field}} : {{intension.structure}}<span *ngIf="!intension.single">[]</span>
           </pre>
         </div>
@@ -48,7 +48,6 @@
       <div class="mdl-grid" mdl-shadow="2">
         <div class="mdl-cell mdl-cell--12-col">
           <form [formGroup]="subscribeForm">
-            <mdl-textfield type="text" label="Subscriber" formControlName="subscriber" floating-label></mdl-textfield>
             <mdl-textfield type="text" label="Group" formControlName="group" floating-label></mdl-textfield>
             <mdl-textfield type="text" label="Name" formControlName="name" floating-label></mdl-textfield>
             <mdl-textfield type="text" label="Tree" formControlName="tree" floating-label></mdl-textfield>

@@ -12,13 +12,11 @@ export class ModelsComponent implements OnInit {
 
   errorMessage: string;
 
-  extension: Extension;
+  model: Extension;
 
   searchForm = new Extension();
 
   public subscribeForm: FormGroup;
-
-  ownerId: string;
 
   public subscribeGroup = new FormControl('', Validators.required);
 
@@ -26,17 +24,12 @@ export class ModelsComponent implements OnInit {
 
   public subscribeTree = new FormControl('master', Validators.required);
 
-  public subscriber = new FormControl('', Validators.required);
-
-  group: string;
-
   constructor(private activatedRoute: ActivatedRoute,
               private modelsService: ModelsService,
               private formBuilder: FormBuilder) {
 
     this.subscribeForm = formBuilder.group({
       'group': this.subscribeGroup,
-      'subscriber': this.subscriber,
       'name': this.subscribeName,
       'tree': this.subscribeTree,
     });
@@ -68,6 +61,6 @@ export class ModelsComponent implements OnInit {
   handleData(extension: Extension) {
     this.searchForm.tree = extension.tree;
     this.searchForm.name = extension.name;
-    this.extension = extension;
+    this.model = extension;
   }
 }
