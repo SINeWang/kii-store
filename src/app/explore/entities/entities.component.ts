@@ -33,10 +33,6 @@ export class EntitiesComponent implements OnInit {
     );
   }
 
-  submit(): void {
-    this.fetchData();
-  }
-
   fetchData(): void {
     const authorization = localStorage.getItem('authorization');
     if (this.ownerId !== '' && this.group !== '' && this.ownerId != null && this.group != null) {
