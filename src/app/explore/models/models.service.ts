@@ -4,11 +4,12 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Extension} from './models.data';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
+import {environment} from '../../../environments/environment';
 
 @Injectable()
 export class ModelsService {
 
-  private URL = 'http://localhost:9090/api/v1';
+  private URL = environment.kiimate_url;
 
   constructor(private http: Http) {
   }
