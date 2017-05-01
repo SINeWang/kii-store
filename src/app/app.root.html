@@ -11,24 +11,13 @@
   <mdl-layout-drawer>
     <mdl-layout-title>KiiStore</mdl-layout-title>
     <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="https://github.com/sinewang/kii-store">GitHub</a>
+      <a class="mdl-navigation__link" href="/explore">Explore</a>
+      <a class="mdl-navigation__link" href="/develop">Develop</a>
     </nav>
   </mdl-layout-drawer>
   <mdl-layout-content class="demo-content">
     <div class="app-content">
-      <mdl-tabs mdl-ripple mdl-tab-active-index="0">
-        <mdl-tab-panel>
-          <mdl-tab-panel-title>
-            <span>Models</span>
-          </mdl-tab-panel-title>
-          <mdl-tab-panel-content>
-            <router-outlet></router-outlet>
-          </mdl-tab-panel-content>
-        </mdl-tab-panel>
-        <mdl-tab-panel mdl-tab-panel-title="Entities">
-          <app-extension></app-extension>
-        </mdl-tab-panel>
-      </mdl-tabs>
+      <router-outlet></router-outlet>
     </div>
   </mdl-layout-content>
 </mdl-layout>

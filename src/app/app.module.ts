@@ -3,23 +3,24 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-// import {MdButtonModule, MdCardModule, MdChipsModule, MdInputModule, MdListModule, MdToolbarModule} from '@angular/material';
 
 
 import {AppComponent} from './app.root';
-import {ExtensionComponent} from './extension/extension.component';
+import {ExploreComponent} from './explore/explore.component';
 import {RouterModule, Routes} from '@angular/router';
 import {MdlModule} from '@angular-mdl/core';
+import {ModelsComponent} from './explore/models/models.component';
+import {EntitiesComponent} from './explore/entities/entities.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'explore',
     pathMatch: 'full',
-    component: ExtensionComponent
+    component: ExploreComponent
   },
   {
-    path: ':ownerId/:group',
-    component: ExtensionComponent
+    path: 'explore/models/:ownerId/:group',
+    component: ExploreComponent
   },
 
 ];
@@ -27,25 +28,19 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ExtensionComponent
+    ExploreComponent,
+    ModelsComponent,
+    EntitiesComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
-    // MdButtonModule,
-    // MdCardModule,
-    // MdChipsModule,
-    // MdInputModule,
-    // MdListModule,
-    // MdToolbarModule,
     MdlModule,
     RouterModule.forRoot(routes)
   ],
-  exports: [
-    // MdButtonModule, MdCardModule, MdListModule, MdToolbarModule
-  ],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent]
 })

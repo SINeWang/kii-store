@@ -1,14 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {ExtensionService} from './extension.service';
-import {Extension} from './extension.data';
+import {ModelsService} from './models.service';
 import {ActivatedRoute} from '@angular/router';
-
+import {Extension} from './models.data';
 @Component({
-  selector: 'app-extension',
-  providers: [ExtensionService],
-  templateUrl: 'extension.html'
+  selector: 'app-explore-models',
+  providers: [ModelsService],
+  templateUrl: 'models.html'
 })
-export class ExtensionComponent implements OnInit {
+export class ModelsComponent implements OnInit {
 
   errorMessage: string;
 
@@ -19,7 +18,7 @@ export class ExtensionComponent implements OnInit {
   group: string;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private extensionService: ExtensionService) {
+              private modelsService: ModelsService) {
   }
 
   ngOnInit(): void {
@@ -38,7 +37,7 @@ export class ExtensionComponent implements OnInit {
   fetchData(): void {
     const authorization = localStorage.getItem('authorization');
     if (this.ownerId !== '' && this.group !== '' && this.ownerId != null && this.group != null) {
-      this.extensionService.get(authorization, this.ownerId, this.group).subscribe(
+      this.modelsService.get(authorization, this.ownerId, this.group).subscribe(
         data => this.handleData(data),
         error => this.errorMessage = <any>error
       );

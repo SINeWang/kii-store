@@ -2,11 +2,11 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import {Extension} from './extension.data';
+import {Extension} from './models.data';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 
 @Injectable()
-export class ExtensionService {
+export class ModelsService {
 
   private URL = 'http://localhost:9090/api/v1';
 
