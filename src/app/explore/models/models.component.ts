@@ -14,6 +14,8 @@ export class ModelsComponent implements OnInit {
 
   extension: Extension;
 
+  searchForm = new Extension();
+
   public subscribeForm: FormGroup;
 
   ownerId: string;
@@ -42,8 +44,8 @@ export class ModelsComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-        this.ownerId = params['ownerId'];
-        this.group = params['group'];
+        this.searchForm.ownerId = params['ownerId'];
+        this.searchForm.group = params['group'];
         this.search();
       }
     );
@@ -51,8 +53,12 @@ export class ModelsComponent implements OnInit {
 
   search(): void {
     const authorization = localStorage.getItem('authorization');
-    if (this.ownerId !== '' && this.group !== '' && this.ownerId != null && this.group != null) {
-      this.modelsService.get(authorization, this.ownerId, this.group).subscribe(
+    if (this.searchForm.ownerId !== ''
+      && this.searchForm.group !== ''
+      && this.searchForm.ownerId != null
+      && this.searchForm.group != null
+    ) {
+      this.modelsService.get(authorization, this.searchForm).subscribe(
         data => this.handleData(data),
         error => this.errorMessage = <any>error
       );
@@ -60,6 +66,8 @@ export class ModelsComponent implements OnInit {
   }
 
   handleData(extension: Extension) {
+    this.searchForm.tree = extension.tree;
+    this.searchForm.name = extension.name;
     this.extension = extension;
   }
 }

@@ -1,23 +1,23 @@
 <br>
-<div *ngIf="extension" mdl-shadow="2">
+<div *ngIf="searchForm" mdl-shadow="2">
   <form #modelForm (ngSubmit)="search()">
     <button type="submit" style="display:none"></button>
     <div class="content-grid mdl-grid">
       <div class="mdl-cell mdl-cell--2-col">
-        <mdl-textfield type="text" label="Owner" [(ngModel)]="extension.ownerId" floating-label
-                       [ngModelOptions]="{standalone: true}"></mdl-textfield>
+        <mdl-textfield type="text" label="Owner" [(ngModel)]="searchForm.ownerId" name="ownerId"
+                       floating-label></mdl-textfield>
       </div>
       <div class="mdl-cell mdl-cell--3-col">
-        <mdl-textfield type="text" label="Group" [(ngModel)]="extension.group" floating-label
-                       [ngModelOptions]="{standalone: true}"></mdl-textfield>
+        <mdl-textfield type="text" label="Group" [(ngModel)]="searchForm.group" name="group"
+                       floating-label></mdl-textfield>
       </div>
       <div class="mdl-cell mdl-cell--3-col">
-        <mdl-textfield type="text" label="Name" [(ngModel)]="extension.name" floating-label
-                       [ngModelOptions]="{standalone: true}"></mdl-textfield>
+        <mdl-textfield type="text" label="Name" [(ngModel)]="searchForm.name" name="name"
+                       floating-label></mdl-textfield>
       </div>
       <div class="mdl-cell mdl-cell--2-col">
-        <mdl-textfield type="text" label="Tree" [ngModel]="extension.tree" floating-label
-                       [ngModelOptions]="{standalone: true}"></mdl-textfield>
+        <mdl-textfield type="text" label="Tree" [(ngModel)]="searchForm.tree" name="tree"
+                       floating-label></mdl-textfield>
       </div>
       <div class="mdl-cell mdl-cell--1-col mdl-cell--middle">
         <button type="submit" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Search</button>
@@ -28,24 +28,30 @@
 
 <br>
 <div *ngIf="extension">
-  <div class="content-grid mdl-grid">
+  <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--8-col">
       <div class="content-grid mdl-grid" mdl-shadow="2">
         <div class="mdl-cell mdl-cell--12-col">
-          <h5>{{extension.group}} / {{extension.name}} </h5>
-          <hr>
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--11-col">
+              <h5>{{extension.group}} / {{extension.name}} </h5>
+            </div>
+            <div class="mdl-cell mdl-cell--1-col">
+              <button mdl-button mdl-button-type="icon" mdl-ripple>
+                <mdl-icon>favorite_border</mdl-icon>
+              </button>
+            </div>
+          </div>
           <pre *ngFor="let intension of extension.intensions">
-    <strong>{{intension.visibility}}</strong> {{intension.field}} : {{intension.structure}}<span *ngIf="!intension.single">[]</span>
+    <strong>{{intension.visibility}}</strong> {{intension.field}} : {{intension.structure}}<span
+            *ngIf="!intension.single">[]</span>
           </pre>
         </div>
       </div>
     </div>
     <div class="mdl-cell mdl-cell--4-col">
-      <div class="content-grid mdl-grid" mdl-shadow="2">
+      <div class="mdl-grid" mdl-shadow="2">
         <div class="mdl-cell mdl-cell--12-col">
-          <button mdl-button mdl-button-type="icon" mdl-ripple>
-            <mdl-icon>favorite_border</mdl-icon>
-          </button>
           <form [formGroup]="subscribeForm">
             <mdl-textfield type="text" label="Subscriber" formControlName="subscriber" floating-label></mdl-textfield>
             <mdl-textfield type="text" label="Group" formControlName="group" floating-label></mdl-textfield>

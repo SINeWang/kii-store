@@ -14,8 +14,7 @@ export class ModelsService {
   }
 
   get(authorization: string,
-      ownerId: string,
-      group: string): Observable<Extension> {
+      extensionForm: Extension): Observable<Extension> {
 
     const headers = new Headers({
       // 'Authorization': authorization,
@@ -23,7 +22,11 @@ export class ModelsService {
     });
     const options = new RequestOptions({headers: headers});
 
-    return this.http.get(this.URL + '/' + ownerId + '/extensions/' + group + '/intensions', options)
+    let url = this.URL + '/' + extensionForm.ownerId + '/extensions/' + extensionForm.group + '/intensions';
+    if (extensionForm.name != null && extensionForm.name !== '') {
+      url = this.URL + '/' + extensionForm.ownerId + '/extensions/' + extensionForm.group + '/' + extensionForm.name + '/intensions';
+    }
+    return this.http.get(url, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 
