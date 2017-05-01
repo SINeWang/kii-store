@@ -9,6 +9,7 @@ import {MdButtonModule, MdCardModule, MdChipsModule, MdInputModule, MdListModule
 import {AppComponent} from './app.component';
 import {ExtensionComponent} from './extension/extension.component';
 import {RouterModule, Routes} from '@angular/router';
+import {MdlModule} from '@angular-mdl/core';
 
 const routes: Routes = [
   {
@@ -39,6 +40,7 @@ const routes: Routes = [
     MdInputModule,
     MdListModule,
     MdToolbarModule,
+    MdlModule,
     RouterModule.forRoot(routes)
   ],
   exports: [MdButtonModule, MdCardModule, MdListModule, MdToolbarModule],
