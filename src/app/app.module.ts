@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdButtonModule, MdCardModule, MdChipsModule, MdInputModule, MdListModule, MdToolbarModule} from '@angular/material';
+// import {MdButtonModule, MdCardModule, MdChipsModule, MdInputModule, MdListModule, MdToolbarModule} from '@angular/material';
 
 
 import {AppComponent} from './app.root';
@@ -34,16 +34,18 @@ const routes: Routes = [
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
-    MdButtonModule,
-    MdCardModule,
-    MdChipsModule,
-    MdInputModule,
-    MdListModule,
-    MdToolbarModule,
+    // MdButtonModule,
+    // MdCardModule,
+    // MdChipsModule,
+    // MdInputModule,
+    // MdListModule,
+    // MdToolbarModule,
     MdlModule,
     RouterModule.forRoot(routes)
   ],
-  exports: [MdButtonModule, MdCardModule, MdListModule, MdToolbarModule],
+  exports: [
+    // MdButtonModule, MdCardModule, MdListModule, MdToolbarModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

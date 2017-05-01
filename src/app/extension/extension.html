@@ -1,38 +1,28 @@
+<br>
 <div>
   <form #extensionForm (ngSubmit)="submit()">
-    <md-input-container>
-      <input mdInput placeholder="OwnerId" name="ownerId" [(ngModel)]="ownerId">
-    </md-input-container>
-    <md-input-container>
-      <input mdInput placeholder="Group" name="group" [(ngModel)]="group">
-    </md-input-container>
+    <mdl-textfield type="text" label="Owner" [(ngModel)]="ownerId" floating-label [ngModelOptions]="{standalone: true}"></mdl-textfield>
+
+    <mdl-textfield type="text" label="Group" [(ngModel)]="group" floating-label [ngModelOptions]="{standalone: true}"></mdl-textfield>
+
     <button type="submit" style="display:none"></button>
+
+    <span *ngIf="extension">
+      <mdl-textfield type="text" label="Name" readonly="true" [(ngModel)]="extension.name" floating-label [ngModelOptions]="{standalone: true}"></mdl-textfield>
+
+      <mdl-textfield type="text" label="Tree" readonly="true" [(ngModel)]="extension.tree" floating-label [ngModelOptions]="{standalone: true}"></mdl-textfield>
+    </span>
+
   </form>
 </div>
 
-
-<div>
-  <md-tab-group>
-    <md-tab label="Model"></md-tab>
-
-    <md-tab label="Instance"></md-tab>
-  </md-tab-group>
-
-</div>
-
 <div *ngIf="extension">
-  <md-toolbar>
-    <span>{{extension.ownerId}}/{{extension.group}}/{{extension.name}}</span>
-    <md-chip-list>
-      <md-chip>{{extension.tree}}</md-chip>
-    </md-chip-list>
-  </md-toolbar>
-  <md-list>
-    <md-list-item *ngFor="let intension of extension.intensions">
-      <md-chip>{{intension.visibility}}</md-chip>
+  <mdl-list>
+    <mdl-list-item *ngFor="let intension of extension.intensions">
+      <mdl-chip mdl-label="{{intension.visibility}}"></mdl-chip>
       {{intension.field}} : {{intension.structure}}<span *ngIf="!intension.single">[]</span>
-    </md-list-item>
-  </md-list>
+    </mdl-list-item>
+  </mdl-list>
 </div>
 
 

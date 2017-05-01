@@ -9,7 +9,4 @@ import {MdCardModule, MdToolbarModule} from '@angular/material';
 })
 export class AppComponent {
 
-  constructor(private mdCard: MdCardModule,
-              private mdToolBar: MdToolbarModule) {
-  }
 }

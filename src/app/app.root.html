@@ -3,7 +3,6 @@
     <mdl-layout-header-row>
       <mdl-layout-title>KiiStore</mdl-layout-title>
       <mdl-layout-spacer></mdl-layout-spacer>
-      <!-- Navigation. We hide it in small screens. -->
       <nav class="mdl-navigation">
         <a class="mdl-navigation__link" href="https://github.com/sinewang/kii-store">GitHub</a>
       </nav>
@@ -17,7 +16,19 @@
   </mdl-layout-drawer>
   <mdl-layout-content class="demo-content">
     <div class="app-content">
-      <router-outlet></router-outlet>
+      <mdl-tabs mdl-ripple mdl-tab-active-index="0">
+        <mdl-tab-panel>
+          <mdl-tab-panel-title>
+            <span>Models</span>
+          </mdl-tab-panel-title>
+          <mdl-tab-panel-content>
+            <router-outlet></router-outlet>
+          </mdl-tab-panel-content>
+        </mdl-tab-panel>
+        <mdl-tab-panel mdl-tab-panel-title="Entities">
+          <app-extension></app-extension>
+        </mdl-tab-panel>
+      </mdl-tabs>
     </div>
   </mdl-layout-content>
 </mdl-layout>

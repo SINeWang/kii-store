@@ -4,6 +4,7 @@ import {Extension} from './extension.data';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
+  selector: 'app-extension',
   providers: [ExtensionService],
   templateUrl: 'extension.html'
 })
