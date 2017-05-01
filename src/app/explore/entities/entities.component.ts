@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {EntitiesService} from './entities.service';
 import {ActivatedRoute} from '@angular/router';
-import {Extension} from '../models/models.data';
+import {Entities} from 'app/explore/entities/entities.data';
 
 
 @Component({
@@ -14,36 +14,37 @@ export class EntitiesComponent implements OnInit {
 
   errorMessage: string;
 
-  extension: Extension;
+  searchForm = new Entities();
 
-  ownerId: string;
-
-  group: string;
+  entities: Entities;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private entitiiesService: EntitiesService) {
+              private entitiesService: EntitiesService) {
   }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-        this.ownerId = params['ownerId'];
-        this.group = params['group'];
-        this.fetchData();
+        this.searchForm.ownerId = params['ownerId'];
+        this.searchForm.group = params['group'];
+        this.search();
       }
     );
   }
 
-  fetchData(): void {
+  search(): void {
     const authorization = localStorage.getItem('authorization');
-    if (this.ownerId !== '' && this.group !== '' && this.ownerId != null && this.group != null) {
-      this.entitiiesService.get(authorization, this.ownerId, this.group).subscribe(
+    if (this.searchForm.ownerId !== ''
+      && this.searchForm.group !== ''
+      && this.searchForm.ownerId != null
+      && this.searchForm.group != null) {
+      this.entitiesService.get(authorization, this.searchForm).subscribe(
         data => this.handleData(data),
         error => this.errorMessage = <any>error
       );
     }
   }
 
-  handleData(extension: Extension) {
-    this.extension = extension;
+  handleData(entities: Entities) {
+    this.entities = entities;
   }
 }

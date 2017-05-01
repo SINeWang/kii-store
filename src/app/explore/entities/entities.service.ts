@@ -3,8 +3,8 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
-import {Extension} from '../models/models.data';
 import {environment} from '../../../environments/environment';
+import {Entities} from './entities.data';
 
 @Injectable()
 export class EntitiesService {
@@ -15,8 +15,7 @@ export class EntitiesService {
   }
 
   get(authorization: string,
-      ownerId: string,
-      group: string): Observable<Extension> {
+      searchForm: Entities): Observable<Entities> {
 
     const headers = new Headers({
       // 'Authorization': authorization,
@@ -24,7 +23,7 @@ export class EntitiesService {
     });
     const options = new RequestOptions({headers: headers});
 
-    return this.http.get(this.URL + '/' + ownerId + '/extensions/' + group + '/intensions', options)
+    return this.http.get(this.URL + '/' + searchForm.ownerId + '/entities/' + searchForm.group, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 

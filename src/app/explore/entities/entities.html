@@ -1,4 +1,23 @@
 <br>
-<div>
-
+<div *ngIf="searchForm" mdl-shadow="2">
+  <form #modelForm (ngSubmit)="search()">
+    <button type="submit" style="display:none"></button>
+    <div class="content-grid mdl-grid">
+      <div class="mdl-cell mdl-cell--2-col">
+        <mdl-textfield type="text" label="Owner" [(ngModel)]="searchForm.ownerId" name="ownerId" floating-label></mdl-textfield>
+      </div>
+      <div class="mdl-cell mdl-cell--3-col">
+        <mdl-textfield type="text" label="Group" [(ngModel)]="searchForm.group" name="group" floating-label></mdl-textfield>
+      </div>
+      <div class="mdl-cell mdl-cell--3-col">
+        <mdl-textfield type="text" label="Name" [(ngModel)]="searchForm.name" name="name" floating-label></mdl-textfield>
+      </div>
+      <div class="mdl-cell mdl-cell--2-col">
+        <mdl-textfield type="text" label="Tree" [(ngModel)]="searchForm.tree" name="tree" floating-label></mdl-textfield>
+      </div>
+      <div class="mdl-cell mdl-cell--1-col mdl-cell--middle">
+        <button type="submit" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Search</button>
+      </div>
+    </div>
+  </form>
 </div>

@@ -22,6 +22,18 @@ const routes: Routes = [
     path: 'explore/models/:ownerId/:group',
     component: ExploreComponent
   },
+  {
+    path: 'explore/models/:ownerId/:group/:name',
+    component: ExploreComponent
+  },
+  {
+    path: 'explore/entities/:ownerId/:group',
+    component: ExploreComponent
+  },
+  {
+    path: 'explore/entities/:ownerId/:group/:name',
+    component: ExploreComponent
+  },
 
 ];
 
