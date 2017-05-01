@@ -4,20 +4,16 @@
     <button type="submit" style="display:none"></button>
     <div class="content-grid mdl-grid">
       <div class="mdl-cell mdl-cell--2-col">
-        <mdl-textfield type="text" label="Owner" [(ngModel)]="searchForm.ownerId" name="ownerId"
-                       floating-label></mdl-textfield>
+        <mdl-textfield type="text" label="Owner" [(ngModel)]="searchForm.ownerId" name="ownerId" floating-label></mdl-textfield>
       </div>
       <div class="mdl-cell mdl-cell--3-col">
-        <mdl-textfield type="text" label="Group" [(ngModel)]="searchForm.group" name="group"
-                       floating-label></mdl-textfield>
+        <mdl-textfield type="text" label="Group" [(ngModel)]="searchForm.group" name="group" floating-label></mdl-textfield>
       </div>
       <div class="mdl-cell mdl-cell--3-col">
-        <mdl-textfield type="text" label="Name" [(ngModel)]="searchForm.name" name="name"
-                       floating-label></mdl-textfield>
+        <mdl-textfield type="text" label="Name" [(ngModel)]="searchForm.name" name="name" floating-label></mdl-textfield>
       </div>
       <div class="mdl-cell mdl-cell--2-col">
-        <mdl-textfield type="text" label="Tree" [(ngModel)]="searchForm.tree" name="tree"
-                       floating-label></mdl-textfield>
+        <mdl-textfield type="text" label="Tree" [(ngModel)]="searchForm.tree" name="tree" floating-label></mdl-textfield>
       </div>
       <div class="mdl-cell mdl-cell--1-col mdl-cell--middle">
         <button type="submit" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Search</button>
@@ -34,7 +30,7 @@
         <div class="mdl-cell mdl-cell--12-col">
           <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--11-col">
-              <h5>{{extension.group}} / {{extension.name}} </h5>
+              <h4>{{extension.group}} / {{extension.name}} </h4>
             </div>
             <div class="mdl-cell mdl-cell--1-col">
               <button mdl-button mdl-button-type="icon" mdl-ripple>
@@ -43,8 +39,7 @@
             </div>
           </div>
           <pre *ngFor="let intension of extension.intensions">
-    <strong>{{intension.visibility}}</strong> {{intension.field}} : {{intension.structure}}<span
-            *ngIf="!intension.single">[]</span>
+    <strong>{{intension.visibility}}</strong> {{intension.field}} : {{intension.structure}}<span *ngIf="!intension.single">[]</span>
           </pre>
         </div>
       </div>
