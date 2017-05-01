@@ -4,8 +4,8 @@ import {MdCardModule, MdToolbarModule} from '@angular/material';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.root.html',
+  styleUrls: ['./app.root.css']
 })
 export class AppComponent {
 

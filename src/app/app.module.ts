@@ -6,7 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdButtonModule, MdCardModule, MdChipsModule, MdInputModule, MdListModule, MdToolbarModule} from '@angular/material';
 
 
-import {AppComponent} from './app.component';
+import {AppComponent} from './app.root';
 import {ExtensionComponent} from './extension/extension.component';
 import {RouterModule, Routes} from '@angular/router';
 import {MdlModule} from '@angular-mdl/core';
