@@ -46,5 +46,7 @@ export class EntitiesComponent implements OnInit {
 
   handleData(entities: Entities) {
     this.entities = entities;
+    this.searchForm.name = entities.name;
+    this.searchForm.tree = entities.tree;
   }
 }
