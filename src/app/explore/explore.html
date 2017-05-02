@@ -1,4 +1,4 @@
-<mdl-tabs mdl-ripple mdl-tab-active-index="0">
+<mdl-tabs mdl-ripple mdl-tab-active-index="{{activeIndex}}" (mdl-tab-active-changed)="tabChanged($event)">
   <mdl-tab-panel>
     <mdl-tab-panel-title>
       <span>Models</span>

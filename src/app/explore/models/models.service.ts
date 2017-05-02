@@ -23,9 +23,9 @@ export class ModelsService {
     });
     const options = new RequestOptions({headers: headers});
 
-    let url = this.URL + '/' + modelForm.providerId + '/extensions/' + modelForm.group + '/intensions';
+    let url = this.URL + '/' + modelForm.providerId + '/extensions/' + modelForm.group;
     if (modelForm.name != null && modelForm.name !== '') {
-      url = this.URL + '/' + modelForm.providerId + '/extensions/' + modelForm.group + '/' + modelForm.name + '/intensions';
+      url = this.URL + '/' + modelForm.providerId + '/extensions/' + modelForm.group + '/' + modelForm.name;
     }
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])

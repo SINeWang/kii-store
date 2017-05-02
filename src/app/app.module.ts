@@ -18,22 +18,13 @@ const routes: Routes = [
     component: ExploreComponent
   },
   {
-    path: 'explore/models/:providerId/:group',
+    path: 'explore/:target/:ownerId/:group',
     component: ExploreComponent
   },
   {
-    path: 'explore/models/:providerId/:group/:name',
+    path: 'explore/:target/:ownerId/:group/:name',
     component: ExploreComponent
   },
-  {
-    path: 'explore/entities/:ownerId/:group',
-    component: ExploreComponent
-  },
-  {
-    path: 'explore/entities/:ownerId/:group/:name',
-    component: ExploreComponent
-  },
-
 ];
 
 @NgModule({

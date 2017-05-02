@@ -47,6 +47,7 @@ export class EntitiesComponent implements OnInit {
   handleData(entities: Entities) {
     this.entities = JSON.stringify(entities.body);
     this.searchForm.group = entities.group;
+    this.searchForm.ownerId = entities.ownerId;
     this.searchForm.name = entities.name;
     this.searchForm.tree = entities.tree;
   }

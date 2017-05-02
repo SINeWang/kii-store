@@ -39,7 +39,7 @@ export class ModelsComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-        this.searchForm.providerId = params['providerId'];
+        this.searchForm.providerId = params['ownerId'];
         this.searchForm.group = params['group'];
         this.search();
       }
