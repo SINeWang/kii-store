@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ModelsService} from './models.service';
 import {ActivatedRoute} from '@angular/router';
-import {Extension} from './models.data';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ModelsService} from './models.service';
+import {Model} from './models.data';
+
+
 @Component({
   selector: 'app-explore-models',
   providers: [ModelsService],
@@ -12,9 +14,9 @@ export class ModelsComponent implements OnInit {
 
   errorMessage: string;
 
-  model: Extension;
+  model: Model;
 
-  searchForm = new Extension();
+  searchForm = new Model();
 
   public subscribeForm: FormGroup;
 
@@ -58,9 +60,9 @@ export class ModelsComponent implements OnInit {
     }
   }
 
-  handleData(extension: Extension) {
-    this.searchForm.tree = extension.tree;
-    this.searchForm.name = extension.name;
-    this.model = extension;
+  handleData(model: Model) {
+    this.searchForm.tree = model.tree;
+    this.searchForm.name = model.name;
+    this.model = model;
   }
 }

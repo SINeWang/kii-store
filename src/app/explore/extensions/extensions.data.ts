@@ -1,13 +1,10 @@
-export class Model {
+export class Extension {
 
-  providerId: string;
+  ownerId: string;
   group: string;
   name: string;
   tree: string;
   extId: string;
-
-  publication: string;
-  version: string;
 
   intensions: Intension[];
 }

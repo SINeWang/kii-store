@@ -4,10 +4,10 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../../environments/environment';
-import {Model} from './models.data';
+import {Extension} from './extensions.data';
 
 @Injectable()
-export class ModelsService {
+export class ExtensionsService {
 
   private URL = environment.kiimate_url;
 
@@ -15,7 +15,7 @@ export class ModelsService {
   }
 
   get(authorization: string,
-      modelForm: Model): Observable<Model> {
+      extensionForm: Extension): Observable<Extension> {
 
     const headers = new Headers({
       // 'Authorization': authorization,
@@ -23,9 +23,9 @@ export class ModelsService {
     });
     const options = new RequestOptions({headers: headers});
 
-    let url = this.URL + '/' + modelForm.providerId + '/extensions/' + modelForm.group + '/intensions';
-    if (modelForm.name != null && modelForm.name !== '') {
-      url = this.URL + '/' + modelForm.providerId + '/extensions/' + modelForm.group + '/' + modelForm.name + '/intensions';
+    let url = this.URL + '/' + extensionForm.ownerId + '/extensions/' + extensionForm.group + '/intensions';
+    if (extensionForm.name != null && extensionForm.name !== '') {
+      url = this.URL + '/' + extensionForm.ownerId + '/extensions/' + extensionForm.group + '/' + extensionForm.name + '/intensions';
     }
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])
