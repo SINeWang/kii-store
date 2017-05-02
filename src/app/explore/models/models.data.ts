@@ -6,6 +6,8 @@ export class Extension {
   tree: string;
   extId: string;
 
+  publication: string;
+  version: string;
 
   intensions: Intension[];
 }
