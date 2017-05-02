@@ -4,20 +4,24 @@
     <button type="submit" style="display:none"></button>
     <div class="content-grid mdl-grid">
       <div class="mdl-cell mdl-cell--3-col">
-        <mdl-textfield type="text" label="Group" [(ngModel)]="searchForm.group" name="group" floating-label></mdl-textfield>
+        <mdl-textfield type="text" label="Group" [(ngModel)]="searchForm.group" name="group"
+                       floating-label></mdl-textfield>
       </div>
       <div class="mdl-cell mdl-cell--2-col">
-        <mdl-textfield type="text" label="Name" [(ngModel)]="searchForm.name" name="name" floating-label></mdl-textfield>
+        <mdl-textfield type="text" label="Name" [(ngModel)]="searchForm.name" name="name"
+                       floating-label></mdl-textfield>
       </div>
       <div class="mdl-cell mdl-cell--2-col">
-        <mdl-textfield type="text" label="Tree" [(ngModel)]="searchForm.tree" name="tree" floating-label></mdl-textfield>
+        <mdl-textfield type="text" label="Tree" [(ngModel)]="searchForm.tree" name="tree"
+                       floating-label></mdl-textfield>
       </div>
       <div class="mdl-cell mdl-cell--3-col">
         <mdl-radio value="release" name="publication" mdl-ripple>Release</mdl-radio>
         <mdl-radio value="snapshot" name="publication" mdl-ripple>Snapshot</mdl-radio>
       </div>
       <div class="mdl-cell mdl-cell--2-col">
-        <mdl-textfield type="text" label="Version" [(ngModel)]="searchForm.version" name="version" floating-label></mdl-textfield>
+        <mdl-textfield type="text" label="Version" [(ngModel)]="searchForm.version" name="version"
+                       floating-label></mdl-textfield>
       </div>
     </div>
     <div class="content-grid mdl-grid">
@@ -31,8 +35,8 @@
 <br>
 <div *ngFor="let model of models">
   <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--8-col">
-      <div class="content-grid mdl-grid" mdl-shadow="2">
+    <div class="mdl-cell mdl-cell--8-col" mdl-shadow="2">
+      <div class="content-grid mdl-grid">
         <div class="mdl-cell mdl-cell--12-col">
           <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--11-col">
@@ -44,22 +48,9 @@
               </button>
             </div>
           </div>
-          <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--3-col">
-              <mdl-textfield type="text" label="Provider" value="{{model.providerId}}" floating-label readonly="true"></mdl-textfield>
-            </div>
-            <div class="mdl-cell mdl-cell--2-col">
-              <mdl-textfield type="text" label="Publication" value="{{model.publication}}" floating-label readonly="true"></mdl-textfield>
-            </div>
-            <div class="mdl-cell mdl-cell--3-col">
-              <mdl-textfield type="text" label="Version" value="{{model.version}}" floating-label readonly="true"></mdl-textfield>
-            </div>
-            <div class="mdl-cell mdl-cell--4-col">
-              <mdl-textfield type="text" label="Since" value="{{model.beginTime | date:'medium'}}" floating-label readonly="true"></mdl-textfield>
-            </div>
-          </div>
           <pre *ngFor="let intension of model.intensions">
-    <strong>{{intension.visibility}}</strong> {{intension.field}} : {{intension.structure}}<span *ngIf="!intension.single">[]</span>
+    <strong>{{intension.visibility}}</strong> {{intension.field}} : {{intension.structure}}<span
+            *ngIf="!intension.single">[]</span>
           </pre>
         </div>
       </div>
@@ -67,11 +58,27 @@
     <div class="mdl-cell mdl-cell--4-col">
       <div class="mdl-grid" mdl-shadow="2">
         <div class="mdl-cell mdl-cell--12-col">
+          <mdl-textfield type="text" label="Subscriptions" value="{{model.subscriptions}}" floating-label
+                         readonly="true"></mdl-textfield>
+          <mdl-textfield type="text" label="Provider" value="{{model.providerId}}" floating-label
+                         readonly="true"></mdl-textfield>
+          <mdl-textfield type="text" label="Publication" value="{{model.publication}}" floating-label
+                         readonly="true"></mdl-textfield>
+          <mdl-textfield type="text" label="Version" value="{{model.version}}" floating-label
+                         readonly="true"></mdl-textfield>
+          <mdl-textfield type="text" label="Since" value="{{model.beginTime | date:'medium'}}" floating-label
+                         readonly="true"></mdl-textfield>
+        </div>
+      </div>
+      <br>
+      <div class="mdl-grid" mdl-shadow="2">
+        <div class="mdl-cell mdl-cell--12-col">
           <form [formGroup]="subscribeForm" (ngSubmit)="subscribe(model)">
             <mdl-textfield type="text" label="Owner" formControlName="ownerId" floating-label></mdl-textfield>
             <mdl-textfield type="text" label="Group" formControlName="group" floating-label></mdl-textfield>
             <mdl-textfield type="text" label="Name" formControlName="name" floating-label></mdl-textfield>
             <mdl-textfield type="text" label="Tree" formControlName="tree" floating-label></mdl-textfield>
+            <mdl-textfield type="text" label="Visibility" formControlName="visibility" floating-label></mdl-textfield>
             <button type="submit" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Subscribe
             </button>
           </form>

@@ -30,6 +30,8 @@ export class ModelsComponent implements OnInit {
 
   public subscribeTree = new FormControl('master', Validators.required);
 
+  public subscribeVisibility = new FormControl('protected', Validators.required);
+
   constructor(private activatedRoute: ActivatedRoute,
               private modelsService: ModelsService,
               private formBuilder: FormBuilder) {
@@ -40,6 +42,7 @@ export class ModelsComponent implements OnInit {
       'group': this.subscribeGroup,
       'name': this.subscribeName,
       'tree': this.subscribeTree,
+      'visibility': this.subscribeVisibility,
     });
   }
 

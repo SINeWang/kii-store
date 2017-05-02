@@ -10,6 +10,8 @@ export class Model {
   version: string;
   beginTime: number;
 
+  subscriptions: number;
+
   intensions: Intension[];
 }
 
