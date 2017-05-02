@@ -16,7 +16,7 @@ export class EntitiesComponent implements OnInit {
 
   searchForm = new Entities();
 
-  entities: Entities;
+  entities: string;
 
   constructor(private activatedRoute: ActivatedRoute,
               private entitiesService: EntitiesService) {
@@ -24,7 +24,7 @@ export class EntitiesComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-        this.searchForm.providerId = params['providerId'];
+        this.searchForm.ownerId = params['ownerId'];
         this.searchForm.group = params['group'];
         this.search();
       }
@@ -33,9 +33,9 @@ export class EntitiesComponent implements OnInit {
 
   search(): void {
     const authorization = localStorage.getItem('authorization');
-    if (this.searchForm.providerId !== ''
+    if (this.searchForm.ownerId !== ''
       && this.searchForm.group !== ''
-      && this.searchForm.providerId != null
+      && this.searchForm.ownerId != null
       && this.searchForm.group != null) {
       this.entitiesService.get(authorization, this.searchForm).subscribe(
         data => this.handleData(data),
@@ -45,7 +45,8 @@ export class EntitiesComponent implements OnInit {
   }
 
   handleData(entities: Entities) {
-    this.entities = entities;
+    this.entities = JSON.stringify(entities.body);
+    this.searchForm.group = entities.group;
     this.searchForm.name = entities.name;
     this.searchForm.tree = entities.tree;
   }

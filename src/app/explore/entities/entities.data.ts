@@ -1,7 +1,7 @@
 export class Entities {
-  providerId: string;
+  ownerId: string;
   group: string;
   name: string;
   tree: string;
-  subExtId: string;
+  body: any;
 }
