@@ -17,10 +17,6 @@ const routes: Routes = [
     pathMatch: 'full',
     component: ExploreComponent
   },
-  {
-    path: 'explore/:target',
-    component: ExploreComponent
-  },
 ];
 
 @NgModule({
