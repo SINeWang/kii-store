@@ -33,7 +33,7 @@ export class ExploreComponent implements OnInit {
       case 'models':
         this.activeIndex = 0;
         break;
-      case 'entities':
+      case 'instances':
         this.activeIndex = 1;
         break;
       default:
@@ -45,10 +45,10 @@ export class ExploreComponent implements OnInit {
     switch (this.target) {
       case 'models':
         if (index === 1) {
-          window.location.href = '/explore/entities/';
+          window.location.href = '/explore/instances/';
         }
         break;
-      case 'entities':
+      case 'instances':
         if (index === 0) {
           window.location.href = '/explore/models';
         }

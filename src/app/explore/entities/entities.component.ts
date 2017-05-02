@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {EntitiesService} from './entities.service';
 import {ActivatedRoute} from '@angular/router';
-import {Entities} from 'app/explore/entities/entities.data';
+import {Entities, Intension} from 'app/explore/entities/entities.data';
 
 
 @Component({
@@ -16,7 +16,11 @@ export class EntitiesComponent implements OnInit {
 
   searchForm = new Entities();
 
-  entities: string;
+  instances: Object;
+
+  intensions: Intension[];
+
+  instancesKeys: string[];
 
   constructor(private activatedRoute: ActivatedRoute,
               private entitiesService: EntitiesService) {
@@ -43,10 +47,14 @@ export class EntitiesComponent implements OnInit {
   }
 
   handleData(entities: Entities) {
-    this.entities = JSON.stringify(entities.body);
+    this.instances = entities.instances;
+    this.intensions = entities.intensions;
+    this.instancesKeys = Object.keys(this.instances);
     this.searchForm.group = entities.group;
     this.searchForm.ownerId = entities.ownerId;
     this.searchForm.name = entities.name;
     this.searchForm.tree = entities.tree;
   }
+
+
 }

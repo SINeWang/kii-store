@@ -21,5 +21,9 @@
     </div>
   </form>
 
-  <code>{{entities}}</code>
+  <ul>
+    <li *ngFor="let key of instancesKeys">
+      {{key}} : {{instances[key]}}
+    </li>
+  </ul>
 </div>

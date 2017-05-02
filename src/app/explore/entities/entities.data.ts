@@ -3,5 +3,15 @@ export class Entities {
   group: string;
   name: string;
   tree: string;
-  body: any;
+  instances: Object;
+  intensions: Intension[];
+}
+
+export class Intension {
+  id: string;
+  field: string;
+  refExtId: string;
+  single: boolean;
+  structure: string;
+  visibility: string;
 }
