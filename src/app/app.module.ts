@@ -19,11 +19,11 @@ const routes: Routes = [
     component: ExploreComponent
   },
   {
-    path: 'explore/models/:ownerId/:group',
+    path: 'explore/models/:providerId/:group',
     component: ExploreComponent
   },
   {
-    path: 'explore/models/:ownerId/:group/:name',
+    path: 'explore/models/:providerId/:group/:name',
     component: ExploreComponent
   },
   {

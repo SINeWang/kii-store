@@ -1,6 +1,6 @@
 export class Extension {
 
-  ownerId: string;
+  providerId: string;
   group: string;
   name: string;
   tree: string;
