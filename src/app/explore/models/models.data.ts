@@ -5,9 +5,10 @@ export class Model {
   name: string;
   tree: string;
   extId: string;
-
+  pubSetHash: string;
   publication: string;
   version: string;
+  beginTime: number;
 
   intensions: Intension[];
 }

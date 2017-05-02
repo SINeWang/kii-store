@@ -18,11 +18,7 @@ const routes: Routes = [
     component: ExploreComponent
   },
   {
-    path: 'explore/:target/:ownerId/:group',
-    component: ExploreComponent
-  },
-  {
-    path: 'explore/:target/:ownerId/:group/:name',
+    path: 'explore/:target',
     component: ExploreComponent
   },
 ];

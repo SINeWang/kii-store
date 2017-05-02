@@ -23,8 +23,6 @@ export class ExploreComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
         this.target = params['target'];
-        this.ownerId = params['ownerId'];
-        this.group = params['group'];
         this.switchTab();
       }
     );
@@ -47,12 +45,12 @@ export class ExploreComponent implements OnInit {
     switch (this.target) {
       case 'models':
         if (index === 1) {
-          window.location.href = '/explore/entities/' + this.ownerId + '/' + this.group;
+          window.location.href = '/explore/entities/';
         }
         break;
       case 'entities':
         if (index === 0) {
-          window.location.href = '/explore/models/' + this.ownerId + '/' + this.group;
+          window.location.href = '/explore/models';
         }
         break;
       default:

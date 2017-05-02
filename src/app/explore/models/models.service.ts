@@ -15,7 +15,7 @@ export class ModelsService {
   }
 
   get(authorization: string,
-      modelForm: Model): Observable<Model> {
+      modelForm: Model): Observable<Model[]> {
 
     const headers = new Headers({
       // 'Authorization': authorization,
@@ -23,9 +23,9 @@ export class ModelsService {
     });
     const options = new RequestOptions({headers: headers});
 
-    let url = this.URL + '/' + modelForm.providerId + '/extensions/' + modelForm.group;
-    if (modelForm.name != null && modelForm.name !== '') {
-      url = this.URL + '/' + modelForm.providerId + '/extensions/' + modelForm.group + '/' + modelForm.name;
+    let url = this.URL + '/explore/models';
+    if (modelForm.group != null && modelForm.group !== '') {
+      url += '?q=' + modelForm.group;
     }
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])

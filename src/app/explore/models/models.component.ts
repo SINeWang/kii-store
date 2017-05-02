@@ -14,11 +14,15 @@ export class ModelsComponent implements OnInit {
 
   errorMessage: string;
 
-  model: Model;
+  models: Model[];
 
   searchForm = new Model();
 
   public subscribeForm: FormGroup;
+
+  public subscribePubSetHash = new FormControl('', Validators.required);
+
+  public subscribeOwnerId = new FormControl('', Validators.required);
 
   public subscribeGroup = new FormControl('', Validators.required);
 
@@ -31,6 +35,8 @@ export class ModelsComponent implements OnInit {
               private formBuilder: FormBuilder) {
 
     this.subscribeForm = formBuilder.group({
+      'pubSetHash': this.subscribePubSetHash,
+      'ownerId': this.subscribeOwnerId,
       'group': this.subscribeGroup,
       'name': this.subscribeName,
       'tree': this.subscribeTree,
@@ -38,8 +44,7 @@ export class ModelsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-        this.searchForm.providerId = params['ownerId'];
+    this.activatedRoute.queryParams.subscribe(params => {
         this.searchForm.group = params['group'];
         this.search();
       }
@@ -48,9 +53,7 @@ export class ModelsComponent implements OnInit {
 
   search(): void {
     const authorization = localStorage.getItem('authorization');
-    if (this.searchForm.providerId !== ''
-      && this.searchForm.group !== ''
-      && this.searchForm.providerId != null
+    if (this.searchForm.group !== ''
       && this.searchForm.group != null
     ) {
       this.modelsService.get(authorization, this.searchForm).subscribe(
@@ -60,9 +63,13 @@ export class ModelsComponent implements OnInit {
     }
   }
 
-  handleData(model: Model) {
-    this.searchForm.tree = model.tree;
-    this.searchForm.name = model.name;
-    this.model = model;
+  subscribe(model: Model): void {
+    const authorization = localStorage.getItem('authorization');
+    console.log(this.subscribeForm);
+    console.log(model);
+  }
+
+  handleData(models: Model[]) {
+    this.models = models;
   }
 }
