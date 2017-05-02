@@ -10,12 +10,18 @@ import {RouterModule, Routes} from '@angular/router';
 import {MdlModule} from '@angular-mdl/core';
 import {ModelsComponent} from './explore/models/models.component';
 import {EntitiesComponent} from './explore/entities/entities.component';
+import {DevelopComponent} from './develop/develop.component';
 
 const routes: Routes = [
   {
     path: 'explore',
     pathMatch: 'full',
     component: ExploreComponent
+  },
+  {
+    path: 'develop',
+    pathMatch: 'full',
+    component: DevelopComponent
   },
 ];
 
@@ -24,6 +30,7 @@ const routes: Routes = [
     AppComponent,
     EntitiesComponent,
     ExploreComponent,
+    DevelopComponent,
     ModelsComponent,
   ],
   imports: [
