@@ -23,7 +23,7 @@ export class EntitiesService {
     });
     const options = new RequestOptions({headers: headers});
 
-    return this.http.get(this.URL + '/' + searchForm.ownerId + '/entities/' + searchForm.group, options)
+    return this.http.get(this.URL + '/' + searchForm.ownerId + '/instances/' + searchForm.group, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 
