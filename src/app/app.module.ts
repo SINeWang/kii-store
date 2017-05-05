@@ -11,6 +11,7 @@ import {MdlModule} from '@angular-mdl/core';
 import {ModelsComponent} from './explore/models/models.component';
 import {EntitiesComponent} from './explore/entities/entities.component';
 import {DevelopComponent} from './develop/develop.component';
+import {ExtensionsComponent} from './develop/extensions/extensions.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
     AppComponent,
     EntitiesComponent,
     ExploreComponent,
+    ExtensionsComponent,
     DevelopComponent,
     ModelsComponent,
   ],

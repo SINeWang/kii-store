@@ -49,8 +49,9 @@
             </div>
           </div>
           <pre *ngFor="let intension of model.intensions">
-    <strong>{{intension.visibility}}</strong> {{intension.field}} : {{intension.structure}}<span
-            *ngIf="!intension.single">[]</span>
+    <strong>{{intension.visibility}}</strong> {{intension.field}} : <a href="#" *ngIf="intension.refExtId">{{intension.structure}}</a><span *ngIf="!intension.refExtId">{{intension.structure}}</span>
+            <span
+              *ngIf="!intension.single">[]</span>
           </pre>
         </div>
       </div>
