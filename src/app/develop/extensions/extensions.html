@@ -1,21 +1,27 @@
 <br>
-<div *ngIf="searchForm" mdl-shadow="2">
-  <form #modelForm (ngSubmit)="search()">
+<div *ngIf="extensionForm" mdl-shadow="2">
+  <form #modelForm (ngSubmit)="commit()">
     <button type="submit" style="display:none"></button>
     <div class="content-grid mdl-grid">
-      <div class="mdl-cell mdl-cell--3-col">
-        <mdl-textfield type="text" label="Group" [(ngModel)]="searchForm.group" name="group" floating-label></mdl-textfield>
+      <div class="mdl-cell mdl-cell--2-col">
+        <mdl-textfield type="text" label="Owner" [(ngModel)]="extensionForm.ownerId" name="ownerId" floating-label></mdl-textfield>
       </div>
       <div class="mdl-cell mdl-cell--2-col">
-        <mdl-textfield type="text" label="Name" [(ngModel)]="searchForm.name" name="name" floating-label></mdl-textfield>
+        <mdl-textfield type="text" label="Group" [(ngModel)]="extensionForm.group" name="group" floating-label></mdl-textfield>
       </div>
       <div class="mdl-cell mdl-cell--2-col">
-        <mdl-textfield type="text" label="Tree" [(ngModel)]="searchForm.tree" name="tree" floating-label></mdl-textfield>
+        <mdl-textfield type="text" label="Name" [(ngModel)]="extensionForm.name" name="name" floating-label></mdl-textfield>
+      </div>
+      <div class="mdl-cell mdl-cell--2-col">
+        <mdl-textfield type="text" label="Tree" [(ngModel)]="extensionForm.tree" name="tree" floating-label></mdl-textfield>
+      </div>
+      <div class="mdl-cell mdl-cell--2-col">
+        <mdl-textfield type="text" label="Visibility" [(ngModel)]="extensionForm.visibility" name="visibility" floating-label></mdl-textfield>
       </div>
     </div>
     <div class="content-grid mdl-grid">
       <div class="mdl-cell mdl-cell--3-col">
-        <button type="submit" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Search</button>
+        <button type="submit" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Submit</button>
       </div>
     </div>
   </form>

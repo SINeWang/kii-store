@@ -14,20 +14,18 @@ export class ExtensionsService {
   constructor(private http: Http) {
   }
 
-  get(authorization: string,
-      extensionForm: Extension): Observable<Extension> {
+  commit(authorization: string,
+         form: Extension): Observable<Extension> {
 
     const headers = new Headers({
       // 'Authorization': authorization,
-      'X-SUMMER-VisitorId': '123'
+      'X-SUMMER-OperatorId': 'wangyj',
+      'X-SUMMER-RequestId': 'random'
     });
     const options = new RequestOptions({headers: headers});
 
-    let url = this.URL + '/' + extensionForm.ownerId + '/extensions/' + extensionForm.group + '/intensions';
-    if (extensionForm.name != null && extensionForm.name !== '') {
-      url = this.URL + '/' + extensionForm.ownerId + '/extensions/' + extensionForm.group + '/' + extensionForm.name + '/intensions';
-    }
-    return this.http.get(url, options)
+    const url = this.URL + '/' + form.ownerId + '/extension';
+    return this.http.post(url, form, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 

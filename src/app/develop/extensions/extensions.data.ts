@@ -5,6 +5,7 @@ export class Extension {
   name: string;
   tree: string;
   extId: string;
+  visibility: string;
 
   intensions: Intension[];
 }
