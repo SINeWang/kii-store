@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Extension, SearchReceipt} from './extensions.data';
 import {ExtensionsService} from './extensions.service';
 import {Intension} from '../intensions/intensions.data';
+import {Model} from '../../explore/models/models.data';
 
 @Component({
   selector: 'app-develop-extensions',
@@ -19,6 +20,8 @@ export class ExtensionsComponent {
   private errorMessage: string;
 
   private searchReceipt: SearchReceipt;
+
+  private refModel = new Model();
 
   constructor(private extensionService: ExtensionsService) {
     this.form.tree = 'master';
