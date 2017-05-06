@@ -73,41 +73,37 @@
             <mdl-textfield type="text" label="Field" [(ngModel)]="intensionForm.field" name="field"
                            floating-label></mdl-textfield>
           </div>
-        </div>
-        <div class="content-grid mdl-grid">
-          <div class="mdl-cell mdl-cell--12-col">
-            <div class="mdl-grid">
-              <div class="mdl-cell mdl-cell--6-col">
-                <mdl-radio value="true" [(ngModel)]="intensionForm.single" name="intensionSingle" mdl-ripple>Single
-                </mdl-radio>
-                <mdl-radio value="false" [(ngModel)]="intensionForm.single" name="intensionSingle" mdl-ripple>Multiple
-                </mdl-radio>
-              </div>
-              <div class="mdl-cell mdl-cell--6-col">
-                <mdl-radio value="true" [(ngModel)]="intensionForm.required" name="fieldRequired" mdl-ripple>Required
-                </mdl-radio>
-                <mdl-radio value="false" [(ngModel)]="intensionForm.required" name="fieldRequired" mdl-ripple>MayNot
-                </mdl-radio>
-              </div>
-            </div>
-            <div class="mdl-cell mdl-cell--6-col">
-              <mdl-radio value="public" [(ngModel)]="intensionForm.visibility" name="intensionVisibility" mdl-ripple>
-                Public
-              </mdl-radio>
-              <mdl-radio value="protected" [(ngModel)]="intensionForm.visibility" name="intensionVisibility" mdl-ripple>
-                Protected
-              </mdl-radio>
-              <mdl-radio value="private" [(ngModel)]="intensionForm.visibility" name="intensionVisibility" mdl-ripple>
-                Private
-              </mdl-radio>
-            </div>
-          </div>
-        </div>
-        <div class="content-grid mdl-grid">
           <div class="mdl-cell mdl-cell--12-col">
             <div class="mdl-grid">
               <div class="mdl-cell mdl-cell--3-col">
-                <mdl-switch [(ngModel)]="intensionForm.refExtId" [ngModelOptions]="{standalone: true}" mdl-ripple>Reference
+                <mdl-switch [(ngModel)]="intensionForm.required" [ngModelOptions]="{standalone: true}" mdl-ripple>
+                  Required
+                </mdl-switch>
+              </div>
+              <div class="mdl-cell mdl-cell--4-col">
+                <mdl-radio value="true" [(ngModel)]="intensionForm.single" name="intensionSingle" mdl-ripple>
+                  Single
+                </mdl-radio>
+                <mdl-radio value="false" [(ngModel)]="intensionForm.single" name="intensionSingle"
+                           mdl-ripple>
+                  Multiple
+                </mdl-radio>
+              </div>
+              <div class="mdl-cell mdl-cell--5-col">
+                <mdl-radio value="public" [(ngModel)]="intensionForm.visibility" name="intensionVisibility" mdl-ripple>
+                  Public
+                </mdl-radio>
+                <mdl-radio value="protected" [(ngModel)]="intensionForm.visibility" name="intensionVisibility"
+                           mdl-ripple>
+                  Protected
+                </mdl-radio>
+                <mdl-radio value="private" [(ngModel)]="intensionForm.visibility" name="intensionVisibility" mdl-ripple>
+                  Private
+                </mdl-radio>
+              </div>
+              <div class="mdl-cell mdl-cell--3-col">
+                <mdl-switch [(ngModel)]="intensionForm.refExtId" [ngModelOptions]="{standalone: true}" mdl-ripple>
+                  Reference
                 </mdl-switch>
               </div>
               <div class="mdl-cell mdl-cell--9-col" *ngIf="!intensionForm.refExtId">
@@ -125,26 +121,19 @@
                 </mdl-radio>
               </div>
             </div>
-          </div>
-        </div>
+            <div class="mdl-cell mdl-cell--12-col" *ngIf="intensionForm.refExtId">
 
-        <div class="mdl-cell mdl-cell--12-col" *ngIf="intensionForm.refExtId">
-          <div class="mdl-cell mdl-cell--12-col">
-            <mdl-textfield type="text" label="Owner" [(ngModel)]="refModel.ownerId" name="refModelOwner"
-                           floating-label></mdl-textfield>
-            <mdl-textfield type="text" label="Group" [(ngModel)]="refModel.group" name="refModelGroup"
-                           floating-label></mdl-textfield>
-          </div>
-          <div class="mdl-cell mdl-cell--12-col">
-            <mdl-textfield type="text" label="Name" [(ngModel)]="refModel.name" name="refModelName"
-                           floating-label></mdl-textfield>
-            <mdl-textfield type="text" label="Version" [(ngModel)]="refModel.version" name="refModelVersion"
-                           floating-label></mdl-textfield>
+              <mdl-select label="Reference Model" [autocomplete]="true" floating-label name="refExtId"
+                          (inputChange)="onAutocompleteChange($event)" [(ngModel)]="intensionForm.refExtId">
+                <mdl-option *ngFor="let model of refModels" [value]="model.extId">{{model.group}}</mdl-option>
+              </mdl-select>
+
+            </div>
+            <button type="submit" (click)="addIntension()" mdl-button mdl-button-type="raised" mdl-colored="primary"
+                    mdl-ripple>Add
+            </button>
           </div>
         </div>
-        <button type="submit" (click)="addIntension()" mdl-button mdl-button-type="raised" mdl-colored="primary"
-                mdl-ripple>Add
-        </button>
       </form>
 
 
@@ -159,6 +148,8 @@
               {{intension.structure}}
 
               <span *ngIf="!intension.single">[]</span>
+
+              <span *ngIf="intension.required"> , required</span>
               <!--<button type="submit" mdl-button mdl-button-type="raised" mdl-colored="danger" mdl-ripple>Delete</button>-->
             </li>
           </ul>
