@@ -1,7 +1,6 @@
 <br>
 <div *ngIf="form" mdl-shadow="2">
   <form #modelForm (ngSubmit)="commit()">
-    <button type="submit" style="display:none"></button>
     <div class="content-grid mdl-grid">
       <div class="mdl-cell mdl-cell--2-col">
         <mdl-textfield type="text" label="Owner" [(ngModel)]="form.ownerId" name="ownerId"
@@ -32,6 +31,99 @@
       <div class="mdl-cell mdl-cell--3-col">
         <button type="submit" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Submit</button>
       </div>
+      <div class="mdl-cell mdl-cell--3-col">
+        <button type="submit" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>search</button>
+      </div>
     </div>
   </form>
+</div>
+<div *ngIf="searchForm" mdl-shadow="2">
+  <form #modelForm (ngSubmit)="search()">
+    <div class="content-grid mdl-grid">
+      <div class="mdl-cell mdl-cell--2-col">
+        <mdl-textfield type="text" label="Owner" [(ngModel)]="searchForm.ownerId" name="searchOwner"
+                       floating-label></mdl-textfield>
+      </div>
+      <div class="mdl-cell mdl-cell--2-col">
+        <mdl-textfield type="text" label="Group" [(ngModel)]="searchForm.group" name="searchGroup"
+                       floating-label></mdl-textfield>
+      </div>
+      <div class="mdl-cell mdl-cell--2-col">
+        <mdl-textfield type="text" label="Name" [(ngModel)]="searchForm.name" name="searchName"
+                       floating-label></mdl-textfield>
+      </div>
+      <div class="mdl-cell mdl-cell--2-col">
+        <mdl-textfield type="text" label="Tree" [(ngModel)]="searchForm.tree" name="searchTree"
+                       floating-label></mdl-textfield>
+      </div>
+      <div class="mdl-cell mdl-cell--4-col">
+        <mdl-radio value="public" [(ngModel)]="searchForm.visibility" name="searchVisibility" mdl-ripple>Public
+        </mdl-radio>
+        <mdl-radio value="protected" [(ngModel)]="searchForm.visibility" name="searchVisibility" mdl-ripple>Protected
+        </mdl-radio>
+        <mdl-radio value="private" [(ngModel)]="searchForm.visibility" name="searchVisibility" mdl-ripple>Private
+        </mdl-radio>
+      </div>
+    </div>
+    <div class="content-grid mdl-grid">
+      <div class="mdl-cell mdl-cell--3-col">
+        <button type="submit" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>search</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div mdl-shadow="2" *ngIf="searchReceipt">
+  <div class="content-grid mdl-grid">
+    <div class="mdl-cell mdl-cell--4-col">
+      <div class="content-grid mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col">
+          <mdl-textfield type="text" label="Owner" [(ngModel)]="searchReceipt.ownerId" name="ownerId" readonly="true"
+                         floating-label></mdl-textfield>
+        </div>
+        <div class="mdl-cell mdl-cell--12-col">
+          <mdl-textfield type="text" label="Group" [(ngModel)]="searchReceipt.group" name="group" readonly="true"
+                         floating-label></mdl-textfield>
+        </div>
+        <div class="mdl-cell mdl-cell--12-col">
+          <mdl-textfield type="text" label="Name" [(ngModel)]="searchReceipt.name" name="name" readonly="true"
+                         floating-label></mdl-textfield>
+        </div>
+        <div class="mdl-cell mdl-cell--12-col">
+          <mdl-textfield type="text" label="Tree" [(ngModel)]="searchReceipt.tree" name="tree" readonly="true"
+                         floating-label></mdl-textfield>
+        </div>
+        <div class="mdl-cell mdl-cell--12-col">
+          <mdl-textfield type="text" label="Visibulity" [(ngModel)]="searchReceipt.visibility" name="visibility"
+                         readonly="true"
+                         floating-label></mdl-textfield>
+        </div>
+        <div class="mdl-cell mdl-cell--12-col">
+          <mdl-radio value="snapshot" [(ngModel)]="searchForm.publication" name="publication" mdl-ripple>Snapshot
+          </mdl-radio>
+          <mdl-radio value="release" [(ngModel)]="searchForm.publication" name="publication" mdl-ripple>Release
+          </mdl-radio>
+        </div>
+        <div class="mdl-cell mdl-cell--12-col">
+          <button type="submit" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Publish</button>
+        </div>
+      </div>
+    </div>
+    <div class="mdl-cell mdl-cell--8-col">
+      <div>
+        <ul>
+          <li *ngFor="let intension of searchReceipt.intensions">
+            {{intension.visibility}}
+
+            {{intension.field}}
+:
+            {{intension.structure}}
+
+            <span *ngIf="!intension.single">[]</span>
+            <!--<button type="submit" mdl-button mdl-button-type="raised" mdl-colored="danger" mdl-ripple>Delete</button>-->
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>

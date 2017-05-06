@@ -4,10 +4,10 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../../environments/environment';
-import {Extension, SearchReceipt} from './extensions.data';
+import {Intension} from './intensions.data';
 
 @Injectable()
-export class ExtensionsService {
+export class IntensionsService {
 
   private URL = environment.kiimate_url;
 
@@ -15,7 +15,8 @@ export class ExtensionsService {
   }
 
   commit(authorization: string,
-         form: Extension): Observable<Extension> {
+         form: Intension): Observable<Intension> {
+
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-OperatorId': 'wangyj',
@@ -23,25 +24,11 @@ export class ExtensionsService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + form.ownerId + '/extension';
+    const url = this.URL + '/' + form.ownerId + '/intension';
     return this.http.post(url, form, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
-  }
 
-  search(authorization: string,
-         search: Extension): Observable<SearchReceipt> {
-    const headers = new Headers({
-      // 'Authorization': authorization,
-      'X-SUMMER-VisitorId': 'wangyj',
-      'X-SUMMER-RequestId': 'random'
-    });
-    const options = new RequestOptions({headers: headers});
-
-    const url = this.URL + '/' + search.ownerId + '/extensions/' + search.group;
-    return this.http.get(url, options)
-      .map((res: Response) => res.json() || [])
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
 }

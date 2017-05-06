@@ -1,3 +1,4 @@
+import {Intension} from '../intensions/intensions.data';
 export class Extension {
 
   ownerId: string;
@@ -10,11 +11,16 @@ export class Extension {
   intensions: Intension[];
 }
 
-export class Intension {
-  id: string;
-  field: string;
-  refExtId: string;
-  single: boolean;
-  structure: string;
+
+export class SearchReceipt {
+
+  extId: string;
+  ownerId: string;
+  group: string;
+  name: string;
+  tree: string;
+
   visibility: string;
+
+  intensions: Intension[];
 }

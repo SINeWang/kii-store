@@ -29,10 +29,10 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    DevelopComponent,
     EntitiesComponent,
     ExploreComponent,
     ExtensionsComponent,
-    DevelopComponent,
     ModelsComponent,
   ],
   imports: [

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Extension} from './extensions.data';
+import {Extension, SearchReceipt} from './extensions.data';
 import {ExtensionsService} from './extensions.service';
 
 @Component({
@@ -11,7 +11,11 @@ export class ExtensionsComponent {
 
   private form = new Extension();
 
+  private searchForm = new Extension();
+
   private errorMessage: string;
+
+  private searchReceipt: SearchReceipt;
 
   constructor(private extensionService: ExtensionsService) {
     this.form.tree = 'master';
@@ -21,12 +25,23 @@ export class ExtensionsComponent {
   commit(): void {
     const authorization = localStorage.getItem('authorization');
     this.extensionService.commit(authorization, this.form).subscribe(
-      data => this.handle_receipt(data),
+      data => this.handle_commit_receipt(data),
       error => this.errorMessage = <any>error
     );
   }
 
-  handle_receipt(receipt: any) {
+  search(): void {
+    const authorization = localStorage.getItem('authorization');
+    this.extensionService.search(authorization, this.searchForm).subscribe(
+      data => this.handle_search_receipt(data),
+      error => this.errorMessage = <any>error
+    );
+  }
 
+  handle_commit_receipt(receipt: any) {
+  }
+
+  handle_search_receipt(receipt: SearchReceipt) {
+    this.searchReceipt = receipt;
   }
 }
