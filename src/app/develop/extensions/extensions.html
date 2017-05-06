@@ -1,73 +1,30 @@
-<br>
-<div *ngIf="form" mdl-shadow="2">
-  <form #modelForm (ngSubmit)="commit()">
-    <div class="content-grid mdl-grid">
-      <div class="mdl-cell mdl-cell--2-col">
-        <mdl-textfield type="text" label="Owner" [(ngModel)]="form.ownerId" name="ownerId"
-                       floating-label></mdl-textfield>
-      </div>
-      <div class="mdl-cell mdl-cell--2-col">
-        <mdl-textfield type="text" label="Group" [(ngModel)]="form.group" name="group"
-                       floating-label></mdl-textfield>
-      </div>
-      <div class="mdl-cell mdl-cell--2-col">
-        <mdl-textfield type="text" label="Name" [(ngModel)]="form.name" name="name"
-                       floating-label></mdl-textfield>
-      </div>
-      <div class="mdl-cell mdl-cell--2-col">
-        <mdl-textfield type="text" label="Tree" [(ngModel)]="form.tree" name="tree"
-                       floating-label></mdl-textfield>
-      </div>
-      <div class="mdl-cell mdl-cell--4-col">
-        <mdl-radio value="public" [(ngModel)]="form.visibility" name="visibility" mdl-ripple>Public
-        </mdl-radio>
-        <mdl-radio value="protected" [(ngModel)]="form.visibility" name="visibility" mdl-ripple>Protected
-        </mdl-radio>
-        <mdl-radio value="private" [(ngModel)]="form.visibility" name="visibility" mdl-ripple>Private
-        </mdl-radio>
-      </div>
-    </div>
-    <div class="content-grid mdl-grid">
-      <div class="mdl-cell mdl-cell--3-col">
-        <button type="submit" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Submit</button>
-      </div>
-      <div class="mdl-cell mdl-cell--3-col">
-        <button type="submit" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>search</button>
-      </div>
-    </div>
-  </form>
-</div>
+<br xmlns="http://www.w3.org/1999/html">
 <div *ngIf="searchForm" mdl-shadow="2">
   <form #modelForm (ngSubmit)="search()">
     <div class="content-grid mdl-grid">
-      <div class="mdl-cell mdl-cell--2-col">
+      <div class="mdl-cell mdl-cell--3-col">
         <mdl-textfield type="text" label="Owner" [(ngModel)]="searchForm.ownerId" name="searchOwner"
                        floating-label></mdl-textfield>
       </div>
-      <div class="mdl-cell mdl-cell--2-col">
+      <div class="mdl-cell mdl-cell--3-col">
         <mdl-textfield type="text" label="Group" [(ngModel)]="searchForm.group" name="searchGroup"
                        floating-label></mdl-textfield>
       </div>
-      <div class="mdl-cell mdl-cell--2-col">
+      <div class="mdl-cell mdl-cell--3-col">
         <mdl-textfield type="text" label="Name" [(ngModel)]="searchForm.name" name="searchName"
                        floating-label></mdl-textfield>
       </div>
-      <div class="mdl-cell mdl-cell--2-col">
+      <div class="mdl-cell mdl-cell--3-col">
         <mdl-textfield type="text" label="Tree" [(ngModel)]="searchForm.tree" name="searchTree"
                        floating-label></mdl-textfield>
-      </div>
-      <div class="mdl-cell mdl-cell--4-col">
-        <mdl-radio value="public" [(ngModel)]="searchForm.visibility" name="searchVisibility" mdl-ripple>Public
-        </mdl-radio>
-        <mdl-radio value="protected" [(ngModel)]="searchForm.visibility" name="searchVisibility" mdl-ripple>Protected
-        </mdl-radio>
-        <mdl-radio value="private" [(ngModel)]="searchForm.visibility" name="searchVisibility" mdl-ripple>Private
-        </mdl-radio>
       </div>
     </div>
     <div class="content-grid mdl-grid">
       <div class="mdl-cell mdl-cell--3-col">
-        <button type="submit" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>search</button>
+        <button type="submit" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Search</button>
+        <button (click)="submit()" [disabled]="!validAddition" mdl-button mdl-button-type="raised" mdl-colored="primary"
+                mdl-ripple>Add
+        </button>
       </div>
     </div>
   </form>
@@ -109,21 +66,85 @@
         </div>
       </div>
     </div>
-    <div class="mdl-cell mdl-cell--8-col">
-      <div>
-        <ul>
-          <li *ngFor="let intension of searchReceipt.intensions">
-            {{intension.visibility}}
+    <div class="mdl-cell mdl-cell--3-col">
+      <div class="content-grid mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col">
+          <ul>
+            <li *ngFor="let intension of searchReceipt.intensions">
+              {{intension.visibility}}
 
-            {{intension.field}}
-:
-            {{intension.structure}}
+              {{intension.field}}
+              :
+              {{intension.structure}}
 
-            <span *ngIf="!intension.single">[]</span>
-            <!--<button type="submit" mdl-button mdl-button-type="raised" mdl-colored="danger" mdl-ripple>Delete</button>-->
-          </li>
-        </ul>
+              <span *ngIf="!intension.single">[]</span>
+              <!--<button type="submit" mdl-button mdl-button-type="raised" mdl-colored="danger" mdl-ripple>Delete</button>-->
+            </li>
+          </ul>
+        </div>
       </div>
+    </div>
+    <div class="mdl-cell mdl-cell--5-col">
+      <form #modelForm (ngSubmit)="search()">
+
+        <div class="content-grid mdl-grid">
+          <div class="mdl-cell mdl-cell--12-col">
+            <mdl-textfield type="text" label="Field" [(ngModel)]="intensionForm.field" name="field"
+                           floating-label></mdl-textfield>
+          </div>
+        </div>
+        <div class="content-grid mdl-grid">
+          <div class="mdl-cell mdl-cell--12-col">
+            <mdl-radio value="true" [(ngModel)]="intensionForm.single" name="intensionSingle" mdl-ripple>Single
+            </mdl-radio>
+            <mdl-radio value="false" [(ngModel)]="intensionForm.single" name="intensionSingle" mdl-ripple>Multiple
+            </mdl-radio>
+          </div>
+        </div>
+        <div class="content-grid mdl-grid">
+          <div class="mdl-cell mdl-cell--12-col">
+            <mdl-radio value="true" [(ngModel)]="intensionForm.required" name="fieldRequired" mdl-ripple>Required
+            </mdl-radio>
+            <mdl-radio value="false" [(ngModel)]="intensionForm.required" name="fieldRequired" mdl-ripple>MayNot
+            </mdl-radio>
+          </div>
+        </div>
+        <div class="content-grid mdl-grid">
+          <div class="mdl-cell mdl-cell--12-col">
+            <mdl-radio value="public" [(ngModel)]="intensionForm.visibility" name="intensionVisibility" mdl-ripple>
+              Public
+            </mdl-radio>
+            <mdl-radio value="protected" [(ngModel)]="intensionForm.visibility" name="intensionVisibility" mdl-ripple>
+              Protected
+            </mdl-radio>
+            <mdl-radio value="private" [(ngModel)]="intensionForm.visibility" name="intensionVisibility" mdl-ripple>
+              Private
+            </mdl-radio>
+          </div>
+          <div class="mdl-cell mdl-cell--12-col">
+            <mdl-radio value="number" *ngIf="intensionForm.structure != 'reference'"
+                       [(ngModel)]="intensionForm.structure" name="intensionStructure" mdl-ripple>Number
+            </mdl-radio>
+            <mdl-radio value="boolean" *ngIf="intensionForm.structure != 'reference'"
+                       [(ngModel)]="intensionForm.structure" name="intensionStructure" mdl-ripple>Boolean
+            </mdl-radio>
+            <mdl-radio value="string" *ngIf="intensionForm.structure != 'reference'"
+                       [(ngModel)]="intensionForm.structure" name="intensionStructure" mdl-ripple>String
+            </mdl-radio>
+            <mdl-radio value="date_time" *ngIf="intensionForm.structure != 'reference'"
+                       [(ngModel)]="intensionForm.structure" name="intensionStructure" mdl-ripple>DateTime
+            </mdl-radio>
+            <mdl-radio value="reference" [(ngModel)]="intensionForm.structure" name="intensionStructure" mdl-ripple>
+              Reference
+            </mdl-radio>
+            <mdl-textfield type="text" label="Structure" *ngIf="intensionForm.structure == 'reference'" [(ngModel)]="intensionForm.structure" name="field"
+                           floating-label></mdl-textfield>
+          </div>
+        </div>
+        <button type="submit" (click)="addIntension()" mdl-button mdl-button-type="raised" mdl-colored="primary"
+                mdl-ripple>Add
+        </button>
+      </form>
     </div>
   </div>
 </div>

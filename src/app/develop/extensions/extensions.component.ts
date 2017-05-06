@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Extension, SearchReceipt} from './extensions.data';
 import {ExtensionsService} from './extensions.service';
+import {Intension} from '../intensions/intensions.data';
 
 @Component({
   selector: 'app-develop-extensions',
@@ -13,6 +14,8 @@ export class ExtensionsComponent {
 
   private searchForm = new Extension();
 
+  private intensionForm = new Intension();
+
   private errorMessage: string;
 
   private searchReceipt: SearchReceipt;
@@ -20,6 +23,10 @@ export class ExtensionsComponent {
   constructor(private extensionService: ExtensionsService) {
     this.form.tree = 'master';
     this.form.visibility = 'public';
+
+    this.intensionForm.visibility = 'public';
+    this.intensionForm.single = true;
+    this.intensionForm.structure = 'string';
   }
 
   commit(): void {
@@ -38,10 +45,15 @@ export class ExtensionsComponent {
     );
   }
 
+  addIntension(): void {
+    console.log('intensionForm', this.intensionForm);
+  }
+
   handle_commit_receipt(receipt: any) {
   }
 
   handle_search_receipt(receipt: SearchReceipt) {
     this.searchReceipt = receipt;
+    this.intensionForm.extId = receipt.extId;
   }
 }

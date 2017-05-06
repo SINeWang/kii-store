@@ -5,5 +5,6 @@ export class Intension {
   refExtId: string;
   structure: string;
   single: boolean;
+  required: boolean;
   visibility: string;
 }
