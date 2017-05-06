@@ -1,22 +1,31 @@
 <br>
-<div *ngIf="extensionForm" mdl-shadow="2">
+<div *ngIf="form" mdl-shadow="2">
   <form #modelForm (ngSubmit)="commit()">
     <button type="submit" style="display:none"></button>
     <div class="content-grid mdl-grid">
       <div class="mdl-cell mdl-cell--2-col">
-        <mdl-textfield type="text" label="Owner" [(ngModel)]="extensionForm.ownerId" name="ownerId" floating-label></mdl-textfield>
+        <mdl-textfield type="text" label="Owner" [(ngModel)]="form.ownerId" name="ownerId"
+                       floating-label></mdl-textfield>
       </div>
       <div class="mdl-cell mdl-cell--2-col">
-        <mdl-textfield type="text" label="Group" [(ngModel)]="extensionForm.group" name="group" floating-label></mdl-textfield>
+        <mdl-textfield type="text" label="Group" [(ngModel)]="form.group" name="group"
+                       floating-label></mdl-textfield>
       </div>
       <div class="mdl-cell mdl-cell--2-col">
-        <mdl-textfield type="text" label="Name" [(ngModel)]="extensionForm.name" name="name" floating-label></mdl-textfield>
+        <mdl-textfield type="text" label="Name" [(ngModel)]="form.name" name="name"
+                       floating-label></mdl-textfield>
       </div>
       <div class="mdl-cell mdl-cell--2-col">
-        <mdl-textfield type="text" label="Tree" [(ngModel)]="extensionForm.tree" name="tree" floating-label></mdl-textfield>
+        <mdl-textfield type="text" label="Tree" [(ngModel)]="form.tree" name="tree"
+                       floating-label></mdl-textfield>
       </div>
-      <div class="mdl-cell mdl-cell--2-col">
-        <mdl-textfield type="text" label="Visibility" [(ngModel)]="extensionForm.visibility" name="visibility" floating-label></mdl-textfield>
+      <div class="mdl-cell mdl-cell--4-col">
+        <mdl-radio value="public" [(ngModel)]="form.visibility" name="visibility" mdl-ripple>Public
+        </mdl-radio>
+        <mdl-radio value="protected" [(ngModel)]="form.visibility" name="visibility" mdl-ripple>Protected
+        </mdl-radio>
+        <mdl-radio value="private" [(ngModel)]="form.visibility" name="visibility" mdl-ripple>Private
+        </mdl-radio>
       </div>
     </div>
     <div class="content-grid mdl-grid">
@@ -25,42 +34,4 @@
       </div>
     </div>
   </form>
-</div>
-
-<br>
-<div *ngIf="model">
-  <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--8-col">
-      <div class="content-grid mdl-grid" mdl-shadow="2">
-        <div class="mdl-cell mdl-cell--12-col">
-          <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--11-col">
-              <h4>{{model.group}} / {{model.name}} </h4>
-            </div>
-            <div class="mdl-cell mdl-cell--1-col">
-              <button mdl-button mdl-button-type="icon" mdl-ripple>
-                <mdl-icon>favorite_border</mdl-icon>
-              </button>
-            </div>
-          </div>
-          <pre *ngFor="let intension of model.intensions">
-    <strong>{{intension.visibility}}</strong> {{intension.field}} : {{intension.structure}}<span *ngIf="!intension.single">[]</span>
-          </pre>
-        </div>
-      </div>
-    </div>
-    <div class="mdl-cell mdl-cell--4-col">
-      <div class="mdl-grid" mdl-shadow="2">
-        <div class="mdl-cell mdl-cell--12-col">
-          <form [formGroup]="subscribeForm">
-            <mdl-textfield type="text" label="Group" formControlName="group" floating-label></mdl-textfield>
-            <mdl-textfield type="text" label="Name" formControlName="name" floating-label></mdl-textfield>
-            <mdl-textfield type="text" label="Tree" formControlName="tree" floating-label></mdl-textfield>
-            <button type="submit" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Subscribe
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>

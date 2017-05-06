@@ -9,16 +9,18 @@ import {ExtensionsService} from './extensions.service';
 })
 export class ExtensionsComponent {
 
-  private extensionForm = new Extension();
+  private form = new Extension();
 
   private errorMessage: string;
 
   constructor(private extensionService: ExtensionsService) {
+    this.form.tree = 'master';
+    this.form.visibility = 'public';
   }
 
   commit(): void {
     const authorization = localStorage.getItem('authorization');
-    this.extensionService.commit(authorization, this.extensionForm).subscribe(
+    this.extensionService.commit(authorization, this.form).subscribe(
       data => this.handle_receipt(data),
       error => this.errorMessage = <any>error
     );
