@@ -8,7 +8,6 @@ import {AppComponent} from './app.root';
 import {ExploreComponent} from './explore/explore.component';
 import {RouterModule, Routes} from '@angular/router';
 import {MdlModule} from '@angular-mdl/core';
-import {MdlSelectModule} from '@angular-mdl/select';
 import {ModelsComponent} from './explore/models/models.component';
 import {EntitiesComponent} from './explore/entities/entities.component';
 import {DevelopComponent} from './develop/develop.component';
@@ -42,7 +41,6 @@ const routes: Routes = [
     FormsModule,
     HttpModule,
     MdlModule,
-    MdlSelectModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],

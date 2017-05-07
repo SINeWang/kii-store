@@ -123,11 +123,11 @@
             </div>
             <div class="mdl-cell mdl-cell--12-col" *ngIf="intensionForm.refExtId">
 
-              <mdl-select label="Reference Model" [autocomplete]="true" floating-label name="refExtId"
-                          (inputChange)="onAutocompleteChange($event)" [(ngModel)]="intensionForm.refExtId">
-                <mdl-option *ngFor="let model of refModels" [value]="model.extId">{{model.group}}</mdl-option>
-              </mdl-select>
 
+              <!--<mdl-select label="Reference Model" [autocomplete]="true" floating-label name="refExtId"-->
+                          <!--(inputChange)="onAutocompleteChange($event)" [(ngModel)]="intensionForm.refExtId">-->
+                <!--<mdl-option *ngFor="let model of refModels" [value]="model.extId">{{model.group}}</mdl-option>-->
+              <!--</mdl-select>-->
             </div>
             <button type="submit" (click)="addIntension()" mdl-button mdl-button-type="raised" mdl-colored="primary"
                     mdl-ripple>Add
