@@ -123,11 +123,16 @@
             </div>
             <div class="mdl-cell mdl-cell--12-col" *ngIf="intensionForm.refExtId">
 
+              <md-input-container>
+                <input type="text" mdInput placeholder="Reference Model" [mdAutocomplete]="acRefModels" [formControl]="modelFormControl">
+              </md-input-container>
 
-              <!--<mdl-select label="Reference Model" [autocomplete]="true" floating-label name="refExtId"-->
-                          <!--(inputChange)="onAutocompleteChange($event)" [(ngModel)]="intensionForm.refExtId">-->
-                <!--<mdl-option *ngFor="let model of refModels" [value]="model.extId">{{model.group}}</mdl-option>-->
-              <!--</mdl-select>-->
+              <md-autocomplete #acRefModels="mdAutocomplete">
+                <md-option *ngFor="let model of refModels | async" [value]="model">
+                  <span>{{ model.group }}</span>
+                </md-option>
+              </md-autocomplete>
+
             </div>
             <button type="submit" (click)="addIntension()" mdl-button mdl-button-type="raised" mdl-colored="primary"
                     mdl-ripple>Add
@@ -150,7 +155,6 @@
               <span *ngIf="!intension.single">[]</span>
 
               <span *ngIf="intension.required"> , required</span>
-              <!--<button type="submit" mdl-button mdl-button-type="raised" mdl-colored="danger" mdl-ripple>Delete</button>-->
             </li>
           </ul>
         </div>

@@ -12,6 +12,7 @@ import {ModelsComponent} from './explore/models/models.component';
 import {EntitiesComponent} from './explore/entities/entities.component';
 import {DevelopComponent} from './develop/develop.component';
 import {ExtensionsComponent} from './develop/extensions/extensions.component';
+import {MdAutocompleteModule, MdInputModule} from '@angular/material';
 
 const routes: Routes = [
   {
@@ -40,6 +41,8 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
+    MdInputModule,
+    MdAutocompleteModule,
     MdlModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes)

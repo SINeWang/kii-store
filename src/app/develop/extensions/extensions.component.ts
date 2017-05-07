@@ -4,6 +4,9 @@ import {ExtensionsService} from './extensions.service';
 import {Intension} from '../intensions/intensions.data';
 import {Model} from '../../explore/models/models.data';
 import {ModelsService} from '../../explore/models/models.service';
+import {FormControl} from '@angular/forms';
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-develop-extensions',
@@ -11,7 +14,6 @@ import {ModelsService} from '../../explore/models/models.service';
   templateUrl: 'extensions.html',
 })
 export class ExtensionsComponent {
-
   private form = new Extension();
 
   private searchForm = new Extension();
@@ -22,9 +24,12 @@ export class ExtensionsComponent {
 
   private searchReceipt: SearchReceipt;
 
-  private refModels: Model[];
+  private refModels: any;
 
   private modelForm = new Model();
+
+  modelFormControl = new FormControl();
+
 
   constructor(private extensionService: ExtensionsService,
               private modelsService: ModelsService) {
@@ -35,6 +40,10 @@ export class ExtensionsComponent {
     this.intensionForm.single = true;
     this.intensionForm.required = true;
     this.intensionForm.structure = 'string';
+
+    this.refModels = this.modelFormControl.valueChanges
+      .startWith(null)
+      .map(name => this.onAutocompleteChange(name));
   }
 
   commit(): void {
@@ -65,17 +74,16 @@ export class ExtensionsComponent {
     this.intensionForm.extId = receipt.extId;
   }
 
-  onAutocompleteChange(query: string): void {
+  onAutocompleteChange(query: string): Model[] {
     console.log(query);
     this.modelForm.group = query;
     const authorization = localStorage.getItem('authorization');
-    this.modelsService.get(authorization, this.modelForm).subscribe(
-      data => this.handle_reference_models(data),
-      error => this.errorMessage = <any>error
-    );
+    return [];
+     // this.modelsService.get(authorization, this.modelForm)
+     //  .map((data: Model[]) => {
+     //    return data;
+     //  }).toPromise().catch(error => this.errorMessage = <any>error
+     //  )
   }
 
-  handle_reference_models(models: Model[]) {
-    this.refModels = models;
-  }
 }
