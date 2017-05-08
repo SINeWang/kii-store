@@ -123,13 +123,14 @@
             </div>
             <div class="mdl-cell mdl-cell--12-col" *ngIf="intensionForm.refExtId">
 
-              <md-input-container>
-                <input type="text" mdInput placeholder="Reference Model" [mdAutocomplete]="acRefModels" [formControl]="modelFormControl">
+              <md-input-container style="width: 100%;">
+                <input type="text" mdInput placeholder="Reference Model" [mdAutocomplete]="acRefModels"
+                       [formControl]="modelFormControl">
               </md-input-container>
 
-              <md-autocomplete #acRefModels="mdAutocomplete">
+              <md-autocomplete #acRefModels="mdAutocomplete" [displayWith]="displayFn">
                 <md-option *ngFor="let model of refModels" [value]="model">
-                  <span>{{ model.group }}</span>
+                  <span>{{model.providerId}} / {{ model.group }}</span>
                 </md-option>
               </md-autocomplete>
 

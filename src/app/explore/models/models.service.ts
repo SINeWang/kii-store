@@ -26,6 +26,8 @@ export class ModelsService {
     let url = this.URL + '/explore/models';
     if (modelForm.group != null && modelForm.group !== '') {
       url += '?q=' + modelForm.group;
+    } else {
+      return Observable.of([]);
     }
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])

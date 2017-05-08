@@ -7,7 +7,6 @@ import {ModelsService} from '../../explore/models/models.service';
 import {FormControl} from '@angular/forms';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
-import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-develop-extensions',
@@ -64,7 +63,9 @@ export class ExtensionsComponent {
   }
 
   addIntension(): void {
+    this.intensionForm.refExtId = this.modelFormControl.value.rootExtId;
     console.log('intensionForm', this.intensionForm);
+    console.log('modelFormControl.value', this.modelFormControl.value);
   }
 
   handle_commit_receipt(receipt: any) {
@@ -82,6 +83,10 @@ export class ExtensionsComponent {
       data => this.refModels = data,
       error => this.errorMessage = <any>error
     );
+  }
+
+  displayFn(model: Model): string {
+    return model ? model.providerId + ' / ' + model.group + ' / ' + model.name : '';
   }
 
 }
