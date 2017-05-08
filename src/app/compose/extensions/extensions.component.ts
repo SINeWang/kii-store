@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 import {IntensionsService} from '../intensions/intensions.service';
 
 @Component({
-  selector: 'app-develop-extensions',
+  selector: 'app-compose-extensions',
   providers: [ExtensionsService, IntensionsService, ModelsService],
   templateUrl: 'extensions.html',
 })

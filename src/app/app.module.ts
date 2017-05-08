@@ -13,6 +13,7 @@ import {EntitiesComponent} from './explore/entities/entities.component';
 import {ComposeComponent} from './compose/compose.component';
 import {ExtensionsComponent} from './compose/extensions/extensions.component';
 import {MdAutocompleteModule, MdInputModule} from '@angular/material';
+import {InstancesComponent} from './compose/instances/instances.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,7 @@ const routes: Routes = [
     EntitiesComponent,
     ExploreComponent,
     ExtensionsComponent,
+    InstancesComponent,
     ModelsComponent,
   ],
   imports: [
