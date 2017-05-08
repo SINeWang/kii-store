@@ -23,7 +23,7 @@ export class ModelsService {
     });
     const options = new RequestOptions({headers: headers});
 
-    let url = this.URL + '/explore/models';
+    let url = this.URL + '/search/models';
     if (modelForm.group != null && modelForm.group !== '') {
       url += '?q=' + modelForm.group;
     } else {

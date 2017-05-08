@@ -27,9 +27,13 @@ export class ExtensionsComponent {
 
   private refModels: Model [];
 
+  private candidateExtensions: Extension[];
+
   private modelForm = new Model();
 
   modelFormControl = new FormControl();
+
+  candidateGroupFormCtrl = new FormControl();
 
 
   constructor(private extensionService: ExtensionsService,
@@ -45,21 +49,17 @@ export class ExtensionsComponent {
 
     this.modelFormControl.valueChanges
       .startWith(null)
-      .subscribe(name => this.onAutocompleteChange(name));
+      .subscribe(name => this.onCandidateModelsChange(name));
+
+    this.candidateGroupFormCtrl.valueChanges
+      .startWith(null)
+      .subscribe(name => this.onCandidateExtensionsChange(name));
   }
 
   commit(): void {
     const authorization = localStorage.getItem('authorization');
     this.extensionService.commit(authorization, this.form).subscribe(
       data => this.handle_commit_receipt(data),
-      error => this.errorMessage = <any>error
-    );
-  }
-
-  search(): void {
-    const authorization = localStorage.getItem('authorization');
-    this.extensionService.search(authorization, this.searchForm).subscribe(
-      data => this.handle_search_receipt(data),
       error => this.errorMessage = <any>error
     );
   }
@@ -84,7 +84,7 @@ export class ExtensionsComponent {
     this.intensionForm.ownerId = receipt.ownerId;
   }
 
-  onAutocompleteChange(query: string) {
+  onCandidateModelsChange(query: string) {
     this.modelForm.group = query;
     const authorization = localStorage.getItem('authorization');
     this.modelsService.get(authorization, this.modelForm).subscribe(
@@ -93,8 +93,28 @@ export class ExtensionsComponent {
     );
   }
 
+  onCandidateExtensionsChange(query: any) {
+    if (query instanceof Object) {
+      this.extensionService.visit(query).subscribe(
+        data => this.handle_search_receipt(data),
+        error => this.errorMessage = <any>error
+      );
+    } else {
+      const authorization = localStorage.getItem('authorization');
+      this.searchForm.group = query;
+      this.extensionService.search(this.searchForm).subscribe(
+        data => this.candidateExtensions = data,
+        error => this.errorMessage = <any>error
+      );
+    }
+  }
+
   displayFn(model: Model): string {
     return model ? model.providerId + ' / ' + model.group + ' / ' + model.name + ' # ' + model.publication + '-' + model.version : '';
+  }
+
+  displayCandidateExtensions(extension: Extension): string {
+    return extension ? extension.group : '';
   }
 
 }

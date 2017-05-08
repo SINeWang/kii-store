@@ -29,8 +29,21 @@ export class ExtensionsService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  search(authorization: string,
-         search: Extension): Observable<SearchReceipt> {
+  search(search: Extension): Observable<Extension[]> {
+    const headers = new Headers({
+      // 'Authorization': authorization,
+      'X-SUMMER-VisitorId': 'wangyj',
+      'X-SUMMER-RequestId': 'random'
+    });
+    const options = new RequestOptions({headers: headers});
+
+    const url = this.URL + '/' + search.ownerId + '/extensions?group=' + search.group;
+    return this.http.get(url, options)
+      .map((res: Response) => res.json() || [])
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  visit(search: Extension): Observable<SearchReceipt> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-VisitorId': 'wangyj',

@@ -5,10 +5,9 @@ export class Extension {
   group: string;
   name: string;
   tree: string;
-  extId: string;
+  id: string;
   visibility: string;
 
-  intensions: Intension[];
 }
 
 
