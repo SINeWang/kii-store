@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {Extension, Extensions} from './extensions.data';
 import {ExtensionsService} from './extensions.service';
 import {Intension} from '../intensions/intensions.data';
@@ -17,7 +17,9 @@ import {Owners} from '../../owners/owners.data';
   providers: [ExtensionsService, IntensionsService, ModelsService, OwnersService],
   templateUrl: 'extensions.html',
 })
-export class ExtensionsComponent {
+export class ExtensionsComponent implements OnDestroy {
+
+
 
   private form = new Extension();
 
@@ -128,6 +130,9 @@ export class ExtensionsComponent {
     }
   }
 
+  ngOnDestroy(): void {
+    this.ownerSubscription.unsubscribe();
+  }
 
   displayFn(model: Model): string {
     return model ? model.providerId + ' / ' + model.group + ' / ' + model.name + ' # ' + model.publication + '-' + model.version : '';

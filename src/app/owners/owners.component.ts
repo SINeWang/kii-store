@@ -5,7 +5,7 @@ import {Owners} from './owners.data';
 
 @Component({
   selector: 'app-owner',
-  providers: [OwnersService],
+  providers: [],
   templateUrl: 'owners.html'
 })
 export class OwnersComponent {
