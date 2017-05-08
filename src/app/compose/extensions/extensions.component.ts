@@ -68,7 +68,6 @@ export class ExtensionsComponent implements OnDestroy {
 
     this.ownerSubscription = ownersService.ownerAnnounced$.subscribe(
       owners => {
-        console.log('owners:' + owners);
         this.owners = owners;
       }
     );
@@ -84,8 +83,6 @@ export class ExtensionsComponent implements OnDestroy {
 
   addIntension(): void {
     this.intensionForm.refExtId = this.modelFormControl.value.rootExtId;
-    console.log('intensionForm', this.intensionForm);
-    console.log('modelFormControl.value', this.modelFormControl.value);
     this.intensionForm.structure = '';
     this.intensionsService.commit(this.intensionForm).subscribe(
       data => console.log(data),
