@@ -14,6 +14,7 @@ import {ComposeComponent} from './compose/compose.component';
 import {ExtensionsComponent} from './compose/extensions/extensions.component';
 import {MdAutocompleteModule, MdInputModule} from '@angular/material';
 import {InstancesComponent} from './compose/instances/instances.component';
+import {OwnersComponent} from './owners/owners.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,7 @@ const routes: Routes = [
     ExtensionsComponent,
     InstancesComponent,
     ModelsComponent,
+    OwnersComponent,
   ],
   imports: [
     BrowserAnimationsModule,

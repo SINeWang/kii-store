@@ -8,13 +8,17 @@ import {FormControl} from '@angular/forms';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import {IntensionsService} from '../intensions/intensions.service';
+import {Subscription} from 'rxjs/Subscription';
+import {OwnersService} from '../../owners/owners.service';
+import {Owners} from '../../owners/owners.data';
 
 @Component({
   selector: 'app-compose-extensions',
-  providers: [ExtensionsService, IntensionsService, ModelsService],
+  providers: [ExtensionsService, IntensionsService, ModelsService, OwnersService],
   templateUrl: 'extensions.html',
 })
 export class ExtensionsComponent {
+
   private form = new Extension();
 
   private searchForm = new Extensions();
@@ -35,10 +39,15 @@ export class ExtensionsComponent {
 
   candidateGroupFormCtrl = new FormControl();
 
+  ownerSubscription: Subscription;
+
+  owners: Owners;
+
 
   constructor(private extensionService: ExtensionsService,
               private modelsService: ModelsService,
-              private intensionsService: IntensionsService) {
+              private intensionsService: IntensionsService,
+              private ownersService: OwnersService) {
     this.form.tree = 'master';
     this.form.visibility = 'public';
 
@@ -54,6 +63,13 @@ export class ExtensionsComponent {
     this.candidateGroupFormCtrl.valueChanges
       .startWith(null)
       .subscribe(name => this.onCandidateExtensionsChange(name));
+
+    this.ownerSubscription = ownersService.ownerAnnounced$.subscribe(
+      owners => {
+        console.log('owners:' + owners);
+        this.owners = owners;
+      }
+    );
   }
 
   commit(): void {
@@ -101,6 +117,9 @@ export class ExtensionsComponent {
       );
     } else {
       const authorization = localStorage.getItem('authorization');
+      if (this.owners) {
+        this.searchForm.ownerId = this.owners.ownerId;
+      }
       this.searchForm.group = query;
       this.extensionService.search(this.searchForm).subscribe(
         data => this.candidateExtensions = data,
@@ -108,6 +127,7 @@ export class ExtensionsComponent {
       );
     }
   }
+
 
   displayFn(model: Model): string {
     return model ? model.providerId + ' / ' + model.group + ' / ' + model.name + ' # ' + model.publication + '-' + model.version : '';

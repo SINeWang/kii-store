@@ -1,0 +1,10 @@
+<md-input-container style="width: 100%;">
+  <input type="text" mdInput placeholder="Owner" [mdAutocomplete]="searchOwner"
+         [formControl]="ownersFormControl">
+</md-input-container>
+
+<md-autocomplete #searchOwner="mdAutocomplete"  [displayWith]="displayCandidates">
+  <md-option *ngFor="let owners of candidateOwners" [value]="owners">
+    <span>{{ owners.ownerId }}</span>
+  </md-option>
+</md-autocomplete>
