@@ -7,10 +7,11 @@ import {ModelsService} from '../../explore/models/models.service';
 import {FormControl} from '@angular/forms';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
+import {IntensionsService} from '../intensions/intensions.service';
 
 @Component({
   selector: 'app-develop-extensions',
-  providers: [ExtensionsService, ModelsService],
+  providers: [ExtensionsService, IntensionsService, ModelsService],
   templateUrl: 'extensions.html',
 })
 export class ExtensionsComponent {
@@ -32,7 +33,8 @@ export class ExtensionsComponent {
 
 
   constructor(private extensionService: ExtensionsService,
-              private modelsService: ModelsService) {
+              private modelsService: ModelsService,
+              private intensionsService: IntensionsService) {
     this.form.tree = 'master';
     this.form.visibility = 'public';
 
@@ -66,6 +68,11 @@ export class ExtensionsComponent {
     this.intensionForm.refExtId = this.modelFormControl.value.rootExtId;
     console.log('intensionForm', this.intensionForm);
     console.log('modelFormControl.value', this.modelFormControl.value);
+    this.intensionForm.structure = '';
+    this.intensionsService.commit(this.intensionForm).subscribe(
+      data => console.log(data),
+      error => this.errorMessage = <any>error
+    );
   }
 
   handle_commit_receipt(receipt: any) {
@@ -74,6 +81,7 @@ export class ExtensionsComponent {
   handle_search_receipt(receipt: SearchReceipt) {
     this.searchReceipt = receipt;
     this.intensionForm.extId = receipt.extId;
+    this.intensionForm.ownerId = receipt.ownerId;
   }
 
   onAutocompleteChange(query: string) {
@@ -86,7 +94,7 @@ export class ExtensionsComponent {
   }
 
   displayFn(model: Model): string {
-    return model ? model.providerId + ' / ' + model.group + ' / ' + model.name : '';
+    return model ? model.providerId + ' / ' + model.group + ' / ' + model.name + ' # ' + model.publication + '-' + model.version : '';
   }
 
 }

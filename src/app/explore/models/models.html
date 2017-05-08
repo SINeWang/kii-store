@@ -49,7 +49,7 @@
             </div>
           </div>
           <pre *ngFor="let intension of model.intensions">
-    <strong>{{intension.visibility}}</strong> {{intension.field}} : <a href="#" *ngIf="intension.refExtId">{{intension.structure}}</a><span *ngIf="!intension.refExtId">{{intension.structure}}</span>
+    <strong>{{intension.visibility}}</strong> {{intension.field}} : <a href="/explore/models/{{intension.refExtId}}" *ngIf="intension.refExtId">Reference</a><span *ngIf="!intension.refExtId">{{intension.structure}}</span>
             <span
               *ngIf="!intension.single">[]</span>
           </pre>

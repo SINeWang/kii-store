@@ -10,8 +10,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {MdlModule} from '@angular-mdl/core';
 import {ModelsComponent} from './explore/models/models.component';
 import {EntitiesComponent} from './explore/entities/entities.component';
-import {DevelopComponent} from './develop/develop.component';
-import {ExtensionsComponent} from './develop/extensions/extensions.component';
+import {ComposeComponent} from './compose/compose.component';
+import {ExtensionsComponent} from './compose/extensions/extensions.component';
 import {MdAutocompleteModule, MdInputModule} from '@angular/material';
 
 const routes: Routes = [
@@ -21,16 +21,16 @@ const routes: Routes = [
     component: ExploreComponent
   },
   {
-    path: 'develop',
+    path: 'compose',
     pathMatch: 'full',
-    component: DevelopComponent
+    component: ComposeComponent
   },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    DevelopComponent,
+    ComposeComponent,
     EntitiesComponent,
     ExploreComponent,
     ExtensionsComponent,

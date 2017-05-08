@@ -23,4 +23,6 @@ export class SearchReceipt {
   visibility: string;
 
   intensions: Intension[];
+
+  schema: any;
 }

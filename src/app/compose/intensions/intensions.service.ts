@@ -14,9 +14,8 @@ export class IntensionsService {
   constructor(private http: Http) {
   }
 
-  commit(authorization: string,
-         form: Intension): Observable<Intension> {
-
+  commit(form: Intension): Observable<Intension> {
+    const authorization = localStorage.getItem('authorization');
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-OperatorId': 'wangyj',

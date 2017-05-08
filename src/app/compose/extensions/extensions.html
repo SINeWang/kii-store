@@ -130,7 +130,7 @@
 
               <md-autocomplete #acRefModels="mdAutocomplete" [displayWith]="displayFn">
                 <md-option *ngFor="let model of refModels" [value]="model">
-                  <span>{{model.providerId}} / {{ model.group }}</span>
+                  <span>{{model.providerId}} / {{ model.group }} / {{model.name}} # {{model.publication}}-{{model.version}} </span>
                 </md-option>
               </md-autocomplete>
 
@@ -144,20 +144,24 @@
 
 
       <div class="content-grid mdl-grid">
-        <div class="mdl-cell mdl-cell--12-col">
+        <div class="mdl-cell mdl-cell--6-col">
           <ul>
             <li *ngFor="let intension of searchReceipt.intensions">
               {{intension.visibility}}
 
               {{intension.field}}
               :
-              {{intension.structure}}
+              <span *ngIf="!intension.refExtId">{{intension.structure}}</span>
+              <span *ngIf="intension.refExtId"><a href="#">Reference</a> </span>
 
               <span *ngIf="!intension.single">[]</span>
 
               <span *ngIf="intension.required"> , required</span>
             </li>
           </ul>
+        </div>
+        <div class="mdl-cell mdl-cell--6-col">
+          <pre>{{searchReceipt.schema | json}}</pre>
         </div>
       </div>
     </div>
