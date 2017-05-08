@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Extension, SearchReceipt} from './extensions.data';
+import {Extension, Extensions} from './extensions.data';
 import {ExtensionsService} from './extensions.service';
 import {Intension} from '../intensions/intensions.data';
 import {Model} from '../../explore/models/models.data';
@@ -17,17 +17,17 @@ import {IntensionsService} from '../intensions/intensions.service';
 export class ExtensionsComponent {
   private form = new Extension();
 
-  private searchForm = new Extension();
+  private searchForm = new Extensions();
 
   private intensionForm = new Intension();
 
   private errorMessage: string;
 
-  private searchReceipt: SearchReceipt;
+  private extension: Extension;
 
   private refModels: Model [];
 
-  private candidateExtensions: Extension[];
+  private candidateExtensions: Extensions[];
 
   private modelForm = new Model();
 
@@ -78,10 +78,10 @@ export class ExtensionsComponent {
   handle_commit_receipt(receipt: any) {
   }
 
-  handle_search_receipt(receipt: SearchReceipt) {
-    this.searchReceipt = receipt;
-    this.intensionForm.extId = receipt.extId;
-    this.intensionForm.ownerId = receipt.ownerId;
+  handle_extension(extension: Extension) {
+    this.extension = extension;
+    this.intensionForm.extId = extension.id;
+    this.intensionForm.ownerId = extension.ownerId;
   }
 
   onCandidateModelsChange(query: string) {
@@ -96,7 +96,7 @@ export class ExtensionsComponent {
   onCandidateExtensionsChange(query: any) {
     if (query instanceof Object) {
       this.extensionService.visit(query).subscribe(
-        data => this.handle_search_receipt(data),
+        data => this.handle_extension(data),
         error => this.errorMessage = <any>error
       );
     } else {
@@ -113,8 +113,8 @@ export class ExtensionsComponent {
     return model ? model.providerId + ' / ' + model.group + ' / ' + model.name + ' # ' + model.publication + '-' + model.version : '';
   }
 
-  displayCandidateExtensions(extension: Extension): string {
-    return extension ? extension.group : '';
+  displayCandidateExtensions(extensions: Extensions): string {
+    return extensions ? extensions.group : '';
   }
 
 }

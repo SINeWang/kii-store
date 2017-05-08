@@ -39,28 +39,28 @@
   </form>
 </div>
 
-<div mdl-shadow="2" *ngIf="searchReceipt">
+<div mdl-shadow="2" *ngIf="extension">
   <div class="content-grid mdl-grid">
     <div class="mdl-cell mdl-cell--4-col">
       <div class="content-grid mdl-grid">
         <div class="mdl-cell mdl-cell--12-col">
-          <mdl-textfield type="text" label="Owner" [(ngModel)]="searchReceipt.ownerId" name="ownerId" readonly="true"
+          <mdl-textfield type="text" label="Owner" [(ngModel)]="extension.ownerId" name="ownerId" readonly="true"
                          floating-label></mdl-textfield>
         </div>
         <div class="mdl-cell mdl-cell--12-col">
-          <mdl-textfield type="text" label="Group" [(ngModel)]="searchReceipt.group" name="group" readonly="true"
+          <mdl-textfield type="text" label="Group" [(ngModel)]="extension.group" name="group" readonly="true"
                          floating-label></mdl-textfield>
         </div>
         <div class="mdl-cell mdl-cell--12-col">
-          <mdl-textfield type="text" label="Name" [(ngModel)]="searchReceipt.name" name="name" readonly="true"
+          <mdl-textfield type="text" label="Name" [(ngModel)]="extension.name" name="name" readonly="true"
                          floating-label></mdl-textfield>
         </div>
         <div class="mdl-cell mdl-cell--12-col">
-          <mdl-textfield type="text" label="Tree" [(ngModel)]="searchReceipt.tree" name="tree" readonly="true"
+          <mdl-textfield type="text" label="Tree" [(ngModel)]="extension.tree" name="tree" readonly="true"
                          floating-label></mdl-textfield>
         </div>
         <div class="mdl-cell mdl-cell--12-col">
-          <mdl-textfield type="text" label="Visibulity" [(ngModel)]="searchReceipt.visibility" name="visibility"
+          <mdl-textfield type="text" label="Visibulity" [(ngModel)]="extension.visibility" name="visibility"
                          readonly="true"
                          floating-label></mdl-textfield>
         </div>
@@ -155,7 +155,7 @@
       <div class="content-grid mdl-grid">
         <div class="mdl-cell mdl-cell--6-col">
           <ul>
-            <li *ngFor="let intension of searchReceipt.intensions">
+            <li *ngFor="let intension of extension.intensions">
               {{intension.visibility}}
 
               {{intension.field}}
@@ -170,7 +170,7 @@
           </ul>
         </div>
         <div class="mdl-cell mdl-cell--6-col">
-          <pre>{{searchReceipt.schema | json}}</pre>
+          <pre>{{extension.schema | json}}</pre>
         </div>
       </div>
     </div>

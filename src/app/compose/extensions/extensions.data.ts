@@ -1,19 +1,20 @@
 import {Intension} from '../intensions/intensions.data';
-export class Extension {
+export class Extensions {
 
   ownerId: string;
   group: string;
   name: string;
   tree: string;
   id: string;
+
   visibility: string;
 
 }
 
 
-export class SearchReceipt {
+export class Extension {
 
-  extId: string;
+  id: string;
   ownerId: string;
   group: string;
   name: string;

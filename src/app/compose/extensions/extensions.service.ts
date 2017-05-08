@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../../environments/environment';
-import {Extension, SearchReceipt} from './extensions.data';
+import {Extension, Extensions} from './extensions.data';
 
 @Injectable()
 export class ExtensionsService {
@@ -29,7 +29,7 @@ export class ExtensionsService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  search(search: Extension): Observable<Extension[]> {
+  search(search: Extensions): Observable<Extensions[]> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-VisitorId': 'wangyj',
@@ -43,7 +43,7 @@ export class ExtensionsService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  visit(search: Extension): Observable<SearchReceipt> {
+  visit(search: Extension): Observable<Extension> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-VisitorId': 'wangyj',
