@@ -7,6 +7,7 @@ import {ModelsService} from '../../explore/models/models.service';
 import {FormControl} from '@angular/forms';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-develop-extensions',
@@ -24,7 +25,7 @@ export class ExtensionsComponent {
 
   private searchReceipt: SearchReceipt;
 
-  private refModels: any;
+  private refModels: Model [];
 
   private modelForm = new Model();
 
@@ -41,9 +42,9 @@ export class ExtensionsComponent {
     this.intensionForm.required = true;
     this.intensionForm.structure = 'string';
 
-    this.refModels = this.modelFormControl.valueChanges
+    this.modelFormControl.valueChanges
       .startWith(null)
-      .map(name => this.onAutocompleteChange(name));
+      .subscribe(name => this.onAutocompleteChange(name));
   }
 
   commit(): void {
@@ -74,16 +75,13 @@ export class ExtensionsComponent {
     this.intensionForm.extId = receipt.extId;
   }
 
-  onAutocompleteChange(query: string): Model[] {
-    console.log(query);
+  onAutocompleteChange(query: string) {
     this.modelForm.group = query;
     const authorization = localStorage.getItem('authorization');
-    return [];
-     // this.modelsService.get(authorization, this.modelForm)
-     //  .map((data: Model[]) => {
-     //    return data;
-     //  }).toPromise().catch(error => this.errorMessage = <any>error
-     //  )
+    this.modelsService.get(authorization, this.modelForm).subscribe(
+      data => this.refModels = data,
+      error => this.errorMessage = <any>error
+    );
   }
 
 }
