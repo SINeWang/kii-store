@@ -25,7 +25,7 @@ export class ExtensionsComponent {
 
   private extension: Extension;
 
-  private refModels: Model [];
+  private candidateModels: Model [];
 
   private candidateExtensions: Extensions[];
 
@@ -88,7 +88,7 @@ export class ExtensionsComponent {
     this.modelForm.group = query;
     const authorization = localStorage.getItem('authorization');
     this.modelsService.get(authorization, this.modelForm).subscribe(
-      data => this.refModels = data,
+      data => this.candidateModels = data,
       error => this.errorMessage = <any>error
     );
   }

@@ -133,12 +133,12 @@
             <div class="mdl-cell mdl-cell--12-col" *ngIf="intensionForm.refExtId">
 
               <md-input-container style="width: 100%;">
-                <input type="text" mdInput placeholder="Reference Model" [mdAutocomplete]="acRefModels"
+                <input type="text" mdInput placeholder="Reference Model" [mdAutocomplete]="searchModels"
                        [formControl]="modelFormControl">
               </md-input-container>
 
-              <md-autocomplete #acRefModels="mdAutocomplete" [displayWith]="displayFn">
-                <md-option *ngFor="let model of refModels" [value]="model">
+              <md-autocomplete #searchModels="mdAutocomplete" [displayWith]="displayFn">
+                <md-option *ngFor="let model of candidateModels" [value]="model">
                   <span>{{model.providerId}} / {{ model.group }} / {{model.name}} # {{model.publication}}-{{model.version}} </span>
                 </md-option>
               </md-autocomplete>
