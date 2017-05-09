@@ -148,8 +148,14 @@ export class ExtensionsComponent implements OnDestroy {
 
   publish_extension(): void {
     this.publicationService.commit(this.publication, this.owners).subscribe(
-      data => {console.log(data)},
+      data => {
+        console.log(data);
+      },
       error => this.errorMessage = <any>error
     );
+  }
+
+  remove_intension(intension: Intension): void {
+
   }
 }

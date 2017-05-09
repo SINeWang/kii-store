@@ -1,4 +1,5 @@
 export class Intension {
+  id: string;
   extId: string;
   ownerId: string;
   field: string;

@@ -27,7 +27,21 @@ export class IntensionsService {
     return this.http.post(url, form, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
 
+  remove(intension: Intension): Observable<Intension> {
+    const authorization = localStorage.getItem('authorization');
+    const headers = new Headers({
+      // 'Authorization': authorization,
+      'X-SUMMER-OperatorId': 'wangyj',
+      'X-SUMMER-RequestId': 'random'
+    });
+    const options = new RequestOptions({headers: headers});
+
+    const url = this.URL + '/' + intension.ownerId + '/intensions/' + intension.id;
+    return this.http.delete(url, options)
+      .map((res: Response) => res.json() || [])
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
 }
