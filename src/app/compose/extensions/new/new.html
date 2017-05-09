@@ -1,9 +1,7 @@
 <md-input-container>
   <input mdInput type="text" placeholder="Name" [formControl]="newExtensionName">
 </md-input-container>
-<md-input-container>
-  <input mdInput type="text" placeholder="Visibility" [formControl]="newExtensionVisibility">
-</md-input-container>
+<app-compose-visibility></app-compose-visibility>
 <button (click)="submit()" [disabled]="!validAddition" mdl-button mdl-button-type="raised" mdl-colored="primary"
         mdl-ripple>Add
 </button>

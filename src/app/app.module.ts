@@ -12,10 +12,11 @@ import {ModelsComponent} from './explore/models/models.component';
 import {EntitiesComponent} from './explore/entities/entities.component';
 import {ComposeComponent} from './compose/compose.component';
 import {ExtensionsComponent} from './compose/extensions/extensions.component';
-import {MdAutocompleteModule, MdInputModule, MdSlideToggleModule} from '@angular/material';
+import {MdAutocompleteModule, MdInputModule, MdRadioModule, MdSlideToggleModule} from '@angular/material';
 import {InstancesComponent} from './compose/instances/instances.component';
 import {OwnersComponent} from './owners/owners.component';
 import {NewExtensionsComponent} from './compose/extensions/new/new.component';
+import {VisibilityComponent} from './compose/visibility/visibility.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,7 @@ const routes: Routes = [
     ModelsComponent,
     NewExtensionsComponent,
     OwnersComponent,
+    VisibilityComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -49,6 +51,7 @@ const routes: Routes = [
     HttpModule,
     MdInputModule,
     MdAutocompleteModule,
+    MdRadioModule,
     MdSlideToggleModule,
     MdlModule,
     ReactiveFormsModule,

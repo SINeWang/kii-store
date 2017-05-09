@@ -83,21 +83,16 @@ export class ExtensionsComponent implements OnDestroy {
   addIntension(): void {
     this.intensionForm.refExtId = this.modelFormControl.value.rootExtId;
     this.intensionForm.structure = '';
-    this.intensionsService.commit(this.intensionForm).subscribe(
+    this.intensionsService.commit(this.owners, this.intensionForm).subscribe(
       data => console.log(data),
       error => this.errorMessage = <any>error
     );
-  }
-
-  handle_commit_receipt(receipt: any) {
   }
 
   handle_extension(extension: Extension) {
     this.extension = extension;
     this.publication.group = extension.group;
     this.publication.providerId = extension.ownerId;
-    this.intensionForm.extId = extension.id;
-    this.intensionForm.ownerId = extension.ownerId;
   }
 
   onCandidateModelsChange(query: string) {
@@ -150,8 +145,8 @@ export class ExtensionsComponent implements OnDestroy {
   }
 
   remove_intension(intension: Intension): void {
-    this.intensionsService.remove(intension, this.owners).subscribe(
-      data => console.log(data),
+    this.intensionsService.remove(this.extension, intension, this.owners).subscribe(
+      data => this.extension.intensions = data,
       error => this.errorMessage = <any>error
     );
   }
