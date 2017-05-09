@@ -8,3 +8,8 @@ export class Intension {
   required: boolean;
   visibility: string;
 }
+
+export class IntensionsWithSchema {
+  intensions: Intension[];
+  schema: any;
+}

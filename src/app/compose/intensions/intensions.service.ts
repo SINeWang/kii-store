@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../../environments/environment';
-import {Intension} from './intensions.data';
+import {Intension, IntensionsWithSchema} from './intensions.data';
 import {Owners} from '../../owners/owners.data';
 import {Extension} from '../extension/extension.data';
 
@@ -34,7 +34,7 @@ export class IntensionsService {
 
   remove(extension: Extension,
          intension: Intension,
-         owners: Owners): Observable<Intension[]> {
+         owners: Owners): Observable<IntensionsWithSchema> {
     const authorization = localStorage.getItem('authorization');
     const headers = new Headers({
       // 'Authorization': authorization,
