@@ -4,7 +4,7 @@ import {ExtensionsService} from './extensions.service';
 import {Intension} from '../intensions/intensions.data';
 import {Model} from '../../explore/models/models.data';
 import {ModelsService} from '../../explore/models/models.service';
-import {FormControl} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import {IntensionsService} from '../intensions/intensions.service';
@@ -49,6 +49,8 @@ export class ExtensionsComponent implements OnDestroy {
 
   owners: Owners;
 
+  newExtensionModel: boolean;
+
 
   constructor(private extensionService: ExtensionsService,
               private modelsService: ModelsService,
@@ -75,14 +77,6 @@ export class ExtensionsComponent implements OnDestroy {
       owners => {
         this.owners = owners;
       }
-    );
-  }
-
-  commit(): void {
-    const authorization = localStorage.getItem('authorization');
-    this.extensionService.commit(authorization, this.form).subscribe(
-      data => this.handle_commit_receipt(data),
-      error => this.errorMessage = <any>error
     );
   }
 
@@ -142,8 +136,8 @@ export class ExtensionsComponent implements OnDestroy {
     return model ? model.providerId + ' / ' + model.group + ' / ' + model.name + ' # ' + model.publication + '-' + model.version : '';
   }
 
-  displayCandidateExtensions(extensions: Extensions): string {
-    return extensions ? extensions.group : '';
+  displaySelectedExtensions(extensions: Extensions): string {
+    return extensions ? extensions.group + ' / ' + extensions.name + ' # ' + extensions.tree : '';
   }
 
   publish_extension(): void {

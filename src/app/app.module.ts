@@ -12,9 +12,10 @@ import {ModelsComponent} from './explore/models/models.component';
 import {EntitiesComponent} from './explore/entities/entities.component';
 import {ComposeComponent} from './compose/compose.component';
 import {ExtensionsComponent} from './compose/extensions/extensions.component';
-import {MdAutocompleteModule, MdInputModule} from '@angular/material';
+import {MdAutocompleteModule, MdInputModule, MdSlideToggleModule} from '@angular/material';
 import {InstancesComponent} from './compose/instances/instances.component';
 import {OwnersComponent} from './owners/owners.component';
+import {NewExtensionsComponent} from './compose/extensions/new/new.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,7 @@ const routes: Routes = [
     ExtensionsComponent,
     InstancesComponent,
     ModelsComponent,
+    NewExtensionsComponent,
     OwnersComponent,
   ],
   imports: [
@@ -47,6 +49,7 @@ const routes: Routes = [
     HttpModule,
     MdInputModule,
     MdAutocompleteModule,
+    MdSlideToggleModule,
     MdlModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes)

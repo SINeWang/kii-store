@@ -8,9 +8,7 @@ export class Extensions {
   id: string;
 
   visibility: string;
-
 }
-
 
 export class Extension {
 

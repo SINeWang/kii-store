@@ -14,21 +14,6 @@ export class ExtensionsService {
   constructor(private http: Http) {
   }
 
-  commit(authorization: string,
-         form: Extension): Observable<Extension> {
-    const headers = new Headers({
-      // 'Authorization': authorization,
-      'X-SUMMER-OperatorId': 'wangyj',
-      'X-SUMMER-RequestId': 'random'
-    });
-    const options = new RequestOptions({headers: headers});
-
-    const url = this.URL + '/' + form.ownerId + '/extension';
-    return this.http.post(url, form, options)
-      .map((res: Response) => res.json() || [])
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
-  }
-
   search(search: Extensions): Observable<Extensions[]> {
     const headers = new Headers({
       // 'Authorization': authorization,
@@ -51,7 +36,7 @@ export class ExtensionsService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + search.ownerId + '/extensions/' + search.group;
+    const url = this.URL + '/' + search.ownerId + '/extensions/' + search.group + '/' + search.name + '/' + search.tree;
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
