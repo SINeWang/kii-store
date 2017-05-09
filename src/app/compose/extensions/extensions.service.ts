@@ -4,7 +4,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../../environments/environment';
-import {Extension, Extensions} from './extensions.data';
+import {Extensions} from './extensions.data';
+import {Extension} from '../extension/extension.data';
 
 @Injectable()
 export class ExtensionsService {
