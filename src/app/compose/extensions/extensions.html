@@ -116,14 +116,14 @@
                        [formControl]="modelFormControl">
               </md-input-container>
 
-              <md-autocomplete #searchModels="mdAutocomplete" [displayWith]="displayFn">
+              <md-autocomplete #searchModels="mdAutocomplete" [displayWith]="displaySelectedModels">
                 <md-option *ngFor="let model of candidateModels" [value]="model">
                   <span>{{model.providerId}} / {{ model.group }} / {{model.name}} # {{model.publication}}-{{model.version}} </span>
                 </md-option>
               </md-autocomplete>
 
             </div>
-            <button type="submit" (click)="addIntension()" mdl-button mdl-button-type="raised" mdl-colored="primary"
+            <button type="submit" (click)="add_intension()" mdl-button mdl-button-type="raised" mdl-colored="primary"
                     mdl-ripple>Add
             </button>
           </div>

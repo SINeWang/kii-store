@@ -81,14 +81,17 @@ export class ExtensionsComponent implements OnDestroy {
     );
   }
 
-  addIntension(): void {
+  add_intension(): void {
     if (this.modelFormControl.value) {
       this.intensionForm.refExtId = this.modelFormControl.value.rootExtId;
       this.intensionForm.structure = '';
     }
     this.intensionForm.extId = this.extension.id;
     this.intensionsService.commit(this.owners, this.intensionForm).subscribe(
-      data => console.log(data),
+      data => {
+        this.extension.intensions = data.intensions;
+        this.extension.schema = data.schema;
+      },
       error => this.errorMessage = <any>error
     );
   }
@@ -131,7 +134,7 @@ export class ExtensionsComponent implements OnDestroy {
     this.ownerSubscription.unsubscribe();
   }
 
-  displayFn(model: Model): string {
+  displaySelectedModels(model: Model): string {
     return model ? model.providerId + ' / ' + model.group + ' / ' + model.name + ' # ' + model.publication + '-' + model.version : '';
   }
 

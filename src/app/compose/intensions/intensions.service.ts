@@ -17,7 +17,7 @@ export class IntensionsService {
   }
 
   commit(owners: Owners,
-         form: Intension): Observable<Intension> {
+         form: Intension): Observable<IntensionsWithSchema> {
     const authorization = localStorage.getItem('authorization');
     const headers = new Headers({
       // 'Authorization': authorization,
@@ -44,7 +44,7 @@ export class IntensionsService {
     const options = new RequestOptions({headers: headers});
 
     const url = this.URL + '/' + owners.ownerId + '/extensions/' + extension.id + '/intensions/' + intension.id;
-    return this.http.post(url, null, options)
+    return this.http.patch(url, null, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
