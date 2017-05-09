@@ -11,14 +11,15 @@ import {IntensionsService} from '../intensions/intensions.service';
 import {Subscription} from 'rxjs/Subscription';
 import {OwnersService} from '../../owners/owners.service';
 import {Owners} from '../../owners/owners.data';
+import {PublicationService} from '../publication/publication.service';
+import {Publication} from '../publication/publication.data';
 
 @Component({
   selector: 'app-compose-extensions',
-  providers: [ExtensionsService, IntensionsService, ModelsService, OwnersService],
+  providers: [ExtensionsService, IntensionsService, ModelsService, OwnersService, PublicationService],
   templateUrl: 'extensions.html',
 })
 export class ExtensionsComponent implements OnDestroy {
-
 
 
   private form = new Extension();
@@ -31,11 +32,14 @@ export class ExtensionsComponent implements OnDestroy {
 
   private extension: Extension;
 
+  private publication = new Publication();
+
   private candidateModels: Model [];
 
   private candidateExtensions: Extensions[];
 
   private modelForm = new Model();
+
 
   modelFormControl = new FormControl();
 
@@ -49,7 +53,8 @@ export class ExtensionsComponent implements OnDestroy {
   constructor(private extensionService: ExtensionsService,
               private modelsService: ModelsService,
               private intensionsService: IntensionsService,
-              private ownersService: OwnersService) {
+              private ownersService: OwnersService,
+              private publicationService: PublicationService) {
     this.form.tree = 'master';
     this.form.visibility = 'public';
 
@@ -95,6 +100,8 @@ export class ExtensionsComponent implements OnDestroy {
 
   handle_extension(extension: Extension) {
     this.extension = extension;
+    this.publication.group = extension.group;
+    this.publication.providerId = extension.ownerId;
     this.intensionForm.extId = extension.id;
     this.intensionForm.ownerId = extension.ownerId;
   }
@@ -139,4 +146,10 @@ export class ExtensionsComponent implements OnDestroy {
     return extensions ? extensions.group : '';
   }
 
+  publish_extension(): void {
+    this.publicationService.commit(this.publication, this.owners).subscribe(
+      data => {console.log(data)},
+      error => this.errorMessage = <any>error
+    );
+  }
 }
