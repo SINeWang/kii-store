@@ -113,6 +113,7 @@ export class ExtensionsComponent implements OnDestroy {
 
   onCandidateExtensionsChange(query: any) {
     if (query instanceof Object) {
+      this.newExtensionModel = false;
       this.extensionService.visit(query).subscribe(
         data => this.handle_extension(data),
         error => this.errorMessage = <any>error
