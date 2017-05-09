@@ -84,6 +84,7 @@ export class ExtensionsComponent implements OnDestroy {
   addIntension(): void {
     this.intensionForm.refExtId = this.modelFormControl.value.rootExtId;
     this.intensionForm.structure = '';
+    this.intensionForm.extId = this.extension.id;
     this.intensionsService.commit(this.owners, this.intensionForm).subscribe(
       data => console.log(data),
       error => this.errorMessage = <any>error
@@ -92,8 +93,8 @@ export class ExtensionsComponent implements OnDestroy {
 
   handle_extension(extension: Extension) {
     this.extension = extension;
-    this.publication.group = extension.group;
     this.publication.providerId = extension.ownerId;
+    this.publication.extId = extension.id;
   }
 
   onCandidateModelsChange(query: string) {

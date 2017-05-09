@@ -1,5 +1,5 @@
 export class Publication {
-  group: string
+  extId: string;
   publication: string;
   version: string;
   providerId: string;
