@@ -82,8 +82,10 @@ export class ExtensionsComponent implements OnDestroy {
   }
 
   addIntension(): void {
-    this.intensionForm.refExtId = this.modelFormControl.value.rootExtId;
-    this.intensionForm.structure = '';
+    if (this.modelFormControl.value) {
+      this.intensionForm.refExtId = this.modelFormControl.value.rootExtId;
+      this.intensionForm.structure = '';
+    }
     this.intensionForm.extId = this.extension.id;
     this.intensionsService.commit(this.owners, this.intensionForm).subscribe(
       data => console.log(data),
