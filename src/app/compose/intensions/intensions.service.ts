@@ -5,6 +5,7 @@ import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../../environments/environment';
 import {Intension} from './intensions.data';
+import {Owners} from '../../owners/owners.data';
 
 @Injectable()
 export class IntensionsService {
@@ -29,7 +30,8 @@ export class IntensionsService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  remove(intension: Intension): Observable<Intension> {
+  remove(intension: Intension,
+        owners: Owners): Observable<Intension> {
     const authorization = localStorage.getItem('authorization');
     const headers = new Headers({
       // 'Authorization': authorization,
@@ -38,7 +40,7 @@ export class IntensionsService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + intension.ownerId + '/intensions/' + intension.id;
+    const url = this.URL + '/' + owners.ownerId + '/intensions/' + intension.id;
     return this.http.delete(url, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));

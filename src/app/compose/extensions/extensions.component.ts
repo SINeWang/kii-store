@@ -156,6 +156,9 @@ export class ExtensionsComponent implements OnDestroy {
   }
 
   remove_intension(intension: Intension): void {
-
+    this.intensionsService.remove(intension, this.owners).subscribe(
+      data => console.log(data),
+      error => this.errorMessage = <any>error
+    );
   }
 }
