@@ -1,4 +1,3 @@
-import {Intension} from '../intensions/intensions.data';
 export class Extensions {
 
   ownerId: string;
@@ -8,19 +7,4 @@ export class Extensions {
   id: string;
 
   visibility: string;
-}
-
-export class Extension {
-
-  id: string;
-  ownerId: string;
-  group: string;
-  name: string;
-  tree: string;
-
-  visibility: string;
-
-  intensions: Intension[];
-
-  schema: any;
 }

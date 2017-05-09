@@ -1,10 +1,10 @@
 import {Component, OnDestroy} from '@angular/core';
-import {Extension, Extensions} from './extensions.data';
+import {Extensions} from './extensions.data';
 import {ExtensionsService} from './extensions.service';
 import {Intension} from '../intensions/intensions.data';
 import {Model} from '../../explore/models/models.data';
 import {ModelsService} from '../../explore/models/models.service';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl} from '@angular/forms';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import {IntensionsService} from '../intensions/intensions.service';
@@ -13,6 +13,7 @@ import {OwnersService} from '../../owners/owners.service';
 import {Owners} from '../../owners/owners.data';
 import {PublicationService} from '../publication/publication.service';
 import {Publication} from '../publication/publication.data';
+import {Extension} from '../extension/extension.data';
 
 @Component({
   selector: 'app-compose-extensions',
