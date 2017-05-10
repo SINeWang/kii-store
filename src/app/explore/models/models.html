@@ -72,7 +72,7 @@
       <br>
       <div class="mdl-grid" mdl-shadow="2">
         <div class="mdl-cell mdl-cell--12-col">
-          <form [formGroup]="subscribeForm" (ngSubmit)="subscribe(model)">
+          <form [formGroup]="subscribeForm" (ngSubmit)="subscribe(model.pubSet)">
             <mdl-textfield type="text" label="Owner" formControlName="ownerId" floating-label></mdl-textfield>
             <mdl-textfield type="text" label="Group" formControlName="group" floating-label></mdl-textfield>
             <mdl-textfield type="text" label="Name" formControlName="name" floating-label></mdl-textfield>

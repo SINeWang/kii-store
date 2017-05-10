@@ -3,11 +3,14 @@ import {ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ModelsService} from './models.service';
 import {Model} from './models.data';
+import {SubscriptionsService} from './subscriptions.service';
+import {Owners} from '../../owners/owners.data';
+import {Subscriptions} from './subscriptions.data';
 
 
 @Component({
   selector: 'app-explore-models',
-  providers: [ModelsService],
+  providers: [ModelsService, SubscriptionsService],
   templateUrl: 'models.html'
 })
 export class ModelsComponent implements OnInit {
@@ -20,7 +23,7 @@ export class ModelsComponent implements OnInit {
 
   public subscribeForm: FormGroup;
 
-  public subscribePubSetHash = new FormControl('', Validators.required);
+  public subscribePubSet = new FormControl('', Validators.required);
 
   public subscribeOwnerId = new FormControl('', Validators.required);
 
@@ -30,14 +33,15 @@ export class ModelsComponent implements OnInit {
 
   public subscribeTree = new FormControl('master', Validators.required);
 
-  public subscribeVisibility = new FormControl('protected', Validators.required);
+  public subscribeVisibility = new FormControl('public', Validators.required);
 
   constructor(private activatedRoute: ActivatedRoute,
               private modelsService: ModelsService,
+              private subscriptionsService: SubscriptionsService,
               private formBuilder: FormBuilder) {
 
     this.subscribeForm = formBuilder.group({
-      'pubSetHash': this.subscribePubSetHash,
+      'pubSetHash': this.subscribePubSet,
       'ownerId': this.subscribeOwnerId,
       'group': this.subscribeGroup,
       'name': this.subscribeName,
@@ -65,10 +69,18 @@ export class ModelsComponent implements OnInit {
     }
   }
 
-  subscribe(model: Model): void {
-    const authorization = localStorage.getItem('authorization');
-    console.log(this.subscribeForm);
-    console.log(model);
+  subscribe(pubSet: string): void {
+    const owners = new Owners();
+    const subscriptions = new Subscriptions();
+    subscriptions.pubSet = pubSet;
+    subscriptions.group = this.subscribeGroup.value;
+    subscriptions.name =this.subscribeName.value;
+    subscriptions.tree =this.subscribeTree.value;
+    owners.ownerId = this.subscribeOwnerId.value;
+    this.subscriptionsService.commit(owners, subscriptions).subscribe(
+      data => console.log(data),
+      error => this.errorMessage = <any>error
+    );
   }
 
   handleData(models: Model[]) {

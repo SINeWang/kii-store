@@ -104,8 +104,7 @@ export class ExtensionsComponent implements OnDestroy {
 
   onCandidateModelsChange(query: string) {
     this.modelForm.group = query;
-    const authorization = localStorage.getItem('authorization');
-    this.modelsService.get(authorization, this.modelForm).subscribe(
+    this.modelsService.visit(this.modelForm).subscribe(
       data => this.candidateModels = data,
       error => this.errorMessage = <any>error
     );
