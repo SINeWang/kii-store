@@ -9,7 +9,6 @@ import {ExploreComponent} from './explore/explore.component';
 import {RouterModule, Routes} from '@angular/router';
 import {MdlModule} from '@angular-mdl/core';
 import {ModelsComponent} from './explore/models/models.component';
-import {EntitiesComponent} from './explore/assets/entities.component';
 import {ComposeComponent} from './compose/compose.component';
 import {ExtensionsComponent} from './compose/extensions/extensions.component';
 import {MdAutocompleteModule, MdIconModule, MdInputModule, MdRadioModule, MdSlideToggleModule} from '@angular/material';
@@ -17,6 +16,7 @@ import {InstancesComponent} from './compose/instances/instances.component';
 import {OwnersComponent} from './owners/owners.component';
 import {NewExtensionsComponent} from './compose/extensions/new/new.component';
 import {VisibilityComponent} from './compose/visibility/visibility.component';
+import {AssetsComponent} from './explore/assets/assets.component';
 
 const routes: Routes = [
   {
@@ -35,7 +35,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     ComposeComponent,
-    EntitiesComponent,
+    AssetsComponent,
     ExploreComponent,
     ExtensionsComponent,
     InstancesComponent,
