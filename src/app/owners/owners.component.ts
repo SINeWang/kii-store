@@ -28,7 +28,7 @@ export class OwnersComponent {
 
   onInputChange(query: any) {
     if (query instanceof Object) {
-      this.ownersService.announceOwners(query);
+      this.ownersService.announce(query);
     } else {
       const authorization = localStorage.getItem('authorization');
       this.ownersService.search(query).subscribe(

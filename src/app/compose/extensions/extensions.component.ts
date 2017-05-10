@@ -74,9 +74,9 @@ export class ExtensionsComponent implements OnDestroy {
       .startWith(null)
       .subscribe(name => this.onCandidateExtensionsChange(name));
 
-    this.ownerSubscription = ownersService.ownerAnnounced$.subscribe(
-      owners => {
-        this.owners = owners;
+    this.ownerSubscription = ownersService.announced$.subscribe(
+      data => {
+        this.owners = data;
       }
     );
   }

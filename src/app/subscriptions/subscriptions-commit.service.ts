@@ -1,22 +1,20 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
+import {Owners} from '../owners/owners.data';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
-import {Model} from './models.data';
+import {environment} from '../../environments/environment';
 import {Subscriptions} from './subscriptions.data';
-import {Owners} from '../../owners/owners.data';
-import {environment} from '../../../environments/environment';
 @Injectable()
-export class SubscriptionsService {
+export class SubscriptionsCommitService {
 
   private URL = environment.kiimate_url;
 
+  
   constructor(private http: Http) {
   }
 
   commit(owners: Owners,
-         subscriptions: Subscriptions): Observable<Model[]> {
+         subscriptions: Subscriptions): Observable<Subscriptions[]> {
     const headers = new Headers({
       'X-SUMMER-RequestId': 'random',
       'X-SUMMER-OperatorId': 'wangyj',
@@ -32,4 +30,6 @@ export class SubscriptionsService {
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
+
+
 }

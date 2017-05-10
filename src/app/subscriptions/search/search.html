@@ -1,0 +1,10 @@
+<md-input-container style="width: 100%;">
+  <input type="text" mdInput placeholder="Group" [mdAutocomplete]="searchGroup"
+         [formControl]="input_group">
+</md-input-container>
+
+<md-autocomplete #searchGroup="mdAutocomplete" [displayWith]="displaySelectedExtensions">
+  <md-option *ngFor="let subscriptions of candidateSubscriptions" [value]="subscriptions">
+    <span>{{ subscriptions.group }} / {{ subscriptions.name }} # {{ subscriptions.tree }}</span>
+  </md-option>
+</md-autocomplete>

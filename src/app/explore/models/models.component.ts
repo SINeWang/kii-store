@@ -3,14 +3,14 @@ import {ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ModelsService} from './models.service';
 import {Model} from './models.data';
-import {SubscriptionsService} from './subscriptions.service';
 import {Owners} from '../../owners/owners.data';
-import {Subscriptions} from './subscriptions.data';
+import {Subscriptions} from '../../subscriptions/subscriptions.data';
+import {SubscriptionsCommitService} from '../../subscriptions/subscriptions-commit.service';
 
 
 @Component({
   selector: 'app-explore-models',
-  providers: [ModelsService, SubscriptionsService],
+  providers: [ModelsService, SubscriptionsCommitService],
   templateUrl: 'models.html'
 })
 export class ModelsComponent implements OnInit {
@@ -37,7 +37,7 @@ export class ModelsComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
               private modelsService: ModelsService,
-              private subscriptionsService: SubscriptionsService,
+              private subscriptionsService: SubscriptionsCommitService,
               private formBuilder: FormBuilder) {
 
     this.subscribeForm = formBuilder.group({
@@ -74,8 +74,8 @@ export class ModelsComponent implements OnInit {
     const subscriptions = new Subscriptions();
     subscriptions.pubSet = pubSet;
     subscriptions.group = this.subscribeGroup.value;
-    subscriptions.name =this.subscribeName.value;
-    subscriptions.tree =this.subscribeTree.value;
+    subscriptions.name = this.subscribeName.value;
+    subscriptions.tree = this.subscribeTree.value;
     owners.ownerId = this.subscribeOwnerId.value;
     this.subscriptionsService.commit(owners, subscriptions).subscribe(
       data => console.log(data),

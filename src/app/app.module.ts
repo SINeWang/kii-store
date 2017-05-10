@@ -17,6 +17,7 @@ import {OwnersComponent} from './owners/owners.component';
 import {NewExtensionsComponent} from './compose/extensions/new/new.component';
 import {VisibilityComponent} from './compose/visibility/visibility.component';
 import {AssetsComponent} from './explore/assets/assets.component';
+import {SubscriptionsSearchComponent} from './subscriptions/search/search.component';
 
 const routes: Routes = [
   {
@@ -34,14 +35,15 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ComposeComponent,
     AssetsComponent,
+    ComposeComponent,
     ExploreComponent,
     ExtensionsComponent,
     InstancesComponent,
     ModelsComponent,
     NewExtensionsComponent,
     OwnersComponent,
+    SubscriptionsSearchComponent,
     VisibilityComponent
   ],
   imports: [

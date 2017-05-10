@@ -5,8 +5,6 @@ import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../../environments/environment';
 import {Model} from './models.data';
-import {Subscriptions} from './subscriptions.data';
-import {Owners} from '../../owners/owners.data';
 
 @Injectable()
 export class ModelsService {

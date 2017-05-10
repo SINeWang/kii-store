@@ -9,11 +9,11 @@ export class OwnersService {
 
   private ownerSource = new BehaviorSubject<Owners>(null);
 
-  ownerAnnounced$ = this.ownerSource.asObservable();
+  announced$ = this.ownerSource.asObservable();
 
   private URL = environment.kiimate_url;
 
-  announceOwners(owners: Owners) {
+  announce(owners: Owners) {
     this.ownerSource.next(owners);
   }
 
