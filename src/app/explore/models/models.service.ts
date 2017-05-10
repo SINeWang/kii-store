@@ -14,8 +14,7 @@ export class ModelsService {
   constructor(private http: Http) {
   }
 
-  get(authorization: string,
-      modelForm: Model): Observable<Model[]> {
+  visit(modelForm: Model): Observable<Model[]> {
 
     const headers = new Headers({
       // 'Authorization': authorization,
