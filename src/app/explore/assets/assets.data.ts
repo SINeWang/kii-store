@@ -1,4 +1,4 @@
-export class Entities {
+export class Assets {
   ownerId: string;
   group: string;
   name: string;

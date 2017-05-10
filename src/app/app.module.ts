@@ -9,7 +9,7 @@ import {ExploreComponent} from './explore/explore.component';
 import {RouterModule, Routes} from '@angular/router';
 import {MdlModule} from '@angular-mdl/core';
 import {ModelsComponent} from './explore/models/models.component';
-import {EntitiesComponent} from './explore/entities/entities.component';
+import {EntitiesComponent} from './explore/assets/entities.component';
 import {ComposeComponent} from './compose/compose.component';
 import {ExtensionsComponent} from './compose/extensions/extensions.component';
 import {MdAutocompleteModule, MdIconModule, MdInputModule, MdRadioModule, MdSlideToggleModule} from '@angular/material';

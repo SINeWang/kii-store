@@ -1,20 +1,20 @@
 import {Component, OnInit} from '@angular/core';
-import {EntitiesService} from './entities.service';
 import {ActivatedRoute} from '@angular/router';
-import {Entities, Intension} from 'app/explore/entities/entities.data';
+import {AssetsService} from './assets.service';
+import {Assets, Intension} from './assets.data';
 
 
 @Component({
-  selector: 'app-explore-entities',
-  providers: [EntitiesService],
-  templateUrl: 'entities.html'
+  selector: 'app-explore-assets',
+  providers: [AssetsService],
+  templateUrl: 'assets.html'
 })
-export class EntitiesComponent implements OnInit {
+export class AssetsComponent implements OnInit {
 
 
   errorMessage: string;
 
-  searchForm = new Entities();
+  searchForm = new Assets();
 
   instances: Object;
 
@@ -23,7 +23,7 @@ export class EntitiesComponent implements OnInit {
   instancesKeys: string[];
 
   constructor(private activatedRoute: ActivatedRoute,
-              private entitiesService: EntitiesService) {
+              private assetsService: AssetsService) {
   }
 
   ngOnInit(): void {
@@ -39,21 +39,21 @@ export class EntitiesComponent implements OnInit {
     const authorization = localStorage.getItem('authorization');
     if (this.searchForm.group !== ''
       && this.searchForm.group != null) {
-      this.entitiesService.get(authorization, this.searchForm).subscribe(
+      this.assetsService.get(authorization, this.searchForm).subscribe(
         data => this.handleData(data),
         error => this.errorMessage = <any>error
       );
     }
   }
 
-  handleData(entities: Entities) {
-    this.instances = entities.instances;
-    this.intensions = entities.intensions;
+  handleData(assets: Assets) {
+    this.instances = assets.instances;
+    this.intensions = assets.intensions;
     this.instancesKeys = Object.keys(this.instances);
-    this.searchForm.group = entities.group;
-    this.searchForm.ownerId = entities.ownerId;
-    this.searchForm.name = entities.name;
-    this.searchForm.tree = entities.tree;
+    this.searchForm.group = assets.group;
+    this.searchForm.ownerId = assets.ownerId;
+    this.searchForm.name = assets.name;
+    this.searchForm.tree = assets.tree;
   }
 
 

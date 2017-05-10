@@ -4,10 +4,10 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../../environments/environment';
-import {Entities} from './entities.data';
+import {Assets} from './assets.data';
 
 @Injectable()
-export class EntitiesService {
+export class AssetsService {
 
   private URL = environment.kiimate_url;
 
@@ -15,7 +15,7 @@ export class EntitiesService {
   }
 
   get(authorization: string,
-      searchForm: Entities): Observable<Entities> {
+      searchForm: Assets): Observable<Assets> {
 
     const headers = new Headers({
       // 'Authorization': authorization,
