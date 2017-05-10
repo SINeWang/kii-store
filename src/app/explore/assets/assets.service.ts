@@ -14,8 +14,7 @@ export class AssetsService {
   constructor(private http: Http) {
   }
 
-  get(authorization: string,
-      searchForm: Assets): Observable<Assets> {
+  visit(searchForm: Assets): Observable<Assets> {
 
     const headers = new Headers({
       // 'Authorization': authorization,

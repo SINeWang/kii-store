@@ -36,10 +36,9 @@ export class AssetsComponent implements OnInit {
   }
 
   search(): void {
-    const authorization = localStorage.getItem('authorization');
     if (this.searchForm.group !== ''
       && this.searchForm.group != null) {
-      this.assetsService.get(authorization, this.searchForm).subscribe(
+      this.assetsService.visit(this.searchForm).subscribe(
         data => this.handleData(data),
         error => this.errorMessage = <any>error
       );
