@@ -1,4 +1,14 @@
 export class Status {
   ownerId: string;
-  instances: any;
+  instances: Object;
+  intensions: Intension[];
+}
+
+export class Intension {
+  id: string;
+  field: string;
+  refExtId: string;
+  single: boolean;
+  structure: string;
+  visibility: string;
 }

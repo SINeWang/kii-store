@@ -15,8 +15,6 @@ export class InstancesEditorComponent {
 
   subscriptions: Subscriptions;
 
-  fields: string[];
-
   @Input()
   set selected_subscriptions(value: Subscriptions) {
     this.subscriptions = value;
@@ -30,7 +28,6 @@ export class InstancesEditorComponent {
   }
 
   handle_instances(status: Status) {
-    this.fields = Object.keys(status.instances);
     this.status = status;
   }
 

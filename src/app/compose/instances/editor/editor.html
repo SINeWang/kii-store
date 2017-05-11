@@ -1,7 +1,7 @@
 <div mdl-shadow="2" *ngIf="status">
   <ul>
-    <li *ngFor="let field of fields">
-      {{field}} : {{status.instances[field]}}
+    <li *ngFor="let intension of status.intensions">
+      {{intension.field}} : {{status.instances[intension.field]}}
     </li>
   </ul>
 </div>
