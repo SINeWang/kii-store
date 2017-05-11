@@ -52,4 +52,8 @@ export class SubscriptionsSearchComponent {
 
   }
 
+  displayCandidates(subscriptions: Subscriptions): string {
+    return subscriptions ? subscriptions.group + ' / ' + subscriptions.name + ' # ' + subscriptions.tree : '';
+  }
+
 }
