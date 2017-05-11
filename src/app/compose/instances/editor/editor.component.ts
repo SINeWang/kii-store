@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Subscriptions} from '../../../subscriptions/subscriptions.data';
-import {InstancesService} from '../instances.service';
-import {Instances} from '../instances.data';
+import {StatusService} from '../status.service';
+import {Status} from '../status.data';
 @Component({
   selector: 'app-compose-instances-editor',
   providers: [],
@@ -11,18 +11,27 @@ export class InstancesEditorComponent {
 
   errorMessage: string;
 
-  instances: Instances;
+  status: Status;
+
+  subscriptions: Subscriptions;
+
+  fields: string[];
 
   @Input()
   set selected_subscriptions(value: Subscriptions) {
-    this.instancesService.visit(value).subscribe(
-      data => this.instances = data,
+    this.subscriptions = value;
+    this.statusService.visit(value).subscribe(
+      data => this.handle_instances(data),
       error => this.errorMessage = <any>error
     );
   }
 
-  constructor(private instancesService: InstancesService) {
+  constructor(private statusService: StatusService) {
   }
 
+  handle_instances(status: Status) {
+    this.fields = Object.keys(status.instances);
+    this.status = status;
+  }
 
 }

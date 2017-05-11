@@ -4,17 +4,17 @@ import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../../environments/environment';
 import {Subscriptions} from '../../subscriptions/subscriptions.data';
-import {Instances} from './instances.data';
 import {Observable} from 'rxjs/Observable';
+import {Status} from './status.data';
 @Injectable()
-export class InstancesService {
+export class StatusService {
 
   private URL = environment.kiimate_url;
 
   constructor(private http: Http) {
   }
 
-  visit(subscriptions: Subscriptions): Observable<Instances[]> {
+  visit(subscriptions: Subscriptions): Observable<Status> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-VisitorId': 'wangyj',
