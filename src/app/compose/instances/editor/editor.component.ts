@@ -9,15 +9,17 @@ import {Instances} from '../instances.data';
 })
 export class InstancesEditorComponent {
 
+  errorMessage: string;
 
-  selectedSubscriptions: Subscriptions;
+  instances: Instances;
 
   @Input()
   set selected_subscriptions(value: Subscriptions) {
-    this.selectedSubscriptions = value;
+    this.instancesService.visit(value).subscribe(
+      data => this.instances = data,
+      error => this.errorMessage = <any>error
+    );
   }
-
-  instances: Instances[];
 
   constructor(private instancesService: InstancesService) {
   }
