@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Subscriptions} from '../../../subscriptions/subscriptions.data';
 import {InstancesService} from '../instances.service';
 import {Instances} from '../instances.data';
@@ -7,19 +7,19 @@ import {Instances} from '../instances.data';
   providers: [],
   templateUrl: 'editor.html'
 })
-export class InstancesEditorComponent implements OnChanges {
+export class InstancesEditorComponent {
 
+
+  selectedSubscriptions: Subscriptions;
 
   @Input()
-  selected_subscriptions: Subscriptions;
+  set selected_subscriptions(value: Subscriptions) {
+    this.selectedSubscriptions = value;
+  }
 
   instances: Instances[];
 
   constructor(private instancesService: InstancesService) {
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
   }
 
 
