@@ -1,7 +1,25 @@
 <div mdl-shadow="2" *ngIf="status">
-  <ul>
-    <li *ngFor="let intension of status.intensions">
-      {{intension.field}} : {{status.instances[intension.field]}}
-    </li>
-  </ul>
+  <div class="content-grid mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col">
+      <h3>Origin</h3>
+      <div class="content-grid mdl-grid" *ngFor="let intension of status.intensions">
+        <div class="mdl-cell mdl-cell--12-col">
+          <mdl-textfield type="text" style="width: 100%;" label="{{intension.field}}" name="{{intension.field}}"
+                         floating-label [ngModel]="status.origin[intension.field]" readonly="true">
+          </mdl-textfield>
+        </div>
+      </div>
+    </div>
+    <div class="mdl-cell mdl-cell--6-col">
+      <h3>Current</h3>
+      <div class="content-grid mdl-grid" *ngFor="let intension of status.intensions">
+        <div class="mdl-cell mdl-cell--12-col">
+          <mdl-textfield type="text" style="width: 100%;" label="{{intension.field}}" name="{{intension.field}}"
+                         floating-label [(ngModel)]="status.instances[intension.field]">
+          </mdl-textfield>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

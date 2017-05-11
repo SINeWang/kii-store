@@ -29,6 +29,7 @@ export class InstancesEditorComponent {
 
   handle_instances(status: Status) {
     this.status = status;
+    this.status.origin = Object.assign({}, status.instances);
   }
 
 }
