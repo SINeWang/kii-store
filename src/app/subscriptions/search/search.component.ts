@@ -1,11 +1,11 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {Owners} from '../../owners/owners.data';
-import {OwnersService} from '../../owners/owners.service';
 import {Subscription} from 'rxjs/Subscription';
 import {Subscriptions} from '../subscriptions.data';
 import {Observable} from 'rxjs/Observable';
 import {SubscriptionsSearchService} from './search.service';
+import {Subscribers} from '../../subscribers/subscribers.data';
+import {SubscribersService} from '../../subscribers/subscribers.service';
 
 @Component({
   selector: 'app-subscriptions-search',
@@ -19,7 +19,7 @@ export class SubscriptionsSearchComponent {
 
   ownerSubscription: Subscription;
 
-  selected_owners: Owners;
+  selected_subscribers: Subscribers;
 
   input_group = new FormControl();
 
@@ -29,11 +29,11 @@ export class SubscriptionsSearchComponent {
   onFound = new EventEmitter();
 
 
-  constructor(private ownersService: OwnersService,
+  constructor(private subscribersService: SubscribersService,
               private subscriptionsService: SubscriptionsSearchService) {
-    this.ownerSubscription = ownersService.announced$.subscribe(
+    this.ownerSubscription = subscribersService.announced$.subscribe(
       owners => {
-        this.selected_owners = owners;
+        this.selected_subscribers = owners;
       }
     );
 
@@ -48,8 +48,8 @@ export class SubscriptionsSearchComponent {
       this.onFound.emit(query);
       return;
     }
-    if (this.selected_owners) {
-      this.subscriptionsService.search(query, this.selected_owners).subscribe(
+    if (this.selected_subscribers) {
+      this.subscriptionsService.search(query, this.selected_subscribers).subscribe(
         data => this.candidateSubscriptions = data,
         error => this.errorMessage = <any>error
       );

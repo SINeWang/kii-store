@@ -1,0 +1,10 @@
+<md-input-container style="width: 100%;">
+  <input type="text" mdInput placeholder="Subscriber" [mdAutocomplete]="searchSubscribers"
+         [formControl]="subscriberFormControl">
+</md-input-container>
+
+<md-autocomplete #searchSubscribers="mdAutocomplete"  [displayWith]="displayCandidates">
+  <md-option *ngFor="let subscribers of candidateSubscribers" [value]="subscribers">
+    <span>{{ subscribers.subscriberId }}</span>
+  </md-option>
+</md-autocomplete>

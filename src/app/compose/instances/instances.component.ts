@@ -1,31 +1,31 @@
 import {Component, ViewChild} from '@angular/core';
-import {OwnersService} from '../../owners/owners.service';
 import {Subscription} from 'rxjs/Subscription';
-import {Owners} from '../../owners/owners.data';
 import {SubscriptionsSearchService} from '../../subscriptions/search/search.service';
 import {Subscriptions} from '../../subscriptions/subscriptions.data';
 import {StatusService} from './status.service';
+import {SubscribersService} from '../../subscribers/subscribers.service';
+import {Subscribers} from '../../subscribers/subscribers.data';
 
 @Component({
   selector: 'app-compose-instances',
-  providers: [OwnersService, SubscriptionsSearchService, StatusService],
+  providers: [SubscribersService, SubscriptionsSearchService, StatusService],
   templateUrl: 'instances.html'
 })
 export class InstancesComponent {
 
-  ownerSubscription: Subscription;
+  subscribersSubscription: Subscription;
 
-  selected_owners: Owners;
+  selected_subscribers: Subscribers;
 
   @ViewChild('subscriptionsSearch') subscriptionsSearch;
 
   @ViewChild('subscriptionsEditor') subscriptionsEditor;
 
 
-  constructor(private ownersService: OwnersService) {
-    this.ownerSubscription = ownersService.announced$.subscribe(
+  constructor(private subscribersService: SubscribersService) {
+    this.subscribersSubscription = subscribersService.announced$.subscribe(
       data => {
-        this.selected_owners = data;
+        this.selected_subscribers = data;
       }
     );
   }

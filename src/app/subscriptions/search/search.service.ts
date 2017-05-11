@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {Owners} from '../../owners/owners.data';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../../environments/environment';
 import {Subscriptions} from '../subscriptions.data';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Subscribers} from '../../subscribers/subscribers.data';
 @Injectable()
 export class SubscriptionsSearchService {
 
@@ -22,7 +22,7 @@ export class SubscriptionsSearchService {
   }
 
   search(query: string,
-         owners: Owners): Observable<Subscriptions[]> {
+         subscribers: Subscribers): Observable<Subscriptions[]> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-VisitorId': '123',
@@ -31,7 +31,7 @@ export class SubscriptionsSearchService {
     });
     const options = new RequestOptions({headers: headers});
 
-    let url = this.URL + '/' + owners.ownerId + '/subscriptions?q=';
+    let url = this.URL + '/' + subscribers.subscriberId + '/subscriptions?q=';
     if (query) {
       url += query;
     } else {

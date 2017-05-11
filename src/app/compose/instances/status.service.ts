@@ -22,7 +22,7 @@ export class StatusService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + subscriptions.subscriberId + '/instances/' + subscriptions.id;
+    const url = this.URL + '/' + subscriptions.subscriberId + '/status/' + subscriptions.id;
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
