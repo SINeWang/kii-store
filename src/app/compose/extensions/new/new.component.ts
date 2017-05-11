@@ -39,7 +39,7 @@ export class NewExtensionsComponent {
       'visibility': this.newExtensionVisibility,
     });
 
-    this.ownerSubscription = ownersService.ownerAnnounced$.subscribe(
+    this.ownerSubscription = ownersService.announced$.subscribe(
       owners => {
         this.owners = owners;
       }
