@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Owners} from '../../owners/owners.data';
 import {OwnersService} from '../../owners/owners.service';
@@ -25,6 +25,10 @@ export class SubscriptionsSearchComponent {
 
   candidateSubscriptions: Subscriptions[];
 
+  @Output()
+  onFound = new EventEmitter();
+
+
   constructor(private ownersService: OwnersService,
               private subscriptionsService: SubscriptionsSearchService) {
     this.ownerSubscription = ownersService.announced$.subscribe(
@@ -39,8 +43,11 @@ export class SubscriptionsSearchComponent {
   }
 
 
-  onInputGroupChange(query: string) {
-
+  onInputGroupChange(query: any) {
+    if (query instanceof Object) {
+      this.onFound.emit(query);
+      return;
+    }
     if (this.selected_owners) {
       this.subscriptionsService.search(query, this.selected_owners).subscribe(
         data => this.candidateSubscriptions = data,

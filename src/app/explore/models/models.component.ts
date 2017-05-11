@@ -72,7 +72,7 @@ export class ModelsComponent implements OnInit {
   subscribe(pubSet: string): void {
     const owners = new Owners();
     const subscriptions = new Subscriptions();
-    subscriptions.pubSet = pubSet;
+    subscriptions.subSet = pubSet;
     subscriptions.group = this.subscribeGroup.value;
     subscriptions.name = this.subscribeName.value;
     subscriptions.tree = this.subscribeTree.value;

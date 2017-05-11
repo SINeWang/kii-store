@@ -18,6 +18,7 @@ import {NewExtensionsComponent} from './compose/extensions/new/new.component';
 import {VisibilityComponent} from './compose/visibility/visibility.component';
 import {AssetsComponent} from './explore/assets/assets.component';
 import {SubscriptionsSearchComponent} from './subscriptions/search/search.component';
+import {InstancesEditorComponent} from './compose/instances/editor/editor.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,7 @@ const routes: Routes = [
     ExploreComponent,
     ExtensionsComponent,
     InstancesComponent,
+    InstancesEditorComponent,
     ModelsComponent,
     NewExtensionsComponent,
     OwnersComponent,

@@ -5,11 +5,11 @@
         <app-owner></app-owner>
       </div>
       <div class="mdl-cell mdl-cell--4-col">
-        <app-subscriptions-search></app-subscriptions-search>
+        <app-subscriptions-search #subscriptionsSearch (onFound)="notifyEditor($event)"></app-subscriptions-search>
       </div>
       <div class="mdl-cell mdl-cell--7-col">
-
       </div>
     </div>
   </form>
 </div>
+<app-compose-instances-editor #subscriptionsEditor></app-compose-instances-editor>

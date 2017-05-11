@@ -1,5 +1,6 @@
 export class Subscriptions {
-  pubSet: string;
+  subSet: string;
+  subscriberId: string;
   group: string;
   name: string;
   tree: string;

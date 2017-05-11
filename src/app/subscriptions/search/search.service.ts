@@ -18,7 +18,6 @@ export class SubscriptionsSearchService {
     this.subscriptionsSource.next(subscriptions);
   }
 
-
   constructor(private http: Http) {
   }
 

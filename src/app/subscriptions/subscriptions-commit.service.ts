@@ -9,7 +9,7 @@ export class SubscriptionsCommitService {
 
   private URL = environment.kiimate_url;
 
-  
+
   constructor(private http: Http) {
   }
 
@@ -22,7 +22,7 @@ export class SubscriptionsCommitService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + owners.ownerId + '/subscriptions/' + subscriptions.pubSet;
+    const url = this.URL + '/' + owners.ownerId + '/subscriptions/' + subscriptions.subSet;
     if (subscriptions.group == null) {
       return Observable.of([]);
     }

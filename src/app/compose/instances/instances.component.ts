@@ -1,41 +1,37 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {OwnersService} from '../../owners/owners.service';
 import {Subscription} from 'rxjs/Subscription';
 import {Owners} from '../../owners/owners.data';
-import {Subscriptions} from '../../subscriptions/subscriptions.data';
 import {SubscriptionsSearchService} from '../../subscriptions/search/search.service';
+import {InstancesService} from './instances.service';
+import {Subscriptions} from '../../subscriptions/subscriptions.data';
 
 @Component({
   selector: 'app-compose-instances',
-  providers: [OwnersService, SubscriptionsSearchService],
+  providers: [OwnersService, SubscriptionsSearchService, InstancesService],
   templateUrl: 'instances.html'
 })
 export class InstancesComponent {
 
-  errorMessage: string;
-
   ownerSubscription: Subscription;
-
-  subscriptionsSubscription: Subscription;
 
   selected_owners: Owners;
 
-  selected_subscriptions: Subscriptions;
+  @ViewChild('subscriptionsSearch') subscriptionsSearch;
 
-  constructor(private ownersService: OwnersService,
-              private subscriptionsService: SubscriptionsSearchService) {
+  @ViewChild('subscriptionsEditor') subscriptionsEditor;
+
+
+  constructor(private ownersService: OwnersService) {
     this.ownerSubscription = ownersService.announced$.subscribe(
       data => {
         this.selected_owners = data;
       }
     );
+  }
 
-    this.subscriptionsSubscription = subscriptionsService.announced$.subscribe(
-      data => {
-        this.selected_subscriptions = data;
-      }
-    );
-
+  notifyEditor(subscriptions: Subscriptions) {
+    this.subscriptionsEditor.selected_subscriptions = subscriptions;
   }
 
 
