@@ -1,4 +1,5 @@
 export class Status {
+  subId: string;
   ownerId: string;
   instances: Object;
   origin: Object;

@@ -28,4 +28,18 @@ export class StatusService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+  commit(status: Status): Observable<Status> {
+    const headers = new Headers({
+      // 'Authorization': authorization,
+      'X-SUMMER-OperatorId': 'wangyj',
+      'X-SUMMER-RequestId': 'random'
+    });
+    const options = new RequestOptions({headers: headers});
+
+    const url = this.URL + '/' + status.ownerId + '/status/' + status.subId;
+    return this.http.put(url, status.instances, options)
+      .map((res: Response) => res.json() || [])
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
 }

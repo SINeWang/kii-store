@@ -32,4 +32,11 @@ export class InstancesEditorComponent {
     this.status.origin = Object.assign({}, status.instances);
   }
 
+  commit() {
+    console.log(this.status);
+    this.statusService.commit(this.status).subscribe(
+      data => this.handle_instances(data),
+      error => this.errorMessage = <any>error
+    );
+  }
 }
