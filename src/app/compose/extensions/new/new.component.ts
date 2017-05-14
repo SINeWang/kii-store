@@ -34,7 +34,7 @@ export class NewExtensionsComponent {
               private newExtensionsService: NewExtensionsService) {
 
     this.newExtensionForm = formBuilder.group({
-      'group': this.newExtensionName,
+      'name': this.newExtensionName,
       'tree': this.newExtensionTree,
       'visibility': this.newExtensionVisibility,
     });
