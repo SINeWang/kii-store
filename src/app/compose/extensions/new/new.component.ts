@@ -19,6 +19,8 @@ export class NewExtensionsComponent {
 
   private newExtensionForm: FormGroup;
 
+  public newExtensionGroup = new FormControl('', Validators.required);
+
   public newExtensionName = new FormControl('', Validators.required);
 
   public newExtensionTree = new FormControl('master', Validators.required);
@@ -34,6 +36,7 @@ export class NewExtensionsComponent {
               private newExtensionsService: NewExtensionsService) {
 
     this.newExtensionForm = formBuilder.group({
+      'group': this.newExtensionGroup,
       'name': this.newExtensionName,
       'tree': this.newExtensionTree,
       'visibility': this.newExtensionVisibility,
@@ -50,8 +53,11 @@ export class NewExtensionsComponent {
   commit(): void {
     const authorization = localStorage.getItem('authorization');
     const extensions = new Extensions();
-    extensions.name = this.newExtensionName.value;
     extensions.ownerId = this.owners.ownerId;
+    extensions.group = this.newExtensionGroup.value;
+    extensions.name = this.newExtensionName.value;
+    extensions.tree = this.newExtensionTree.value;
+    extensions.visibility = this.newExtensionVisibility.value;
 
     this.newExtensionsService.commit(extensions).subscribe(
       data => {

@@ -24,7 +24,7 @@ export class NewExtensionsService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + form.ownerId + '/extension';
+    const url = this.URL + '/' + form.ownerId + '/extensions';
     return this.http.post(url, form, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
