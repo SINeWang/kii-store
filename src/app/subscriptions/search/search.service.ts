@@ -4,7 +4,7 @@ import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../../environments/environment';
 import {Subscriptions} from '../subscriptions.data';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Subscribers} from '../../subscribers/subscribers.data';
+import {Subjects} from '../../subjects/subjects.data';
 @Injectable()
 export class SubscriptionsSearchService {
 
@@ -22,7 +22,7 @@ export class SubscriptionsSearchService {
   }
 
   search(query: string,
-         subscribers: Subscribers): Observable<Subscriptions[]> {
+         subscribers: Subjects): Observable<Subscriptions[]> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-VisitorId': '123',
@@ -31,7 +31,7 @@ export class SubscriptionsSearchService {
     });
     const options = new RequestOptions({headers: headers});
 
-    let url = this.URL + '/' + subscribers.subscriberId + '/subscriptions?q=';
+    let url = this.URL + '/' + subscribers.id + '/subscriptions?q=';
     if (query) {
       url += query;
     } else {

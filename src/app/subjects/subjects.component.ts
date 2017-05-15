@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Subjects} from './subjects.data';
 import {SubjectsService} from './subjects.service';
@@ -10,14 +10,28 @@ import {SubjectsService} from './subjects.service';
 })
 export class SubjectsComponent {
 
-  candidateOwners: Subjects[];
+  candidates: Subjects[];
 
   errorMessage: string;
 
-  ownersFormControl = new FormControl();
+  searchFormControl = new FormControl();
+
+  subjectType: string;
+
+  accessType: string;
+
+  @Input()
+  set subject_type(subject_type: string) {
+    this.subjectType = subject_type;
+  }
+
+  @Input()
+  set access_type(access_type: string) {
+    this.accessType = access_type;
+  }
 
   constructor(private subjectsService: SubjectsService) {
-    this.ownersFormControl.valueChanges
+    this.searchFormControl.valueChanges
       .startWith(null)
       .subscribe(name => this.onInputChange(name));
   }
@@ -31,8 +45,8 @@ export class SubjectsComponent {
       this.subjectsService.announce(query);
     } else {
       const authorization = localStorage.getItem('authorization');
-      this.subjectsService.search(query).subscribe(
-        data => this.candidateOwners = data,
+      this.subjectsService.search(query, this.subjectType, this.accessType).subscribe(
+        data => this.candidates = data,
         error => this.errorMessage = <any>error
       );
     }

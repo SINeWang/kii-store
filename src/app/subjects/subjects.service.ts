@@ -20,7 +20,9 @@ export class SubjectsService {
   constructor(private http: Http) {
   }
 
-  search(subject_id: string): Observable<Subjects[]> {
+  search(subject_id: string,
+         subjectType: string,
+         accessType: string): Observable<Subjects[]> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-VisitorId': 'wangyj',
@@ -28,10 +30,14 @@ export class SubjectsService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/subjects/extension/owner?q=' + subject_id;
-    return this.http.get(url, options)
-      .map((res: Response) => res.json() || [])
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    if (subjectType && accessType) {
+      const url = this.URL + '/subjects/' + subjectType + '/' + accessType + '?q=' + subject_id;
+      return this.http.get(url, options)
+        .map((res: Response) => res.json() || [])
+        .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    } else {
+      return Observable.of([]);
+    }
   }
 
 }

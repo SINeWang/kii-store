@@ -1,10 +1,10 @@
 <md-input-container style="width: 100%;">
-  <input type="text" mdInput placeholder="Owner" [mdAutocomplete]="searchOwner"
-         [formControl]="ownersFormControl">
+  <input type="text" mdInput placeholder="{{accessType}}" [mdAutocomplete]="searchSubjects"
+         [formControl]="searchFormControl">
 </md-input-container>
 
-<md-autocomplete #searchOwner="mdAutocomplete"  [displayWith]="displayCandidates">
-  <md-option *ngFor="let owners of candidateOwners" [value]="owners">
-    <span>{{ owners.id }}</span>
+<md-autocomplete #searchSubjects="mdAutocomplete"  [displayWith]="displayCandidates">
+  <md-option *ngFor="let subjects of candidates" [value]="subjects">
+    <span>{{ subjects.id }}</span>
   </md-option>
 </md-autocomplete>

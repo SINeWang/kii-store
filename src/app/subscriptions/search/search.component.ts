@@ -4,8 +4,9 @@ import {Subscription} from 'rxjs/Subscription';
 import {Subscriptions} from '../subscriptions.data';
 import {Observable} from 'rxjs/Observable';
 import {SubscriptionsSearchService} from './search.service';
-import {Subscribers} from '../../subscribers/subscribers.data';
-import {SubscribersService} from '../../subscribers/subscribers.service';
+import {Subjects} from '../../subjects/subjects.data';
+import {SubjectsService} from '../../subjects/subjects.service';
+
 
 @Component({
   selector: 'app-subscriptions-search',
@@ -17,9 +18,9 @@ export class SubscriptionsSearchComponent {
 
   errorMessage: string;
 
-  subjectsListener: Subscription;
+  ownerSubscription: Subscription;
 
-  selected_subscribers: Subscribers;
+  selected_subscribers: Subjects;
 
   input_group = new FormControl();
 
@@ -28,12 +29,11 @@ export class SubscriptionsSearchComponent {
   @Output()
   onFound = new EventEmitter();
 
-
-  constructor(private subscribersService: SubscribersService,
+  constructor(private subjectsService: SubjectsService,
               private subscriptionsService: SubscriptionsSearchService) {
-    this.subjectsListener = subscribersService.announced$.subscribe(
-      subjects => {
-        this.selected_subscribers = subjects;
+    this.ownerSubscription = subjectsService.announced$.subscribe(
+      owners => {
+        this.selected_subscribers = owners;
       }
     );
 
