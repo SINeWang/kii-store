@@ -9,15 +9,15 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import {IntensionsService} from '../intensions/intensions.service';
 import {Subscription} from 'rxjs/Subscription';
-import {OwnersService} from '../../owners/owners.service';
-import {Owners} from '../../owners/owners.data';
 import {PublicationService} from '../publication/publication.service';
 import {Publication} from '../publication/publication.data';
 import {Extension} from '../extension/extension.data';
+import {SubjectsService} from '../../subjects/subjects.service';
+import {Subjects} from '../../subjects/subjects.data';
 
 @Component({
   selector: 'app-compose-extensions',
-  providers: [ExtensionsService, IntensionsService, ModelsService, OwnersService, PublicationService],
+  providers: [ExtensionsService, IntensionsService, ModelsService, SubjectsService, PublicationService],
   templateUrl: 'extensions.html',
 })
 export class ExtensionsComponent implements OnDestroy {
@@ -48,7 +48,7 @@ export class ExtensionsComponent implements OnDestroy {
 
   ownerSubscription: Subscription;
 
-  owners: Owners;
+  owners: Subjects;
 
   newExtensionModel: boolean;
 
@@ -56,7 +56,7 @@ export class ExtensionsComponent implements OnDestroy {
   constructor(private extensionService: ExtensionsService,
               private modelsService: ModelsService,
               private intensionsService: IntensionsService,
-              private ownersService: OwnersService,
+              private ownersService: SubjectsService,
               private publicationService: PublicationService) {
     this.form.tree = 'master';
     this.form.visibility = 'public';

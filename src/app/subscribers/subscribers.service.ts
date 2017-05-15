@@ -20,7 +20,7 @@ export class SubscribersService {
   constructor(private http: Http) {
   }
 
-  search(owners: string): Observable<Subscribers[]> {
+  search(subjects_id: string): Observable<Subscribers[]> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-VisitorId': 'wangyj',
@@ -28,7 +28,7 @@ export class SubscribersService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/subscribers?subscriberId=' + owners;
+    const url = this.URL + '/subscribers?subscriberId=' + subjects_id;
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));

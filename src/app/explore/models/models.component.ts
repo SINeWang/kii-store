@@ -3,9 +3,9 @@ import {ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ModelsService} from './models.service';
 import {Model} from './models.data';
-import {Owners} from '../../owners/owners.data';
 import {Subscriptions} from '../../subscriptions/subscriptions.data';
 import {SubscriptionsCommitService} from '../../subscriptions/subscriptions-commit.service';
+import {Subjects} from '../../subjects/subjects.data';
 
 
 @Component({
@@ -70,7 +70,7 @@ export class ModelsComponent implements OnInit {
   }
 
   subscribe(pubSet: string): void {
-    const owners = new Owners();
+    const owners = new Subjects();
     const subscriptions = new Subscriptions();
     subscriptions.subSet = pubSet;
     subscriptions.group = this.subscribeGroup.value;

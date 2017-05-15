@@ -1,37 +1,37 @@
 import {Component} from '@angular/core';
-import {OwnersService} from './owners.service';
 import {FormControl} from '@angular/forms';
-import {Owners} from './owners.data';
+import {Subjects} from './subjects.data';
+import {SubjectsService} from './subjects.service';
 
 @Component({
-  selector: 'app-owner',
+  selector: 'app-subjects',
   providers: [],
-  templateUrl: 'owners.html'
+  templateUrl: 'subjects.html'
 })
-export class OwnersComponent {
+export class SubjectsComponent {
 
-  candidateOwners: Owners[];
+  candidateOwners: Subjects[];
 
   errorMessage: string;
 
   ownersFormControl = new FormControl();
 
-  constructor(private ownersService: OwnersService) {
+  constructor(private subjectsService: SubjectsService) {
     this.ownersFormControl.valueChanges
       .startWith(null)
       .subscribe(name => this.onInputChange(name));
   }
 
-  displayCandidates(owners: Owners): string {
-    return owners ? owners.id : '';
+  displayCandidates(subjects: Subjects): string {
+    return subjects ? subjects.id : '';
   }
 
   onInputChange(query: any) {
     if (query instanceof Object) {
-      this.ownersService.announce(query);
+      this.subjectsService.announce(query);
     } else {
       const authorization = localStorage.getItem('authorization');
-      this.ownersService.search(query).subscribe(
+      this.subjectsService.search(query).subscribe(
         data => this.candidateOwners = data,
         error => this.errorMessage = <any>error
       );

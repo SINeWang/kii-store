@@ -5,8 +5,8 @@ import 'rxjs/add/operator/catch';
 import {NewExtensionsService} from './new.service';
 import {Extensions} from '../extensions.data';
 import {Subscription} from 'rxjs/Subscription';
-import {Owners} from '../../../owners/owners.data';
-import {OwnersService} from '../../../owners/owners.service';
+import {Subjects} from '../../../subjects/subjects.data';
+import {SubjectsService} from '../../../subjects/subjects.service';
 
 @Component({
   selector: 'app-compose-extensions-new',
@@ -29,10 +29,10 @@ export class NewExtensionsComponent {
 
   ownerSubscription: Subscription;
 
-  owners: Owners;
+  owners: Subjects;
 
   constructor(private formBuilder: FormBuilder,
-              private ownersService: OwnersService,
+              private ownersService: SubjectsService,
               private newExtensionsService: NewExtensionsService) {
 
     this.newExtensionForm = formBuilder.group({
@@ -53,7 +53,7 @@ export class NewExtensionsComponent {
   commit(): void {
     const authorization = localStorage.getItem('authorization');
     const extensions = new Extensions();
-    extensions.ownerId = this.owners.ownerId;
+    extensions.ownerId = this.owners.id;
     extensions.group = this.newExtensionGroup.value;
     extensions.name = this.newExtensionName.value;
     extensions.tree = this.newExtensionTree.value;

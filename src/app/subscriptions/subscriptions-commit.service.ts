@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {Owners} from '../owners/owners.data';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../environments/environment';
 import {Subscriptions} from './subscriptions.data';
+import {Subjects} from '../subjects/subjects.data';
 @Injectable()
 export class SubscriptionsCommitService {
 
@@ -13,7 +13,7 @@ export class SubscriptionsCommitService {
   constructor(private http: Http) {
   }
 
-  commit(owners: Owners,
+  commit(subjects: Subjects,
          subscriptions: Subscriptions): Observable<Subscriptions[]> {
     const headers = new Headers({
       'X-SUMMER-RequestId': 'random',
@@ -22,7 +22,7 @@ export class SubscriptionsCommitService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + owners.id + '/subscriptions/' + subscriptions.subSet;
+    const url = this.URL + '/' + subjects.id + '/subscriptions/' + subscriptions.subSet;
     if (subscriptions.group == null) {
       return Observable.of([]);
     }

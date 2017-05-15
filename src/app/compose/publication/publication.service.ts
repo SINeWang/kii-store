@@ -7,7 +7,7 @@ import {environment} from '../../../environments/environment';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import {Owners} from '../../owners/owners.data';
+import {Subjects} from '../../subjects/subjects.data';
 
 @Injectable()
 export class PublicationService {
@@ -18,7 +18,7 @@ export class PublicationService {
   }
 
   commit(publication: Publication,
-         owners: Owners): Observable<Model[]> {
+         subjects: Subjects): Observable<Model[]> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-VisitorId': '123',
@@ -27,7 +27,7 @@ export class PublicationService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + owners.id + '/' + publication.publication + '/';
+    const url = this.URL + '/' + subjects.id + '/' + publication.publication + '/';
     if (publication.version) {
     } else {
       return Observable.of([]);

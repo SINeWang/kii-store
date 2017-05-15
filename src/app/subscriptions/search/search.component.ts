@@ -17,7 +17,7 @@ export class SubscriptionsSearchComponent {
 
   errorMessage: string;
 
-  ownerSubscription: Subscription;
+  subjectsListener: Subscription;
 
   selected_subscribers: Subscribers;
 
@@ -31,9 +31,9 @@ export class SubscriptionsSearchComponent {
 
   constructor(private subscribersService: SubscribersService,
               private subscriptionsService: SubscriptionsSearchService) {
-    this.ownerSubscription = subscribersService.announced$.subscribe(
-      owners => {
-        this.selected_subscribers = owners;
+    this.subjectsListener = subscribersService.announced$.subscribe(
+      subjects => {
+        this.selected_subscribers = subjects;
       }
     );
 
