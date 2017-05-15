@@ -26,7 +26,7 @@ export class IntensionsService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + owners.ownerId + '/intension';
+    const url = this.URL + '/' + owners.id + '/intension';
     return this.http.post(url, form, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
@@ -43,7 +43,7 @@ export class IntensionsService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + owners.ownerId + '/extensions/' + extension.id + '/intensions/' + intension.id;
+    const url = this.URL + '/' + owners.id + '/extensions/' + extension.id + '/intensions/' + intension.id;
     return this.http.patch(url, null, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));

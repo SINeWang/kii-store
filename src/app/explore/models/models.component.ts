@@ -76,7 +76,7 @@ export class ModelsComponent implements OnInit {
     subscriptions.group = this.subscribeGroup.value;
     subscriptions.name = this.subscribeName.value;
     subscriptions.tree = this.subscribeTree.value;
-    owners.ownerId = this.subscribeOwnerId.value;
+    owners.id = this.subscribeOwnerId.value;
     this.subscriptionsService.commit(owners, subscriptions).subscribe(
       data => console.log(data),
       error => this.errorMessage = <any>error

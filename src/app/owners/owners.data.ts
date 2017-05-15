@@ -1,3 +1,3 @@
 export class Owners {
-  ownerId: string;
+  id: string;
 }

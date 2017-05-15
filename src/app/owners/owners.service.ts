@@ -28,7 +28,7 @@ export class OwnersService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/owners?ownerId=' + owners;
+    const url = this.URL + '/owners?id=' + owners;
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));

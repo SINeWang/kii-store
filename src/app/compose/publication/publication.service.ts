@@ -27,7 +27,7 @@ export class PublicationService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + owners.ownerId + '/' + publication.publication + '/';
+    const url = this.URL + '/' + owners.id + '/' + publication.publication + '/';
     if (publication.version) {
     } else {
       return Observable.of([]);

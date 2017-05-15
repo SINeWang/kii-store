@@ -120,7 +120,7 @@ export class ExtensionsComponent implements OnDestroy {
     } else {
       const authorization = localStorage.getItem('authorization');
       if (this.owners) {
-        this.searchForm.ownerId = this.owners.ownerId;
+        this.searchForm.ownerId = this.owners.id;
       }
       this.searchForm.group = query;
       this.extensionService.search(this.searchForm).subscribe(

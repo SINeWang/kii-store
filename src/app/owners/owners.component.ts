@@ -23,7 +23,7 @@ export class OwnersComponent {
   }
 
   displayCandidates(owners: Owners): string {
-    return owners ? owners.ownerId : '';
+    return owners ? owners.id : '';
   }
 
   onInputChange(query: any) {
