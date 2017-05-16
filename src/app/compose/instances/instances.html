@@ -2,7 +2,7 @@
   <form>
     <div class="content-grid mdl-grid">
       <div class="mdl-cell mdl-cell--3-col">
-        <app-subjects [subject_type]="'Instance'" [access_type]="'Subscriber'"></app-subjects>
+        <app-subjects [subject_type]="'Instance'" [access_type]="'Owner'"></app-subjects>
       </div>
       <div class="mdl-cell mdl-cell--4-col">
         <app-subscriptions-search #subscriptionsSearch (onFound)="notifyEditor($event)"></app-subscriptions-search>

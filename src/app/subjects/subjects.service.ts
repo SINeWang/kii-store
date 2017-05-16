@@ -20,7 +20,7 @@ export class SubjectsService {
   constructor(private http: Http) {
   }
 
-  search(subject_id: string,
+  search(subjectId: string,
          subjectType: string,
          accessType: string): Observable<Subjects[]> {
     const headers = new Headers({
@@ -31,7 +31,7 @@ export class SubjectsService {
     const options = new RequestOptions({headers: headers});
 
     if (subjectType && accessType) {
-      const url = this.URL + '/subjects/' + subjectType + '/' + accessType + '?q=' + subject_id;
+      const url = this.URL + '/subjects/' + subjectType + '/' + accessType + '?q=' + subjectId;
       return this.http.get(url, options)
         .map((res: Response) => res.json() || [])
         .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
