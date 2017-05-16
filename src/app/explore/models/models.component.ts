@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {Component} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ModelsService} from './models.service';
 import {Model} from './models.data';
@@ -7,6 +6,7 @@ import {Subscriptions} from '../../subscriptions/subscriptions.data';
 import {SubscriptionsCommitService} from '../../subscriptions/subscriptions-commit.service';
 import {Subjects} from '../../subjects/subjects.data';
 import {SubjectsService} from '../../subjects/subjects.service';
+import {Subscription} from 'rxjs/Subscription';
 
 
 @Component({
@@ -14,13 +14,17 @@ import {SubjectsService} from '../../subjects/subjects.service';
   providers: [ModelsService, SubscriptionsCommitService, SubjectsService],
   templateUrl: 'models.html'
 })
-export class ModelsComponent implements OnInit {
+export class ModelsComponent {
 
   errorMessage: string;
 
   models: Model[];
 
   searchForm = new Model();
+
+  providersListener: Subscription;
+
+  providers: Subjects;
 
   public subscribeForm: FormGroup;
 
@@ -34,7 +38,7 @@ export class ModelsComponent implements OnInit {
 
   public subscribeTree = new FormControl('master', Validators.required);
 
-  constructor(private activatedRoute: ActivatedRoute,
+  constructor(private subjectsService: SubjectsService,
               private modelsService: ModelsService,
               private subscriptionsService: SubscriptionsCommitService,
               private formBuilder: FormBuilder) {
@@ -46,21 +50,18 @@ export class ModelsComponent implements OnInit {
       'name': this.subscribeName,
       'tree': this.subscribeTree,
     });
-  }
 
-  ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe(params => {
-        this.searchForm.group = params['group'];
-        this.search();
+    this.providersListener = subjectsService.announced$.subscribe(
+      data => {
+        this.providers = data;
       }
     );
   }
 
   search(): void {
-    if (this.searchForm.group !== ''
-      && this.searchForm.group != null
-    ) {
-      this.modelsService.visit(this.searchForm).subscribe(
+    if (this.searchForm.group !== '' && this.searchForm.group != null) {
+      this.searchForm.providerId = this.providers.id;
+      this.modelsService.search(this.searchForm).subscribe(
         data => this.handleData(data),
         error => this.errorMessage = <any>error
       );

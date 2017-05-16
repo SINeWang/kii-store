@@ -14,7 +14,7 @@ export class ModelsService {
   constructor(private http: Http) {
   }
 
-  visit(modelForm: Model): Observable<Model[]> {
+  search(modelForm: Model): Observable<Model[]> {
 
     const headers = new Headers({
       // 'Authorization': authorization,
@@ -25,6 +25,7 @@ export class ModelsService {
     let url = this.URL + '/search/models';
     if (modelForm.group != null && modelForm.group !== '') {
       url += '?q=' + modelForm.group;
+      url += '&providerId=' + modelForm.providerId;
     } else {
       return Observable.of([]);
     }

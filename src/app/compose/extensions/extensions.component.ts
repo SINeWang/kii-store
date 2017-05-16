@@ -46,7 +46,7 @@ export class ExtensionsComponent implements OnDestroy {
 
   candidateGroupFormCtrl = new FormControl();
 
-  ownerSubscription: Subscription;
+  ownersListener: Subscription;
 
   owners: Subjects;
 
@@ -56,7 +56,7 @@ export class ExtensionsComponent implements OnDestroy {
   constructor(private extensionService: ExtensionsService,
               private modelsService: ModelsService,
               private intensionsService: IntensionsService,
-              private ownersService: SubjectsService,
+              private subjectsService: SubjectsService,
               private publicationService: PublicationService) {
     this.form.tree = 'master';
     this.form.visibility = 'public';
@@ -74,7 +74,7 @@ export class ExtensionsComponent implements OnDestroy {
       .startWith(null)
       .subscribe(name => this.onCandidateExtensionsChange(name));
 
-    this.ownerSubscription = ownersService.announced$.subscribe(
+    this.ownersListener = subjectsService.announced$.subscribe(
       data => {
         this.owners = data;
       }
@@ -104,7 +104,7 @@ export class ExtensionsComponent implements OnDestroy {
 
   onCandidateModelsChange(query: string) {
     this.modelForm.group = query;
-    this.modelsService.visit(this.modelForm).subscribe(
+    this.modelsService.search(this.modelForm).subscribe(
       data => this.candidateModels = data,
       error => this.errorMessage = <any>error
     );
@@ -131,7 +131,7 @@ export class ExtensionsComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.ownerSubscription.unsubscribe();
+    this.ownersListener.unsubscribe();
   }
 
   displaySelectedModels(model: Model): string {
