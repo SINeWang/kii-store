@@ -6,11 +6,12 @@ import {Model} from './models.data';
 import {Subscriptions} from '../../subscriptions/subscriptions.data';
 import {SubscriptionsCommitService} from '../../subscriptions/subscriptions-commit.service';
 import {Subjects} from '../../subjects/subjects.data';
+import {SubjectsService} from '../../subjects/subjects.service';
 
 
 @Component({
   selector: 'app-explore-models',
-  providers: [ModelsService, SubscriptionsCommitService],
+  providers: [ModelsService, SubscriptionsCommitService, SubjectsService],
   templateUrl: 'models.html'
 })
 export class ModelsComponent implements OnInit {
@@ -33,8 +34,6 @@ export class ModelsComponent implements OnInit {
 
   public subscribeTree = new FormControl('master', Validators.required);
 
-  public subscribeVisibility = new FormControl('public', Validators.required);
-
   constructor(private activatedRoute: ActivatedRoute,
               private modelsService: ModelsService,
               private subscriptionsService: SubscriptionsCommitService,
@@ -46,7 +45,6 @@ export class ModelsComponent implements OnInit {
       'group': this.subscribeGroup,
       'name': this.subscribeName,
       'tree': this.subscribeTree,
-      'visibility': this.subscribeVisibility,
     });
   }
 
@@ -70,14 +68,14 @@ export class ModelsComponent implements OnInit {
   }
 
   subscribe(pubSet: string): void {
-    const owners = new Subjects();
+    const subscribers = new Subjects();
     const subscriptions = new Subscriptions();
     subscriptions.subSet = pubSet;
     subscriptions.group = this.subscribeGroup.value;
     subscriptions.name = this.subscribeName.value;
     subscriptions.tree = this.subscribeTree.value;
-    owners.id = this.subscribeOwnerId.value;
-    this.subscriptionsService.commit(owners, subscriptions).subscribe(
+    subscribers.id = this.subscribeOwnerId.value;
+    this.subscriptionsService.commit(subscribers, subscriptions).subscribe(
       data => console.log(data),
       error => this.errorMessage = <any>error
     );

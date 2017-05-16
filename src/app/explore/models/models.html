@@ -3,6 +3,9 @@
   <form #modelForm (ngSubmit)="search()">
     <button type="submit" style="display:none"></button>
     <div class="content-grid mdl-grid">
+      <div class="mdl-cell mdl-cell--1-col">
+        <app-subjects [subject_type]="'Model'" [access_type]="'Provider'"></app-subjects>
+      </div>
       <div class="mdl-cell mdl-cell--3-col">
         <mdl-textfield type="text" label="Group" [(ngModel)]="searchForm.group" name="group"
                        floating-label></mdl-textfield>
@@ -12,19 +15,9 @@
                        floating-label></mdl-textfield>
       </div>
       <div class="mdl-cell mdl-cell--2-col">
-        <mdl-textfield type="text" label="Tree" [(ngModel)]="searchForm.tree" name="tree"
-                       floating-label></mdl-textfield>
-      </div>
-      <div class="mdl-cell mdl-cell--3-col">
-        <mdl-radio value="release" name="publication" mdl-ripple>Release</mdl-radio>
-        <mdl-radio value="snapshot" name="publication" mdl-ripple>Snapshot</mdl-radio>
-      </div>
-      <div class="mdl-cell mdl-cell--2-col">
         <mdl-textfield type="text" label="Version" [(ngModel)]="searchForm.version" name="version"
                        floating-label></mdl-textfield>
       </div>
-    </div>
-    <div class="content-grid mdl-grid">
       <div class="mdl-cell mdl-cell--3-col">
         <button type="submit" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Search</button>
       </div>
@@ -40,7 +33,7 @@
         <div class="mdl-cell mdl-cell--12-col">
           <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--11-col">
-              <h4>{{model.group}} / {{model.name}} </h4>
+              <h4>{{model.group}} / {{model.name}} # {{model.publication}}-{{model.version}}</h4>
             </div>
             <div class="mdl-cell mdl-cell--1-col">
               <button mdl-button mdl-button-type="icon" mdl-ripple>
@@ -49,7 +42,9 @@
             </div>
           </div>
           <pre *ngFor="let intension of model.intensions">
-    <strong>{{intension.visibility}}</strong> {{intension.field}} : <a href="/explore/models/{{intension.refExtId}}" *ngIf="intension.refExtId">Reference</a><span *ngIf="!intension.refExtId">{{intension.structure}}</span><span *ngIf="!intension.single"> []</span>
+    <strong>{{intension.visibility}}</strong> {{intension.field}} : <a href="/explore/models/{{intension.refExtId}}"
+                                                                       *ngIf="intension.refExtId">Reference</a><span
+            *ngIf="!intension.refExtId">{{intension.structure}}</span><span *ngIf="!intension.single"> []</span>
           </pre>
         </div>
       </div>
@@ -77,7 +72,6 @@
             <mdl-textfield type="text" label="Group" formControlName="group" floating-label></mdl-textfield>
             <mdl-textfield type="text" label="Name" formControlName="name" floating-label></mdl-textfield>
             <mdl-textfield type="text" label="Tree" formControlName="tree" floating-label></mdl-textfield>
-            <mdl-textfield type="text" label="Visibility" formControlName="visibility" floating-label></mdl-textfield>
             <button type="submit" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Subscribe
             </button>
           </form>

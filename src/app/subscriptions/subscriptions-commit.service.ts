@@ -13,7 +13,7 @@ export class SubscriptionsCommitService {
   constructor(private http: Http) {
   }
 
-  commit(subjects: Subjects,
+  commit(subscribers: Subjects,
          subscriptions: Subscriptions): Observable<Subscriptions[]> {
     const headers = new Headers({
       'X-SUMMER-RequestId': 'random',
@@ -22,7 +22,7 @@ export class SubscriptionsCommitService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + subjects.id + '/subscriptions/' + subscriptions.subSet;
+    const url = this.URL + '/' + subscribers.id + '/subscriptions/' + subscriptions.subSet;
     if (subscriptions.group == null) {
       return Observable.of([]);
     }
