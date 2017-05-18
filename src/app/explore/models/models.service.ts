@@ -18,7 +18,8 @@ export class ModelsService {
 
     const headers = new Headers({
       // 'Authorization': authorization,
-      'X-SUMMER-VisitorId': '123'
+      'X-SUMMER-VisitorId': '123',
+      'X-SUMMER-RequestId': Math.random()
     });
     const options = new RequestOptions({headers: headers});
 

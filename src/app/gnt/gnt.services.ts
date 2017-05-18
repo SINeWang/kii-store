@@ -8,7 +8,7 @@ import {environment} from '../../environments/environment';
 import {Subjects} from 'app/subjects/subjects.data';
 @Injectable()
 
-export class GntService<T> {
+export class GroupNameTreeService<T> {
 
   private URL = environment.kiimate_url;
 
@@ -21,7 +21,7 @@ export class GntService<T> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-VisitorId': 'wangyj',
-      'X-SUMMER-RequestId': 'random'
+      'X-SUMMER-RequestId': Math.random()
     });
     const options = new RequestOptions({headers: headers});
 

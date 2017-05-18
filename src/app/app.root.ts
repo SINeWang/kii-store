@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {MdCardModule, MdToolbarModule} from '@angular/material';
 
 
 @Component({

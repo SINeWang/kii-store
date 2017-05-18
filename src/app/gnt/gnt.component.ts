@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {GroupNameTree} from './gnt.data';
 import {FormControl} from '@angular/forms';
-import {GntService} from './gnt.services';
+import {GroupNameTreeService} from './gnt.services';
 import {Subjects} from 'app/subjects/subjects.data';
 
 @Component({
@@ -29,7 +29,7 @@ export class GroupNameTreeComponent<T> {
 
   candidatesFormCtrl = new FormControl();
 
-  services: GntService<T>;
+  services: GroupNameTreeService<T>;
 
   constructor() {
     this.candidatesFormCtrl.valueChanges
@@ -48,11 +48,11 @@ export class GroupNameTreeComponent<T> {
   }
 
   @Input()
-  set service(gntService: GntService<T>) {
+  set service(gntService: GroupNameTreeService<T>) {
     this.services = gntService;
   }
 
-  displaySelected(gnt: GroupNameTree<any>): string {
+  displaySelected(gnt: GroupNameTree<T>): string {
     return gnt ? gnt.group + ' / ' + gnt.name + ' # ' + gnt.tree : '';
   }
 

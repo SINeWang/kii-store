@@ -26,7 +26,7 @@ export class SubjectsService {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-VisitorId': 'wangyj',
-      'X-SUMMER-RequestId': 'random'
+      'X-SUMMER-RequestId': Math.random()
     });
     const options = new RequestOptions({headers: headers});
 

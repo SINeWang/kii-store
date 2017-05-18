@@ -22,7 +22,7 @@ export class PublicationService {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-VisitorId': '123',
-      'X-SUMMER-RequestId': 'random',
+      'X-SUMMER-RequestId': Math.random(),
       'X-SUMMER-OperatorId': 'wangyj'
     });
     const options = new RequestOptions({headers: headers});
