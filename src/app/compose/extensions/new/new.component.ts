@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -19,27 +19,32 @@ export class NewExtensionsComponent {
 
   private newExtensionForm: FormGroup;
 
-  public newExtensionGroup = new FormControl('', Validators.required);
+  private newExtensionName = new FormControl('', Validators.required);
 
-  public newExtensionName = new FormControl('', Validators.required);
+  private _group: string;
 
-  public newExtensionTree = new FormControl('master', Validators.required);
-
-  public newExtensionVisibility = new FormControl('public', Validators.required);
+  _visibility: string;
 
   ownersListener: Subscription;
 
   owners: Subjects;
+
+  @Input()
+  set group(group: string) {
+    this._group = group;
+  }
+
+  onVisibilityChanged(visibility: string) {
+    this._visibility = visibility;
+  }
+
 
   constructor(private formBuilder: FormBuilder,
               private ownersService: SubjectsService,
               private newExtensionsService: NewExtensionsService) {
 
     this.newExtensionForm = formBuilder.group({
-      'group': this.newExtensionGroup,
       'name': this.newExtensionName,
-      'tree': this.newExtensionTree,
-      'visibility': this.newExtensionVisibility,
     });
 
     this.ownersListener = ownersService.announced$.subscribe(
@@ -54,10 +59,9 @@ export class NewExtensionsComponent {
     const authorization = localStorage.getItem('authorization');
     const extensions = new Extensions();
     extensions.ownerId = this.owners.id;
-    extensions.group = this.newExtensionGroup.value;
+    extensions.group = this._group;
     extensions.name = this.newExtensionName.value;
-    extensions.tree = this.newExtensionTree.value;
-    extensions.visibility = this.newExtensionVisibility.value;
+    extensions.visibility = this._visibility;
 
     this.newExtensionsService.commit(extensions).subscribe(
       data => {

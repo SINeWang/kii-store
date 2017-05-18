@@ -52,6 +52,7 @@ export class ExtensionsComponent implements OnDestroy {
 
   newExtensionModel: boolean;
 
+  _group: string;
 
   constructor(private extensionService: ExtensionsService,
               private modelsService: ModelsService,
@@ -59,7 +60,6 @@ export class ExtensionsComponent implements OnDestroy {
               private subjectsService: SubjectsService,
               private publicationService: PublicationService) {
     this.form.tree = 'master';
-    this.form.visibility = 'public';
 
     this.intensionForm.visibility = 'public';
     this.intensionForm.single = true;
@@ -79,6 +79,7 @@ export class ExtensionsComponent implements OnDestroy {
         this.owners = data;
       }
     );
+
   }
 
   add_intension(): void {
@@ -113,6 +114,7 @@ export class ExtensionsComponent implements OnDestroy {
   onCandidateExtensionsChange(query: any) {
     if (query instanceof Object) {
       this.newExtensionModel = false;
+      this._group = query.group;
       this.extensionService.visit(query).subscribe(
         data => this.handle_extension(data),
         error => this.errorMessage = <any>error
@@ -123,6 +125,9 @@ export class ExtensionsComponent implements OnDestroy {
         this.searchForm.ownerId = this.owners.id;
       }
       this.searchForm.group = query;
+      if (query) {
+        this._group = query;
+      }
       this.extensionService.search(this.searchForm).subscribe(
         data => this.candidateExtensions = data,
         error => this.errorMessage = <any>error

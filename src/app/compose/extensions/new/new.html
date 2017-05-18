@@ -1,6 +1,6 @@
 <md-input-container>
   <input mdInput type="text" placeholder="Name" [formControl]="newExtensionName">
 </md-input-container>
-<app-compose-visibility></app-compose-visibility>
+<app-visibility (onChanged)="onVisibilityChanged($event)"></app-visibility>
 <button (click)="commit()" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Add</button>
 

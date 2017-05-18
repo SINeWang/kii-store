@@ -14,7 +14,7 @@ import {ExtensionsComponent} from './compose/extensions/extensions.component';
 import {MdAutocompleteModule, MdIconModule, MdInputModule, MdRadioModule, MdSlideToggleModule} from '@angular/material';
 import {InstancesComponent} from './compose/instances/instances.component';
 import {NewExtensionsComponent} from './compose/extensions/new/new.component';
-import {VisibilityComponent} from './compose/visibility/visibility.component';
+import {VisibilityComponent} from './visibility/visibility.component';
 import {AssetsComponent} from './explore/assets/assets.component';
 import {SubscriptionsSearchComponent} from './subscriptions/search/search.component';
 import {InstancesEditorComponent} from './compose/instances/editor/editor.component';
