@@ -44,7 +44,7 @@ export class ModelsComponent {
               private formBuilder: FormBuilder) {
 
     this.subscribeForm = formBuilder.group({
-      'pubSetHash': this.subscribePubSet,
+      'pubSet': this.subscribePubSet,
       'ownerId': this.subscribeOwnerId,
       'group': this.subscribeGroup,
       'name': this.subscribeName,

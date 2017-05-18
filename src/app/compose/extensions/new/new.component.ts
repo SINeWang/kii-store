@@ -27,7 +27,7 @@ export class NewExtensionsComponent {
 
   public newExtensionVisibility = new FormControl('public', Validators.required);
 
-  ownerSubscription: Subscription;
+  ownersListener: Subscription;
 
   owners: Subjects;
 
@@ -42,7 +42,7 @@ export class NewExtensionsComponent {
       'visibility': this.newExtensionVisibility,
     });
 
-    this.ownerSubscription = ownersService.announced$.subscribe(
+    this.ownersListener = ownersService.announced$.subscribe(
       owners => {
         this.owners = owners;
       }
