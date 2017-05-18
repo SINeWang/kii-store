@@ -19,6 +19,7 @@ import {AssetsComponent} from './explore/assets/assets.component';
 import {SubscriptionsSearchComponent} from './subscriptions/search/search.component';
 import {InstancesEditorComponent} from './compose/instances/editor/editor.component';
 import {SubjectsComponent} from './subjects/subjects.component';
+import {GroupNameTreeComponent} from './gnt/gnt.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,7 @@ const routes: Routes = [
     ComposeComponent,
     ExploreComponent,
     ExtensionsComponent,
+    GroupNameTreeComponent,
     InstancesComponent,
     InstancesEditorComponent,
     ModelsComponent,
