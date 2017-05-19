@@ -40,10 +40,7 @@
                            floating-label></mdl-textfield>
           </div>
           <div class="mdl-cell mdl-cell--12-col">
-            <mdl-radio value="snapshot" [(ngModel)]="publication.publication" name="publication" mdl-ripple>Snapshot
-            </mdl-radio>
-            <mdl-radio value="release" [(ngModel)]="publication.publication" name="publication" mdl-ripple>Release
-            </mdl-radio>
+            <app-stabilities (onChanged)="publication_stability($event)"></app-stabilities>
           </div>
           <div class="mdl-cell mdl-cell--12-col">
             <button (click)="publish_extension()" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>
@@ -77,16 +74,7 @@
                 </mdl-radio>
               </div>
               <div class="mdl-cell mdl-cell--5-col">
-                <mdl-radio value="public" [(ngModel)]="intensionForm.visibility" name="intensionVisibility" mdl-ripple>
-                  Public
-                </mdl-radio>
-                <mdl-radio value="protected" [(ngModel)]="intensionForm.visibility" name="intensionVisibility"
-                           mdl-ripple>
-                  Protected
-                </mdl-radio>
-                <mdl-radio value="private" [(ngModel)]="intensionForm.visibility" name="intensionVisibility" mdl-ripple>
-                  Private
-                </mdl-radio>
+                <app-visibility (onChanged)="intension_visibility($event)"></app-visibility>
               </div>
               <div class="mdl-cell mdl-cell--3-col">
                 <mdl-switch [(ngModel)]="intensionForm.refExtId" [ngModelOptions]="{standalone: true}" mdl-ripple>
@@ -94,18 +82,7 @@
                 </mdl-switch>
               </div>
               <div class="mdl-cell mdl-cell--9-col" *ngIf="!intensionForm.refExtId">
-                <mdl-radio value="number"
-                           [(ngModel)]="intensionForm.structure" name="intensionStructure" mdl-ripple>Number
-                </mdl-radio>
-                <mdl-radio value="boolean"
-                           [(ngModel)]="intensionForm.structure" name="intensionStructure" mdl-ripple>Boolean
-                </mdl-radio>
-                <mdl-radio value="string"
-                           [(ngModel)]="intensionForm.structure" name="intensionStructure" mdl-ripple>String
-                </mdl-radio>
-                <mdl-radio value="date_time"
-                           [(ngModel)]="intensionForm.structure" name="intensionStructure" mdl-ripple>DateTime
-                </mdl-radio>
+                <app-structures (onChanged)="intension_structure($event)"></app-structures>
               </div>
             </div>
             <div class="mdl-cell mdl-cell--12-col" *ngIf="intensionForm.refExtId">

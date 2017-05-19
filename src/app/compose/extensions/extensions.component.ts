@@ -147,6 +147,18 @@ export class ExtensionsComponent implements OnDestroy {
     return extensions ? extensions.group + ' / ' + extensions.name + ' # ' + extensions.tree : '';
   }
 
+  publication_stability(stability: string) {
+    this.publication.stability = stability;
+  }
+
+  intension_visibility(visibility: string) {
+    this.intensionForm.visibility = visibility;
+  }
+
+  intension_structure(structure: string) {
+    this.intensionForm.structure = structure;
+  }
+
   publish_extension(): void {
     this.publicationService.commit(this.publication, this.owners).subscribe(
       data => {

@@ -21,6 +21,7 @@ import {InstancesEditorComponent} from './compose/instances/editor/editor.compon
 import {SubjectsComponent} from './subjects/subjects.component';
 import {GroupNameTreeComponent} from './gnt/gnt.component';
 import {StabilitiesComponent} from './stabilities/stabilities.component';
+import {StructuresComponent} from './structures/structures.component';
 
 const routes: Routes = [
   {
@@ -48,6 +49,7 @@ const routes: Routes = [
     ModelsComponent,
     NewExtensionsComponent,
     StabilitiesComponent,
+    StructuresComponent,
     SubjectsComponent,
     SubscriptionsSearchComponent,
     VisibilityComponent
