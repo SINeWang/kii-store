@@ -25,13 +25,13 @@
   </form>
 </div>
 
-<div mdl-shadow="2" *ngIf="extension && !newExtensionModel">
+<div mdl-shadow="2" *ngIf="extensions && !newExtensionModel">
   <div class="content-grid mdl-grid">
     <div class="mdl-cell mdl-cell--4-col">
       <form>
         <div class="content-grid mdl-grid">
           <div class="mdl-cell mdl-cell--12-col">
-            <mdl-textfield type="text" label="Visibulity" [(ngModel)]="extension.visibility" name="visibility"
+            <mdl-textfield type="text" label="Visibulity" [(ngModel)]="extensions.visibility" name="visibility"
                            readonly="true"
                            floating-label></mdl-textfield>
           </div>
@@ -100,30 +100,8 @@
         </div>
       </form>
 
+      <app-intensions [extension]="extensions" [owner]="owners"></app-intensions>
 
-      <div class="content-grid mdl-grid">
-        <div class="mdl-cell mdl-cell--6-col">
-          <ul>
-            <li *ngFor="let intension of extension.intensions">
-              {{intension.visibility}}
-
-              {{intension.field}}
-              :
-              <span *ngIf="!intension.refExtId">{{intension.structure}}</span>
-              <span *ngIf="intension.refExtId"><a href="/explore/models/{{intension.refExtId}}">Reference</a> </span>
-
-              <span *ngIf="!intension.single">[]</span>
-
-              <span *ngIf="intension.required"> , required</span>
-
-              <span>  <a href="javascript:void(0);" (click)="remove_intension(intension)"><md-icon>delete</md-icon></a> </span>
-            </li>
-          </ul>
-        </div>
-        <div class="mdl-cell mdl-cell--6-col">
-          <pre>{{extension.schema | json}}</pre>
-        </div>
-      </div>
     </div>
   </div>
 </div>

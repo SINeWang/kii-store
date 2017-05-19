@@ -31,8 +31,6 @@ export class ExtensionsComponent implements OnDestroy {
 
   private errorMessage: string;
 
-  private extension: Extension;
-
   private publication = new Publication();
 
   private candidateModels: Model [];
@@ -41,14 +39,16 @@ export class ExtensionsComponent implements OnDestroy {
 
   private modelForm = new Model();
 
-
   modelFormControl = new FormControl();
+
 
   candidateGroupFormCtrl = new FormControl();
 
   ownersListener: Subscription;
 
   owners: Subjects;
+
+  extensions: Extension;
 
   newExtensionModel: boolean;
 
@@ -87,18 +87,18 @@ export class ExtensionsComponent implements OnDestroy {
       this.intensionForm.refExtId = this.modelFormControl.value.rootExtId;
       this.intensionForm.structure = '';
     }
-    this.intensionForm.extId = this.extension.id;
+    this.intensionForm.extId = this.extensions.id;
     this.intensionsService.commit(this.owners, this.intensionForm).subscribe(
       data => {
-        this.extension.intensions = data.intensions;
-        this.extension.schema = data.schema;
+        this.extensions.intensions = data.intensions;
+        this.extensions.schema = data.schema;
       },
       error => this.errorMessage = <any>error
     );
   }
 
   handle_extension(extension: Extension) {
-    this.extension = extension;
+    this.extensions = extension;
     this.publication.providerId = extension.ownerId;
     this.publication.extId = extension.id;
   }
@@ -172,13 +172,5 @@ export class ExtensionsComponent implements OnDestroy {
     );
   }
 
-  remove_intension(intension: Intension): void {
-    this.intensionsService.remove(this.extension, intension, this.owners).subscribe(
-      data => {
-        this.extension.intensions = data.intensions;
-        this.extension.schema = data.schema;
-      },
-      error => this.errorMessage = <any>error
-    );
-  }
+
 }

@@ -1,0 +1,23 @@
+<div class="content-grid mdl-grid">
+  <div class="mdl-cell mdl-cell--6-col">
+    <ul>
+      <li *ngFor="let intension of extensions.intensions">
+        {{intension.visibility}}
+
+        {{intension.field}}
+        :
+        <span *ngIf="!intension.refExtId">{{intension.structure}}</span>
+        <span *ngIf="intension.refExtId"><a href="/explore/models/{{intension.refExtId}}">Reference</a> </span>
+
+        <span *ngIf="!intension.single">[]</span>
+
+        <span *ngIf="intension.required"> , required</span>
+
+        <span>  <a href="javascript:void(0);" (click)="remove_intension(intension)"><md-icon>delete</md-icon></a> </span>
+      </li>
+    </ul>
+  </div>
+  <div class="mdl-cell mdl-cell--6-col">
+    <pre>{{extensions.schema | json}}</pre>
+  </div>
+</div>

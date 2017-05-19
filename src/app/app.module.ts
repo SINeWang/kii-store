@@ -23,6 +23,7 @@ import {GroupNameTreeComponent} from './gnt/gnt.component';
 import {StabilitiesComponent} from './stabilities/stabilities.component';
 import {StructuresComponent} from './structures/structures.component';
 import {SingleMultiComponent} from './singlemulti/singlemulti.component';
+import {IntensionsComponent} from './compose/intensions/intensions.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,7 @@ const routes: Routes = [
     GroupNameTreeComponent,
     InstancesComponent,
     InstancesEditorComponent,
+    IntensionsComponent,
     ModelsComponent,
     NewExtensionsComponent,
     SingleMultiComponent,
