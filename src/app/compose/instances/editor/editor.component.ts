@@ -39,7 +39,7 @@ export class InstancesEditorComponent {
 
   handle_status(status: Status) {
     this.status = status;
-    this.status.origin = Object.assign({}, status.instances);
+    this.status.origin = Object.assign({}, status.map);
   }
 
   handle_instances(instances: Instances[]) {
@@ -47,7 +47,7 @@ export class InstancesEditorComponent {
     for (const instance of instances) {
       kv[instance.field] = instance.value;
     }
-    this.status.instances = Object.assign({}, kv);
+    this.status.map = Object.assign({}, kv);
     this.status.origin = kv;
   }
 

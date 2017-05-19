@@ -38,7 +38,7 @@ export class StatusService {
     const options = new RequestOptions({headers: headers});
 
     const url = this.URL + '/' + status.ownerId + '/status/' + status.subId;
-    return this.http.put(url, status.instances, options)
+    return this.http.put(url, status.map, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }

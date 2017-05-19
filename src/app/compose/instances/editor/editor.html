@@ -31,7 +31,7 @@
       <div class="content-grid mdl-grid" *ngFor="let intension of status.intensions">
         <div class="mdl-cell mdl-cell--12-col">
           <mdl-textfield type="text" style="width: 100%;" label="{{intension.field}}" name="{{intension.field}}"
-                         floating-label [(ngModel)]="status.instances[intension.field]">
+                         floating-label [(ngModel)]="status.map[intension.field]">
           </mdl-textfield>
         </div>
       </div>

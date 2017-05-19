@@ -1,7 +1,7 @@
 export class Status {
   subId: string;
   ownerId: string;
-  instances: Object;
+  map: Object;
   origin: Object;
   intensions: Intension[];
 }
