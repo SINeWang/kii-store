@@ -3,6 +3,8 @@ import {Subscriptions} from '../../../subscriptions/subscriptions.data';
 import {StatusService} from '../status.service';
 import {Status} from '../status.data';
 import {Instances} from '../instances.data';
+import {AssetsPublishService} from '../../../assets/assets-publish.service';
+import {AssetsPublication} from '../../../assets/assets-publication.data';
 @Component({
   selector: 'app-compose-instances-editor',
   providers: [],
@@ -16,16 +18,23 @@ export class InstancesEditorComponent {
 
   subscriptions: Subscriptions;
 
+  visibility: string;
+
+  assetsPublication = new AssetsPublication();
+
   @Input()
   set selected_subscriptions(value: Subscriptions) {
     this.subscriptions = value;
+    this.assetsPublication.providerId = value.subscriberId;
+    this.assetsPublication.subId = value.id;
     this.statusService.visit(value).subscribe(
       data => this.handle_status(data),
       error => this.errorMessage = <any>error
     );
   }
 
-  constructor(private statusService: StatusService) {
+  constructor(private statusService: StatusService,
+              private assetsPublishService: AssetsPublishService) {
   }
 
   handle_status(status: Status) {
@@ -42,9 +51,24 @@ export class InstancesEditorComponent {
     this.status.origin = kv;
   }
 
-  commit() {
-    console.log(this.status);
+  save() {
     this.statusService.commit(this.status).subscribe(
+      data => this.handle_instances(data),
+      error => this.errorMessage = <any>error
+    );
+  }
+
+  publication_visibility(visibility: string) {
+    this.assetsPublication.visibility = visibility;
+  }
+
+  publication_type(type: string) {
+    this.assetsPublication.publication = type;
+  }
+
+
+  publish() {
+    this.assetsPublishService.commit(this.assetsPublication).subscribe(
       data => this.handle_instances(data),
       error => this.errorMessage = <any>error
     );

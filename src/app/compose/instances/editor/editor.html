@@ -9,6 +9,18 @@
           </mdl-textfield>
         </div>
       </div>
+      <div class="content-grid mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col">
+          <app-visibility (onChanged)="publication_visibility($event)"></app-visibility>
+          <app-publications (onChanged)="publication_type($event)"></app-publications>
+          <mdl-textfield type="text" label="Version" name="version"
+                         floating-label [(ngModel)]="assetsPublication.version">
+          </mdl-textfield>
+          <button type="submit" (click)="publish()" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>
+            Publish
+          </button>
+        </div>
+      </div>
     </div>
     <div class="mdl-cell mdl-cell--6-col">
       <h3>Current</h3>
@@ -21,7 +33,7 @@
       </div>
       <div class="content-grid mdl-grid">
         <div class="mdl-cell mdl-cell--12-col">
-          <button type="submit" (click)="commit()" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>
+          <button type="submit" (click)="save()" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>
             Save
           </button>
         </div>

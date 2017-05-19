@@ -20,6 +20,7 @@ import {SubscriptionsSearchComponent} from './subscriptions/search/search.compon
 import {InstancesEditorComponent} from './compose/instances/editor/editor.component';
 import {SubjectsComponent} from './subjects/subjects.component';
 import {GroupNameTreeComponent} from './gnt/gnt.component';
+import {PublicationsComponent} from './publications/publications.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,7 @@ const routes: Routes = [
     InstancesEditorComponent,
     ModelsComponent,
     NewExtensionsComponent,
+    PublicationsComponent,
     SubjectsComponent,
     SubscriptionsSearchComponent,
     VisibilityComponent

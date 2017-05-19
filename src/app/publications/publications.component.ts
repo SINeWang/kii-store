@@ -1,11 +1,11 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
-  selector: 'app-visibility',
+  selector: 'app-publications',
   providers: [],
-  templateUrl: 'visibility.html'
+  templateUrl: 'publications.html'
 })
-export class VisibilityComponent {
+export class PublicationsComponent {
 
   @Output() onChanged = new EventEmitter<string>();
 
