@@ -6,7 +6,7 @@ export class Model {
   tree: string;
   extId: string;
   pubSet: string;
-  publication: string;
+  stability: string;
   version: string;
   beginTime: number;
 

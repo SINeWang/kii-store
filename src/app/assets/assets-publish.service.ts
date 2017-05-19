@@ -22,7 +22,7 @@ export class AssetsPublishService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + ap.providerId + '/publications/assets/' + ap.publication;
+    const url = this.URL + '/' + ap.providerId + '/publications/assets/' + ap.stability;
     return this.http.post(url, ap, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));

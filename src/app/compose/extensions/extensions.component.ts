@@ -140,7 +140,7 @@ export class ExtensionsComponent implements OnDestroy {
   }
 
   displaySelectedModels(model: Model): string {
-    return model ? model.providerId + ' / ' + model.group + ' / ' + model.name + ' # ' + model.publication + '-' + model.version : '';
+    return model ? model.providerId + ' / ' + model.group + ' / ' + model.name + ' # ' + model.stability + '-' + model.version : '';
   }
 
   displaySelectedExtensions(extensions: Extensions): string {

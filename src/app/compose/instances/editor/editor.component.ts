@@ -62,8 +62,8 @@ export class InstancesEditorComponent {
     this.assetsPublication.visibility = visibility;
   }
 
-  publication_type(type: string) {
-    this.assetsPublication.publication = type;
+  publication_stability(stability: string) {
+    this.assetsPublication.stability = stability;
   }
 
 

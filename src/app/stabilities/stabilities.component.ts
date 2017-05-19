@@ -1,11 +1,11 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
-  selector: 'app-publications',
+  selector: 'app-stabilities',
   providers: [],
-  templateUrl: 'publications.html'
+  templateUrl: 'stabilities.html'
 })
-export class PublicationsComponent {
+export class StabilitiesComponent {
 
   @Output() onChanged = new EventEmitter<string>();
 

@@ -1,6 +1,6 @@
 export class Publication {
   extId: string;
-  publication: string;
+  stability: string;
   version: string;
   providerId: string;
 }

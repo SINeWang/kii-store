@@ -12,7 +12,11 @@
       <div class="content-grid mdl-grid">
         <div class="mdl-cell mdl-cell--12-col">
           <app-visibility (onChanged)="publication_visibility($event)"></app-visibility>
-          <app-publications (onChanged)="publication_type($event)"></app-publications>
+        </div>
+        <div class="mdl-cell mdl-cell--12-col">
+          <app-stabilities (onChanged)="publication_stability($event)"></app-stabilities>
+        </div>
+        <div class="mdl-cell mdl-cell--12-col">
           <mdl-textfield type="text" label="Version" name="version"
                          floating-label [(ngModel)]="assetsPublication.version">
           </mdl-textfield>
