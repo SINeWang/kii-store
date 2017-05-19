@@ -65,13 +65,7 @@
                 </mdl-switch>
               </div>
               <div class="mdl-cell mdl-cell--4-col">
-                <mdl-radio value="true" [(ngModel)]="intensionForm.single" name="intensionSingle" mdl-ripple>
-                  Single
-                </mdl-radio>
-                <mdl-radio value="false" [(ngModel)]="intensionForm.single" name="intensionSingle"
-                           mdl-ripple>
-                  Multiple
-                </mdl-radio>
+                <app-single-multi (onChanged)="intension_single($event)"></app-single-multi>
               </div>
               <div class="mdl-cell mdl-cell--5-col">
                 <app-visibility (onChanged)="intension_visibility($event)"></app-visibility>

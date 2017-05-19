@@ -22,6 +22,7 @@ import {SubjectsComponent} from './subjects/subjects.component';
 import {GroupNameTreeComponent} from './gnt/gnt.component';
 import {StabilitiesComponent} from './stabilities/stabilities.component';
 import {StructuresComponent} from './structures/structures.component';
+import {SingleMultiComponent} from './singlemulti/singlemulti.component';
 
 const routes: Routes = [
   {
@@ -48,6 +49,7 @@ const routes: Routes = [
     InstancesEditorComponent,
     ModelsComponent,
     NewExtensionsComponent,
+    SingleMultiComponent,
     StabilitiesComponent,
     StructuresComponent,
     SubjectsComponent,

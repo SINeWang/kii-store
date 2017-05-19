@@ -151,6 +151,10 @@ export class ExtensionsComponent implements OnDestroy {
     this.publication.stability = stability;
   }
 
+  intension_single(single: boolean) {
+    this.intensionForm.single = single;
+  }
+
   intension_visibility(visibility: string) {
     this.intensionForm.visibility = visibility;
   }
