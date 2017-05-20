@@ -21,7 +21,7 @@ export class SubjectsService {
   }
 
   search(subjectId: string,
-         subjectType: string,
+         objectType: string,
          accessType: string): Observable<Subjects[]> {
     const headers = new Headers({
       // 'Authorization': authorization,
@@ -30,8 +30,8 @@ export class SubjectsService {
     });
     const options = new RequestOptions({headers: headers});
 
-    if (subjectType && accessType) {
-      const url = this.URL + '/subjects/' + subjectType + '/' + accessType + '?q=' + subjectId;
+    if (objectType && accessType) {
+      const url = this.URL + '/subjects/' + objectType + '/' + accessType + '?q=' + subjectId;
       return this.http.get(url, options)
         .map((res: Response) => res.json() || [])
         .catch((error: any) => Observable.throw(error.json().error || 'Server error'));

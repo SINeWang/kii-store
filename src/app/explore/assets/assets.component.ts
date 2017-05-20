@@ -2,11 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {AssetsService} from './assets.service';
 import {Assets, Intension} from './assets.data';
+import {SubjectsService} from '../../subjects/subjects.service';
 
 
 @Component({
   selector: 'app-explore-assets',
-  providers: [AssetsService],
+  providers: [AssetsService, SubjectsService],
   templateUrl: 'assets.html'
 })
 export class AssetsComponent implements OnInit {

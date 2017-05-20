@@ -16,13 +16,13 @@ export class SubjectsComponent {
 
   searchFormControl = new FormControl();
 
-  subjectType: string;
+  objectType: string;
 
   accessType: string;
 
   @Input()
-  set subject_type(subject_type: string) {
-    this.subjectType = subject_type;
+  set object_type(object_type: string) {
+    this.objectType = object_type;
   }
 
   @Input()
@@ -45,7 +45,7 @@ export class SubjectsComponent {
       this.subjectsService.announce(query);
     } else {
       const authorization = localStorage.getItem('authorization');
-      this.subjectsService.search(query, this.subjectType, this.accessType).subscribe(
+      this.subjectsService.search(query, this.objectType, this.accessType).subscribe(
         data => this.candidates = data,
         error => this.errorMessage = <any>error
       );
