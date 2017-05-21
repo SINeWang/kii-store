@@ -1,29 +1,24 @@
 <br>
-<div *ngIf="searchForm" mdl-shadow="2">
+<div mdl-shadow="2">
   <form #modelForm (ngSubmit)="search()">
     <button type="submit" style="display:none"></button>
     <div class="content-grid mdl-grid">
       <div class="mdl-cell mdl-cell--3-col">
-        <app-subjects [access_type]="'Owner'" [object_type]="'Assets'"></app-subjects>
+        <app-subjects [access_type]="'Owner'" [object_type]="'Asset'"></app-subjects>
       </div>
       <div class="mdl-cell mdl-cell--3-col">
-        <mdl-textfield type="text" label="Group" [(ngModel)]="searchForm.group" name="group" floating-label></mdl-textfield>
-      </div>
-      <div class="mdl-cell mdl-cell--3-col">
-        <mdl-textfield type="text" label="Name" [(ngModel)]="searchForm.name" name="name" floating-label></mdl-textfield>
-      </div>
-      <div class="mdl-cell mdl-cell--2-col">
-        <mdl-textfield type="text" label="Tree" [(ngModel)]="searchForm.tree" name="tree" floating-label></mdl-textfield>
-      </div>
-      <div class="mdl-cell mdl-cell--1-col mdl-cell--middle">
-        <button type="submit" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Search</button>
+        <md-input-container style="width: 100%;">
+          <input type="text" mdInput placeholder="Group" [mdAutocomplete]="searchGroup"
+                 [formControl]="searchGroupFormCtrl">
+        </md-input-container>
+
+        <md-autocomplete #searchGroup="mdAutocomplete" [displayWith]="displaySelectedAssets">
+          <md-option *ngFor="let assets of candidates" [value]="assets">
+            <span>{{ assets.group }} / {{ assets.name }} # {{ assets.version }}</span>
+          </md-option>
+        </md-autocomplete>
       </div>
     </div>
   </form>
-
-  <ul>
-    <li *ngFor="let key of instancesKeys">
-      {{key}} : {{instances[key]}}
-    </li>
-  </ul>
+  <pre *ngIf="asset">{{asset.map | json}}</pre>
 </div>

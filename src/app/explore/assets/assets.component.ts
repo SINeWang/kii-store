@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {Component} from '@angular/core';
 import {AssetsService} from './assets.service';
-import {Assets, Intension} from './assets.data';
+import {Assets} from './assets.data';
 import {SubjectsService} from '../../subjects/subjects.service';
+import {Subscription} from 'rxjs/Subscription';
+import {Subjects} from '../../subjects/subjects.data';
+import {FormControl} from '@angular/forms';
 
 
 @Component({
@@ -10,50 +12,60 @@ import {SubjectsService} from '../../subjects/subjects.service';
   providers: [AssetsService, SubjectsService],
   templateUrl: 'assets.html'
 })
-export class AssetsComponent implements OnInit {
+export class AssetsComponent {
 
 
   errorMessage: string;
 
-  searchForm = new Assets();
+  searchGroupFormCtrl = new FormControl();
 
-  instances: Object;
+  ownersListener: Subscription;
 
-  intensions: Intension[];
+  owners: Subjects;
 
-  instancesKeys: string[];
+  candidates: Assets[];
 
-  constructor(private activatedRoute: ActivatedRoute,
+  asset: Assets;
+
+  constructor(private ownersService: SubjectsService,
               private assetsService: AssetsService) {
-  }
-
-  ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe(params => {
-        this.searchForm.ownerId = params['ownerId'];
-        this.searchForm.group = params['group'];
-        this.search();
+    this.ownersListener = ownersService.announced$.subscribe(
+      owners => {
+        this.owners = owners;
       }
     );
+
+    this.searchGroupFormCtrl.valueChanges
+      .startWith(null)
+      .subscribe(name => this.onInputGroupChanged(name));
+
   }
 
-  search(): void {
-    if (this.searchForm.group !== ''
-      && this.searchForm.group != null) {
-      this.assetsService.visit(this.searchForm).subscribe(
+  onInputGroupChanged(query: any) {
+    if (this.owners == null) {
+      return;
+    }
+    if (query instanceof Object) {
+      this.assetsService.visit(this.owners, query).subscribe(
+        data => this.asset = data,
+        error => this.errorMessage = <any>error
+      );
+    } else {
+      this.assetsService.search(this.owners, query).subscribe(
         data => this.handleData(data),
         error => this.errorMessage = <any>error
       );
     }
   }
 
-  handleData(assets: Assets) {
-    this.instances = assets.instances;
-    this.intensions = assets.intensions;
-    this.instancesKeys = Object.keys(this.instances);
-    this.searchForm.group = assets.group;
-    this.searchForm.ownerId = assets.ownerId;
-    this.searchForm.name = assets.name;
-    this.searchForm.tree = assets.tree;
+  displaySelectedAssets(assets: Assets): string {
+    console.log(assets);
+    return assets ? assets.group + ' / ' + assets.name + ' # ' + assets.stability + '-' + assets.version : '';
+  }
+
+
+  handleData(assets: Assets[]) {
+    this.candidates = assets;
   }
 
 
