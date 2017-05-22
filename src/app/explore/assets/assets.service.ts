@@ -23,7 +23,7 @@ export class AssetsService {
       'X-SUMMER-VisitorId': '123'
     });
     const options = new RequestOptions({headers: headers});
-    let url = this.URL + '/search/assets';
+    let url = this.URL + '/assets';
     url += '?q=' + query;
     url += '&ownerId=' + owners.id;
     return this.http.get(url, options)

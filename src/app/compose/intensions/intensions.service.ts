@@ -26,7 +26,7 @@ export class IntensionsService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + owners.id + '/intension';
+    const url = this.URL + '/' + owners.id + '/intensions';
     return this.http.post(url, form, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
