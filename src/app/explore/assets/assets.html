@@ -20,5 +20,9 @@
       </div>
     </div>
   </form>
-  <pre *ngIf="asset">{{asset.map | json}}</pre>
+  <ul *ngIf="asset">
+    <li *ngFor="let intension of asset.intensions">
+      {{intension.field}} : {{asset.map[intension.field]}}
+    </li>
+  </ul>
 </div>

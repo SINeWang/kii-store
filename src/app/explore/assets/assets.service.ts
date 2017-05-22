@@ -4,8 +4,9 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../../environments/environment';
-import {Assets} from './assets.data';
+import {Assets} from '../../assets/assets.data';
 import {Subjects} from '../../subjects/subjects.data';
+import {Asset} from '../../asset/asset.data';
 
 @Injectable()
 export class AssetsService {
@@ -31,7 +32,7 @@ export class AssetsService {
 
   }
 
-  visit(owners: Subjects, assets: Assets): Observable<Assets> {
+  visit(owners: Subjects, assets: Assets): Observable<Asset> {
 
     const headers = new Headers({
       // 'Authorization': authorization,

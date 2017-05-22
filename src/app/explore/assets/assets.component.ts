@@ -1,10 +1,11 @@
 import {Component} from '@angular/core';
 import {AssetsService} from './assets.service';
-import {Assets} from './assets.data';
+import {Assets} from '../../assets/assets.data';
 import {SubjectsService} from '../../subjects/subjects.service';
 import {Subscription} from 'rxjs/Subscription';
 import {Subjects} from '../../subjects/subjects.data';
 import {FormControl} from '@angular/forms';
+import {Asset} from '../../asset/asset.data';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class AssetsComponent {
 
   candidates: Assets[];
 
-  asset: Assets;
+  asset: Asset;
 
   constructor(private ownersService: SubjectsService,
               private assetsService: AssetsService) {
@@ -59,7 +60,6 @@ export class AssetsComponent {
   }
 
   displaySelectedAssets(assets: Assets): string {
-    console.log(assets);
     return assets ? assets.group + ' / ' + assets.name + ' # ' + assets.stability + '-' + assets.version : '';
   }
 
