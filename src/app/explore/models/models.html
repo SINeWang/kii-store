@@ -1,5 +1,5 @@
 <br>
-<div *ngIf="searchForm" mdl-shadow="2">
+<div mdl-shadow="2">
   <form #modelForm (ngSubmit)="search()">
     <button type="submit" style="display:none"></button>
     <div class="content-grid mdl-grid">
@@ -7,7 +7,7 @@
         <app-subjects [object_type]="'Model'" [access_type]="'Provider'"></app-subjects>
       </div>
       <div class="mdl-cell mdl-cell--3-col">
-        <mdl-textfield type="text" label="Group" [(ngModel)]="searchForm.group" name="group"
+        <mdl-textfield type="text" label="Group" [(ngModel)]="searchGroup" name="group"
                        floating-label></mdl-textfield>
       </div>
       <div class="mdl-cell mdl-cell--3-col">
@@ -64,7 +64,8 @@
             <mdl-textfield type="text" label="Group" formControlName="group" floating-label></mdl-textfield>
             <mdl-textfield type="text" label="Name" formControlName="name" floating-label></mdl-textfield>
             <mdl-textfield type="text" label="Tree" formControlName="tree" floating-label></mdl-textfield>
-            <button (click)="subscribe(model.pubSet)" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>Subscribe
+            <button (click)="subscribe(model.pubSet)" mdl-button mdl-button-type="raised" mdl-colored="primary"
+                    mdl-ripple>Subscribe
             </button>
           </form>
         </div>
