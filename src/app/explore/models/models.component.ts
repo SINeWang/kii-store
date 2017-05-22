@@ -20,7 +20,7 @@ export class ModelsComponent {
 
   models: Model[];
 
-  searchForm = new Model();
+  searchGroup = '';
 
   providersListener: Subscription;
 
@@ -59,9 +59,8 @@ export class ModelsComponent {
   }
 
   search(): void {
-    if (this.searchForm.group !== '' && this.searchForm.group != null) {
-      this.searchForm.providerId = this.providers.id;
-      this.modelsService.search(this.searchForm).subscribe(
+    if (this.searchGroup !== '' && this.searchGroup != null) {
+      this.modelsService.search(this.providers, this.searchGroup).subscribe(
         data => this.handleData(data),
         error => this.errorMessage = <any>error
       );

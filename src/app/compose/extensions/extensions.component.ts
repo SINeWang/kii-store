@@ -105,7 +105,7 @@ export class ExtensionsComponent implements OnDestroy {
 
   onCandidateModelsChange(query: string) {
     this.modelForm.group = query;
-    this.modelsService.search(this.modelForm).subscribe(
+    this.modelsService.search(this.owners, this.modelForm.group).subscribe(
       data => this.candidateModels = data,
       error => this.errorMessage = <any>error
     );

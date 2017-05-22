@@ -5,6 +5,7 @@ import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../../environments/environment';
 import {Model} from './models.data';
+import {Subjects} from '../../subjects/subjects.data';
 
 @Injectable()
 export class ModelsService {
@@ -14,7 +15,7 @@ export class ModelsService {
   constructor(private http: Http) {
   }
 
-  search(modelForm: Model): Observable<Model[]> {
+  search(providers: Subjects, group: string): Observable<Model[]> {
 
     const headers = new Headers({
       // 'Authorization': authorization,
@@ -24,9 +25,9 @@ export class ModelsService {
     const options = new RequestOptions({headers: headers});
 
     let url = this.URL + '/models';
-    if (modelForm.group != null && modelForm.group !== '') {
-      url += '?q=' + modelForm.group;
-      url += '&providerId=' + modelForm.providerId;
+    if (group != null && group !== '') {
+      url += '?q=' + group;
+      url += '&providerId=' + providers.id;
     } else {
       return Observable.of([]);
     }
