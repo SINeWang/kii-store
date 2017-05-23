@@ -1,6 +1,6 @@
 <div mdl-shadow="2" *ngIf="status">
   <div class="content-grid mdl-grid">
-    <div class="mdl-cell mdl-cell--6-col">
+    <div class="mdl-cell mdl-cell--4-col">
       <h3>Origin</h3>
       <div class="content-grid mdl-grid" *ngFor="let intension of status.intensions">
         <div class="mdl-cell mdl-cell--12-col">
@@ -20,19 +20,25 @@
           <mdl-textfield type="text" label="Version" name="version"
                          floating-label [(ngModel)]="assetsPublication.version">
           </mdl-textfield>
-          <button type="submit" (click)="publish()" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>
+          <button type="button" (click)="publish()" mdl-button mdl-button-type="raised" mdl-colored="primary"
+                  mdl-ripple>
             Publish
           </button>
         </div>
       </div>
     </div>
-    <div class="mdl-cell mdl-cell--6-col">
+    <div class="mdl-cell mdl-cell--8-col">
       <h3>Current</h3>
       <div class="content-grid mdl-grid" *ngFor="let intension of status.intensions">
         <div class="mdl-cell mdl-cell--12-col">
-          <mdl-textfield type="text" style="width: 100%;" label="{{intension.field}}" name="{{intension.field}}"
+          <mdl-textfield type="text" label="{{intension.field}}" name="{{intension.field}}"
                          floating-label [(ngModel)]="status.map[intension.field]">
           </mdl-textfield>
+          <md-checkbox>Reference</md-checkbox>
+          <md-radio-group>
+            <md-radio-button value="direct" name="refType">Direct</md-radio-button>
+            <md-radio-button value="review" name="refType">Review</md-radio-button>
+          </md-radio-group>
         </div>
       </div>
       <div class="content-grid mdl-grid">

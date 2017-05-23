@@ -11,7 +11,10 @@ import {MdlModule} from '@angular-mdl/core';
 import {ModelsComponent} from './explore/models/models.component';
 import {ComposeComponent} from './compose/compose.component';
 import {ExtensionsComponent} from './compose/extensions/extensions.component';
-import {MdAutocompleteModule, MdIconModule, MdInputModule, MdRadioModule, MdSlideToggleModule} from '@angular/material';
+import {
+  MdAutocompleteModule, MdCheckboxModule, MdIconModule, MdInputModule, MdRadioModule,
+  MdSlideToggleModule
+} from '@angular/material';
 import {InstancesComponent} from './compose/instances/instances.component';
 import {NewExtensionsComponent} from './compose/extensions/new/new.component';
 import {VisibilityComponent} from './visibility/visibility.component';
@@ -64,6 +67,7 @@ const routes: Routes = [
     FormsModule,
     HttpModule,
     MdAutocompleteModule,
+    MdCheckboxModule,
     MdInputModule,
     MdIconModule,
     MdRadioModule,
