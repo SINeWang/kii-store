@@ -22,7 +22,7 @@ export class SubscriptionsCommitService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + subscribers.id + '/subscriptions/' + subscriptions.subSet;
+    const url = this.URL + '/' + subscribers.id + '/subscriptions/models';
     if (subscriptions.group == null) {
       return Observable.of([]);
     }
