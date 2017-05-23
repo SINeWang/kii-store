@@ -14,7 +14,7 @@
 
         <md-autocomplete #searchGroup="mdAutocomplete" [displayWith]="displaySelectedAssets">
           <md-option *ngFor="let assets of candidates" [value]="assets">
-            <span>{{ assets.group }} / {{ assets.name }} # {{ assets.version }}</span>
+            <span>{{ assets.group }} / {{ assets.name }} # {{assets.stability}}-{{ assets.version }}</span>
           </md-option>
         </md-autocomplete>
       </div>
