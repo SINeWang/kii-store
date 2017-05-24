@@ -41,8 +41,9 @@ export class AssetsService {
     const options = new RequestOptions({headers: headers});
     let url = this.URL + '/';
     url += owners.id;
-    url += '/assets';
+    url += '/asset';
     url += '/' + assets.pubSet;
+    url += '/' + assets.stability;
     url += '/' + assets.version;
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])

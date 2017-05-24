@@ -1,4 +1,3 @@
-import {Intension} from '../explore/models/models.data';
 export class Assets {
   pubSet: string;
   ownerId: string;
