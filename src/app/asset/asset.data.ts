@@ -7,5 +7,10 @@ export class Asset {
   version: string;
   stability: string;
   intensions: Intension[];
-  map: Object;
+  map: Map<string, TimedValue>;
+}
+
+export class TimedValue {
+  value: Object;
+  time: Date;
 }

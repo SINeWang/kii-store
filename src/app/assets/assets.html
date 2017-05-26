@@ -11,7 +11,6 @@
           <input type="text" mdInput placeholder="Group" [mdAutocomplete]="searchGroup"
                  [formControl]="searchGroupFormCtrl">
         </md-input-container>
-
         <md-autocomplete #searchGroup="mdAutocomplete" [displayWith]="displaySelectedAssets">
           <md-option *ngFor="let assets of candidates" [value]="assets">
             <span>{{ assets.group }} / {{ assets.name }} # {{assets.stability}}-{{ assets.version }}</span>
@@ -20,9 +19,7 @@
       </div>
     </div>
   </form>
-  <ul *ngIf="asset">
-    <li *ngFor="let intension of asset.intensions">
-      {{intension.field}} : {{asset.map[intension.field]}}
-    </li>
-  </ul>
+</div>
+<div mdl-shadow="2">
+  <app-asset [assets]="asset"></app-asset>
 </div>

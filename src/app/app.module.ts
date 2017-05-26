@@ -12,7 +12,11 @@ import {ModelsComponent} from './models/models.component';
 import {ComposeComponent} from './apps/compose/compose.component';
 import {ExtensionsComponent} from './extensions/extensions.component';
 import {
-  MdAutocompleteModule, MdCheckboxModule, MdIconModule, MdInputModule, MdRadioModule,
+  MdAutocompleteModule,
+  MdCheckboxModule,
+  MdIconModule,
+  MdInputModule,
+  MdRadioModule,
   MdSlideToggleModule
 } from '@angular/material';
 import {InstancesComponent} from './instances/instances.component';
@@ -28,6 +32,7 @@ import {StructuresComponent} from './shared/structures/structures.component';
 import {SingleMultiComponent} from './shared/singlemulti/singlemulti.component';
 import {IntensionsComponent} from './intensions/intensions.component';
 import {DashboardComponent} from './apps/dashboard/dashboard.component';
+import {AssetComponent} from './asset/asset.component';
 
 const routes: Routes = [
   {
@@ -45,11 +50,17 @@ const routes: Routes = [
     pathMatch: 'full',
     component: DashboardComponent
   },
+  {
+    path: ':owner-id/instances/:group/:name/',
+    pathMatch: 'full',
+    component: DashboardComponent
+  },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
+    AssetComponent,
     AssetsComponent,
     ComposeComponent,
     DashboardComponent,
