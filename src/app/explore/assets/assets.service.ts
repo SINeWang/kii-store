@@ -5,7 +5,7 @@ import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../../environments/environment';
 import {Assets} from '../../assets/assets.data';
-import {Subjects} from '../../subjects/subjects.data';
+import {Subjects} from '../../shared/subjects/subjects.data';
 import {Asset} from '../../asset/asset.data';
 
 @Injectable()

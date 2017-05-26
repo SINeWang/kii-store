@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {AssetsService} from './assets.service';
 import {Assets} from '../../assets/assets.data';
-import {SubjectsService} from '../../subjects/subjects.service';
+import {SubjectsService} from '../../shared/subjects/subjects.service';
 import {Subscription} from 'rxjs/Subscription';
-import {Subjects} from '../../subjects/subjects.data';
+import {Subjects} from '../../shared/subjects/subjects.data';
 import {FormControl} from '@angular/forms';
 import {Asset} from '../../asset/asset.data';
 

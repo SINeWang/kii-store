@@ -6,7 +6,7 @@ import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../../environments/environment';
 import {Intension, IntensionsWithSchema} from './intensions.data';
 import {Extension} from '../extension/extension.data';
-import {Subjects} from '../../subjects/subjects.data';
+import {Subjects} from '../../shared/subjects/subjects.data';
 
 @Injectable()
 export class IntensionsService {

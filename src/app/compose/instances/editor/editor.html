@@ -1,12 +1,21 @@
 <div mdl-shadow="2" *ngIf="status">
   <div class="content-grid mdl-grid">
-    <div class="mdl-cell mdl-cell--4-col">
+    <div class="mdl-cell mdl-cell--5-col">
       <h3>Origin</h3>
       <div class="content-grid mdl-grid" *ngFor="let intension of status.intensions">
-        <div class="mdl-cell mdl-cell--12-col">
+        <div class="mdl-cell mdl-cell--10-col">
           <mdl-textfield type="text" style="width: 100%;" label="{{intension.field}}" name="{{intension.field}}"
-                         floating-label [ngModel]="status.origin[intension.field]" readonly="true">
+                         floating-label [ngModel]="status.origin[intension.field].value" readonly="true">
           </mdl-textfield>
+        </div>
+        <div class="mdl-cell mdl-cell--2-col">
+          <small class="text-center">
+            {{status.map[intension.field].time | date:'y'}}
+            <br>
+            {{status.map[intension.field].time | date:'MM-dd'}}
+            <br>
+            {{status.map[intension.field].time | date:'HH:mm'}}
+          </small>
         </div>
       </div>
       <div class="content-grid mdl-grid">
@@ -27,12 +36,12 @@
         </div>
       </div>
     </div>
-    <div class="mdl-cell mdl-cell--8-col">
+    <div class="mdl-cell mdl-cell--7-col">
       <h3>Current</h3>
       <div class="content-grid mdl-grid" *ngFor="let intension of status.intensions">
         <div class="mdl-cell mdl-cell--12-col">
           <mdl-textfield type="text" label="{{intension.field}}" name="{{intension.field}}"
-                         floating-label [(ngModel)]="status.map[intension.field]">
+                         floating-label [(ngModel)]="status.map[intension.field].version">
           </mdl-textfield>
           <md-checkbox>Reference</md-checkbox>
           <md-radio-group>

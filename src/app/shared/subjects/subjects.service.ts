@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
-import {environment} from '../../environments/environment';
+import {environment} from '../../../environments/environment';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Subjects} from './subjects.data';
 @Injectable()

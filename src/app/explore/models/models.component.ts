@@ -4,8 +4,8 @@ import {ModelsService} from './models.service';
 import {Model} from './models.data';
 import {Subscriptions} from '../../subscriptions/subscriptions.data';
 import {SubscriptionsCommitService} from '../../subscriptions/subscriptions-commit.service';
-import {Subjects} from '../../subjects/subjects.data';
-import {SubjectsService} from '../../subjects/subjects.service';
+import {Subjects} from '../../shared/subjects/subjects.data';
+import {SubjectsService} from '../../shared/subjects/subjects.service';
 import {Subscription} from 'rxjs/Subscription';
 
 

@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {GroupNameTree} from './gnt.data';
 import {FormControl} from '@angular/forms';
 import {GroupNameTreeService} from './gnt.services';
-import {Subjects} from 'app/subjects/subjects.data';
+import {Subjects} from 'app/shared/subjects/subjects.data';
 
 @Component({
   selector: 'app-gnt',

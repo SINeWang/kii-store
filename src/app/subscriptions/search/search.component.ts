@@ -4,8 +4,8 @@ import {Subscription} from 'rxjs/Subscription';
 import {Subscriptions} from '../subscriptions.data';
 import {Observable} from 'rxjs/Observable';
 import {SubscriptionsSearchService} from './search.service';
-import {Subjects} from '../../subjects/subjects.data';
-import {SubjectsService} from '../../subjects/subjects.service';
+import {Subjects} from '../../shared/subjects/subjects.data';
+import {SubjectsService} from '../../shared/subjects/subjects.service';
 
 
 @Component({

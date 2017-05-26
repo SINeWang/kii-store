@@ -4,7 +4,7 @@ import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../../environments/environment';
 import {Subscriptions} from '../subscriptions.data';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Subjects} from '../../subjects/subjects.data';
+import {Subjects} from '../../shared/subjects/subjects.data';
 @Injectable()
 export class SubscriptionsSearchService {
 

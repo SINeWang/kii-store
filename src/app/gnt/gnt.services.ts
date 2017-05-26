@@ -5,7 +5,7 @@ import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {GroupNameTree} from './gnt.data';
 import {environment} from '../../environments/environment';
-import {Subjects} from 'app/subjects/subjects.data';
+import {Subjects} from 'app/shared/subjects/subjects.data';
 @Injectable()
 
 export class GroupNameTreeService<T> {

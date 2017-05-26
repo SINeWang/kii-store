@@ -3,7 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../environments/environment';
 import {Subscriptions} from './subscriptions.data';
-import {Subjects} from '../subjects/subjects.data';
+import {Subjects} from '../shared/subjects/subjects.data';
 @Injectable()
 export class SubscriptionsCommitService {
 

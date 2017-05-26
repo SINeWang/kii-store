@@ -17,16 +17,17 @@ import {
 } from '@angular/material';
 import {InstancesComponent} from './compose/instances/instances.component';
 import {NewExtensionsComponent} from './compose/extensions/new/new.component';
-import {VisibilityComponent} from './visibility/visibility.component';
+import {VisibilityComponent} from './shared/visibility/visibility.component';
 import {AssetsComponent} from './explore/assets/assets.component';
 import {SubscriptionsSearchComponent} from './subscriptions/search/search.component';
 import {InstancesEditorComponent} from './compose/instances/editor/editor.component';
-import {SubjectsComponent} from './subjects/subjects.component';
+import {SubjectsComponent} from './shared/subjects/subjects.component';
 import {GroupNameTreeComponent} from './gnt/gnt.component';
-import {StabilitiesComponent} from './stabilities/stabilities.component';
-import {StructuresComponent} from './structures/structures.component';
-import {SingleMultiComponent} from './singlemulti/singlemulti.component';
+import {StabilitiesComponent} from './shared/stabilities/stabilities.component';
+import {StructuresComponent} from './shared/structures/structures.component';
+import {SingleMultiComponent} from './shared/singlemulti/singlemulti.component';
 import {IntensionsComponent} from './compose/intensions/intensions.component';
+import {DashboardComponent} from './apps/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,11 @@ const routes: Routes = [
     pathMatch: 'full',
     component: ComposeComponent
   },
+  {
+    path: '',
+    pathMatch: 'full',
+    component: DashboardComponent
+  },
 ];
 
 @NgModule({
@@ -46,6 +52,7 @@ const routes: Routes = [
     AppComponent,
     AssetsComponent,
     ComposeComponent,
+    DashboardComponent,
     ExploreComponent,
     ExtensionsComponent,
     GroupNameTreeComponent,

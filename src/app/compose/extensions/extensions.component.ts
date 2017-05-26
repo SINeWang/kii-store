@@ -12,8 +12,8 @@ import {Subscription} from 'rxjs/Subscription';
 import {PublicationService} from '../publication/publication.service';
 import {Publication} from '../publication/publication.data';
 import {Extension} from '../extension/extension.data';
-import {SubjectsService} from '../../subjects/subjects.service';
-import {Subjects} from '../../subjects/subjects.data';
+import {SubjectsService} from '../../shared/subjects/subjects.service';
+import {Subjects} from '../../shared/subjects/subjects.data';
 
 @Component({
   selector: 'app-compose-extensions',
