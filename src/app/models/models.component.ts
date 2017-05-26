@@ -20,7 +20,7 @@ export class ModelsComponent {
 
   models: Model[];
 
-  searchGroup = '';
+  searchGroup = new FormControl('', Validators.required);
 
   providersListener: Subscription;
 
@@ -56,16 +56,19 @@ export class ModelsComponent {
         this.providers = data;
       }
     );
+
+    this.searchGroup.valueChanges.subscribe(input => {
+      if (input !== '' && input != null) {
+        this.modelsService.search(this.providers, input).subscribe(
+          data => this.handleData(data),
+          error => this.errorMessage = <any>error
+        );
+      } else {
+        this.models = [];
+      }
+    });
   }
 
-  search(): void {
-    if (this.searchGroup !== '' && this.searchGroup != null) {
-      this.modelsService.search(this.providers, this.searchGroup).subscribe(
-        data => this.handleData(data),
-        error => this.errorMessage = <any>error
-      );
-    }
-  }
 
   subscribe(pubSet: string): void {
     const subscribers = new Subjects();
