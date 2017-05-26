@@ -1,9 +1,9 @@
 import {Component, ViewChild} from '@angular/core';
-import {SubscriptionsSearchService} from '../../subscriptions/search/search.service';
-import {Subscriptions} from '../../subscriptions/subscriptions.data';
+import {SubscriptionsSearchService} from '../subscriptions/search/search.service';
+import {Subscriptions} from '../subscriptions/subscriptions.data';
 import {StatusService} from './status.service';
-import {SubjectsService} from '../../shared/subjects/subjects.service';
-import {AssetsPublishService} from '../../assets/assets-publish.service';
+import {SubjectsService} from '../shared/subjects/subjects.service';
+import {AssetsPublishService} from '../assets/assets-publish.service';
 
 @Component({
   selector: 'app-compose-instances',

@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Publication} from './publication.data';
 import {Observable} from 'rxjs/Observable';
-import {Model} from '../../explore/models/models.data';
+import {Model} from '../models/models.data';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
-import {environment} from '../../../environments/environment';
+import {environment} from '../../environments/environment';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import {Subjects} from '../../shared/subjects/subjects.data';
+import {Subjects} from '../shared/subjects/subjects.data';
 
 @Injectable()
 export class PublicationService {

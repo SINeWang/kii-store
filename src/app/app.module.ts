@@ -5,28 +5,28 @@ import {HttpModule} from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.root';
-import {ExploreComponent} from './explore/explore.component';
+import {ExploreComponent} from './apps/explore/explore.component';
 import {RouterModule, Routes} from '@angular/router';
 import {MdlModule} from '@angular-mdl/core';
-import {ModelsComponent} from './explore/models/models.component';
-import {ComposeComponent} from './compose/compose.component';
-import {ExtensionsComponent} from './compose/extensions/extensions.component';
+import {ModelsComponent} from './models/models.component';
+import {ComposeComponent} from './apps/compose/compose.component';
+import {ExtensionsComponent} from './extensions/extensions.component';
 import {
   MdAutocompleteModule, MdCheckboxModule, MdIconModule, MdInputModule, MdRadioModule,
   MdSlideToggleModule
 } from '@angular/material';
-import {InstancesComponent} from './compose/instances/instances.component';
-import {NewExtensionsComponent} from './compose/extensions/new/new.component';
+import {InstancesComponent} from './instances/instances.component';
+import {NewExtensionsComponent} from './extensions/new/new.component';
 import {VisibilityComponent} from './shared/visibility/visibility.component';
-import {AssetsComponent} from './explore/assets/assets.component';
+import {AssetsComponent} from './assets/assets.component';
 import {SubscriptionsSearchComponent} from './subscriptions/search/search.component';
-import {InstancesEditorComponent} from './compose/instances/editor/editor.component';
+import {InstancesEditorComponent} from './instances/editor/editor.component';
 import {SubjectsComponent} from './shared/subjects/subjects.component';
 import {GroupNameTreeComponent} from './gnt/gnt.component';
 import {StabilitiesComponent} from './shared/stabilities/stabilities.component';
 import {StructuresComponent} from './shared/structures/structures.component';
 import {SingleMultiComponent} from './shared/singlemulti/singlemulti.component';
-import {IntensionsComponent} from './compose/intensions/intensions.component';
+import {IntensionsComponent} from './intensions/intensions.component';
 import {DashboardComponent} from './apps/dashboard/dashboard.component';
 
 const routes: Routes = [

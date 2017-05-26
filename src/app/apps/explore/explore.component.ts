@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ModelsService} from './models/models.service';
+import {ModelsService} from '../../models/models.service';
 
 @Component({
   selector: 'app-explore',

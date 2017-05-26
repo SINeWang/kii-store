@@ -1,10 +1,10 @@
 import {Component, Input} from '@angular/core';
-import {Subscriptions} from '../../../subscriptions/subscriptions.data';
+import {Subscriptions} from '../../subscriptions/subscriptions.data';
 import {StatusService} from '../status.service';
 import {Status} from '../status.data';
 import {Instances} from '../instances.data';
-import {AssetsPublishService} from '../../../assets/assets-publish.service';
-import {AssetsPublication} from '../../../assets/assets-publication.data';
+import {AssetsPublishService} from '../../assets/assets-publish.service';
+import {AssetsPublication} from '../../assets/assets-publication.data';
 @Component({
   selector: 'app-compose-instances-editor',
   providers: [],

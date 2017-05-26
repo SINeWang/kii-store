@@ -1,7 +1,7 @@
 <div mdl-shadow="2" *ngIf="status">
   <div class="content-grid mdl-grid">
     <div class="mdl-cell mdl-cell--5-col">
-      <h3>Origin</h3>
+      <h4>Origin</h4>
       <div class="content-grid mdl-grid" *ngFor="let intension of status.intensions">
         <div class="mdl-cell mdl-cell--10-col">
           <mdl-textfield type="text" style="width: 100%;" label="{{intension.field}}" name="{{intension.field}}"
@@ -37,7 +37,7 @@
       </div>
     </div>
     <div class="mdl-cell mdl-cell--7-col">
-      <h3>Current</h3>
+      <h4>Current</h4>
       <div class="content-grid mdl-grid" *ngFor="let intension of status.intensions">
         <div class="mdl-cell mdl-cell--12-col">
           <mdl-textfield type="text" label="{{intension.field}}" name="{{intension.field}}"

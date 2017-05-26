@@ -3,51 +3,44 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
-import {environment} from '../../../environments/environment';
-import {Assets} from '../../assets/assets.data';
-import {Subjects} from '../../shared/subjects/subjects.data';
-import {Asset} from '../../asset/asset.data';
+import {environment} from '../../environments/environment';
+import {Extensions} from './extensions.data';
+import {Extension} from '../extension/extension.data';
 
 @Injectable()
-export class AssetsService {
+export class ExtensionsService {
 
   private URL = environment.kiimate_url;
 
   constructor(private http: Http) {
   }
 
-  search(owners: Subjects, query: string): Observable<Assets[]> {
-
+  search(search: Extensions): Observable<Extensions[]> {
     const headers = new Headers({
       // 'Authorization': authorization,
-      'X-SUMMER-VisitorId': '123'
+      'X-SUMMER-VisitorId': 'wangyj',
+      'X-SUMMER-RequestId': Math.random()
     });
     const options = new RequestOptions({headers: headers});
-    let url = this.URL + '/assets';
-    url += '?q=' + query;
-    url += '&ownerId=' + owners.id;
+
+    const url = this.URL + '/' + search.ownerId + '/extensions?group=' + search.group;
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
-
   }
 
-  visit(owners: Subjects, assets: Assets): Observable<Asset> {
-
+  visit(search: Extension): Observable<Extension> {
     const headers = new Headers({
       // 'Authorization': authorization,
-      'X-SUMMER-VisitorId': '123'
+      'X-SUMMER-VisitorId': 'wangyj',
+      'X-SUMMER-RequestId': Math.random()
     });
     const options = new RequestOptions({headers: headers});
-    let url = this.URL + '/';
-    url += owners.id;
-    url += '/asset';
-    url += '/' + assets.pubSet;
-    url += '/' + assets.stability;
-    url += '/' + assets.version;
+
+    const url = this.URL + '/' + search.ownerId + '/extensions/' + search.group + '/' + search.name + '/' + search.tree;
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
-
   }
+
 }

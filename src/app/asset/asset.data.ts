@@ -1,4 +1,4 @@
-import {Intension} from '../compose/intensions/intensions.data';
+import {Intension} from '../intensions/intensions.data';
 export class Asset {
   pubSet: string;
   ownerId: string;

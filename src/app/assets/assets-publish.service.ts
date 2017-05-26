@@ -4,7 +4,7 @@ import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs/Observable';
-import {Instances} from '../compose/instances/instances.data';
+import {Instances} from '../instances/instances.data';
 import {AssetsPublication} from 'app/assets/assets-publication.data';
 @Injectable()
 export class AssetsPublishService {

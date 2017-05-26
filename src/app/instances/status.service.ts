@@ -1,21 +1,21 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
-import {environment} from '../../../environments/environment';
-import {Extensions} from './extensions.data';
-import {Extension} from '../extension/extension.data';
-
+import {environment} from '../../environments/environment';
+import {Subscriptions} from '../subscriptions/subscriptions.data';
+import {Observable} from 'rxjs/Observable';
+import {Status} from './status.data';
+import {Instances} from './instances.data';
 @Injectable()
-export class ExtensionsService {
+export class StatusService {
 
   private URL = environment.kiimate_url;
 
   constructor(private http: Http) {
   }
 
-  search(search: Extensions): Observable<Extensions[]> {
+  visit(subscriptions: Subscriptions): Observable<Status> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-VisitorId': 'wangyj',
@@ -23,22 +23,22 @@ export class ExtensionsService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + search.ownerId + '/extensions?group=' + search.group;
+    const url = this.URL + '/' + subscriptions.subscriberId + '/status/' + subscriptions.id;
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  visit(search: Extension): Observable<Extension> {
+  commit(status: Status): Observable<Instances[]> {
     const headers = new Headers({
       // 'Authorization': authorization,
-      'X-SUMMER-VisitorId': 'wangyj',
+      'X-SUMMER-OperatorId': 'wangyj',
       'X-SUMMER-RequestId': Math.random()
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + search.ownerId + '/extensions/' + search.group + '/' + search.name + '/' + search.tree;
-    return this.http.get(url, options)
+    const url = this.URL + '/' + status.ownerId + '/status/' + status.subId;
+    return this.http.put(url, status.map, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }

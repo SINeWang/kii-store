@@ -2,8 +2,8 @@ import {Component, OnDestroy} from '@angular/core';
 import {Extensions} from './extensions.data';
 import {ExtensionsService} from './extensions.service';
 import {Intension} from '../intensions/intensions.data';
-import {Model} from '../../explore/models/models.data';
-import {ModelsService} from '../../explore/models/models.service';
+import {Model} from '../models/models.data';
+import {ModelsService} from '../models/models.service';
 import {FormControl} from '@angular/forms';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -12,8 +12,8 @@ import {Subscription} from 'rxjs/Subscription';
 import {PublicationService} from '../publication/publication.service';
 import {Publication} from '../publication/publication.data';
 import {Extension} from '../extension/extension.data';
-import {SubjectsService} from '../../shared/subjects/subjects.service';
-import {Subjects} from '../../shared/subjects/subjects.data';
+import {SubjectsService} from '../shared/subjects/subjects.service';
+import {Subjects} from '../shared/subjects/subjects.data';
 
 @Component({
   selector: 'app-compose-extensions',

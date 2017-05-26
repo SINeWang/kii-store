@@ -2,10 +2,10 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ModelsService} from './models.service';
 import {Model} from './models.data';
-import {Subscriptions} from '../../subscriptions/subscriptions.data';
-import {SubscriptionsCommitService} from '../../subscriptions/subscriptions-commit.service';
-import {Subjects} from '../../shared/subjects/subjects.data';
-import {SubjectsService} from '../../shared/subjects/subjects.service';
+import {Subscriptions} from '../subscriptions/subscriptions.data';
+import {SubscriptionsCommitService} from '../subscriptions/subscriptions-commit.service';
+import {Subjects} from '../shared/subjects/subjects.data';
+import {SubjectsService} from '../shared/subjects/subjects.service';
 import {Subscription} from 'rxjs/Subscription';
 
 

@@ -5,8 +5,8 @@ import 'rxjs/add/operator/catch';
 import {NewExtensionsService} from './new.service';
 import {Extensions} from '../extensions.data';
 import {Subscription} from 'rxjs/Subscription';
-import {Subjects} from '../../../shared/subjects/subjects.data';
-import {SubjectsService} from '../../../shared/subjects/subjects.service';
+import {Subjects} from '../../shared/subjects/subjects.data';
+import {SubjectsService} from '../../shared/subjects/subjects.service';
 
 @Component({
   selector: 'app-compose-extensions-new',
