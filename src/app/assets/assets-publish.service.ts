@@ -6,6 +6,7 @@ import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs/Observable';
 import {Instances} from '../instances/instances.data';
 import {AssetsPublication} from 'app/assets/assets-publication.data';
+import {Status} from "app/instances/status.data";
 @Injectable()
 export class AssetsPublishService {
 
@@ -14,7 +15,7 @@ export class AssetsPublishService {
   constructor(private http: Http) {
   }
 
-  commit(ap: AssetsPublication): Observable<Instances[]> {
+  commit(ap: AssetsPublication): Observable<Status> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-OperatorId': 'wangyj',

@@ -39,21 +39,20 @@ export class InstancesEditorComponent {
 
   handle_status(status: Status) {
     this.status = status;
-    this.status.origin = Object.assign({}, status.map);
+    this.status.previous = Object.assign({}, status.map);
+    const kv = {};
+    for (const key of Object.keys(status.map)) {
+      kv[key] = status.map[key].value;
+    }
+    this.status.current = Object.assign({}, kv);
   }
 
-  handle_instances(instances: Instances[]) {
-    const kv = {};
-    for (const instance of instances) {
-      kv[instance.field] = instance.value;
-    }
-    this.status.map = Object.assign({}, kv);
-    this.status.origin = kv;
-  }
 
   save() {
-    this.statusService.commit(this.status).subscribe(
-      data => this.handle_instances(data),
+    const next = Object.assign({}, this.status);
+    next.map = this.status.current;
+    this.statusService.commit(next).subscribe(
+      data => this.handle_status(data),
       error => this.errorMessage = <any>error
     );
   }
@@ -69,7 +68,7 @@ export class InstancesEditorComponent {
 
   publish() {
     this.assetsPublishService.commit(this.assetsPublication).subscribe(
-      data => this.handle_instances(data),
+      data => this.handle_status(data),
       error => this.errorMessage = <any>error
     );
   }

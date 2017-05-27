@@ -6,7 +6,6 @@ import {environment} from '../../environments/environment';
 import {Subscriptions} from '../subscriptions/subscriptions.data';
 import {Observable} from 'rxjs/Observable';
 import {Status} from './status.data';
-import {Instances} from './instances.data';
 @Injectable()
 export class StatusService {
 
@@ -29,7 +28,7 @@ export class StatusService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  commit(status: Status): Observable<Instances[]> {
+  commit(status: Status): Observable<Status> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-OperatorId': 'wangyj',
