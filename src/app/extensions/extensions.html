@@ -40,7 +40,7 @@
                            floating-label></mdl-textfield>
           </div>
           <div class="mdl-cell mdl-cell--12-col">
-            <app-stabilities (onChanged)="publication_stability($event)"></app-stabilities>
+            <app-stabilities (onChanged)="publication_stability($event)" [latest_enabled]="'false'"></app-stabilities>
           </div>
           <div class="mdl-cell mdl-cell--12-col">
             <button (click)="publish_extension()" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>
