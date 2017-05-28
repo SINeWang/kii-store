@@ -7,6 +7,7 @@ import {Observable} from 'rxjs/Observable';
 import {Instances} from '../instances/instances.data';
 import {AssetsPublication} from 'app/assets/assets-publication.data';
 import {Status} from "app/instances/status.data";
+import {Receipt} from './asset-publish-receipt.data';
 @Injectable()
 export class AssetsPublishService {
 
@@ -15,9 +16,8 @@ export class AssetsPublishService {
   constructor(private http: Http) {
   }
 
-  commit(ap: AssetsPublication): Observable<Status> {
+  commit(ap: AssetsPublication): Observable<Receipt> {
     const headers = new Headers({
-      // 'Authorization': authorization,
       'X-SUMMER-OperatorId': 'wangyj',
       'X-SUMMER-RequestId': Math.random()
     });

@@ -2,9 +2,9 @@ import {Component, Input} from '@angular/core';
 import {Subscriptions} from '../../subscriptions/subscriptions.data';
 import {StatusService} from '../status.service';
 import {Status} from '../status.data';
-import {Instances} from '../instances.data';
 import {AssetsPublishService} from '../../assets/assets-publish.service';
 import {AssetsPublication} from '../../assets/assets-publication.data';
+import {Receipt} from '../../assets/asset-publish-receipt.data';
 @Component({
   selector: 'app-compose-instances-editor',
   providers: [],
@@ -68,8 +68,12 @@ export class InstancesEditorComponent {
 
   publish() {
     this.assetsPublishService.commit(this.assetsPublication).subscribe(
-      data => this.handle_status(data),
+      data => this.handle_receipt(data),
       error => this.errorMessage = <any>error
     );
+  }
+
+  handle_receipt(receipt: Receipt) {
+    window.location.href = '/' + receipt.providerId + '/asset/' + receipt.group + '/' + receipt.name;
   }
 }
