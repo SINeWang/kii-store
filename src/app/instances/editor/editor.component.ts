@@ -74,6 +74,6 @@ export class InstancesEditorComponent {
   }
 
   handle_receipt(receipt: Receipt) {
-    window.location.href = '/' + receipt.providerId + '/asset/' + receipt.group + '/' + receipt.name;
+    window.location.href = '/dashboard/assets/' + receipt.providerId + '/' + receipt.group + '/' + receipt.name;
   }
 }

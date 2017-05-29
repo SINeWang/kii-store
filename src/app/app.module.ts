@@ -5,11 +5,9 @@ import {HttpModule} from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.root';
-import {ExploreComponent} from './apps/explore/explore.component';
 import {RouterModule, Routes} from '@angular/router';
 import {MdlModule} from '@angular-mdl/core';
 import {ModelsComponent} from './models/models.component';
-import {ComposeComponent} from './apps/compose/compose.component';
 import {ExtensionsComponent} from './extensions/extensions.component';
 import {
   MdAutocompleteModule,
@@ -17,7 +15,8 @@ import {
   MdIconModule,
   MdInputModule,
   MdRadioModule,
-  MdSlideToggleModule
+  MdSlideToggleModule,
+  MdTabsModule
 } from '@angular/material';
 import {InstancesComponent} from './instances/instances.component';
 import {NewExtensionsComponent} from './extensions/new/new.component';
@@ -36,24 +35,47 @@ import {AssetComponent} from './asset/asset.component';
 
 const routes: Routes = [
   {
-    path: 'explore',
-    pathMatch: 'full',
-    component: ExploreComponent
-  },
-  {
-    path: 'compose',
-    pathMatch: 'full',
-    component: ComposeComponent
-  },
-  {
     path: '',
     pathMatch: 'full',
-    component: DashboardComponent
+    redirectTo: 'dashboard'
   },
   {
-    path: ':owner-id/instances/:group/:name/',
-    pathMatch: 'full',
-    component: DashboardComponent
+    path: 'dashboard',
+    component: DashboardComponent,
+    children: [
+      {
+        path: 'extensions',
+        component: ExtensionsComponent
+      },
+      {
+        path: 'extensions/:owner-id/:group/:name',
+        component: ExtensionsComponent
+      },
+      {
+        path: 'models',
+        component: ModelsComponent
+      },
+      {
+        path: 'models/:owner-id/:group/:name',
+        component: ModelsComponent
+      },
+      {
+        path: 'instances',
+        component: InstancesComponent
+      },
+      {
+        path: 'instances/:owner-id/:group/:name',
+        component: InstancesComponent
+      },
+      {
+        path: 'assets/:owner-id/:group/:name',
+        component: AssetsComponent
+      },
+      {
+        path: 'assets',
+        component: AssetsComponent
+      },
+    ]
   },
 ];
 
@@ -62,9 +84,7 @@ const routes: Routes = [
     AppComponent,
     AssetComponent,
     AssetsComponent,
-    ComposeComponent,
     DashboardComponent,
-    ExploreComponent,
     ExtensionsComponent,
     GroupNameTreeComponent,
     InstancesComponent,
@@ -90,6 +110,7 @@ const routes: Routes = [
     MdIconModule,
     MdRadioModule,
     MdSlideToggleModule,
+    MdTabsModule,
     MdlModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes)
