@@ -16,7 +16,7 @@ import {
   MdInputModule,
   MdRadioModule,
   MdSlideToggleModule,
-  MdTabsModule
+  MdTabsModule, MdToolbarModule
 } from '@angular/material';
 import {InstancesComponent} from './instances/instances.component';
 import {NewExtensionsComponent} from './extensions/new/new.component';
@@ -72,6 +72,10 @@ const routes: Routes = [
         component: AssetsComponent
       },
       {
+        path: 'assets/:owner-id',
+        component: AssetsComponent
+      },
+      {
         path: 'assets',
         component: AssetsComponent
       },
@@ -111,6 +115,7 @@ const routes: Routes = [
     MdRadioModule,
     MdSlideToggleModule,
     MdTabsModule,
+    MdToolbarModule,
     MdlModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes)
