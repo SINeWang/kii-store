@@ -3,7 +3,7 @@
          [formControl]="searchFormControl">
 </md-input-container>
 
-<md-autocomplete #searchSubjects="mdAutocomplete"  [displayWith]="displayCandidates">
+<md-autocomplete #searchSubjects="mdAutocomplete" [displayWith]="displayCandidates">
   <md-option *ngFor="let subjects of candidates" [value]="subjects">
     <span>{{ subjects.id }}</span>
   </md-option>

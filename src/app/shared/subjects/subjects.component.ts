@@ -1,24 +1,27 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Subjects} from './subjects.data';
 import {SubjectsService} from './subjects.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-subjects',
   providers: [],
   templateUrl: 'subjects.html'
 })
-export class SubjectsComponent {
+export class SubjectsComponent implements OnInit {
 
   candidates: Subjects[];
 
   errorMessage: string;
 
-  searchFormControl = new FormControl();
+  searchFormControl: FormControl;
 
   objectType: string;
 
   accessType: string;
+
+  subjectIdAlias: string;
 
   @Input()
   set object_type(object_type: string) {
@@ -30,25 +33,62 @@ export class SubjectsComponent {
     this.accessType = access_type;
   }
 
-  constructor(private subjectsService: SubjectsService) {
-    this.searchFormControl.valueChanges
-      .startWith(null)
-      .subscribe(name => this.onInputChange(name));
+  @Input()
+  set subject_alias(subject_alias: string) {
+    this.subjectIdAlias = subject_alias;
   }
 
-  displayCandidates(subjects: Subjects): string {
-    return subjects ? subjects.id : '';
+  constructor(private subjectsService: SubjectsService,
+              private route: ActivatedRoute) {
+  }
+
+  displayCandidates(subjects: any): string {
+    if (subjects instanceof Object) {
+      return subjects ? subjects.id : '';
+    } else {
+      return subjects;
+    }
   }
 
   onInputChange(query: any) {
+    console.log('onInputChange', query);
+    if (query == null) {
+      return;
+    }
     if (query instanceof Object) {
       this.subjectsService.announce(query);
     } else {
-      const authorization = localStorage.getItem('authorization');
       this.subjectsService.search(query, this.objectType, this.accessType).subscribe(
-        data => this.candidates = data,
+        data => this.handle_candidates(data),
         error => this.errorMessage = <any>error
       );
+    }
+  }
+
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      console.log('oninit', params[this.subjectIdAlias]);
+      const subjectId = params[this.subjectIdAlias];
+      if (subjectId !== null) {
+        console.log('1', subjectId);
+        this.searchFormControl = new FormControl(subjectId);
+      } else {
+        console.log('2', subjectId);
+        this.searchFormControl = new FormControl();
+      }
+      this.searchFormControl.valueChanges
+        .startWith(subjectId)
+        .subscribe(name => this.onInputChange(name));
+    });
+  }
+
+  handle_candidates(subjects: Subjects[]) {
+    if (subjects == null) {
+      return;
+    }
+    this.candidates = subjects;
+    if (subjects.length === 1) {
+      this.subjectsService.announce(subjects[0]);
     }
   }
 

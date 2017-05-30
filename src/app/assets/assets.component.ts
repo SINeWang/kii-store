@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {AssetsService} from './assets.service';
 import {Assets} from './assets.data';
 import {SubjectsService} from '../shared/subjects/subjects.service';
@@ -6,7 +6,6 @@ import {Subscription} from 'rxjs/Subscription';
 import {Subjects} from '../shared/subjects/subjects.data';
 import {FormControl} from '@angular/forms';
 import {Asset} from '../asset/asset.data';
-import {ActivatedRoute, Router} from '@angular/router';
 import {SubjectsComponent} from '../shared/subjects/subjects.component';
 
 
@@ -15,7 +14,7 @@ import {SubjectsComponent} from '../shared/subjects/subjects.component';
   providers: [AssetsService, SubjectsService],
   templateUrl: 'assets.html'
 })
-export class AssetsComponent implements OnInit {
+export class AssetsComponent {
 
   errorMessage: string;
 
@@ -30,14 +29,8 @@ export class AssetsComponent implements OnInit {
   asset: Asset;
 
 
-  @ViewChild(SubjectsComponent)
-  private ownersComponent: SubjectsComponent;
-
-
   constructor(private ownersService: SubjectsService,
-              private assetsService: AssetsService,
-              private route: ActivatedRoute,
-              private router: Router) {
+              private assetsService: AssetsService) {
     this.ownersListener = ownersService.announced$.subscribe(
       owners => {
         this.owners = owners;
@@ -49,16 +42,6 @@ export class AssetsComponent implements OnInit {
       .subscribe(name => this.onInputGroupChanged(name));
 
   }
-
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const ownerId = params['owner-id'];
-      if (ownerId !== null) {
-        this.ownersComponent.searchFormControl.setValue(ownerId);
-      }
-    });
-  }
-
 
   onInputGroupChanged(query: any) {
     if (this.owners == null) {

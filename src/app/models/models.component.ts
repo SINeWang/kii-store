@@ -79,7 +79,6 @@ export class ModelsComponent {
     subscriptions.tree = this.subscribeTree.value;
     subscribers.id = this.subscribeOwnerId.value;
     this.subscriptionsService.commit(subscribers, subscriptions).subscribe(
-      data => console.log(data),
       error => this.errorMessage = <any>error
     );
   }
