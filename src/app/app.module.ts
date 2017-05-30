@@ -48,6 +48,10 @@ const routes: Routes = [
         component: ExtensionsComponent
       },
       {
+        path: 'extensions/:owner-id',
+        component: ExtensionsComponent
+      },
+      {
         path: 'extensions/:owner-id/:group/:name',
         component: ExtensionsComponent
       },
@@ -56,11 +60,19 @@ const routes: Routes = [
         component: ModelsComponent
       },
       {
-        path: 'models/:owner-id/:group/:name',
+        path: 'models/:provider-id',
+        component: ModelsComponent
+      },
+      {
+        path: 'models/:provider-id/:group/:name',
         component: ModelsComponent
       },
       {
         path: 'instances',
+        component: InstancesComponent
+      },
+      {
+        path: 'instances/:owner-id',
         component: InstancesComponent
       },
       {

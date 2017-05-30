@@ -7,6 +7,7 @@ import {SubscriptionsCommitService} from '../subscriptions/subscriptions-commit.
 import {Subjects} from '../shared/subjects/subjects.data';
 import {SubjectsService} from '../shared/subjects/subjects.service';
 import {Subscription} from 'rxjs/Subscription';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 @Component({
@@ -41,7 +42,9 @@ export class ModelsComponent {
   constructor(private subjectsService: SubjectsService,
               private modelsService: ModelsService,
               private subscriptionsService: SubscriptionsCommitService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private route: ActivatedRoute,
+              private router: Router) {
 
     this.subscribeForm = formBuilder.group({
       'pubSet': this.subscribePubSet,
@@ -52,10 +55,9 @@ export class ModelsComponent {
     });
 
     this.providersListener = subjectsService.announced$.subscribe(
-      data => {
-        this.providers = data;
-      }
-    );
+      data => this.handle_subjects(data)
+  )
+    ;
 
     this.searchGroup.valueChanges.subscribe(input => {
       if (input !== '' && input != null) {
@@ -67,6 +69,16 @@ export class ModelsComponent {
         this.models = [];
       }
     });
+  }
+
+  handle_subjects(subjects: Subjects) {
+    if (subjects == null) {
+      return;
+    }
+    this.providers = subjects;
+    const parentPath = this.route.parent.snapshot.url[0].path;
+    const currentPath = this.route.snapshot.url[0].path;
+    this.router.navigate([parentPath, currentPath, subjects.id]);
   }
 
 

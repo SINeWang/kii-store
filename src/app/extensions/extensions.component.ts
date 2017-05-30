@@ -14,6 +14,7 @@ import {Publication} from '../publication/publication.data';
 import {Extension} from '../extension/extension.data';
 import {SubjectsService} from '../shared/subjects/subjects.service';
 import {Subjects} from '../shared/subjects/subjects.data';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-compose-extensions',
@@ -58,7 +59,9 @@ export class ExtensionsComponent implements OnDestroy {
               private modelsService: ModelsService,
               private intensionsService: IntensionsService,
               private subjectsService: SubjectsService,
-              private publicationService: PublicationService) {
+              private publicationService: PublicationService,
+              private route: ActivatedRoute,
+              private router: Router) {
     this.form.tree = 'master';
 
     this.intensionForm.visibility = 'public';
@@ -75,11 +78,18 @@ export class ExtensionsComponent implements OnDestroy {
       .subscribe(name => this.onCandidateExtensionsChange(name));
 
     this.ownersListener = subjectsService.announced$.subscribe(
-      data => {
-        this.owners = data;
-      }
+      data => this.handle_subjects(data)
     );
+  }
 
+  handle_subjects(subjects: Subjects) {
+    if (subjects == null) {
+      return;
+    }
+    this.owners = subjects;
+    const parentPath = this.route.parent.snapshot.url[0].path;
+    const currentPath = this.route.snapshot.url[0].path;
+    this.router.navigate([parentPath, currentPath, subjects.id]);
   }
 
   add_intension(): void {

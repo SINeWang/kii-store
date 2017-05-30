@@ -49,7 +49,8 @@ export class AssetsComponent {
     }
     this.owners = owners;
     const parentPath = this.route.parent.snapshot.url[0].path;
-    this.router.navigate([parentPath, 'assets', owners.id]);
+    const currentPath = this.route.snapshot.url[0].path;
+    this.router.navigate([parentPath, currentPath, owners.id]);
   }
 
   onInputGroupChanged(query: any) {
