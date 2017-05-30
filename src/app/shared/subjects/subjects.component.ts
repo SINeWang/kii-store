@@ -51,7 +51,6 @@ export class SubjectsComponent implements OnInit {
   }
 
   onInputChange(query: any) {
-    console.log('onInputChange', query);
     if (query == null) {
       return;
     }
@@ -67,13 +66,10 @@ export class SubjectsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      console.log('oninit', params[this.subjectIdAlias]);
       const subjectId = params[this.subjectIdAlias];
       if (subjectId !== null) {
-        console.log('1', subjectId);
         this.searchFormControl = new FormControl(subjectId);
       } else {
-        console.log('2', subjectId);
         this.searchFormControl = new FormControl();
       }
       this.searchFormControl.valueChanges
