@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {AssetsService} from './assets.service';
 import {Assets} from './assets.data';
 import {SubjectsService} from '../shared/subjects/subjects.service';
@@ -6,7 +6,7 @@ import {Subscription} from 'rxjs/Subscription';
 import {Subjects} from '../shared/subjects/subjects.data';
 import {FormControl} from '@angular/forms';
 import {Asset} from '../asset/asset.data';
-import {SubjectsComponent} from '../shared/subjects/subjects.component';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 @Component({
@@ -30,17 +30,26 @@ export class AssetsComponent {
 
 
   constructor(private ownersService: SubjectsService,
-              private assetsService: AssetsService) {
+              private assetsService: AssetsService,
+              private route: ActivatedRoute,
+              private router: Router) {
     this.ownersListener = ownersService.announced$.subscribe(
-      owners => {
-        this.owners = owners;
-      }
+      owners => this.handleOwners(owners)
     );
 
     this.searchGroupFormCtrl.valueChanges
       .startWith(null)
       .subscribe(name => this.onInputGroupChanged(name));
 
+  }
+
+  handleOwners(owners: Subjects) {
+    if (owners == null) {
+      return;
+    }
+    this.owners = owners;
+    const parentPath = this.route.parent.snapshot.url[0].path;
+    this.router.navigate([parentPath, 'assets', owners.id]);
   }
 
   onInputGroupChanged(query: any) {

@@ -67,6 +67,7 @@ export class SubjectsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       const subjectId = params[this.subjectIdAlias];
+      this.searchFormControl = new FormControl();
       if (subjectId !== null) {
         this.searchFormControl = new FormControl(subjectId);
       } else {
@@ -84,7 +85,7 @@ export class SubjectsComponent implements OnInit {
     }
     this.candidates = subjects;
     if (subjects.length === 1) {
-      this.subjectsService.announce(subjects[0]);
+      this.onInputChange(subjects[0]);
     }
   }
 
