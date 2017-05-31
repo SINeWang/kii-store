@@ -97,7 +97,7 @@ export class ExtensionsComponent implements OnDestroy {
   add_intension(): void {
     console.log(this.selectedModel);
     if (this.selectedModel) {
-      this.intension.refExtId = this.selectedModel.rootExtId;
+      this.intension.refPubSet = this.selectedModel.pubSet;
       this.intension.structure = '';
     }
     this.intension.extId = this.extension.id;

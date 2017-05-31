@@ -15,7 +15,7 @@ export class Model {
 export class Intension {
   id: string;
   field: string;
-  refExtId: string;
+  refPubSet: string;
   single: boolean;
   structure: string;
   visibility: string;
