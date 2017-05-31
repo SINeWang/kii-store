@@ -14,9 +14,11 @@ import {
   MdCheckboxModule,
   MdIconModule,
   MdInputModule,
-  MdRadioModule, MdSelectModule,
+  MdRadioModule,
+  MdSelectModule,
   MdSlideToggleModule,
-  MdTabsModule, MdToolbarModule
+  MdTabsModule,
+  MdToolbarModule
 } from '@angular/material';
 import {InstancesComponent} from './instances/instances.component';
 import {NewExtensionsComponent} from './extensions/new/new.component';
@@ -30,18 +32,18 @@ import {StabilitiesComponent} from './shared/stabilities/stabilities.component';
 import {StructuresComponent} from './shared/structures/structures.component';
 import {SingleMultiComponent} from './shared/singlemulti/singlemulti.component';
 import {IntensionsComponent} from './intensions/intensions.component';
-import {DashboardComponent} from './apps/dashboard/dashboard.component';
 import {AssetComponent} from './asset/asset.component';
+import {WorkspaceComponent} from 'app/apps/workspace/workspace.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'dashboard'
+    redirectTo: 'workspace'
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent,
+    path: 'workspace',
+    component: WorkspaceComponent,
     children: [
       {
         path: 'extensions',
@@ -100,7 +102,6 @@ const routes: Routes = [
     AppComponent,
     AssetComponent,
     AssetsComponent,
-    DashboardComponent,
     ExtensionsComponent,
     GroupNameTreeComponent,
     InstancesComponent,
@@ -113,7 +114,8 @@ const routes: Routes = [
     StructuresComponent,
     SubjectsComponent,
     SubscriptionsSearchComponent,
-    VisibilityComponent
+    VisibilityComponent,
+    WorkspaceComponent
   ],
   imports: [
     BrowserAnimationsModule,

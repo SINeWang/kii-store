@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-workpspace',
   providers: [],
-  templateUrl: 'dashboard.html'
+  templateUrl: 'workspace.html'
 })
-export class DashboardComponent {
+export class WorkspaceComponent {
 
   routeLinks: any[];
   activeLinkIndex = 0;
