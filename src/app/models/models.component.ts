@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ModelsService} from './models.service';
-import {Model} from './models.data';
+import {Model, Models} from './models.data';
 import {Subscriptions} from '../subscriptions/subscriptions.data';
 import {SubscriptionsCommitService} from '../subscriptions/subscriptions-commit.service';
 import {Subjects} from '../shared/subjects/subjects.data';
@@ -19,13 +19,19 @@ export class ModelsComponent {
 
   errorMessage: string;
 
-  models: Model[];
-
   searchGroup = new FormControl('', Validators.required);
 
   providersListener: Subscription;
 
   providers: Subjects;
+
+  selectedSnapshot = new FormControl();
+
+  selectedModels: Models;
+
+  selectedModel: Model;
+
+  private candidateModels: Models [];
 
   public subscribeForm: FormGroup;
 
@@ -56,17 +62,33 @@ export class ModelsComponent {
 
     this.providersListener = subjectsService.announced$.subscribe(
       data => this.handle_subjects(data)
-  )
+    )
     ;
 
     this.searchGroup.valueChanges.subscribe(input => {
+      if (input instanceof Object) {
+        this.selectedModels = input;
+        this.selectedModel = null;
+      } else {
+        if (input !== '' && input != null) {
+          this.modelsService.search(this.providers, input).subscribe(
+            data => this.candidateModels = data,
+            error => this.errorMessage = <any>error
+          );
+        } else {
+          this.candidateModels = [];
+        }
+      }
+    });
+
+    this.selectedSnapshot.valueChanges.subscribe(input => {
       if (input !== '' && input != null) {
-        this.modelsService.search(this.providers, input).subscribe(
-          data => this.handleData(data),
+        this.modelsService.visit(this.providers, input).subscribe(
+          data => this.selectedModel = data,
           error => this.errorMessage = <any>error
         );
       } else {
-        this.models = [];
+        this.candidateModels = [];
       }
     });
   }
@@ -95,7 +117,9 @@ export class ModelsComponent {
     );
   }
 
-  handleData(models: Model[]) {
-    this.models = models;
+
+  displaySelectedModels(model: Models): string {
+    return model ? model.group + ' / ' + model.name : '';
   }
+
 }

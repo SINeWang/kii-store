@@ -83,7 +83,7 @@
 
               <md-input-container style="width: 100%;">
                 <input type="text" mdInput placeholder="Reference Model" [mdAutocomplete]="searchModels"
-                       [formControl]="modelFormControl">
+                       [formControl]="selectedSnapshot">
               </md-input-container>
 
               <md-autocomplete #searchModels="mdAutocomplete" [displayWith]="displaySelectedModels">

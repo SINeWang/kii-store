@@ -23,3 +23,19 @@ export class Intension {
   structure: string;
   visibility: string;
 }
+
+
+export class Models {
+  providerId: string;
+  group: string;
+  name: string;
+  snapshots: Snapshot[];
+}
+
+export class Snapshot {
+  subscriptions: number;
+  pubSet: string;
+  stability: string;
+  version: string;
+  beginTime: Date;
+}

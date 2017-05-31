@@ -3,22 +3,34 @@
     <div class="mdl-cell mdl-cell--1-col">
       <app-subjects [object_type]="'Model'" [access_type]="'Provider'" [subject_alias]="'provider-id'"></app-subjects>
     </div>
-    <div class="mdl-cell mdl-cell--3-col">
+    <div class="mdl-cell mdl-cell--4-col">
       <md-input-container style="width: 100%;">
-        <input type="text" mdInput placeholder="Group" [formControl]="searchGroup">
+        <input type="text" mdInput placeholder="Group" [formControl]="searchGroup" [mdAutocomplete]="auto">
       </md-input-container>
+
+      <md-autocomplete #auto="mdAutocomplete" [displayWith]="displaySelectedModels">
+        <md-option *ngFor="let models of candidateModels" [value]="models">
+          <span>{{ models.group }} / {{ models.name }}</span>
+        </md-option>
+      </md-autocomplete>
+    </div>
+    <div class="mdl-cell mdl-cell--3-col" *ngIf="selectedModels">
+      <md-select placeholder="Publications" [formControl]="selectedSnapshot">
+        <md-option *ngFor="let snapshot of selectedModels.snapshots" [value]="snapshot">{{ snapshot.stability}}-{{snapshot.version}}
+        </md-option>
+      </md-select>
     </div>
   </div>
 </div>
 
 <br>
-<div *ngFor="let model of models" class="mdl-grid">
+<div *ngIf="selectedModel" class="mdl-grid">
   <div class="mdl-cell mdl-cell--8-col" mdl-shadow="2">
     <div class="content-grid mdl-grid">
       <div class="mdl-cell mdl-cell--12-col">
         <div class="mdl-grid">
           <div class="mdl-cell mdl-cell--11-col">
-            <h4>{{model.group}} / {{model.name}} # {{model.stability}}-{{model.version}}</h4>
+            <h4>{{selectedModels.group}} / {{selectedModels.name}}</h4>
           </div>
           <div class="mdl-cell mdl-cell--1-col">
             <button mdl-button mdl-button-type="icon" mdl-ripple>
@@ -26,7 +38,7 @@
             </button>
           </div>
         </div>
-        <pre *ngFor="let intension of model.intensions">
+        <pre *ngFor="let intension of selectedModel.intensions">
     <strong>{{intension.visibility}}</strong> {{intension.field}} : <a href="/explore/models/{{intension.refExtId}}"
                                                                        *ngIf="intension.refExtId">Reference</a><span
           *ngIf="!intension.refExtId">{{intension.structure}}</span><span *ngIf="!intension.single"> []</span>
@@ -37,15 +49,15 @@
   <div class="mdl-cell mdl-cell--4-col">
     <div class="mdl-grid" mdl-shadow="2">
       <div class="mdl-cell mdl-cell--12-col">
-        <mdl-textfield type="text" label="Subscriptions" value="{{model.subscriptions}}" floating-label
+        <mdl-textfield type="text" label="Subscriptions" value="{{selectedSnapshot.value?.subscriptions}}"
+                       floating-label
                        readonly="true"></mdl-textfield>
-        <mdl-textfield type="text" label="Provider" value="{{model.providerId}}" floating-label
+        <mdl-textfield type="text" label="Stability" value="{{selectedSnapshot.value?.stability}}" floating-label
                        readonly="true"></mdl-textfield>
-        <mdl-textfield type="text" label="Stability" value="{{model.stability}}" floating-label
+        <mdl-textfield type="text" label="Version" value="{{selectedSnapshot.value?.version}}" floating-label
                        readonly="true"></mdl-textfield>
-        <mdl-textfield type="text" label="Version" value="{{model.version}}" floating-label
-                       readonly="true"></mdl-textfield>
-        <mdl-textfield type="text" label="Since" value="{{model.beginTime | date:'medium'}}" floating-label
+        <mdl-textfield type="text" label="Since" value="{{selectedSnapshot.value?.beginTime | date:'medium'}}"
+                       floating-label
                        readonly="true"></mdl-textfield>
       </div>
     </div>
@@ -57,7 +69,7 @@
           <mdl-textfield type="text" label="Group" formControlName="group" floating-label></mdl-textfield>
           <mdl-textfield type="text" label="Name" formControlName="name" floating-label></mdl-textfield>
           <mdl-textfield type="text" label="Tree" formControlName="tree" floating-label></mdl-textfield>
-          <button (click)="subscribe(model.pubSet)" mdl-button mdl-button-type="raised" mdl-colored="primary"
+          <button (click)="subscribe(selectedSnapshot.value.pubSet)" mdl-button mdl-button-type="raised" mdl-colored="primary"
                   mdl-ripple>Subscribe
           </button>
         </form>

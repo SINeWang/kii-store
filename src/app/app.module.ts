@@ -14,7 +14,7 @@ import {
   MdCheckboxModule,
   MdIconModule,
   MdInputModule,
-  MdRadioModule,
+  MdRadioModule, MdSelectModule,
   MdSlideToggleModule,
   MdTabsModule, MdToolbarModule
 } from '@angular/material';
@@ -125,6 +125,7 @@ const routes: Routes = [
     MdInputModule,
     MdIconModule,
     MdRadioModule,
+    MdSelectModule,
     MdSlideToggleModule,
     MdTabsModule,
     MdToolbarModule,

@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../environments/environment';
-import {Model} from './models.data';
+import {Model, Models, Snapshot} from './models.data';
 import {Subjects} from '../shared/subjects/subjects.data';
 
 @Injectable()
@@ -15,7 +15,7 @@ export class ModelsService {
   constructor(private http: Http) {
   }
 
-  search(providers: Subjects, group: string): Observable<Model[]> {
+  search(providers: Subjects, group: string): Observable<Models[]> {
 
     const headers = new Headers({
       // 'Authorization': authorization,
@@ -31,6 +31,22 @@ export class ModelsService {
     } else {
       return Observable.of([]);
     }
+    return this.http.get(url, options)
+      .map((res: Response) => res.json() || [])
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  visit(providers: Subjects, snapshot: Snapshot): Observable<Model> {
+
+    const headers = new Headers({
+      'X-SUMMER-VisitorId': '123',
+      'X-SUMMER-RequestId': Math.random()
+    });
+    const options = new RequestOptions({headers: headers});
+    if (snapshot == null) {
+      return Observable.of(null);
+    }
+    const url = this.URL + '/models/' + snapshot.pubSet;
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));

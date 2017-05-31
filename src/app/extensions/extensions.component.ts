@@ -2,7 +2,7 @@ import {Component, OnDestroy} from '@angular/core';
 import {Extensions} from './extensions.data';
 import {ExtensionsService} from './extensions.service';
 import {Intension} from '../intensions/intensions.data';
-import {Model} from '../models/models.data';
+import {Model, Models} from '../models/models.data';
 import {ModelsService} from '../models/models.service';
 import {FormControl} from '@angular/forms';
 import 'rxjs/add/operator/toPromise';
@@ -34,7 +34,7 @@ export class ExtensionsComponent implements OnDestroy {
 
   private publication = new Publication();
 
-  private candidateModels: Model [];
+  private candidateModels: Models [];
 
   private candidateExtensions: Extensions[];
 
@@ -149,7 +149,7 @@ export class ExtensionsComponent implements OnDestroy {
   }
 
   displaySelectedModels(model: Model): string {
-    return model ? model.providerId + ' / ' + model.group + ' / ' + model.name + ' # ' + model.stability + '-' + model.version : '';
+    return model ? model.group + ' / ' + model.name + ' # ' + model.stability + '-' + model.version : '';
   }
 
   displaySelectedExtensions(extensions: Extensions): string {
