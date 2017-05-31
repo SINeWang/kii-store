@@ -15,7 +15,7 @@
       </md-autocomplete>
     </div>
     <div class="mdl-cell mdl-cell--3-col" *ngIf="selectedModels">
-      <md-select placeholder="Publications" [formControl]="selectedSnapshot">
+      <md-select placeholder="Publications" [formControl]="selectedSnapshot"  floatPlaceholder="never">
         <md-option *ngFor="let snapshot of selectedModels.snapshots" [value]="snapshot">{{ snapshot.stability}}-{{snapshot.version}}
         </md-option>
       </md-select>
