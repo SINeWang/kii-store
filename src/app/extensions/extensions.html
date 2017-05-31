@@ -17,7 +17,7 @@
     </div>
     <div class="mdl-cell mdl-cell--7-col">
       <md-slide-toggle [(ngModel)]="newExtensionModel" [ngModelOptions]="{standalone: true}">New</md-slide-toggle>
-      <app-compose-extensions-new *ngIf="newExtensionModel" [group]="_group"></app-compose-extensions-new>
+      <app-compose-extensions-new *ngIf="newExtensionModel" [group]="searchExtensionsCtl.value"></app-compose-extensions-new>
     </div>
   </div>
 </div>
@@ -25,22 +25,20 @@
 <div mdl-shadow="2" *ngIf="!newExtensionModel">
   <div class="content-grid mdl-grid" *ngIf="extension">
     <div class="mdl-cell mdl-cell--4-col">
-      <form>
-        <div class="content-grid mdl-grid">
-          <div class="mdl-cell mdl-cell--12-col">
-            <mdl-textfield type="text" label="Version" [(ngModel)]="publication.version" name="version"
-                           floating-label></mdl-textfield>
-          </div>
-          <div class="mdl-cell mdl-cell--12-col">
-            <app-stabilities (onChanged)="publication_stability($event)" [latest_enabled]="'false'"></app-stabilities>
-          </div>
-          <div class="mdl-cell mdl-cell--12-col">
-            <button (click)="publish_extension()" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>
-              Publish
-            </button>
-          </div>
+      <div class="content-grid mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col">
+          <app-stabilities (onChanged)="publication_stability($event)" [latest_enabled]="'false'"></app-stabilities>
         </div>
-      </form>
+        <div class="mdl-cell mdl-cell--12-col">
+          <mdl-textfield type="text" label="Version" [(ngModel)]="publication.version" name="version"
+                         floating-label></mdl-textfield>
+        </div>
+        <div class="mdl-cell mdl-cell--12-col">
+          <button (click)="publish_extension()" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>
+            Publish
+          </button>
+        </div>
+      </div>
     </div>
     <div class="mdl-cell mdl-cell--8-col">
       <div class="content-grid mdl-grid">

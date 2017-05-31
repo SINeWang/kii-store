@@ -30,8 +30,12 @@ export class NewExtensionsComponent {
   owners: Subjects;
 
   @Input()
-  set group(group: string) {
-    this._group = group;
+  set group(input: any) {
+    if (input instanceof Object) {
+      this._group = input.group;
+    } else {
+      this._group = input;
+    }
   }
 
   onVisibilityChanged(visibility: string) {
