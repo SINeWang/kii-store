@@ -131,17 +131,16 @@ export class ExtensionsComponent implements OnDestroy {
       );
     } else {
       const authorization = localStorage.getItem('authorization');
-      if (this.owners) {
-        this.searchForm.ownerId = this.owners.id;
-      }
       this.searchForm.group = query;
       if (query) {
         this._group = query;
       }
-      this.extensionService.search(this.searchForm).subscribe(
-        data => this.candidateExtensions = data,
-        error => this.errorMessage = <any>error
-      );
+      if (this.owners) {
+        this.extensionService.search(this.owners, this.searchForm).subscribe(
+          data => this.candidateExtensions = data,
+          error => this.errorMessage = <any>error
+        );
+      }
     }
   }
 

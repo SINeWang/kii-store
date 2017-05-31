@@ -6,6 +6,7 @@ import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../environments/environment';
 import {Extensions} from './extensions.data';
 import {Extension} from '../extension/extension.data';
+import {Subjects} from '../shared/subjects/subjects.data';
 
 @Injectable()
 export class ExtensionsService {
@@ -15,7 +16,8 @@ export class ExtensionsService {
   constructor(private http: Http) {
   }
 
-  search(search: Extensions): Observable<Extensions[]> {
+  search(owners: Subjects,
+         search: Extensions): Observable<Extensions[]> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-VisitorId': 'wangyj',
@@ -23,7 +25,7 @@ export class ExtensionsService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + search.ownerId + '/extensions?group=' + search.group;
+    const url = this.URL + '/' + owners.id + '/extensions?group=' + search.group;
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
