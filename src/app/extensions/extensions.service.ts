@@ -17,7 +17,7 @@ export class ExtensionsService {
   }
 
   search(owners: Subjects,
-         search: Extensions): Observable<Extensions[]> {
+         query: string): Observable<Extensions[]> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-VisitorId': 'wangyj',
@@ -25,7 +25,7 @@ export class ExtensionsService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + owners.id + '/extensions?group=' + search.group;
+    const url = this.URL + '/' + owners.id + '/extensions?group=' + query;
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));

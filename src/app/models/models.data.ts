@@ -1,17 +1,14 @@
 export class Model {
 
   providerId: string;
+  rootExtId: string;
+  pubSet: string;
   group: string;
   name: string;
-  tree: string;
-  extId: string;
-  pubSet: string;
   stability: string;
   version: string;
   beginTime: number;
-
   subscriptions: number;
-
   intensions: Intension[];
 }
 
@@ -26,6 +23,8 @@ export class Intension {
 
 
 export class Models {
+
+  id: string;
   providerId: string;
   group: string;
   name: string;

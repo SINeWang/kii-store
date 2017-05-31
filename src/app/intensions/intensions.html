@@ -7,7 +7,7 @@
         {{intension.field}}
         :
         <span *ngIf="!intension.refExtId">{{intension.structure}}</span>
-        <span *ngIf="intension.refExtId"><a href="/explore/models/{{intension.refExtId}}">Reference</a> </span>
+        <span *ngIf="intension.refExtId"><a routerLink="/dashboard/models">Reference</a> </span>
 
         <span *ngIf="!intension.single">[]</span>
 

@@ -19,7 +19,7 @@ export class ModelsComponent {
 
   errorMessage: string;
 
-  searchGroup = new FormControl('', Validators.required);
+  searchModelsCtl = new FormControl('', Validators.required);
 
   providersListener: Subscription;
 
@@ -65,7 +65,7 @@ export class ModelsComponent {
     )
     ;
 
-    this.searchGroup.valueChanges.subscribe(input => {
+    this.searchModelsCtl.valueChanges.subscribe(input => {
       if (input instanceof Object) {
         this.selectedModels = input;
         this.selectedModel = null;
