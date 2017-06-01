@@ -1,8 +1,8 @@
 export class Intension {
-  id: string;
-  extId: string;
+  id: number;
+  extId: number;
   field: string;
-  refPubSet: string;
+  refPubSet: number;
   structure: string;
   single: boolean;
   required: boolean;
