@@ -1,8 +1,8 @@
 export class Model {
 
   providerId: string;
-  rootExtId: number;
-  pubSet: number;
+  rootExtId: string;
+  pubSet: string;
   group: string;
   name: string;
   stability: string;
@@ -13,9 +13,9 @@ export class Model {
 }
 
 export class Intension {
-  id: number;
+  id: string;
   field: string;
-  refPubSet: number;
+  refPubSet: string;
   single: boolean;
   structure: string;
   visibility: string;
@@ -24,7 +24,7 @@ export class Intension {
 
 export class Models {
 
-  id: number;
+  id: string;
   providerId: string;
   group: string;
   name: string;
@@ -33,7 +33,7 @@ export class Models {
 
 export class Snapshot {
   subscriptions: number;
-  pubSet: number;
+  pubSet: string;
   stability: string;
   version: string;
   beginTime: Date;
