@@ -7,7 +7,7 @@ export class Model {
   name: string;
   stability: string;
   version: string;
-  beginTime: number;
+  beginTime: Date;
   subscriptions: number;
   intensions: Intension[];
 }

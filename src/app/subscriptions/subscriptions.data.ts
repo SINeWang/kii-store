@@ -1,5 +1,5 @@
 export class Subscriptions {
-  id: string
+  id: string;
   subSet: string;
   subscriberId: string;
   group: string;

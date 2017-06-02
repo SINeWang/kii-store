@@ -2,7 +2,7 @@ export class AssetsPublication {
 
   providerId: string;
   stability: string;
-  subId: number;
+  subId: string;
   visibility: string;
   version: string;
 }

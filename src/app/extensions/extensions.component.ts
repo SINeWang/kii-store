@@ -95,7 +95,6 @@ export class ExtensionsComponent implements OnDestroy {
   }
 
   add_intension(): void {
-    console.log(this.selectedModel);
     if (this.selectedModel) {
       this.intension.refPubSet = this.selectedModel.pubSet;
       this.intension.structure = '';

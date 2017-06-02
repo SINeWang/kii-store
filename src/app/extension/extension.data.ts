@@ -1,7 +1,7 @@
 import {Intension} from '../intensions/intensions.data';
 export class Extension {
 
-  id: number;
+  id: string;
   ownerId: string;
   group: string;
   name: string;
