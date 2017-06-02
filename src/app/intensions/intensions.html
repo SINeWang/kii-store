@@ -6,8 +6,8 @@
 
         {{intension.field}}
         :
-        <span *ngIf="!intension.refExtId">{{intension.structure}}</span>
-        <span *ngIf="intension.refExtId"><a routerLink="/dashboard/models">Reference</a> </span>
+        <span *ngIf="!intension.refPubSet">{{intension.structure}}</span>
+        <span *ngIf="intension.refPubSet"><a routerLink="/workspace/models/{{refPubSet}}">Reference</a> </span>
 
         <span *ngIf="!intension.single">[]</span>
 
