@@ -1,3 +1,13 @@
+export class Form {
+
+  providerId: string;
+  stability: string;
+  subId: string;
+  visibility: string;
+  version: string;
+}
+
+
 export class Receipt {
   pubSet: string;
   group: string;

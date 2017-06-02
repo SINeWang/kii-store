@@ -1,10 +1,11 @@
 import {Component, Input} from '@angular/core';
 import {Subscriptions} from '../../subscriptions/subscriptions.data';
-import {AssetsPublishService} from '../../assets/assets-publish.service';
-import {AssetsPublication} from '../../assets/assets-publication.data';
+
 import {Receipt} from '../../assets/asset-publish-receipt.data';
 import {InstancesService} from '../instances.service';
 import {Instances} from '../instances.data';
+import {StatusService} from '../../status/status.service';
+import {Form} from '../../status/status-publication.data';
 @Component({
   selector: 'app-compose-instances-editor',
   providers: [],
@@ -20,7 +21,7 @@ export class InstancesEditorComponent {
 
   visibility: string;
 
-  assetsPublication = new AssetsPublication();
+  assetsPublication = new Form();
 
   @Input()
   set selected_subscriptions(value: Subscriptions) {
@@ -34,7 +35,7 @@ export class InstancesEditorComponent {
   }
 
   constructor(private instancesService: InstancesService,
-              private assetsPublishService: AssetsPublishService) {
+              private statusService: StatusService) {
   }
 
   handle_status(status: Instances) {
@@ -67,7 +68,7 @@ export class InstancesEditorComponent {
 
 
   publish() {
-    this.assetsPublishService.commit(this.assetsPublication).subscribe(
+    this.statusService.commit(this.assetsPublication).subscribe(
       data => this.handle_receipt(data),
       error => this.errorMessage = <any>error
     );

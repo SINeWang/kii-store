@@ -4,18 +4,18 @@ import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs/Observable';
-import {AssetsPublication} from 'app/assets/assets-publication.data';
-import {Receipt} from './asset-publish-receipt.data';
+import {Form, Receipt} from './status-publication.data';
+
 
 @Injectable()
-export class AssetsPublishService {
+export class StatusService {
 
   private URL = environment.kiimate_url;
 
   constructor(private http: Http) {
   }
 
-  commit(ap: AssetsPublication): Observable<Receipt> {
+  commit(ap: Form): Observable<Receipt> {
     const headers = new Headers({
       'X-SUMMER-OperatorId': 'wangyj',
       'X-SUMMER-RequestId': Math.random()

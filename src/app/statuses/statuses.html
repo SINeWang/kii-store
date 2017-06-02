@@ -1,0 +1,24 @@
+<div mdl-shadow="2">
+  <form #modelForm (ngSubmit)="search()">
+    <button type="submit" style="display:none"></button>
+    <div class="content-grid mdl-grid">
+      <div class="mdl-cell mdl-cell--3-col">
+        <app-subjects [access_type]="'Owner'" [object_type]="'Asset'" [subject_alias]="'owner-id'" ></app-subjects>
+      </div>
+      <div class="mdl-cell mdl-cell--3-col">
+        <md-input-container style="width: 100%;">
+          <input type="text" mdInput placeholder="Group" [mdAutocomplete]="searchGroup"
+                 [formControl]="searchGroupFormCtrl">
+        </md-input-container>
+        <md-autocomplete #searchGroup="mdAutocomplete" [displayWith]="displaySelectedAssets">
+          <md-option *ngFor="let assets of candidates" [value]="assets">
+            <span>{{ assets.group }} / {{ assets.name }} # {{assets.stability}}-{{ assets.version }}</span>
+          </md-option>
+        </md-autocomplete>
+      </div>
+    </div>
+  </form>
+</div>
+<div mdl-shadow="2">
+  <app-status [set_status]="status" *ngIf="status"></app-status>
+</div>

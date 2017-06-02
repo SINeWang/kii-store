@@ -7,12 +7,12 @@ import {SubjectsService} from '../shared/subjects/subjects.service';
 import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subjects} from '../shared/subjects/subjects.data';
-import {AssetsPublishService} from '../assets/assets-publish.service';
+
 import {InstancesService} from './instances.service';
 
 @Component({
   selector: 'app-compose-instances',
-  providers: [SubscriptionsSearchService, StatusService, SubjectsService, InstancesService, AssetsPublishService],
+  providers: [SubscriptionsSearchService, StatusService, SubjectsService, InstancesService, StatusService],
   templateUrl: 'instances.html'
 })
 export class InstancesComponent {
