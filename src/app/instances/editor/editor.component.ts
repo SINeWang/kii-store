@@ -1,10 +1,10 @@
 import {Component, Input} from '@angular/core';
 import {Subscriptions} from '../../subscriptions/subscriptions.data';
-import {StatusService} from '../status.service';
 import {Status} from '../status.data';
 import {AssetsPublishService} from '../../assets/assets-publish.service';
 import {AssetsPublication} from '../../assets/assets-publication.data';
 import {Receipt} from '../../assets/asset-publish-receipt.data';
+import {InstancesService} from '../instances.service';
 @Component({
   selector: 'app-compose-instances-editor',
   providers: [],
@@ -27,13 +27,13 @@ export class InstancesEditorComponent {
     this.subscriptions = value;
     this.assetsPublication.providerId = value.subscriberId;
     this.assetsPublication.subId = value.id;
-    this.statusService.visit(value).subscribe(
+    this.instancesService.visit(value).subscribe(
       data => this.handle_status(data),
       error => this.errorMessage = <any>error
     );
   }
 
-  constructor(private statusService: StatusService,
+  constructor(private instancesService: InstancesService,
               private assetsPublishService: AssetsPublishService) {
   }
 
@@ -51,7 +51,7 @@ export class InstancesEditorComponent {
   save() {
     const next = Object.assign({}, this.status);
     next.map = this.status.current;
-    this.statusService.commit(next).subscribe(
+    this.instancesService.commit(next).subscribe(
       data => this.handle_status(data),
       error => this.errorMessage = <any>error
     );
