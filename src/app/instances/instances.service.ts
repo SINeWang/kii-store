@@ -4,8 +4,8 @@ import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs/Observable';
-import {Status} from './status.data';
 import {Subscriptions} from '../subscriptions/subscriptions.data';
+import {Instances} from './instances.data';
 
 @Injectable()
 export class InstancesService {
@@ -15,7 +15,7 @@ export class InstancesService {
   constructor(private http: Http) {
   }
 
-  visit(subscriptions: Subscriptions): Observable<Status> {
+  visit(subscriptions: Subscriptions): Observable<Instances> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-VisitorId': 'wangyj',
@@ -29,7 +29,7 @@ export class InstancesService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  commit(status: Status): Observable<Status> {
+  commit(status: Instances): Observable<Instances> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-OperatorId': 'wangyj',

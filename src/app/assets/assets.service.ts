@@ -41,7 +41,7 @@ export class AssetsService {
     const options = new RequestOptions({headers: headers});
     let url = this.URL + '/';
     url += owners.id;
-    url += '/asset';
+    url += '/status';
     url += '/' + assets.pubSet;
     url += '/' + assets.stability;
     url += '/' + assets.version;

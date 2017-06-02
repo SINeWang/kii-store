@@ -1,17 +1,18 @@
 import {Component, ViewChild} from '@angular/core';
 import {SubscriptionsSearchService} from '../subscriptions/search/search.service';
 import {Subscriptions} from '../subscriptions/subscriptions.data';
-import {StatusService} from './status.service';
+import {StatusService} from '../status/status.service';
 import {SubjectsService} from '../shared/subjects/subjects.service';
 
 import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subjects} from '../shared/subjects/subjects.data';
 import {AssetsPublishService} from '../assets/assets-publish.service';
+import {InstancesService} from './instances.service';
 
 @Component({
   selector: 'app-compose-instances',
-  providers: [SubscriptionsSearchService, StatusService, SubjectsService, AssetsPublishService],
+  providers: [SubscriptionsSearchService, StatusService, SubjectsService, InstancesService, AssetsPublishService],
   templateUrl: 'instances.html'
 })
 export class InstancesComponent {

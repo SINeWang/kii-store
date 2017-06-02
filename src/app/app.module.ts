@@ -34,6 +34,8 @@ import {SingleMultiComponent} from './shared/singlemulti/singlemulti.component';
 import {IntensionsComponent} from './intensions/intensions.component';
 import {AssetComponent} from './asset/asset.component';
 import {WorkspaceComponent} from 'app/apps/workspace/workspace.component';
+import {StatusesComponent} from './statuses/statuses.component';
+import {StatusComponent} from './status/status.component';
 
 const routes: Routes = [
   {
@@ -82,6 +84,18 @@ const routes: Routes = [
         component: InstancesComponent
       },
       {
+        path: 'statuses/:owner-id/:group/:name',
+        component: StatusesComponent
+      },
+      {
+        path: 'statuses/:owner-id',
+        component: StatusesComponent
+      },
+      {
+        path: 'statuses',
+        component: StatusesComponent
+      },
+      {
         path: 'assets/:owner-id/:group/:name',
         component: AssetsComponent
       },
@@ -111,6 +125,8 @@ const routes: Routes = [
     NewExtensionsComponent,
     SingleMultiComponent,
     StabilitiesComponent,
+    StatusComponent,
+    StatusesComponent,
     StructuresComponent,
     SubjectsComponent,
     SubscriptionsSearchComponent,

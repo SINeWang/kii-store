@@ -1,9 +1,19 @@
 export class Instances {
-  id: string;
-  extId: string;
-  field: string;
-  intId: string;
-  operatorId: string;
+  subId: string;
   ownerId: string;
-  value: any;
+  map: Object;
+  previous: Object;
+  current: Object;
+  intensions: Intension[];
 }
+
+export class Intension {
+  id: string;
+  field: string;
+  refPubSet: string;
+  single: boolean;
+  structure: string;
+  visibility: string;
+}
+
+

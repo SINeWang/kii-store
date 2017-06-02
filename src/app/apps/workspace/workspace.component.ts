@@ -15,6 +15,7 @@ export class WorkspaceComponent {
       {label: 'Extensions', link: 'extensions'},
       {label: 'Models', link: 'models'},
       {label: 'Instances', link: 'instances'},
+      {label: 'Statuses', link: 'statuses'},
       {label: 'Assets', link: 'assets'}];
     if (route.snapshot.children.length > 0) {
       const path = route.snapshot.children[0].url[0].path;
