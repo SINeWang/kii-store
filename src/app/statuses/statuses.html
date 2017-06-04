@@ -3,16 +3,16 @@
     <button type="submit" style="display:none"></button>
     <div class="content-grid mdl-grid">
       <div class="mdl-cell mdl-cell--3-col">
-        <app-subjects [access_type]="'Owner'" [object_type]="'Asset'" [subject_alias]="'owner-id'" ></app-subjects>
+        <app-subjects [access_type]="'Owner'" [object_type]="'Status'" [subject_alias]="'owner-id'"></app-subjects>
       </div>
       <div class="mdl-cell mdl-cell--3-col">
         <md-input-container style="width: 100%;">
           <input type="text" mdInput placeholder="Group" [mdAutocomplete]="searchGroup"
                  [formControl]="searchGroupFormCtrl">
         </md-input-container>
-        <md-autocomplete #searchGroup="mdAutocomplete" [displayWith]="displaySelectedAssets">
-          <md-option *ngFor="let assets of candidates" [value]="assets">
-            <span>{{ assets.group }} / {{ assets.name }} # {{assets.stability}}-{{ assets.version }}</span>
+        <md-autocomplete #searchGroup="mdAutocomplete" [displayWith]="displaySelectedStatus">
+          <md-option *ngFor="let statuses of candidates" [value]="statuses">
+            <span>{{ statuses.group }} / {{ statuses.name }} # {{statuses.tree}}</span>
           </md-option>
         </md-autocomplete>
       </div>

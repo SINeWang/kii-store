@@ -6,8 +6,8 @@ import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../environments/environment';
 
 import {Subjects} from '../shared/subjects/subjects.data';
-import {Asset} from '../asset/asset.data';
-import {Assets} from '../assets/assets.data';
+import {Status} from '../status/status.data';
+import {Statuses} from './statuses.data';
 
 @Injectable()
 export class StatusesSerivce {
@@ -17,7 +17,7 @@ export class StatusesSerivce {
   constructor(private http: Http) {
   }
 
-  search(owners: Subjects, query: string): Observable<Assets[]> {
+  search(owners: Subjects, query: string): Observable<Statuses[]> {
 
     const headers = new Headers({
       // 'Authorization': authorization,
@@ -33,7 +33,7 @@ export class StatusesSerivce {
 
   }
 
-  visit(owners: Subjects, assets: Asset): Observable<Asset> {
+  visit(owners: Subjects, status: Status): Observable<Status> {
 
     const headers = new Headers({
       // 'Authorization': authorization,
@@ -43,9 +43,7 @@ export class StatusesSerivce {
     let url = this.URL + '/';
     url += owners.id;
     url += '/status';
-    url += '/' + assets.pubSet;
-    url += '/' + assets.stability;
-    url += '/' + assets.version;
+    url += '/' + status.id;
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));

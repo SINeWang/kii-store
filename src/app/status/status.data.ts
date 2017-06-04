@@ -1,13 +1,13 @@
 import {Intension} from '../intensions/intensions.data';
 export class Status {
-  pubSet: string;
+  id: string;
   ownerId: string;
   group: string;
   name: string;
-  version: string;
-  stability: string;
+  tree: string;
   intensions: Intension[];
   map: Map<string, TimedValue>;
+  beginTime: Date;
 }
 
 export class TimedValue {

@@ -73,8 +73,8 @@ export class StatusesComponent {
 
   }
 
-  displaySelectedAssets(status: Status): string {
-    return status ? status.group + ' / ' + status.name + ' # ' + status.stability + '-' + status.version : '';
+  displaySelectedStatus(status: Status): string {
+    return status ? status.group + ' / ' + status.name + ' # ' + status.tree : '';
   }
 
 

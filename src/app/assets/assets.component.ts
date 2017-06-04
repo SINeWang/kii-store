@@ -10,7 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 
 
 @Component({
-  selector: 'app-explore-assets',
+  selector: 'app-assets',
   providers: [AssetsService, SubjectsService],
   templateUrl: 'assets.html'
 })

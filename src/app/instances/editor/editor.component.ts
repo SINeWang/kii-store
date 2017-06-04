@@ -1,11 +1,10 @@
 import {Component, Input} from '@angular/core';
 import {Subscriptions} from '../../subscriptions/subscriptions.data';
 
-import {Receipt} from '../../assets/asset-publish-receipt.data';
 import {InstancesService} from '../instances.service';
 import {Instances} from '../instances.data';
 import {StatusService} from '../../status/status.service';
-import {Form} from '../../status/status-publication.data';
+import {Form, Receipt} from '../../status/status-publication.data';
 @Component({
   selector: 'app-compose-instances-editor',
   providers: [],

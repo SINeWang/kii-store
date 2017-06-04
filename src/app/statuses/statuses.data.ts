@@ -1,8 +1,8 @@
 export class Statuses {
-  pubSet: string;
+  id: string;
   ownerId: string;
   group: string;
   name: string;
-  version: string;
-  stability: string;
+  tree: string;
+  beginTime: Date;
 }
