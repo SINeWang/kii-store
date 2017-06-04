@@ -41,10 +41,8 @@ export class AssetsService {
     const options = new RequestOptions({headers: headers});
     let url = this.URL + '/';
     url += owners.id;
-    url += '/status';
-    url += '/' + assets.pubSet;
-    url += '/' + assets.stability;
-    url += '/' + assets.version;
+    url += '/asset';
+    url += '/' + assets.id;
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));

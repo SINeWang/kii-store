@@ -1,8 +1,8 @@
 export class Assets {
-  pubSet: string;
+  id: string;
   ownerId: string;
   group: string;
   name: string;
-  version: string;
   stability: string;
+  version: string;
 }
