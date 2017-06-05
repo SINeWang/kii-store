@@ -1,6 +1,6 @@
 export class Statuses {
   id: string;
-  ownerId: string;
+  subscriberId: string;
   group: string;
   name: string;
   tree: string;

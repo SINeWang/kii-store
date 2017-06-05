@@ -1,10 +1,11 @@
 import {Component, Input} from '@angular/core';
-import {Subscriptions} from '../../subscriptions/subscriptions.data';
 
 import {InstancesService} from '../instances.service';
 import {Instances} from '../instances.data';
 import {StatusService} from '../../status/status.service';
-import {Form, Receipt} from '../../status/status-publication.data';
+import {Statuses} from '../../statuses/statuses.data';
+import {Receipt, StatusPublication} from '../../status/status-publication.data';
+import {ActivatedRoute, Router} from '@angular/router';
 @Component({
   selector: 'app-compose-instances-editor',
   providers: [],
@@ -16,25 +17,33 @@ export class InstancesEditorComponent {
 
   status: Instances;
 
-  subscriptions: Subscriptions;
+  statuses: Statuses;
 
   visibility: string;
 
-  assetsPublication = new Form();
+  publication = new StatusPublication();
 
   @Input()
-  set selected_subscriptions(value: Subscriptions) {
-    this.subscriptions = value;
-    this.assetsPublication.providerId = value.subscriberId;
-    this.assetsPublication.subId = value.id;
+  set selected_statuses(value: Statuses) {
+    this.statuses = value;
     this.instancesService.visit(value).subscribe(
       data => this.handle_status(data),
       error => this.errorMessage = <any>error
     );
   }
 
+  publication_stability(stability: string) {
+    this.publication.stability = stability;
+  }
+
+  publication_visibility(visibility: string) {
+    this.publication.visibility = visibility;
+  }
+
   constructor(private instancesService: InstancesService,
-              private statusService: StatusService) {
+              private statusService: StatusService,
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   handle_status(status: Instances) {
@@ -51,29 +60,23 @@ export class InstancesEditorComponent {
   save() {
     const next = Object.assign({}, this.status);
     next.map = this.status.current;
-    this.instancesService.commit(next).subscribe(
+    this.instancesService.commit(next, this.statuses).subscribe(
       data => this.handle_status(data),
       error => this.errorMessage = <any>error
     );
   }
 
-  publication_visibility(visibility: string) {
-    this.assetsPublication.visibility = visibility;
-  }
-
-  publication_stability(stability: string) {
-    this.assetsPublication.stability = stability;
-  }
-
-
   publish() {
-    this.statusService.commit(this.assetsPublication).subscribe(
+    this.statusService.commit(this.publication, this.statuses).subscribe(
       data => this.handle_receipt(data),
       error => this.errorMessage = <any>error
     );
   }
 
   handle_receipt(receipt: Receipt) {
-    window.location.href = '/dashboard/assets/' + receipt.providerId + '/' + receipt.group + '/' + receipt.name;
+    const parentPath = this.route.parent.snapshot.url[0].path;
+
+    this.router.navigate([parentPath, 'statuses', receipt.pubSet]);
+
   }
 }

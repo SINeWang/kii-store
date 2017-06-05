@@ -1,6 +1,4 @@
 export class Instances {
-  subId: string;
-  ownerId: string;
   map: Object;
   previous: Object;
   current: Object;

@@ -9,6 +9,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Subjects} from '../shared/subjects/subjects.data';
 
 import {InstancesService} from './instances.service';
+import {Statuses} from '../statuses/statuses.data';
 
 @Component({
   selector: 'app-compose-instances',
@@ -27,8 +28,8 @@ export class InstancesComponent {
 
   owners: Subjects;
 
-  notifyEditor(subscriptions: Subscriptions) {
-    this.subscriptionsEditor.selected_subscriptions = subscriptions;
+  notifyEditor(statuses: Statuses) {
+    this.subscriptionsEditor.selected_statuses = statuses;
   }
 
   constructor(private route: ActivatedRoute,

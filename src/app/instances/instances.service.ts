@@ -4,8 +4,8 @@ import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs/Observable';
-import {Subscriptions} from '../subscriptions/subscriptions.data';
 import {Instances} from './instances.data';
+import {Statuses} from '../statuses/statuses.data';
 
 @Injectable()
 export class InstancesService {
@@ -15,7 +15,7 @@ export class InstancesService {
   constructor(private http: Http) {
   }
 
-  visit(subscriptions: Subscriptions): Observable<Instances> {
+  visit(statuses: Statuses): Observable<Instances> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-VisitorId': 'wangyj',
@@ -23,13 +23,13 @@ export class InstancesService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + subscriptions.subscriberId + '/status/' + subscriptions.id;
+    const url = this.URL + '/' + statuses.subscriberId + '/status/' + statuses.id;
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  commit(status: Instances): Observable<Instances> {
+  commit(status: Instances, statuses: Statuses): Observable<Instances> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-OperatorId': 'wangyj',
@@ -37,7 +37,7 @@ export class InstancesService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + status.ownerId + '/status/' + status.subId;
+    const url = this.URL + '/' + statuses.subscriberId + '/status/' + statuses.id;
     return this.http.put(url, status.map, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));

@@ -1,8 +1,6 @@
-export class Form {
-
+export class StatusPublication {
   providerId: string;
   stability: string;
-  subId: string;
   visibility: string;
   version: string;
 }
