@@ -17,7 +17,7 @@ import {Subjects} from '../shared/subjects/subjects.data';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-compose-extensions',
+  selector: 'app-extensions',
   providers: [ExtensionsService, IntensionsService, ModelsService, SubjectsService, PublicationService],
   templateUrl: 'extensions.html',
 })

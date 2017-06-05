@@ -12,11 +12,11 @@ export class WorkspaceComponent {
 
   constructor(private route: ActivatedRoute) {
     this.routeLinks = [
-      {label: 'Extensions', link: 'extensions'},
-      {label: 'Models', link: 'models'},
-      {label: 'Instances', link: 'instances'},
-      {label: 'Statuses', link: 'statuses'},
-      {label: 'Assets', link: 'assets'}];
+      {label: 'Prototype', link: 'prototypes'},
+      {label: 'Model', link: 'models'},
+      {label: 'Instance', link: 'instances'},
+      {label: 'Status', link: 'statuses'},
+      {label: 'Asset', link: 'assets'}];
     if (route.snapshot.children.length > 0) {
       const path = route.snapshot.children[0].url[0].path;
       for (let _i = 0; _i < this.routeLinks.length; _i++) {

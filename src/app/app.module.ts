@@ -48,15 +48,15 @@ const routes: Routes = [
     component: WorkspaceComponent,
     children: [
       {
-        path: 'extensions',
+        path: 'prototypes',
         component: ExtensionsComponent
       },
       {
-        path: 'extensions/:owner-id',
+        path: 'prototypes/:owner-id',
         component: ExtensionsComponent
       },
       {
-        path: 'extensions/:owner-id/:group/:name',
+        path: 'prototypes/:owner-id/:group/:name',
         component: ExtensionsComponent
       },
       {
