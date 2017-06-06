@@ -1,8 +1,11 @@
 export class Statuses {
   id: string;
-  subscriberId: string;
+  providerId: string;
+  pubSet: string;
   group: string;
   name: string;
-  tree: string;
+  stability: string;
+  version: string;
   beginTime: Date;
+  endTime: Date;
 }

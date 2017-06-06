@@ -1,3 +1,4 @@
+import {Data} from '@angular/router';
 export class StatusPub {
   providerId: string;
   stability: string;
@@ -12,6 +13,7 @@ export class Receipt {
   name: string;
   providerId: string;
   version: string;
-  visibility;
+  visibility: string;
   beginTime: Date;
+  endTime?: Data;
 }

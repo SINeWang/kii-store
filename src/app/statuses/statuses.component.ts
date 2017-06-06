@@ -19,7 +19,7 @@ export class StatusesComponent {
 
   errorMessage: string;
 
-  searchGroupFormCtrl = new FormControl();
+  searchFormCtrl = new FormControl();
 
   ownersListener: Subscription;
 
@@ -38,9 +38,9 @@ export class StatusesComponent {
       owners => this.handleOwners(owners)
     );
 
-    this.searchGroupFormCtrl.valueChanges
+    this.searchFormCtrl.valueChanges
       .startWith(null)
-      .subscribe(name => this.onInputGroupChanged(name));
+      .subscribe(name => this.onSearchChanged(name));
 
   }
 
@@ -54,7 +54,7 @@ export class StatusesComponent {
     this.router.navigate([parentPath, currentPath, owners.id]);
   }
 
-  onInputGroupChanged(query: any) {
+  onSearchChanged(query: any) {
     if (this.owners == null) {
       return;
     }
@@ -65,7 +65,7 @@ export class StatusesComponent {
       );
     } else {
       this.statusesService.search(this.owners, query).subscribe(
-        data => this.handleData(data),
+        data => this.candidates = data,
         error => this.errorMessage = <any>error
       );
     }
@@ -73,14 +73,8 @@ export class StatusesComponent {
 
   }
 
-  displaySelectedStatus(status: Status): string {
-    return status ? status.group + ' / ' + status.name + ' # ' + status.tree : '';
+  displaySelected(selected: Statuses): string {
+    return selected ? selected.group + ' / ' + selected.name + ' # ' + selected.stability + '-' + selected.version : '';
   }
-
-
-  handleData(statuses: Statuses[]) {
-    this.candidates = statuses;
-  }
-
 
 }

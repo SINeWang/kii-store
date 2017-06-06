@@ -7,12 +7,11 @@
       </div>
       <div class="mdl-cell mdl-cell--3-col">
         <md-input-container style="width: 100%;">
-          <input type="text" mdInput placeholder="Group" [mdAutocomplete]="searchGroup"
-                 [formControl]="searchGroupFormCtrl">
+          <input type="text" mdInput placeholder="Group" [mdAutocomplete]="searchGroup" [formControl]="searchFormCtrl">
         </md-input-container>
-        <md-autocomplete #searchGroup="mdAutocomplete" [displayWith]="displaySelectedStatus">
+        <md-autocomplete #searchGroup="mdAutocomplete" [displayWith]="displaySelected">
           <md-option *ngFor="let statuses of candidates" [value]="statuses">
-            <span>{{ statuses.group }} / {{ statuses.name }} # {{statuses.tree}}</span>
+            <span>{{ statuses.group }} / {{ statuses.name }} # {{statuses.stability}} - {{statuses.version}}</span>
           </md-option>
         </md-autocomplete>
       </div>

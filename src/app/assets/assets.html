@@ -8,7 +8,7 @@
       <div class="mdl-cell mdl-cell--3-col">
         <md-input-container style="width: 100%;">
           <input type="text" mdInput placeholder="Group" [mdAutocomplete]="searchGroup"
-                 [formControl]="searchGroupFormCtrl">
+                 [formControl]="searchFormCtrl">
         </md-input-container>
         <md-autocomplete #searchGroup="mdAutocomplete" [displayWith]="displaySelectedAssets">
           <md-option *ngFor="let assets of candidates" [value]="assets">

@@ -10,6 +10,7 @@ import {Statuses} from '../statuses/statuses.data';
 import {InstancesSearchService} from './search/inst-search.service';
 import {StatusesSerivce} from '../statuses/statuses.service';
 import {StatusPubService} from '../statuses/publication/status-pub.service';
+import {ModelSub} from '../models/subscription/model-sub.data';
 
 @Component({
   selector: 'app-compose-instances',
@@ -28,8 +29,8 @@ export class InstancesComponent {
 
   owners: Subjects;
 
-  notifyEditor(statuses: Statuses) {
-    this.subscriptionsEditor.selected_statuses = statuses;
+  notifyEditor(modelSub: ModelSub) {
+    this.subscriptionsEditor.selected_statuses = modelSub;
   }
 
   constructor(private route: ActivatedRoute,

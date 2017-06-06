@@ -2,11 +2,10 @@ import {Component, Input} from '@angular/core';
 
 import {InstancesService} from '../instances.service';
 import {Instances} from '../instances.data';
-
-import {Statuses} from '../../statuses/statuses.data';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Receipt, StatusPub} from '../../statuses/publication/status-pub.data';
 import {StatusPubService} from '../../statuses/publication/status-pub.service';
+import {ModelSub} from '../../models/subscription/model-sub.data';
 @Component({
   selector: 'app-instances-editor',
   providers: [],
@@ -18,14 +17,14 @@ export class InstancesEditorComponent {
 
   instances: Instances;
 
-  statuses: Statuses;
+  statuses: ModelSub;
 
   visibility: string;
 
   publication = new StatusPub();
 
   @Input()
-  set selected_statuses(value: Statuses) {
+  set selected_statuses(value: ModelSub) {
     this.statuses = value;
     this.instancesService.visit(value).subscribe(
       data => this.handle_status(data),
@@ -77,7 +76,7 @@ export class InstancesEditorComponent {
   handle_receipt(receipt: Receipt) {
     const parentPath = this.route.parent.snapshot.url[0].path;
 
-    this.router.navigate([parentPath, 'statuses', receipt.pubSet]);
+    this.router.navigate([parentPath, 'statuses', receipt.providerId, receipt.group, receipt.name]);
 
   }
 }
