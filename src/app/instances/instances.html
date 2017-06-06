@@ -5,11 +5,11 @@
         <app-subjects [object_type]="'Instance'" [access_type]="'Owner'" [subject_alias]="'owner-id'"></app-subjects>
       </div>
       <div class="mdl-cell mdl-cell--4-col">
-        <app-subscriptions-search #subscriptionsSearch (onFound)="notifyEditor($event)"></app-subscriptions-search>
+        <app-instances-search #subscriptionsSearch (onFound)="notifyEditor($event)"></app-instances-search>
       </div>
       <div class="mdl-cell mdl-cell--5-col">
       </div>
     </div>
   </form>
 </div>
-<app-compose-instances-editor #subscriptionsEditor></app-compose-instances-editor>
+<app-instances-editor #subscriptionsEditor></app-instances-editor>

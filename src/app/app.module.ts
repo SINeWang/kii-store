@@ -24,10 +24,7 @@ import {InstancesComponent} from './instances/instances.component';
 import {NewExtensionsComponent} from './extensions/new/new.component';
 import {VisibilityComponent} from './shared/visibility/visibility.component';
 import {AssetsComponent} from './assets/assets.component';
-import {SubscriptionsSearchComponent} from './subscriptions/search/search.component';
-import {InstancesEditorComponent} from './instances/editor/editor.component';
 import {SubjectsComponent} from './shared/subjects/subjects.component';
-import {GroupNameTreeComponent} from './gnt/gnt.component';
 import {StabilitiesComponent} from './shared/stabilities/stabilities.component';
 import {StructuresComponent} from './shared/structures/structures.component';
 import {SingleMultiComponent} from './shared/singlemulti/singlemulti.component';
@@ -36,6 +33,8 @@ import {AssetComponent} from './asset/asset.component';
 import {WorkspaceComponent} from 'app/apps/workspace/workspace.component';
 import {StatusesComponent} from './statuses/statuses.component';
 import {StatusComponent} from './status/status.component';
+import {InstancesEditorComponent} from './instances/editor/inst-editor.component';
+import {InstancesSearchComponent} from './instances/search/inst-search.component';
 
 const routes: Routes = [
   {
@@ -117,9 +116,9 @@ const routes: Routes = [
     AssetComponent,
     AssetsComponent,
     ExtensionsComponent,
-    GroupNameTreeComponent,
     InstancesComponent,
     InstancesEditorComponent,
+    InstancesSearchComponent,
     IntensionsComponent,
     ModelsComponent,
     NewExtensionsComponent,
@@ -129,7 +128,6 @@ const routes: Routes = [
     StatusesComponent,
     StructuresComponent,
     SubjectsComponent,
-    SubscriptionsSearchComponent,
     VisibilityComponent,
     WorkspaceComponent
   ],

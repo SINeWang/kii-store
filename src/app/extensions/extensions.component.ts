@@ -9,16 +9,16 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import {IntensionsService} from '../intensions/intensions.service';
 import {Subscription} from 'rxjs/Subscription';
-import {PublicationService} from '../publication/publication.service';
-import {Publication} from '../publication/publication.data';
 import {Extension} from '../extension/extension.data';
 import {SubjectsService} from '../shared/subjects/subjects.service';
 import {Subjects} from '../shared/subjects/subjects.data';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ProtoPub} from '../prototypes/publication/proto-pub.data';
+import {ProtoPubSetvice} from '../prototypes/publication/proto-pub.service';
 
 @Component({
   selector: 'app-extensions',
-  providers: [ExtensionsService, IntensionsService, ModelsService, SubjectsService, PublicationService],
+  providers: [ExtensionsService, IntensionsService, ModelsService, SubjectsService, ProtoPubSetvice],
   templateUrl: 'extensions.html',
 })
 export class ExtensionsComponent implements OnDestroy {
@@ -28,7 +28,7 @@ export class ExtensionsComponent implements OnDestroy {
 
   private intension = new Intension();
 
-  private publication = new Publication();
+  private protoPub = new ProtoPub();
 
   private errorMessage: string;
 
@@ -58,7 +58,7 @@ export class ExtensionsComponent implements OnDestroy {
               private modelsService: ModelsService,
               private intensionsService: IntensionsService,
               private subjectsService: SubjectsService,
-              private publicationService: PublicationService,
+              private publicationService: ProtoPubSetvice,
               private route: ActivatedRoute,
               private router: Router) {
 
@@ -111,8 +111,8 @@ export class ExtensionsComponent implements OnDestroy {
 
   handle_extension(extension: Extension) {
     this.extension = extension;
-    this.publication.providerId = extension.ownerId;
-    this.publication.extId = extension.id;
+    this.protoPub.providerId = extension.ownerId;
+    this.protoPub.extId = extension.id;
   }
 
   onCandidateModelsChange(input: any) {
@@ -167,7 +167,7 @@ export class ExtensionsComponent implements OnDestroy {
   }
 
   publication_stability(stability: string) {
-    this.publication.stability = stability;
+    this.protoPub.stability = stability;
   }
 
   intension_single(single: boolean) {
@@ -183,7 +183,7 @@ export class ExtensionsComponent implements OnDestroy {
   }
 
   publish_extension(): void {
-    this.publicationService.commit(this.publication, this.owners).subscribe(
+    this.publicationService.commit(this.protoPub, this.owners).subscribe(
       data => {
         console.log(data);
       },

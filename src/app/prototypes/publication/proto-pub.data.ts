@@ -1,4 +1,4 @@
-export class Publication {
+export class ProtoPub {
   extId: string;
   stability: string;
   version: string;

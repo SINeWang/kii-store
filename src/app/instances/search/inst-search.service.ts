@@ -2,19 +2,19 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../../environments/environment';
-import {Subscriptions} from '../subscriptions.data';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Subjects} from '../../shared/subjects/subjects.data';
+import {ModelSub} from '../../models/subscription/model-sub.data';
 @Injectable()
-export class SubscriptionsSearchService {
+export class InstancesSearchService {
 
   private URL = environment.kiimate_url;
 
-  private subscriptionsSource = new BehaviorSubject<Subscriptions>(null);
+  private subscriptionsSource = new BehaviorSubject<ModelSub>(null);
 
   announced$ = this.subscriptionsSource.asObservable();
 
-  announce(subscriptions: Subscriptions) {
+  announce(subscriptions: ModelSub) {
     this.subscriptionsSource.next(subscriptions);
   }
 
@@ -22,7 +22,7 @@ export class SubscriptionsSearchService {
   }
 
   search(query: string,
-         subscribers: Subjects): Observable<Subscriptions[]> {
+         subscribers: Subjects): Observable<ModelSub[]> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-VisitorId': '123',

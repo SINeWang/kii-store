@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
-import {environment} from '../../environments/environment';
-import {Subscriptions} from './subscriptions.data';
-import {Subjects} from '../shared/subjects/subjects.data';
+import {environment} from '../../../environments/environment';
+import {Subjects} from '../../shared/subjects/subjects.data';
+import {ModelSub} from './model-sub.data';
 @Injectable()
-export class SubscriptionsCommitService {
+export class ModelSubService {
 
   private URL = environment.kiimate_url;
 
@@ -14,7 +14,7 @@ export class SubscriptionsCommitService {
   }
 
   commit(subscribers: Subjects,
-         subscriptions: Subscriptions): Observable<Subscriptions[]> {
+         subscriptions: ModelSub): Observable<ModelSub[]> {
     const headers = new Headers({
       'X-SUMMER-RequestId': 'random',
       'X-SUMMER-OperatorId': 'wangyj',

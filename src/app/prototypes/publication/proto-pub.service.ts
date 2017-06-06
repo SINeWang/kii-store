@@ -1,23 +1,23 @@
 import {Injectable} from '@angular/core';
-import {Publication} from './publication.data';
 import {Observable} from 'rxjs/Observable';
-import {Model} from '../models/models.data';
+import {Model} from '../../models/models.data';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
-import {environment} from '../../environments/environment';
+import {environment} from '../../../environments/environment';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import {Subjects} from '../shared/subjects/subjects.data';
+import {Subjects} from '../../shared/subjects/subjects.data';
+import {ProtoPub} from './proto-pub.data';
 
 @Injectable()
-export class PublicationService {
+export class ProtoPubSetvice {
 
   private URL = environment.kiimate_url;
 
   constructor(private http: Http) {
   }
 
-  commit(publication: Publication,
+  commit(publication: ProtoPub,
          subjects: Subjects): Observable<Model[]> {
     const headers = new Headers({
       // 'Authorization': authorization,

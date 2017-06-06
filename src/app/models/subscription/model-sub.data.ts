@@ -1,4 +1,4 @@
-export class Subscriptions {
+export class ModelSub {
   id: string;
   subSet: string;
   subscriberId: string;

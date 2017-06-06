@@ -2,17 +2,18 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ModelsService} from './models.service';
 import {Model, Models} from './models.data';
-import {Subscriptions} from '../subscriptions/subscriptions.data';
-import {SubscriptionsCommitService} from '../subscriptions/subscriptions-commit.service';
+
 import {Subjects} from '../shared/subjects/subjects.data';
 import {SubjectsService} from '../shared/subjects/subjects.service';
 import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ModelSubService} from './subscription/model-sub.service';
+import {ModelSub} from './subscription/model-sub.data';
 
 
 @Component({
   selector: 'app-explore-models',
-  providers: [ModelsService, SubscriptionsCommitService, SubjectsService],
+  providers: [ModelsService, ModelSubService, SubjectsService],
   templateUrl: 'models.html'
 })
 export class ModelsComponent {
@@ -47,7 +48,7 @@ export class ModelsComponent {
 
   constructor(private subjectsService: SubjectsService,
               private modelsService: ModelsService,
-              private subscriptionsService: SubscriptionsCommitService,
+              private subscriptionsService: ModelSubService,
               private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router) {
@@ -106,7 +107,7 @@ export class ModelsComponent {
 
   subscribe(pubSet: string): void {
     const subscribers = new Subjects();
-    const subscriptions = new Subscriptions();
+    const subscriptions = new ModelSub();
     subscriptions.subSet = pubSet;
     subscriptions.group = this.subscribeGroup.value;
     subscriptions.name = this.subscribeName.value;

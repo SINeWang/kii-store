@@ -1,19 +1,19 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Subscription} from 'rxjs/Subscription';
-import {Subscriptions} from '../subscriptions.data';
 import {Observable} from 'rxjs/Observable';
-import {SubscriptionsSearchService} from './search.service';
 import {Subjects} from '../../shared/subjects/subjects.data';
 import {SubjectsService} from '../../shared/subjects/subjects.service';
+import {ModelSub} from '../../models/subscription/model-sub.data';
+import {InstancesSearchService} from './inst-search.service';
 
 
 @Component({
-  selector: 'app-subscriptions-search',
+  selector: 'app-instances-search',
   providers: [],
-  templateUrl: 'search.html'
+  templateUrl: 'inst-search.html'
 })
-export class SubscriptionsSearchComponent {
+export class InstancesSearchComponent {
 
 
   errorMessage: string;
@@ -24,13 +24,13 @@ export class SubscriptionsSearchComponent {
 
   input_group = new FormControl();
 
-  candidateSubscriptions: Subscriptions[];
+  candidateSubscriptions: ModelSub[];
 
   @Output()
   onFound = new EventEmitter();
 
   constructor(private subjectsService: SubjectsService,
-              private subscriptionsService: SubscriptionsSearchService) {
+              private subscriptionsService: InstancesSearchService) {
     this.ownerSubscription = subjectsService.announced$.subscribe(
       owners => {
         this.selected_subscribers = owners;
@@ -59,7 +59,7 @@ export class SubscriptionsSearchComponent {
 
   }
 
-  displayCandidates(subscriptions: Subscriptions): string {
+  displayCandidates(subscriptions: ModelSub): string {
     return subscriptions ? subscriptions.group + ' / ' + subscriptions.name + ' # ' + subscriptions.tree : '';
   }
 

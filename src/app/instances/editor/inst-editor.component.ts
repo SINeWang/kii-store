@@ -7,15 +7,15 @@ import {Statuses} from '../../statuses/statuses.data';
 import {Receipt, StatusPublication} from '../../status/status-publication.data';
 import {ActivatedRoute, Router} from '@angular/router';
 @Component({
-  selector: 'app-compose-instances-editor',
+  selector: 'app-instances-editor',
   providers: [],
-  templateUrl: 'editor.html'
+  templateUrl: 'inst-editor.html'
 })
 export class InstancesEditorComponent {
 
   errorMessage: string;
 
-  status: Instances;
+  instances: Instances;
 
   statuses: Statuses;
 
@@ -46,20 +46,20 @@ export class InstancesEditorComponent {
               private router: Router) {
   }
 
-  handle_status(status: Instances) {
-    this.status = status;
-    this.status.previous = Object.assign({}, status.map);
+  handle_status(instances: Instances) {
+    this.instances = instances;
+    this.instances.previous = Object.assign({}, instances.map);
     const kv = {};
-    for (const key of Object.keys(status.map)) {
-      kv[key] = status.map[key].value;
+    for (const key of Object.keys(instances.map)) {
+      kv[key] = instances.map[key].value;
     }
-    this.status.current = Object.assign({}, kv);
+    this.instances.current = Object.assign({}, kv);
   }
 
 
   save() {
-    const next = Object.assign({}, this.status);
-    next.map = this.status.current;
+    const next = Object.assign({}, this.instances);
+    next.map = this.instances.current;
     this.instancesService.commit(next, this.statuses).subscribe(
       data => this.handle_status(data),
       error => this.errorMessage = <any>error
