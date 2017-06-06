@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {Extension} from '../extension/extension.data';
 import {Intension} from './intensions.data';
 import {IntensionsService} from './intensions.service';
-import {Subjects} from '../shared/subjects/subjects.data';
+import {Subjects} from '../../shared/subjects/subjects.data';
 
 @Component({
   selector: 'app-intensions',

@@ -2,16 +2,16 @@ import {Component, Input} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import {NewExtensionsService} from './new.service';
 import {Extensions} from '../extensions.data';
 import {Subscription} from 'rxjs/Subscription';
-import {Subjects} from '../../shared/subjects/subjects.data';
-import {SubjectsService} from '../../shared/subjects/subjects.service';
+import {Subjects} from '../../../shared/subjects/subjects.data';
+import {SubjectsService} from '../../../shared/subjects/subjects.service';
+import {NewExtensionsService} from './proto-ext-new.service';
 
 @Component({
-  selector: 'app-compose-extensions-new',
+  selector: 'app-proto-ext-new',
   providers: [NewExtensionsService],
-  templateUrl: 'new.html',
+  templateUrl: 'proto-ext-new.html',
 })
 export class NewExtensionsComponent {
 

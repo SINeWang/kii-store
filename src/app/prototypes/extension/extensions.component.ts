@@ -1,20 +1,20 @@
 import {Component, OnDestroy} from '@angular/core';
 import {Extensions} from './extensions.data';
 import {ExtensionsService} from './extensions.service';
-import {Intension} from '../intensions/intensions.data';
-import {Model, Models, Snapshot} from '../models/models.data';
-import {ModelsService} from '../models/models.service';
+import {Intension} from '../intension/intensions.data';
+import {Model, Models, Snapshot} from '../../models/models.data';
+import {ModelsService} from '../../models/models.service';
 import {FormControl} from '@angular/forms';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
-import {IntensionsService} from '../intensions/intensions.service';
+import {IntensionsService} from '../intension/intensions.service';
 import {Subscription} from 'rxjs/Subscription';
-import {Extension} from '../extension/extension.data';
-import {SubjectsService} from '../shared/subjects/subjects.service';
-import {Subjects} from '../shared/subjects/subjects.data';
+import {Extension} from './extension.data';
+import {SubjectsService} from '../../shared/subjects/subjects.service';
+import {Subjects} from '../../shared/subjects/subjects.data';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ProtoPub} from '../prototypes/publication/proto-pub.data';
-import {ProtoPubSetvice} from '../prototypes/publication/proto-pub.service';
+import {ProtoPub} from '../publication/proto-pub.data';
+import {ProtoPubSetvice} from '../publication/proto-pub.service';
 
 @Component({
   selector: 'app-extensions',

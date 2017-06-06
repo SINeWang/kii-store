@@ -3,44 +3,48 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
-import {environment} from '../../environments/environment';
-import {Extensions} from './extensions.data';
+import {environment} from '../../../environments/environment';
+import {Intension, IntensionsWithSchema} from './intensions.data';
 import {Extension} from '../extension/extension.data';
-import {Subjects} from '../shared/subjects/subjects.data';
+import {Subjects} from '../../shared/subjects/subjects.data';
 
 @Injectable()
-export class ExtensionsService {
+export class IntensionsService {
 
   private URL = environment.kiimate_url;
 
   constructor(private http: Http) {
   }
 
-  search(owners: Subjects,
-         query: string): Observable<Extensions[]> {
+  commit(owners: Subjects,
+         form: Intension): Observable<IntensionsWithSchema> {
+    const authorization = localStorage.getItem('authorization');
     const headers = new Headers({
       // 'Authorization': authorization,
-      'X-SUMMER-VisitorId': 'wangyj',
+      'X-SUMMER-OperatorId': 'wangyj',
       'X-SUMMER-RequestId': Math.random()
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + owners.id + '/extensions?group=' + query;
-    return this.http.get(url, options)
+    const url = this.URL + '/' + owners.id + '/intensions';
+    return this.http.post(url, form, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  visit(search: Extension): Observable<Extension> {
+  remove(extension: Extension,
+         intension: Intension,
+         owners: Subjects): Observable<IntensionsWithSchema> {
+    const authorization = localStorage.getItem('authorization');
     const headers = new Headers({
       // 'Authorization': authorization,
-      'X-SUMMER-VisitorId': 'wangyj',
+      'X-SUMMER-OperatorId': 'wangyj',
       'X-SUMMER-RequestId': Math.random()
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + search.ownerId + '/extensions/' + search.group + '/' + search.name + '/' + search.tree;
-    return this.http.get(url, options)
+    const url = this.URL + '/' + owners.id + '/extensions/' + extension.id + '/intensions/' + intension.id;
+    return this.http.patch(url, null, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }

@@ -1,13 +1,13 @@
-import {Intension} from '../intensions/intensions.data';
-export class Asset {
-  pubSet: string;
+import {Intension} from '../prototypes/intension/intensions.data';
+export class Status {
+  id: string;
   ownerId: string;
   group: string;
   name: string;
-  version: string;
-  stability: string;
+  tree: string;
   intensions: Intension[];
   map: Map<string, TimedValue>;
+  beginTime: Date;
 }
 
 export class TimedValue {

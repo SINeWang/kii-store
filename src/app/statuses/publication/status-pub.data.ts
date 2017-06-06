@@ -1,4 +1,4 @@
-export class StatusPublication {
+export class StatusPub {
   providerId: string;
   stability: string;
   visibility: string;

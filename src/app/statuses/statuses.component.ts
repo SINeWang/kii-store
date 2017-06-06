@@ -7,7 +7,7 @@ import {FormControl} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {StatusesSerivce} from './statuses.service';
 import {Statuses} from './statuses.data';
-import {Status} from '../status/status.data';
+import {Status} from './status.data';
 
 
 @Component({

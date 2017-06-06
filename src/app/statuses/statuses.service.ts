@@ -6,8 +6,8 @@ import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../environments/environment';
 
 import {Subjects} from '../shared/subjects/subjects.data';
-import {Status} from '../status/status.data';
 import {Statuses} from './statuses.data';
+import {Status} from './status.data';
 
 @Injectable()
 export class StatusesSerivce {

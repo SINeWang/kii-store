@@ -1,3 +1,4 @@
+import {Intension} from '../prototypes/intension/intensions.data';
 export class Model {
 
   providerId: string;
@@ -12,14 +13,6 @@ export class Model {
   intensions: Intension[];
 }
 
-export class Intension {
-  id: string;
-  field: string;
-  refPubSet: string;
-  single: boolean;
-  structure: string;
-  visibility: string;
-}
 
 
 export class Models {

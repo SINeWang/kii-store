@@ -17,7 +17,7 @@
     </div>
     <div class="mdl-cell mdl-cell--7-col">
       <md-slide-toggle [(ngModel)]="newExtensionModel" [ngModelOptions]="{standalone: true}">New</md-slide-toggle>
-      <app-compose-extensions-new *ngIf="newExtensionModel" [group]="searchExtensionsCtl.value"></app-compose-extensions-new>
+      <app-proto-ext-new *ngIf="newExtensionModel" [group]="searchExtensionsCtl.value"></app-proto-ext-new>
     </div>
   </div>
 </div>

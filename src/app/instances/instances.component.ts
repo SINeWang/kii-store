@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {StatusService} from '../status/status.service';
+import {StatusService} from '../statuses/status.service';
 import {SubjectsService} from '../shared/subjects/subjects.service';
 
 import {Subscription} from 'rxjs/Subscription';

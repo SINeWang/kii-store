@@ -1,4 +1,4 @@
-import {Intension} from '../intensions/intensions.data';
+import {Intension} from '../intension/intensions.data';
 export class Extension {
 
   id: string;

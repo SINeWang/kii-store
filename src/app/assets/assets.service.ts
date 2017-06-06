@@ -6,7 +6,7 @@ import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../environments/environment';
 import {Assets} from './assets.data';
 import {Subjects} from '../shared/subjects/subjects.data';
-import {Asset} from '../asset/asset.data';
+import {Asset} from './asset.data';
 
 @Injectable()
 export class AssetsService {

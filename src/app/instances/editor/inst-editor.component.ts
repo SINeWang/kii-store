@@ -2,10 +2,10 @@ import {Component, Input} from '@angular/core';
 
 import {InstancesService} from '../instances.service';
 import {Instances} from '../instances.data';
-import {StatusService} from '../../status/status.service';
+import {StatusService} from '../../statuses/status.service';
 import {Statuses} from '../../statuses/statuses.data';
-import {Receipt, StatusPublication} from '../../status/status-publication.data';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Receipt, StatusPub} from '../../statuses/publication/status-pub.data';
 @Component({
   selector: 'app-instances-editor',
   providers: [],
@@ -21,7 +21,7 @@ export class InstancesEditorComponent {
 
   visibility: string;
 
-  publication = new StatusPublication();
+  publication = new StatusPub();
 
   @Input()
   set selected_statuses(value: Statuses) {
