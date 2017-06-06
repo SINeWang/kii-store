@@ -2,15 +2,15 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
-import {environment} from '../../environments/environment';
+import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs/Observable';
 
-import {Statuses} from './statuses.data';
-import {Receipt, StatusPub} from './publication/status-pub.data';
+import {Statuses} from '../statuses.data';
+import {Receipt, StatusPub} from './status-pub.data';
 
 
 @Injectable()
-export class StatusService {
+export class StatusPubService {
 
   private URL = environment.kiimate_url;
 

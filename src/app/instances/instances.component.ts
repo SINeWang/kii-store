@@ -1,5 +1,4 @@
 import {Component, ViewChild} from '@angular/core';
-import {StatusService} from '../statuses/status.service';
 import {SubjectsService} from '../shared/subjects/subjects.service';
 
 import {Subscription} from 'rxjs/Subscription';
@@ -9,10 +8,12 @@ import {Subjects} from '../shared/subjects/subjects.data';
 import {InstancesService} from './instances.service';
 import {Statuses} from '../statuses/statuses.data';
 import {InstancesSearchService} from './search/inst-search.service';
+import {StatusesSerivce} from '../statuses/statuses.service';
+import {StatusPubService} from '../statuses/publication/status-pub.service';
 
 @Component({
   selector: 'app-compose-instances',
-  providers: [InstancesSearchService, StatusService, SubjectsService, InstancesService, StatusService],
+  providers: [InstancesSearchService, SubjectsService, InstancesService, StatusesSerivce, StatusPubService],
   templateUrl: 'instances.html'
 })
 export class InstancesComponent {

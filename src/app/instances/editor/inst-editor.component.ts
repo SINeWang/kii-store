@@ -2,10 +2,11 @@ import {Component, Input} from '@angular/core';
 
 import {InstancesService} from '../instances.service';
 import {Instances} from '../instances.data';
-import {StatusService} from '../../statuses/status.service';
+
 import {Statuses} from '../../statuses/statuses.data';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Receipt, StatusPub} from '../../statuses/publication/status-pub.data';
+import {StatusPubService} from '../../statuses/publication/status-pub.service';
 @Component({
   selector: 'app-instances-editor',
   providers: [],
@@ -41,7 +42,7 @@ export class InstancesEditorComponent {
   }
 
   constructor(private instancesService: InstancesService,
-              private statusService: StatusService,
+              private statusPublisher: StatusPubService,
               private route: ActivatedRoute,
               private router: Router) {
   }
@@ -67,7 +68,7 @@ export class InstancesEditorComponent {
   }
 
   publish() {
-    this.statusService.commit(this.publication, this.statuses).subscribe(
+    this.statusPublisher.commit(this.publication, this.statuses).subscribe(
       data => this.handle_receipt(data),
       error => this.errorMessage = <any>error
     );
