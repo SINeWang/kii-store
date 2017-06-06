@@ -15,10 +15,11 @@ import {Subjects} from '../../shared/subjects/subjects.data';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProtoPub} from '../publication/proto-pub.data';
 import {ProtoPubSetvice} from '../publication/proto-pub.service';
+import {SearchExtensionsService} from './search/proto-ext-search.service';
 
 @Component({
   selector: 'app-extensions',
-  providers: [ExtensionsService, IntensionsService, ModelsService, SubjectsService, ProtoPubSetvice],
+  providers: [ExtensionsService, SearchExtensionsService, IntensionsService, ModelsService, SubjectsService, ProtoPubSetvice],
   templateUrl: 'extensions.html',
 })
 export class ExtensionsComponent implements OnDestroy {
@@ -54,7 +55,8 @@ export class ExtensionsComponent implements OnDestroy {
 
   newExtensionModel: boolean;
 
-  constructor(private extensionService: ExtensionsService,
+  constructor(private searchSpi: SearchExtensionsService,
+              private extensionService: ExtensionsService,
               private modelsService: ModelsService,
               private intensionsService: IntensionsService,
               private subjectsService: SubjectsService,
@@ -146,7 +148,7 @@ export class ExtensionsComponent implements OnDestroy {
     } else {
       const authorization = localStorage.getItem('authorization');
       if (this.owners) {
-        this.extensionService.search(this.owners, input).subscribe(
+        this.searchSpi.search(this.owners, input).subscribe(
           data => this.candidateExtensions = data,
           error => this.errorMessage = <any>error
         );

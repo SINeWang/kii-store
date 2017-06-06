@@ -1,21 +1,23 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
+import {Extensions} from '../extensions.data';
+
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
-import {environment} from '../../../environments/environment';
-import {Extension} from './extension.data';
+import {environment} from '../../../../environments/environment';
+import {Subjects} from '../../../shared/subjects/subjects.data';
+
 
 @Injectable()
-export class ExtensionsService {
-
+export class SearchExtensionsService {
   private URL = environment.kiimate_url;
 
   constructor(private http: Http) {
   }
 
-
-  visit(search: Extension): Observable<Extension> {
+  search(owners: Subjects,
+         query: string): Observable<Extensions[]> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-VisitorId': 'wangyj',
@@ -23,10 +25,11 @@ export class ExtensionsService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + search.ownerId + '/extensions/' + search.group + '/' + search.name + '/' + search.tree;
+    const url = this.URL + '/' + owners.id + '/extensions?group=' + query;
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
+
 
 }
