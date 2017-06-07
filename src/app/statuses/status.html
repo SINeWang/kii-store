@@ -7,9 +7,9 @@
     {{intension.field}}
   </div>
   <div class="mdl-cell mdl-cell--2-col">
-    {{status.map[intension.field]?.time | date: 'y-MM-dd HH:mm:ss'}}
+    {{status.map[intension.field]?.value}}
   </div>
   <div class="mdl-cell mdl-cell--8-col">
-    {{status.map[intension.field]?.value}}
+    {{status.map[intension.field]?.time | date: 'y-MM-dd HH:mm:ss'}}
   </div>
 </div>
