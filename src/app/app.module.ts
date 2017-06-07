@@ -28,7 +28,6 @@ import {StabilitiesComponent} from './shared/stabilities/stabilities.component';
 import {StructuresComponent} from './shared/structures/structures.component';
 import {SingleMultiComponent} from './shared/singlemulti/singlemulti.component';
 import {IntensionsComponent} from './prototypes/intension/intensions.component';
-import {AssetComponent} from './assets/asset.component';
 import {WorkspaceComponent} from 'app/apps/workspace/workspace.component';
 import {StatusesComponent} from './statuses/statuses.component';
 import {InstancesEditorComponent} from './instances/editor/inst-editor.component';
@@ -99,11 +98,15 @@ const routes: Routes = [
         component: StatusesComponent
       },
       {
-        path: 'assets/:owner-id/:id',
+        path: 'assets',
         component: AssetsComponent
       },
       {
-        path: 'assets',
+        path: 'assets/:owner-id',
+        component: AssetsComponent
+      },
+      {
+        path: 'assets/:owner-id/:id',
         component: AssetsComponent
       },
     ]
@@ -113,7 +116,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    AssetComponent,
     AssetsComponent,
     ExtensionsComponent,
     InstancesComponent,
