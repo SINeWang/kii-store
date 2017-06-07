@@ -33,7 +33,7 @@ export class StatusesSerivce {
 
   }
 
-  visit(owners: Subjects, status: Status): Observable<Status> {
+  visit(owners: Subjects, status: Statuses): Observable<Status> {
 
     const headers = new Headers({
       // 'Authorization': authorization,
@@ -43,7 +43,10 @@ export class StatusesSerivce {
     let url = this.URL + '/';
     url += owners.id;
     url += '/status';
-    url += '/' + status.id;
+    url += '/' + status.group;
+    url += '/' + status.name;
+    url += '/' + status.stability;
+    url += '/' + status.version;
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));

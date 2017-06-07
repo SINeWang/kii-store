@@ -87,6 +87,10 @@ const routes: Routes = [
         component: StatusesComponent
       },
       {
+        path: 'statuses/:owner-id/:set',
+        component: StatusesComponent
+      },
+      {
         path: 'statuses/:owner-id',
         component: StatusesComponent
       },
@@ -95,11 +99,7 @@ const routes: Routes = [
         component: StatusesComponent
       },
       {
-        path: 'assets/:owner-id/:group/:name',
-        component: AssetsComponent
-      },
-      {
-        path: 'assets/:owner-id',
+        path: 'assets/:owner-id/:id',
         component: AssetsComponent
       },
       {

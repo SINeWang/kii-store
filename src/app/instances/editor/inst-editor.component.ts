@@ -76,7 +76,7 @@ export class InstancesEditorComponent {
   handle_receipt(receipt: Receipt) {
     const parentPath = this.route.parent.snapshot.url[0].path;
 
-    this.router.navigate([parentPath, 'statuses', receipt.providerId, receipt.group, receipt.name]);
+    this.router.navigate([parentPath, 'statuses', receipt.providerId, receipt.pubSet]);
 
   }
 }

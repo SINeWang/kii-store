@@ -1,5 +1,5 @@
 <md-toolbar>
-  <span>Status <small>{{status.pubSet}}</small> </span>
+  <span>Status <small>  {{ status.beginTime | date: 'y-MM-dd HH:mm:ss' }}</small> </span>
 </md-toolbar>
 
 <div class="content-grid mdl-grid" *ngFor="let intension of status.intensions">
