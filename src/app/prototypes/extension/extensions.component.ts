@@ -1,5 +1,4 @@
-import {Component, OnDestroy} from '@angular/core';
-import {Extensions} from './extensions.data';
+import {Component, Input} from '@angular/core';
 import {ExtensionsService} from './extensions.service';
 import {Intension} from '../intension/intensions.data';
 import {Model, Models, Snapshot} from '../../models/models.data';
@@ -8,36 +7,23 @@ import {FormControl} from '@angular/forms';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import {IntensionsService} from '../intension/intensions.service';
-import {Subscription} from 'rxjs/Subscription';
-import {Extension} from './extension.data';
-import {SubjectsService} from '../../shared/subjects/subjects.service';
 import {Subjects} from '../../shared/subjects/subjects.data';
-import {ActivatedRoute, Router} from '@angular/router';
-import {ProtoPub} from '../publication/proto-pub.data';
 import {ProtoPubSetvice} from '../publication/proto-pub.service';
-import {SearchExtensionsService} from './search/proto-ext-search.service';
+import {Extension} from './extension.data';
+import {ProtoPub} from '../publication/proto-pub.data';
 
 @Component({
   selector: 'app-extensions',
-  providers: [ExtensionsService, SearchExtensionsService, IntensionsService, ModelsService, SubjectsService, ProtoPubSetvice],
+  providers: [ExtensionsService, IntensionsService, ModelsService, ProtoPubSetvice],
   templateUrl: 'extensions.html',
 })
-export class ExtensionsComponent implements OnDestroy {
-
-
-  private extension: Extension;
+export class ExtensionsComponent {
 
   private intension = new Intension();
-
-  private protoPub = new ProtoPub();
 
   private errorMessage: string;
 
   private candidateModels: Models [];
-
-  private candidateExtensions: Extensions[];
-
-  searchExtensionsCtl = new FormControl();
 
   searchModelsCtl = new FormControl();
 
@@ -49,29 +35,21 @@ export class ExtensionsComponent implements OnDestroy {
 
   selectedModel: Model;
 
-  ownersListener: Subscription;
+  protoPub = new ProtoPub();
 
   owners: Subjects;
 
-  newExtensionModel: boolean;
+  extension: Extension;
 
-  constructor(private searchSpi: SearchExtensionsService,
-              private extensionService: ExtensionsService,
-              private modelsService: ModelsService,
+  constructor(private modelsService: ModelsService,
               private intensionsService: IntensionsService,
-              private subjectsService: SubjectsService,
-              private publicationService: ProtoPubSetvice,
-              private route: ActivatedRoute,
-              private router: Router) {
+              private publicationService: ProtoPubSetvice) {
 
     this.intension.visibility = 'public';
     this.intension.single = true;
     this.intension.required = true;
     this.intension.structure = 'string';
 
-    this.searchExtensionsCtl.valueChanges
-      .startWith(null)
-      .subscribe(name => this.onCandidateExtensionsChange(name));
 
     this.searchModelsCtl.valueChanges
       .startWith(null)
@@ -81,20 +59,22 @@ export class ExtensionsComponent implements OnDestroy {
       .startWith(null)
       .subscribe(name => this.onCandidateSnapshotsChange(name));
 
-    this.ownersListener = subjectsService.announced$.subscribe(
-      data => this.handle_subjects(data)
-    );
   }
 
-  handle_subjects(subjects: Subjects) {
-    if (subjects == null) {
-      return;
+  @Input()
+  set the_extension(extension: Extension) {
+    if (extension) {
+      this.extension = extension;
+      this.protoPub.providerId = extension.ownerId;
+      this.protoPub.extId = extension.id;
     }
-    this.owners = subjects;
-    const parentPath = this.route.parent.snapshot.url[0].path;
-    const currentPath = this.route.snapshot.url[0].path;
-    this.router.navigate([parentPath, currentPath, subjects.id]);
   }
+
+  @Input()
+  set the_owner(owner: Subjects) {
+    this.owners = owner;
+  }
+
 
   add_intension(): void {
     if (this.selectedModel) {
@@ -111,11 +91,6 @@ export class ExtensionsComponent implements OnDestroy {
     );
   }
 
-  handle_extension(extension: Extension) {
-    this.extension = extension;
-    this.protoPub.providerId = extension.ownerId;
-    this.protoPub.extId = extension.id;
-  }
 
   onCandidateModelsChange(input: any) {
     if (input instanceof Object) {
@@ -138,34 +113,9 @@ export class ExtensionsComponent implements OnDestroy {
     }
   }
 
-  onCandidateExtensionsChange(input: any) {
-    if (input instanceof Object) {
-      this.newExtensionModel = false;
-      this.extensionService.visit(input).subscribe(
-        data => this.handle_extension(data),
-        error => this.errorMessage = <any>error
-      );
-    } else {
-      const authorization = localStorage.getItem('authorization');
-      if (this.owners) {
-        this.searchSpi.search(this.owners, input).subscribe(
-          data => this.candidateExtensions = data,
-          error => this.errorMessage = <any>error
-        );
-      }
-    }
-  }
-
-  ngOnDestroy(): void {
-    this.ownersListener.unsubscribe();
-  }
 
   displaySelectedModels(models: Models): string {
     return models ? models.providerId + ' / ' + models.group + ' / ' + models.name : '';
-  }
-
-  displaySelectedExtensions(extensions: Extensions): string {
-    return extensions ? extensions.group + ' / ' + extensions.name + ' # ' + extensions.tree : '';
   }
 
   publication_stability(stability: string) {

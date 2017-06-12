@@ -1,27 +1,3 @@
-<div mdl-shadow="2">
-  <div class="content-grid mdl-grid">
-    <div class="mdl-cell mdl-cell--1-col">
-      <app-subjects [object_type]="'Extension'" [access_type]="'Owner'" [subject_alias]="'owner-id'"></app-subjects>
-    </div>
-    <div class="mdl-cell mdl-cell--4-col">
-
-      <md-input-container style="width: 100%;">
-        <input type="text" mdInput placeholder="Group" [mdAutocomplete]="searchExt" [formControl]="searchExtensionsCtl">
-      </md-input-container>
-
-      <md-autocomplete #searchExt="mdAutocomplete" [displayWith]="displaySelectedExtensions">
-        <md-option *ngFor="let extensions of candidateExtensions" [value]="extensions">
-          <span>{{ extensions.group }} / {{ extensions.name }} # {{ extensions.tree }}</span>
-        </md-option>
-      </md-autocomplete>
-    </div>
-    <div class="mdl-cell mdl-cell--7-col">
-      <md-slide-toggle [(ngModel)]="newExtensionModel" [ngModelOptions]="{standalone: true}">New</md-slide-toggle>
-      <app-proto-ext-new *ngIf="newExtensionModel" [group]="searchExtensionsCtl.value"></app-proto-ext-new>
-    </div>
-  </div>
-</div>
-
 <div mdl-shadow="2" *ngIf="!newExtensionModel">
   <div class="content-grid mdl-grid" *ngIf="extension">
     <div class="mdl-cell mdl-cell--4-col">

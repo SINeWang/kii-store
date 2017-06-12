@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {AssetsService} from './assets.service';
 import {SubjectsService} from '../shared/subjects/subjects.service';
 import {Subscription} from 'rxjs/Subscription';
 import {Subjects} from '../shared/subjects/subjects.data';
@@ -8,7 +7,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-assets',
-  providers: [AssetsService, SubjectsService],
+  providers: [SubjectsService],
   templateUrl: 'assets.html'
 })
 export class AssetsComponent {
@@ -21,7 +20,6 @@ export class AssetsComponent {
 
 
   constructor(private ownersService: SubjectsService,
-              private assetsService: AssetsService,
               private route: ActivatedRoute,
               private router: Router) {
     this.ownersListener = ownersService.announced$.subscribe(

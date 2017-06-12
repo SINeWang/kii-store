@@ -34,6 +34,7 @@ import {InstancesEditorComponent} from './instances/editor/inst-editor.component
 import {InstancesSearchComponent} from './instances/search/inst-search.component';
 import {NewExtensionsComponent} from './prototypes/extension/new/proto-ext-new.component';
 import {StatusComponent} from './statuses/status.component';
+import {PrototypesComponent} from "app/prototypes/prototypes.component";
 
 const routes: Routes = [
   {
@@ -47,15 +48,15 @@ const routes: Routes = [
     children: [
       {
         path: 'prototypes',
-        component: ExtensionsComponent
+        component: PrototypesComponent
       },
       {
         path: 'prototypes/:owner-id',
-        component: ExtensionsComponent
+        component: PrototypesComponent
       },
       {
         path: 'prototypes/:owner-id/:group/:name',
-        component: ExtensionsComponent
+        component: PrototypesComponent
       },
       {
         path: 'models',
@@ -124,6 +125,7 @@ const routes: Routes = [
     IntensionsComponent,
     ModelsComponent,
     NewExtensionsComponent,
+    PrototypesComponent,
     SingleMultiComponent,
     StabilitiesComponent,
     StatusComponent,
