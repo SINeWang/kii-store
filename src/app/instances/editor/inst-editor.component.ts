@@ -17,15 +17,15 @@ export class InstancesEditorComponent {
 
   instances: Instances;
 
-  statuses: ModelSub;
+  modelSub: ModelSub;
 
   visibility: string;
 
   publication = new StatusPub();
 
   @Input()
-  set selected_statuses(value: ModelSub) {
-    this.statuses = value;
+  set selected_instance(value: ModelSub) {
+    this.modelSub = value;
     this.instancesService.visit(value).subscribe(
       data => this.handle_status(data),
       error => this.errorMessage = <any>error
@@ -60,14 +60,14 @@ export class InstancesEditorComponent {
   save() {
     const next = Object.assign({}, this.instances);
     next.map = this.instances.current;
-    this.instancesService.commit(next, this.statuses).subscribe(
+    this.instancesService.commit(next, this.modelSub).subscribe(
       data => this.handle_status(data),
       error => this.errorMessage = <any>error
     );
   }
 
   publish() {
-    this.statusPublisher.commit(this.publication, this.statuses).subscribe(
+    this.statusPublisher.commit(this.publication, this.modelSub).subscribe(
       data => this.handle_receipt(data),
       error => this.errorMessage = <any>error
     );

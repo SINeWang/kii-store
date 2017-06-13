@@ -5,4 +5,5 @@ export class ModelSub {
   group: string;
   name: string;
   tree: string;
+  beginTime: Date;
 }

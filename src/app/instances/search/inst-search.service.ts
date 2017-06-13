@@ -31,7 +31,7 @@ export class InstancesSearchService {
     });
     const options = new RequestOptions({headers: headers});
 
-    let url = this.URL + '/' + subscribers.id + '/subscriptions?q=';
+    let url = this.URL + '/' + subscribers.id + '/instances?q=';
     if (query) {
       url += query;
     } else {

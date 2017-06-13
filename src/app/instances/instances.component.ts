@@ -29,8 +29,8 @@ export class InstancesComponent {
 
   owners: Subjects;
 
-  notifyEditor(modelSub: ModelSub) {
-    this.subscriptionsEditor.selected_statuses = modelSub;
+  notifyEditor(instance: ModelSub) {
+    this.subscriptionsEditor.selected_instance = instance;
   }
 
   constructor(private route: ActivatedRoute,
