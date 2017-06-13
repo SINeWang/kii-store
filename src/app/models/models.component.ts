@@ -108,7 +108,7 @@ export class ModelsComponent {
   subscribe(pubSet: string): void {
     const subscribers = new Subjects();
     const subscriptions = new ModelSub();
-    subscriptions.subSet = pubSet;
+    subscriptions.set = pubSet;
     subscriptions.group = this.subscribeGroup.value;
     subscriptions.name = this.subscribeName.value;
     subscriptions.tree = this.subscribeTree.value;

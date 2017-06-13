@@ -1,6 +1,6 @@
 export class ModelSub {
   id: string;
-  subSet: string;
+  set: string;
   subscriberId: string;
   group: string;
   name: string;
