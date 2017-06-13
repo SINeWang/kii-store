@@ -1,15 +1,15 @@
 <md-toolbar>
-  <span>Status <small>  {{ status.beginTime | date: 'y-MM-dd HH:mm:ss' }}</small> </span>
+  <span>Status <small>  #{{status.id}} @{{ status.beginTime | date: 'y-MM-dd HH:mm:ss' }}</small> </span>
 </md-toolbar>
 
 <div class="content-grid mdl-grid" *ngFor="let intension of status.intensions">
   <div class="mdl-cell mdl-cell--2-col">
     {{intension.field}}
   </div>
-  <div class="mdl-cell mdl-cell--2-col">
+  <div class="mdl-cell mdl-cell--8-col">
     {{status.map[intension.field]?.value}}
   </div>
-  <div class="mdl-cell mdl-cell--8-col">
+  <div class="mdl-cell mdl-cell--2-col">
     {{status.map[intension.field]?.time | date: 'y-MM-dd HH:mm:ss'}}
   </div>
 </div>
