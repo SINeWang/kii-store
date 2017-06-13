@@ -78,7 +78,7 @@ export class ExtensionsComponent {
 
   add_intension(): void {
     if (this.selectedModel) {
-      this.intension.refPubSet = this.selectedModel.pubSet;
+      this.intension.refSet = this.selectedModel.set;
       this.intension.structure = '';
     }
     this.intension.extId = this.extension.id;

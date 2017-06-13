@@ -3,7 +3,7 @@ export class Model {
 
   providerId: string;
   rootExtId: string;
-  pubSet: string;
+  set: string;
   group: string;
   name: string;
   stability: string;
