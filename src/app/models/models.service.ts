@@ -46,7 +46,7 @@ export class ModelsService {
     if (snapshot == null) {
       return Observable.of(null);
     }
-    const url = this.URL + '/models/' + snapshot.pubSet;
+    const url = this.URL + '/models/' + snapshot.set;
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));

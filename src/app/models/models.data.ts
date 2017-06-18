@@ -26,7 +26,7 @@ export class Models {
 
 export class Snapshot {
   subscriptions: number;
-  pubSet: string;
+  set: string;
   stability: string;
   version: string;
   beginTime: Date;
