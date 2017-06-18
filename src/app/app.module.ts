@@ -22,7 +22,7 @@ import {
 } from '@angular/material';
 import {InstancesComponent} from './instances/instances.component';
 import {VisibilityComponent} from './shared/visibility/visibility.component';
-import {AssetsComponent} from './assets/assets.component';
+import {GlimpsesComponent} from './glimpses/glimpses.component';
 import {SubjectsComponent} from './shared/subjects/subjects.component';
 import {StabilitiesComponent} from './shared/stabilities/stabilities.component';
 import {StructuresComponent} from './shared/structures/structures.component';
@@ -34,7 +34,7 @@ import {InstancesEditorComponent} from './instances/editor/inst-editor.component
 import {InstancesSearchComponent} from './instances/search/inst-search.component';
 import {NewExtensionsComponent} from './prototypes/extension/new/proto-ext-new.component';
 import {StatusComponent} from './statuses/status.component';
-import {PrototypesComponent} from "app/prototypes/prototypes.component";
+import {PrototypesComponent} from './prototypes/prototypes.component';
 
 const routes: Routes = [
   {
@@ -99,16 +99,16 @@ const routes: Routes = [
         component: StatusesComponent
       },
       {
-        path: 'assets',
-        component: AssetsComponent
+        path: 'glimpses',
+        component: GlimpsesComponent
       },
       {
-        path: 'assets/:owner-id',
-        component: AssetsComponent
+        path: 'glimpses/:owner-id',
+        component: GlimpsesComponent
       },
       {
-        path: 'assets/:owner-id/:id',
-        component: AssetsComponent
+        path: 'glimpses/:owner-id/:id',
+        component: GlimpsesComponent
       },
     ]
   },
@@ -117,8 +117,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    AssetsComponent,
     ExtensionsComponent,
+    GlimpsesComponent,
     InstancesComponent,
     InstancesEditorComponent,
     InstancesSearchComponent,

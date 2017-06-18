@@ -47,7 +47,10 @@ export class InstancesEditorComponent {
   }
 
   handle_status(instances: Instances) {
-    this.instances = instances;
+    if (this.instances == null) {
+      this.instances = instances;
+    }
+
     this.instances.previous = Object.assign({}, instances.map);
     const kv = {};
     for (const key of Object.keys(instances.map)) {

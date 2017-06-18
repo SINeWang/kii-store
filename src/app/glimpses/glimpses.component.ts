@@ -6,11 +6,11 @@ import {ActivatedRoute, Router} from '@angular/router';
 
 
 @Component({
-  selector: 'app-assets',
+  selector: 'app-glimpses',
   providers: [SubjectsService],
-  templateUrl: 'assets.html'
+  templateUrl: 'glimpses.html'
 })
-export class AssetsComponent {
+export class GlimpsesComponent {
 
   errorMessage: string;
 
