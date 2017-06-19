@@ -60,16 +60,6 @@ export class InstancesEditorComponent {
     this.instances.current = Object.assign({}, kv);
   }
 
-
-  save() {
-    const next = Object.assign({}, this.instances);
-    next.map = this.instances.current;
-    this.instancesService.commit(next, this.modelSub).subscribe(
-      data => this.handle_status(data),
-      error => this.errorMessage = <any>error
-    );
-  }
-
   publish() {
     this.statusPublisher.commit(this.publication, this.modelSub).subscribe(
       data => this.handle_receipt(data),

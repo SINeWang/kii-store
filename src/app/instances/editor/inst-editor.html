@@ -43,18 +43,7 @@
       <h4>Current</h4>
       <div class="content-grid mdl-grid" *ngFor="let intension of instances.intensions">
         <div class="mdl-cell mdl-cell--12-col">
-          <app-instances-reference></app-instances-reference>
-          <mdl-textfield type="text" label="{{intension.field}}" name="{{intension.field}}"
-                         floating-label [(ngModel)]="instances.current[intension.field]">
-          </mdl-textfield>
-          <md-checkbox>Reference</md-checkbox>
-        </div>
-      </div>
-      <div class="content-grid mdl-grid">
-        <div class="mdl-cell mdl-cell--12-col">
-          <button type="submit" (click)="save()" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>
-            Save
-          </button>
+          <app-instances-value [the_intension]="intension" [init_value]="instances.current[intension.field]" ></app-instances-value>
         </div>
       </div>
     </div>

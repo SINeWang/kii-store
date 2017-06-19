@@ -1,0 +1,20 @@
+<div class="content-grid mdl-grid">
+  <div class="mdl-cell mdl-cell--2-col">
+    <md-checkbox [(ngModel)]="reference">Reference</md-checkbox>
+  </div>
+  <div class="mdl-cell mdl-cell--5-col" *ngIf="reference">
+    <app-glimpses-search (onFound)="load_fields($event)"></app-glimpses-search>
+  </div>
+  <div class="mdl-cell mdl-cell--5-col" *ngIf="!reference">
+    <mdl-textfield type="text" label="{{intension.field}}" name="{{intension.field}}" floating-label
+                   [(ngModel)]="value">
+    </mdl-textfield>
+  </div>
+  <div class="mdl-cell mdl-cell--3-col">
+    <button type="submit" (click)="save()" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>
+      Save
+    </button>
+  </div>
+
+</div>
+
