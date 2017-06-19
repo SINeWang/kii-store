@@ -3,11 +3,15 @@ import {SubjectsService} from '../shared/subjects/subjects.service';
 import {Subscription} from 'rxjs/Subscription';
 import {Subjects} from '../shared/subjects/subjects.data';
 import {ActivatedRoute, Router} from '@angular/router';
+import {GlimpsesSearchService} from './search/glimpses-search.service';
 
 
 @Component({
   selector: 'app-glimpses',
-  providers: [SubjectsService],
+  providers: [
+    SubjectsService,
+    GlimpsesSearchService
+  ],
   templateUrl: 'glimpses.html'
 })
 export class GlimpsesComponent {
