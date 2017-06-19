@@ -43,7 +43,11 @@
       <h4>Current</h4>
       <div class="content-grid mdl-grid" *ngFor="let intension of instances.intensions">
         <div class="mdl-cell mdl-cell--12-col">
-          <app-instances-value [the_intension]="intension" [init_value]="instances.current[intension.field]" ></app-instances-value>
+          <app-instances-value [the_intension]="intension"
+                               [the_model_sub]="modelSub"
+                               [init_value]="instances.current[intension.field]">
+
+          </app-instances-value>
         </div>
       </div>
     </div>
