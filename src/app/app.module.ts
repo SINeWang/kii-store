@@ -37,6 +37,7 @@ import {StatusComponent} from './statuses/status.component';
 import {PrototypesComponent} from './prototypes/prototypes.component';
 import {GlimpsesSearchComponent} from './glimpses/search/glimpses-search.component';
 import {GlimpsesViewerComponent} from './glimpses/viewer/glimpses-viewer.component';
+import {InstancesReferenceComponent} from './instances/reference/inst-reference.component';
 
 const routes: Routes = [
   {
@@ -129,6 +130,7 @@ const routes: Routes = [
     GlimpsesViewerComponent,
     InstancesComponent,
     InstancesEditorComponent,
+    InstancesReferenceComponent,
     InstancesSearchComponent,
     IntensionsComponent,
     ModelsComponent,

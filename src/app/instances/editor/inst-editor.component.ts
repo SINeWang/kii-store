@@ -6,9 +6,10 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Receipt, StatusPub} from '../../statuses/publication/status-pub.data';
 import {StatusPubService} from '../../statuses/publication/status-pub.service';
 import {ModelSub} from '../../models/subscription/model-sub.data';
+import {GlimpsesSearchService} from '../../glimpses/search/glimpses-search.service';
 @Component({
   selector: 'app-instances-editor',
-  providers: [],
+  providers: [GlimpsesSearchService],
   templateUrl: 'inst-editor.html'
 })
 export class InstancesEditorComponent {
