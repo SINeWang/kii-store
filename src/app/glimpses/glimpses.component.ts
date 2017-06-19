@@ -1,15 +1,18 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {SubjectsService} from '../shared/subjects/subjects.service';
 import {Subscription} from 'rxjs/Subscription';
 import {Subjects} from '../shared/subjects/subjects.data';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GlimpsesSearchService} from './search/glimpses-search.service';
+import {Glimpses} from './glimpses.data';
+import {GlimpsesService} from './glimpses.service';
 
 
 @Component({
   selector: 'app-glimpses',
   providers: [
     SubjectsService,
+    GlimpsesService,
     GlimpsesSearchService
   ],
   templateUrl: 'glimpses.html'
@@ -21,6 +24,8 @@ export class GlimpsesComponent {
   ownersListener: Subscription;
 
   owners: Subjects;
+
+  @ViewChild('glimpsesViewer') glimpsesViewer;
 
 
   constructor(private ownersService: SubjectsService,
@@ -41,5 +46,8 @@ export class GlimpsesComponent {
     this.router.navigate([parentPath, currentPath, owners.id]);
   }
 
+  notifyViewer(glimpses: Glimpses) {
+    this.glimpsesViewer.selected_instance = glimpses;
+  }
 
 }

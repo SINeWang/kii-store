@@ -6,10 +6,11 @@
         <app-subjects [access_type]="'Owner'" [object_type]="'Glimpse'" [subject_alias]="'owner-id'" ></app-subjects>
       </div>
       <div class="mdl-cell mdl-cell--3-col">
-        <app-glimpses-search></app-glimpses-search>
+        <app-glimpses-search (onFound)="notifyViewer($event)"></app-glimpses-search>
       </div>
     </div>
   </form>
 </div>
 <div mdl-shadow="2">
+  <app-glimpses-viewer #glimpsesViewer></app-glimpses-viewer>
 </div>

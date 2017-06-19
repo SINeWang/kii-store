@@ -36,6 +36,7 @@ import {NewExtensionsComponent} from './prototypes/extension/new/proto-ext-new.c
 import {StatusComponent} from './statuses/status.component';
 import {PrototypesComponent} from './prototypes/prototypes.component';
 import {GlimpsesSearchComponent} from './glimpses/search/glimpses-search.component';
+import {GlimpsesViewerComponent} from './glimpses/viewer/glimpses-viewer.component';
 
 const routes: Routes = [
   {
@@ -121,6 +122,7 @@ const routes: Routes = [
     ExtensionsComponent,
     GlimpsesComponent,
     GlimpsesSearchComponent,
+    GlimpsesViewerComponent,
     InstancesComponent,
     InstancesEditorComponent,
     InstancesSearchComponent,
