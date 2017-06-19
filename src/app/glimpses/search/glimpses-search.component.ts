@@ -6,6 +6,7 @@ import {Subjects} from '../../shared/subjects/subjects.data';
 import {SubjectsService} from '../../shared/subjects/subjects.service';
 import {ModelSub} from '../../models/subscription/model-sub.data';
 import {GlimpsesSearchService} from './glimpses-search.service';
+import {Glimpses} from '../glimpses.data';
 
 
 @Component({
@@ -59,8 +60,8 @@ export class GlimpsesSearchComponent {
 
   }
 
-  displayCandidates(subscriptions: ModelSub): string {
-    return subscriptions ? subscriptions.group + ' / ' + subscriptions.name + ' # ' + subscriptions.tree : '';
+  displayCandidates(glimpses: Glimpses): string {
+    return glimpses ? glimpses.group + ' / ' + glimpses.name + ' # ' + glimpses.stability + ' - ' + glimpses.version : '';
   }
 
 }
