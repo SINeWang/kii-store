@@ -69,6 +69,10 @@ const routes: Routes = [
         component: ModelsComponent
       },
       {
+        path: 'models/:provider-id/:set',
+        component: ModelsComponent
+      },
+      {
         path: 'models/:provider-id/:group/:name',
         component: ModelsComponent
       },

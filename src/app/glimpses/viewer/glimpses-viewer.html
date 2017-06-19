@@ -4,29 +4,29 @@
   </md-toolbar>
   <div class="content-grid mdl-grid">
     <div class="mdl-cell mdl-cell--6-col">
-      <h5>Model</h5>
+      <h5>Model <small>@</small> <a routerLink="/workspace/models/{{glimpse.model.providerId}}/{{glimpse.model.set}}">{{glimpse.model.set}}</a> </h5>
       <ul>
-        <li>ID: {{glimpse.model.id}}</li>
-        <li>Set: {{glimpse.model.set}}</li>
+        <li>Extension-ID: #{{glimpse.model.id}}</li>
         <li>Provider: {{glimpse.model.providerId}}</li>
         <li>Group: {{glimpse.model.group}}</li>
         <li>Name: {{glimpse.model.name}}</li>
         <li>Stability: {{glimpse.model.stability}}</li>
         <li>Version: {{glimpse.model.version}}</li>
-        <li>Since: {{glimpse.model.beginTime | date:'y-MM-dd HH:mm'}} {{glimpse.model.endTime | date:' - y-MM-dd HH:mm' }}</li>
+        <li>Since: {{glimpse.model.beginTime | date:'y-MM-dd HH:mm'}}</li>
+        <li>Expire: {{glimpse.model.endTime | date:'y-MM-dd HH:mm' }}</li>
       </ul>
     </div>
     <div class="mdl-cell mdl-cell--6-col">
-      <h5>Status</h5>
+      <h5>Status <small>@</small><a routerLink="/workspace/statuses/{{glimpse.status.providerId}}/{{glimpse.status.set}}">{{glimpse.status.set}}</a> </h5>
       <ul>
-        <li>ID: {{glimpse.status.id}}</li>
-        <li>Set: {{glimpse.status.set}}</li>
+        <li>ModelSubscription-ID: #{{glimpse.status.id}}</li>
         <li>Provider: {{glimpse.status.providerId}}</li>
         <li>Group: {{glimpse.status.group}}</li>
         <li>Name: {{glimpse.status.name}}</li>
         <li>Stability: {{glimpse.status.stability}}</li>
         <li>Version: {{glimpse.status.version}}</li>
-        <li>Since: {{glimpse.status.beginTime | date:'y-MM-dd HH:mm'}} {{glimpse.status.endTime | date:' - y-MM-dd HH:mm' }}</li>
+        <li>Since: {{glimpse.status.beginTime | date:'y-MM-dd HH:mm'}}</li>
+        <li>Expire: {{glimpse.status.endTime | date:'y-MM-dd HH:mm' }}</li>
       </ul>
     </div>
   </div>
