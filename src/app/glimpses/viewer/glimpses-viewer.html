@@ -1,0 +1,33 @@
+<div mdl-shadow="2" *ngIf="glimpse">
+  <md-toolbar>
+    <span>Glimpse</span>
+  </md-toolbar>
+  <div class="content-grid mdl-grid">
+    <div class="mdl-cell mdl-cell--6-col">
+      <h5>Model</h5>
+      <ul>
+        <li>ID: {{glimpse.model.id}}</li>
+        <li>Set: {{glimpse.model.set}}</li>
+        <li>Provider: {{glimpse.model.providerId}}</li>
+        <li>Group: {{glimpse.model.group}}</li>
+        <li>Name: {{glimpse.model.name}}</li>
+        <li>Stability: {{glimpse.model.stability}}</li>
+        <li>Version: {{glimpse.model.version}}</li>
+        <li>Since: {{glimpse.model.beginTime | date:'y-MM-dd HH:mm'}} {{glimpse.model.endTime | date:' - y-MM-dd HH:mm' }}</li>
+      </ul>
+    </div>
+    <div class="mdl-cell mdl-cell--6-col">
+      <h5>Status</h5>
+      <ul>
+        <li>ID: {{glimpse.status.id}}</li>
+        <li>Set: {{glimpse.status.set}}</li>
+        <li>Provider: {{glimpse.status.providerId}}</li>
+        <li>Group: {{glimpse.status.group}}</li>
+        <li>Name: {{glimpse.status.name}}</li>
+        <li>Stability: {{glimpse.status.stability}}</li>
+        <li>Version: {{glimpse.status.version}}</li>
+        <li>Since: {{glimpse.status.beginTime | date:'y-MM-dd HH:mm'}} {{glimpse.status.endTime | date:' - y-MM-dd HH:mm' }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

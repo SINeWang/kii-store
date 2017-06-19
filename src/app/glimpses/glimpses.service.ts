@@ -5,7 +5,7 @@ import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs/Observable';
 
-import {Glimpses} from './glimpses.data';
+import {Glimpse, Glimpses} from './glimpses.data';
 
 @Injectable()
 export class GlimpsesService {
@@ -15,7 +15,7 @@ export class GlimpsesService {
   constructor(private http: Http) {
   }
 
-  visit(glimpses: Glimpses): Observable<Glimpses> {
+  visit(glimpses: Glimpses): Observable<Glimpse> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-VisitorId': 'wangyj',

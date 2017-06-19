@@ -1,15 +1,12 @@
 <div mdl-shadow="2">
-  <form #modelForm (ngSubmit)="search()">
-    <button type="submit" style="display:none"></button>
-    <div class="content-grid mdl-grid">
-      <div class="mdl-cell mdl-cell--3-col">
-        <app-subjects [access_type]="'Owner'" [object_type]="'Glimpse'" [subject_alias]="'owner-id'" ></app-subjects>
-      </div>
-      <div class="mdl-cell mdl-cell--3-col">
-        <app-glimpses-search (onFound)="notifyViewer($event)"></app-glimpses-search>
-      </div>
+  <div class="content-grid mdl-grid">
+    <div class="mdl-cell mdl-cell--3-col">
+      <app-subjects [access_type]="'Owner'" [object_type]="'Glimpse'" [subject_alias]="'owner-id'"></app-subjects>
     </div>
-  </form>
+    <div class="mdl-cell mdl-cell--3-col">
+      <app-glimpses-search (onFound)="notifyViewer($event)"></app-glimpses-search>
+    </div>
+  </div>
 </div>
 <div mdl-shadow="2">
   <app-glimpses-viewer #glimpsesViewer></app-glimpses-viewer>

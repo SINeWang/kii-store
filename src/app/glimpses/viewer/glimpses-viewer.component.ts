@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Glimpses} from '../glimpses.data';
+import {Glimpse, Glimpses} from '../glimpses.data';
 import {GlimpsesService} from '../glimpses.service';
 @Component({
   selector: 'app-glimpses-viewer',
@@ -10,7 +10,7 @@ export class GlimpsesViewerComponent {
 
   private errorMessage: string;
 
-  private glimpse: Glimpses;
+  private glimpse: Glimpse;
 
   constructor(private glimpsesService: GlimpsesService) {
   }
@@ -23,7 +23,7 @@ export class GlimpsesViewerComponent {
     );
   }
 
-  handle_status(glimpse: Glimpses) {
+  handle_status(glimpse: Glimpse) {
     this.glimpse = glimpse;
   }
 }
