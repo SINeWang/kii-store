@@ -5,6 +5,7 @@ import {ModelSub} from '../../models/subscription/model-sub.data';
 import {InstancesService} from '../instances.service';
 import {GlimpsesService} from '../../glimpses/glimpses.service';
 import {FormControl} from '@angular/forms';
+import {Values} from './inst-value.data';
 @Component({
   selector: 'app-instances-value',
   providers: [GlimpsesService],
@@ -26,9 +27,16 @@ export class InstancesValueComponent {
 
   selected_intension = new FormControl();
 
+  reference_glimpse: Glimpses;
+
+  reference_intension: GlimpseIntensions;
 
   constructor(private instancesService: InstancesService,
               private glimpseService: GlimpsesService) {
+
+    this.selected_intension.valueChanges
+      .startWith(null)
+      .subscribe(name => this.onReferenceIntensionsChange(name));
   }
 
   @Input()
@@ -46,11 +54,19 @@ export class InstancesValueComponent {
     this.modelSub = modelSub;
   }
 
+
+  onReferenceIntensionsChange(query: any) {
+    if (query instanceof Object) {
+      this.reference_intension = query;
+      return;
+    }
+  }
+
   load_intensions(glimpses: Glimpses) {
+    this.reference_glimpse = glimpses;
     this.glimpseService.load_intensions(glimpses).subscribe(
       data => {
         this.candidateIntensions = data;
-        console.log(data);
       },
       error => this.errorMessage = <any>error
     );
@@ -62,13 +78,18 @@ export class InstancesValueComponent {
 
 
   save() {
-    // console.log('save');
-    // const next = Object.assign({}, this.instances);
-    // next.map = this.instances.current;
-    // this.instancesService.commit(next, this.modelSub).subscribe(
-    //   data => this.handle_status(data),
-    //   error => this.errorMessage = <any>error
-    // );
+    const values = new Values();
+    values.reference = this.reference
+    if (this.reference) {
+      values.values = [this.reference_intension.field];
+    } else {
+      values.values = [this.value];
+    }
+    values.valueRefId = this.reference_glimpse.set;
+    this.instancesService.commit(values, this.modelSub, this.reference_intension).subscribe(
+      data => console.log(data),
+      error => this.errorMessage = <any>error
+    );
   }
 
 
