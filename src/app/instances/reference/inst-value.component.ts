@@ -1,15 +1,18 @@
 import {Component, Input} from '@angular/core';
 import {Intension} from '../../prototypes/intension/intensions.data';
-import {Glimpse} from '../../glimpses/glimpses.data';
+import {GlimpseIntensions, Glimpses} from '../../glimpses/glimpses.data';
 import {ModelSub} from '../../models/subscription/model-sub.data';
 import {InstancesService} from '../instances.service';
+import {GlimpsesService} from '../../glimpses/glimpses.service';
+import {FormControl} from '@angular/forms';
 @Component({
   selector: 'app-instances-value',
-  providers: [],
+  providers: [GlimpsesService],
   templateUrl: 'inst-value.html'
 })
 export class InstancesValueComponent {
 
+  errorMessage: string;
 
   reference: boolean;
 
@@ -19,8 +22,13 @@ export class InstancesValueComponent {
 
   modelSub: ModelSub;
 
-  constructor(private instancesService: InstancesService) {
+  candidateIntensions: GlimpseIntensions[];
 
+  selected_intension = new FormControl();
+
+
+  constructor(private instancesService: InstancesService,
+              private glimpseService: GlimpsesService) {
   }
 
   @Input()
@@ -38,8 +46,18 @@ export class InstancesValueComponent {
     this.modelSub = modelSub;
   }
 
-  load_fields(glimpse: Glimpse) {
-    console.log(glimpse);
+  load_intensions(glimpses: Glimpses) {
+    this.glimpseService.load_intensions(glimpses).subscribe(
+      data => {
+        this.candidateIntensions = data;
+        console.log(data);
+      },
+      error => this.errorMessage = <any>error
+    );
+  }
+
+  displayCandidates(intensions: GlimpseIntensions): string {
+    return intensions ? intensions.field : '';
   }
 
 

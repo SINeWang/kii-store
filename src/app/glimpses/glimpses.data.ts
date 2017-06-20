@@ -9,11 +9,11 @@ export class Glimpses {
 }
 
 export class Glimpse {
-  model: OutsideView;
-  status: OutsideView;
+  model: Outside;
+  status: Outside;
 }
 
-export class OutsideView {
+export class Outside {
   id: string;
   set: string;
   providerId: string;
@@ -23,4 +23,9 @@ export class OutsideView {
   version: string;
   beginTime: Date;
   endTime?: Date;
+}
+
+
+export class GlimpseIntensions {
+  field: string;
 }
