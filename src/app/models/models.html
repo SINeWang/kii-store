@@ -15,8 +15,9 @@
       </md-autocomplete>
     </div>
     <div class="mdl-cell mdl-cell--3-col" *ngIf="selectedModels">
-      <md-select placeholder="Publications" [formControl]="selectedSnapshot"  floatPlaceholder="never">
-        <md-option *ngFor="let snapshot of selectedModels.snapshots" [value]="snapshot">{{ snapshot.stability}}-{{snapshot.version}}
+      <md-select placeholder="Publications" [formControl]="selectedSnapshot" floatPlaceholder="never">
+        <md-option *ngFor="let snapshot of selectedModels.snapshots" [value]="snapshot">{{
+          snapshot.stability}}-{{snapshot.version}}
         </md-option>
       </md-select>
     </div>
@@ -39,9 +40,7 @@
           </div>
         </div>
         <pre *ngFor="let intension of selectedModel.intensions">
-    <strong>{{intension.visibility}}</strong> {{intension.field}} : <a href="/explore/models/{{intension.refExtId}}"
-                                                                       *ngIf="intension.refExtId">Reference</a><span
-          *ngIf="!intension.refExtId">{{intension.structure}}</span><span *ngIf="!intension.single"> []</span>
+    <strong>{{intension.visibility}}</strong> {{intension.field}} : <a [routerLink]="['/workspace/models']" [queryParams]="{set: intension.refSet}" *ngIf="intension.refSet">Reference</a><span *ngIf="!intension.refExtId">{{intension.structure}}</span><span *ngIf="!intension.single"> []</span>
           </pre>
       </div>
     </div>
@@ -69,7 +68,8 @@
           <mdl-textfield type="text" label="Group" formControlName="group" floating-label></mdl-textfield>
           <mdl-textfield type="text" label="Name" formControlName="name" floating-label></mdl-textfield>
           <mdl-textfield type="text" label="Tree" formControlName="tree" floating-label></mdl-textfield>
-          <button (click)="subscribe(selectedSnapshot.value.set)" mdl-button mdl-button-type="raised" mdl-colored="primary"
+          <button (click)="subscribe(selectedSnapshot.value.set)" mdl-button mdl-button-type="raised"
+                  mdl-colored="primary"
                   mdl-ripple>Subscribe
           </button>
         </form>
