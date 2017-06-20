@@ -81,11 +81,11 @@ export class InstancesValueComponent {
     const values = new Values();
     values.reference = this.reference;
     if (this.reference) {
+      values.valueRefId = this.reference_glimpse.id;
       values.values = [this.reference_intension.field];
     } else {
       values.values = [this.value];
     }
-    values.valueRefId = this.reference_glimpse.id;
     this.instancesService.commit(values, this.modelSub, this.intension).subscribe(
       data => console.log(data),
       error => this.errorMessage = <any>error
