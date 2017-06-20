@@ -7,6 +7,9 @@
       <h4>Previous</h4>
       <div class="content-grid mdl-grid" *ngFor="let intension of instances.intensions">
         <div class="mdl-cell mdl-cell--10-col">
+          <md-checkbox [checked]="instances.previous[intension.field]?.valueRefId" [disabled]="'disabled'">
+            Reference #{{instances.previous[intension.field]?.valueRefId}}
+          </md-checkbox>
           <mdl-textfield type="text" style="width: 100%;" label="{{intension.field}}" name="{{intension.field}}"
                          floating-label [ngModel]="instances.previous[intension.field]?.value" readonly="true">
           </mdl-textfield>
