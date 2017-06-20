@@ -85,8 +85,8 @@ export class InstancesValueComponent {
     } else {
       values.values = [this.value];
     }
-    values.valueRefId = this.reference_glimpse.set;
-    this.instancesService.commit(values, this.modelSub, this.reference_intension).subscribe(
+    values.valueRefId = this.reference_glimpse.id;
+    this.instancesService.commit(values, this.modelSub, this.intension).subscribe(
       data => console.log(data),
       error => this.errorMessage = <any>error
     );
