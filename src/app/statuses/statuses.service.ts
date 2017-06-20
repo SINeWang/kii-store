@@ -26,7 +26,7 @@ export class StatusesSerivce {
     const options = new RequestOptions({headers: headers});
     let url = this.URL + '/statuses';
     url += '?q=' + query;
-    url += '&ownerId=' + owners.id;
+    url += '&providerId=' + owners.id;
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
