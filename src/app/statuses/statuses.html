@@ -1,23 +1,22 @@
 <div mdl-shadow="2">
-  <form #modelForm (ngSubmit)="search()">
-    <button type="submit" style="display:none"></button>
-    <div class="content-grid mdl-grid">
-      <div class="mdl-cell mdl-cell--3-col">
-        <app-subjects [access_type]="'Owner'" [object_type]="'Status'" [subject_alias]="'owner-id'"></app-subjects>
-      </div>
-      <div class="mdl-cell mdl-cell--3-col">
-        <md-input-container style="width: 100%;">
-          <input type="text" mdInput placeholder="Group" [mdAutocomplete]="searchGroup" [formControl]="searchFormCtrl">
-        </md-input-container>
-        <md-autocomplete #searchGroup="mdAutocomplete" [displayWith]="displaySelected">
-          <md-option *ngFor="let statuses of candidates" [value]="statuses">
-            <span>{{ statuses.group }} / {{ statuses.name }} # {{statuses.stability}} - {{statuses.version}}</span>
-          </md-option>
-        </md-autocomplete>
-      </div>
+
+  <div class="content-grid mdl-grid">
+    <div class="mdl-cell mdl-cell--3-col">
+      <app-subjects [access_type]="'Owner'" [object_type]="'Status'" [subject_alias]="'owner-id'"></app-subjects>
     </div>
-  </form>
+    <div class="mdl-cell mdl-cell--3-col">
+      <md-input-container style="width: 100%;">
+        <input type="text" mdInput placeholder="Group" [mdAutocomplete]="searchGroup" [formControl]="searchFormCtrl">
+      </md-input-container>
+      <md-autocomplete #searchGroup="mdAutocomplete" [displayWith]="displaySelected">
+        <md-option *ngFor="let statuses of candidates" [value]="statuses">
+          <span>{{ statuses.group }} / {{ statuses.name }} # {{statuses.stability}} - {{statuses.version}}</span>
+        </md-option>
+      </md-autocomplete>
+    </div>
+  </div>
+
 </div>
 <div mdl-shadow="2">
-  <app-status [set_status]="status" *ngIf="status"></app-status>
+  <app-status [the_status]="status" [the_subscriber]="owners" *ngIf="status"></app-status>
 </div>

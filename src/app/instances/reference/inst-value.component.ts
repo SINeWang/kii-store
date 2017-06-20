@@ -79,7 +79,7 @@ export class InstancesValueComponent {
 
   save() {
     const values = new Values();
-    values.reference = this.reference
+    values.reference = this.reference;
     if (this.reference) {
       values.values = [this.reference_intension.field];
     } else {

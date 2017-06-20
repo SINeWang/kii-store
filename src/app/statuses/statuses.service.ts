@@ -8,6 +8,7 @@ import {environment} from '../../environments/environment';
 import {Subjects} from '../shared/subjects/subjects.data';
 import {Statuses} from './statuses.data';
 import {Status} from './status.data';
+import {Glimpses} from '../glimpses/glimpses.data';
 
 @Injectable()
 export class StatusesSerivce {
@@ -21,7 +22,8 @@ export class StatusesSerivce {
 
     const headers = new Headers({
       // 'Authorization': authorization,
-      'X-SUMMER-VisitorId': '123'
+      'X-SUMMER-VisitorId': '123',
+      'X-SUMMER-RequestId': Math.random()
     });
     const options = new RequestOptions({headers: headers});
     let url = this.URL + '/statuses';
@@ -37,7 +39,8 @@ export class StatusesSerivce {
 
     const headers = new Headers({
       // 'Authorization': authorization,
-      'X-SUMMER-VisitorId': '123'
+      'X-SUMMER-VisitorId': owners.id,
+      'X-SUMMER-RequestId': Math.random()
     });
     const options = new RequestOptions({headers: headers});
     let url = this.URL + '/';
@@ -52,4 +55,6 @@ export class StatusesSerivce {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 
   }
+
+
 }

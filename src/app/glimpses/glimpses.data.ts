@@ -1,4 +1,5 @@
 export class Glimpses {
+  id: string;
   set: string;
   providerId: string;
   group: string;

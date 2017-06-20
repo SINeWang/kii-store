@@ -12,12 +12,15 @@ export class GlimpsesViewerComponent {
 
   private glimpse: Glimpse;
 
+  private glimpses: Glimpses;
+
   constructor(private glimpsesService: GlimpsesService) {
   }
 
   @Input()
-  set selected_instance(glimpse: Glimpses) {
-    this.glimpsesService.visit(glimpse).subscribe(
+  set selected_instance(glimpses: Glimpses) {
+    this.glimpses = glimpses;
+    this.glimpsesService.visit(glimpses).subscribe(
       data => this.handle_status(data),
       error => this.errorMessage = <any>error
     );

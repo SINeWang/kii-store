@@ -6,6 +6,8 @@ import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs/Observable';
 
 import {Glimpse, GlimpseIntensions, Glimpses} from './glimpses.data';
+import {Subjects} from '../shared/subjects/subjects.data';
+import {Status} from '../statuses/status.data';
 
 @Injectable()
 export class GlimpsesService {
@@ -43,5 +45,19 @@ export class GlimpsesService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+  subscribe(subscriber: Subjects, status: Status): Observable<Glimpses> {
+    const headers = new Headers({
+      // 'Authorization': authorization,
+      'X-SUMMER-OperatorId': subscriber.id,
+      'X-SUMMER-RequestId': Math.random()
+    });
+    const options = new RequestOptions({headers: headers});
+    let url = this.URL + '/';
+    url += subscriber.id;
+    url += '/subscriptions/glimpses';
+    return this.http.post(url, status, options)
+      .map((res: Response) => res.json() || [])
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 
+  }
 }

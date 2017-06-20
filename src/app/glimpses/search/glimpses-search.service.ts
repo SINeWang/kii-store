@@ -30,7 +30,7 @@ export class GlimpsesSearchService {
     });
     const options = new RequestOptions({headers: headers});
 
-    let url = this.URL + '/statuses?providerId=' + provider.id;
+    let url = this.URL + '/glimpses?providerId=' + provider.id;
     url += '&q=';
     if (query) {
       url += query;

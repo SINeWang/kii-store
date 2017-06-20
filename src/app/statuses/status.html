@@ -1,5 +1,8 @@
 <md-toolbar>
   <span>Status <small>  #{{status.id}} @{{ status.beginTime | date: 'y-MM-dd HH:mm:ss' }}</small> </span>
+  <button type="submit" (click)="subscribe()" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>
+    Subscribe
+  </button>
 </md-toolbar>
 
 <div class="content-grid mdl-grid" *ngFor="let intension of status.intensions">

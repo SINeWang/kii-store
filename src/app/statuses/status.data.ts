@@ -1,5 +1,6 @@
 import {Intension} from '../prototypes/intension/intensions.data';
 export class Status {
+  set: string;
   id: string;
   providerId: string;
   group: string;
