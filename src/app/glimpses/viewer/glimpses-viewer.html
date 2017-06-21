@@ -1,10 +1,10 @@
 <div mdl-shadow="2" *ngIf="glimpse">
   <md-toolbar>
-    <span>Glimpse @{{glimpses.id}}</span>
+    <span>Glimpse #{{glimpses.id}}</span>
   </md-toolbar>
   <div class="content-grid mdl-grid">
     <div class="mdl-cell mdl-cell--6-col">
-      <h5>Model <small>@</small> <a routerLink="/workspace/models/{{glimpse.model.providerId}}/{{glimpse.model.set}}">{{glimpse.model.set}}</a> </h5>
+      <h5>Model <small>#</small> <a routerLink="/workspace/models/{{glimpse.model.providerId}}/{{glimpse.model.set}}">{{glimpse.model.set}}</a> </h5>
       <ul>
         <li>Extension-ID: #{{glimpse.model.id}}</li>
         <li>Provider: {{glimpse.model.providerId}}</li>
@@ -17,7 +17,7 @@
       </ul>
     </div>
     <div class="mdl-cell mdl-cell--6-col">
-      <h5>Status <small>@</small><a routerLink="/workspace/statuses/{{glimpse.status.providerId}}/{{glimpse.status.set}}">{{glimpse.status.set}}</a> </h5>
+      <h5>Status <small>#</small><a routerLink="/workspace/statuses/{{glimpse.status.providerId}}/{{glimpse.status.set}}">{{glimpse.status.set}}</a> </h5>
       <ul>
         <li>ModelSubscription-ID: #{{glimpse.status.id}}</li>
         <li>Provider: {{glimpse.status.providerId}}</li>

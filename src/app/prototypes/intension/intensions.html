@@ -6,8 +6,9 @@
 
         {{intension.field}}
         :
-        <span *ngIf="!intension.refPubSet">{{intension.structure}}</span>
-        <span *ngIf="intension.refPubSet"><a routerLink="/workspace/models/{{refPubSet}}">Reference</a> </span>
+        <span *ngIf="!intension.refSet">{{intension.structure}}</span>
+        <span *ngIf="intension.refSet"><a [routerLink]="['/workspace/models/']"
+                                          [queryParams]="{'set':intension.refSet}">Reference</a> </span>
 
         <span *ngIf="!intension.single">[]</span>
 
