@@ -82,7 +82,9 @@ export class InstancesValueComponent {
     values.reference = this.reference;
     if (this.reference) {
       values.valueRefId = this.reference_glimpse.id;
-      values.values = [this.reference_intension.field];
+      if (this.reference_intension) {
+        values.values = [this.reference_intension.field];
+      }
     } else {
       values.values = [this.value];
     }

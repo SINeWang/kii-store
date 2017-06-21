@@ -8,7 +8,7 @@ export class StatusPub {
 
 
 export class Receipt {
-  pubSet: string;
+  set: string;
   providerId: string;
   version: string;
   visibility: string;
