@@ -22,7 +22,7 @@ export class ModelSubService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + subscribers.id + '/subscriptions/models';
+    const url = this.URL + '/' + subscribers.id + '/instances';
     if (subscriptions.group == null) {
       return Observable.of([]);
     }
