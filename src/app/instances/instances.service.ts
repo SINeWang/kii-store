@@ -40,7 +40,7 @@ export class InstancesService {
     });
     const options = new RequestOptions({headers: headers});
 
-    const url = this.URL + '/' + modelSub.subscriberId + '/instance/' + modelSub.id + '/fields/' + intension.field;
+    const url = this.URL + '/' + modelSub.subscriberId + '/value/' + modelSub.id + '/fields/' + intension.field;
     return this.http.put(url, value, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
