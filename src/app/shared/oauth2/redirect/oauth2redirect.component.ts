@@ -6,7 +6,7 @@ import {environment} from '../../../../environments/environment';
 
 @Component({
   providers: [],
-  templateUrl: 'oauth2redirect.html'
+  template: ''
 })
 export class Oauth2RedirectComponent implements OnInit {
 

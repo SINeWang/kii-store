@@ -9,7 +9,7 @@ import {UserService} from '../../user/user.service';
   providers: [
     UserService
   ],
-  templateUrl: 'oauth2login.html'
+  template: ''
 })
 export class Oauth2LoginComponent implements OnInit {
 
