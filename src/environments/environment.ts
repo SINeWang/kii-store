@@ -5,5 +5,9 @@
 
 export const environment = {
   production: false,
-  kiimate_url: 'http://localhost:9090/api/v1'
+  kiimate_url: 'http://localhost:9090/api/v1',
+  OAUTH2_CALLBACK_URL: 'http://localhost:4200/oauth2/callback',
+  OAUTH2_RESOURCE_USER_URL: 'http://git.euler.one/api/v4',
+  OAUTH2_AUTHORIZE_URL: 'http://git.euler.one/oauth/authorize',
+  OAUTH2_CLIENT_ID: '371c710e3a91264847c6258b8047be6f1d831763086acf75f8a18bd39016db75',
 };

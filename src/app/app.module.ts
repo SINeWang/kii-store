@@ -38,12 +38,27 @@ import {PrototypesComponent} from './prototypes/prototypes.component';
 import {GlimpsesSearchComponent} from './glimpses/search/glimpses-search.component';
 import {GlimpsesViewerComponent} from './glimpses/viewer/glimpses-viewer.component';
 import {InstancesValueComponent} from './instances/reference/inst-value.component';
+import {Oauth2RedirectComponent} from './shared/oauth2/redirect/oauth2redirect.component';
+import {Oauth2LoginComponent} from './shared/oauth2/login/oauth2login.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'workspace'
+    redirectTo: 'oauth2/redirect'
+  },
+  {
+    path: 'oauth2',
+    children: [
+      {
+        path: 'redirect',
+        component: Oauth2RedirectComponent
+      },
+      {
+        path: 'login',
+        component: Oauth2LoginComponent
+      },
+    ]
   },
   {
     path: 'workspace',
@@ -135,6 +150,8 @@ const routes: Routes = [
     IntensionsComponent,
     ModelsComponent,
     NewExtensionsComponent,
+    Oauth2LoginComponent,
+    Oauth2RedirectComponent,
     PrototypesComponent,
     SingleMultiComponent,
     StabilitiesComponent,

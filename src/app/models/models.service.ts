@@ -36,7 +36,7 @@ export class ModelsService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  visit(providers: Subjects, snapshot: Snapshot): Observable<Model> {
+  visit(visitor: Subjects, snapshot: Snapshot): Observable<Model> {
 
     const headers = new Headers({
       'X-SUMMER-VisitorId': '123',
@@ -47,6 +47,22 @@ export class ModelsService {
       return Observable.of(null);
     }
     const url = this.URL + '/models/' + snapshot.set;
+    return this.http.get(url, options)
+      .map((res: Response) => res.json() || [])
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  visitBySet(visitor: Subjects, set: string): Observable<Model> {
+
+    const headers = new Headers({
+      'X-SUMMER-VisitorId': '123',
+      'X-SUMMER-RequestId': Math.random()
+    });
+    const options = new RequestOptions({headers: headers});
+    if (set == null) {
+      return Observable.of(null);
+    }
+    const url = this.URL + '/models/' + set;
     return this.http.get(url, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));

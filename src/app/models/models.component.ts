@@ -92,6 +92,16 @@ export class ModelsComponent {
         this.candidateModels = [];
       }
     });
+
+    this.route.queryParams.subscribe(params => {
+      const set = params['set'];
+      if (set != null) {
+        this.modelsService.visitBySet(this.providers, set).subscribe(
+          data => this.selectedModel = data,
+          error => this.errorMessage = <any>error
+        );
+      }
+    });
   }
 
   handle_subjects(subjects: Subjects) {
