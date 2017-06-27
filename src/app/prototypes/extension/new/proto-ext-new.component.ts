@@ -1,19 +1,20 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Extensions} from '../extensions.data';
 import {Subscription} from 'rxjs/Subscription';
 import {Subjects} from '../../../shared/subjects/subjects.data';
-import {SubjectsService} from '../../../shared/subjects/subjects.service';
 import {NewExtensionsService} from './proto-ext-new.service';
+import {UserService} from '../../../shared/user/user.service';
 
 @Component({
   selector: 'app-proto-ext-new',
   providers: [NewExtensionsService],
   templateUrl: 'proto-ext-new.html',
 })
-export class NewExtensionsComponent {
+export class NewExtensionsComponent implements OnDestroy, OnInit {
+
 
   private errorMessage: string;
 
@@ -25,7 +26,7 @@ export class NewExtensionsComponent {
 
   _visibility: string;
 
-  ownersListener: Subscription;
+  userListener: Subscription;
 
   owners: Subjects;
 
@@ -44,16 +45,25 @@ export class NewExtensionsComponent {
 
 
   constructor(private formBuilder: FormBuilder,
-              private ownersService: SubjectsService,
+              private userService: UserService,
               private newExtensionsService: NewExtensionsService) {
 
     this.newExtensionForm = formBuilder.group({
       'name': this.newExtensionName,
     });
 
-    this.ownersListener = ownersService.announced$.subscribe(
-      owners => {
-        this.owners = owners;
+
+  }
+
+  ngOnDestroy(): void {
+    this.userListener.unsubscribe();
+  }
+
+  ngOnInit(): void {
+    this.userListener = this.userService.user$.subscribe(
+      data => {
+        this.owners = new Subjects();
+        this.owners.id = data.username;
       }
     );
   }
