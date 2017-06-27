@@ -12,7 +12,7 @@ import {ProtoPub} from './publication/proto-pub.data';
 import {SubjectsService} from '../shared/subjects/subjects.service';
 import {NewExtensionsService} from './extension/new/proto-ext-new.service';
 import {Subscription} from 'rxjs/Subscription';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {User} from '../shared/user/user.data';
 import {UserService} from '../shared/user/user.service';
 @Component({
@@ -47,23 +47,35 @@ export class PrototypesComponent implements OnInit, OnDestroy {
 
   userListener: Subscription;
 
+  queryParams: Object;
+
   constructor(private searchSpi: SearchExtensionsService,
               private extensionService: ExtensionsService,
               private userService: UserService,
-              private route: ActivatedRoute,
-              private router: Router) {
+              private route: ActivatedRoute) {
 
     this.searchExtensionsCtl.valueChanges
       .startWith(null)
       .subscribe(name => this.onSearchExtensionsChange(name));
+    this.userListener = this.userService.user$.subscribe(
+      data => this.handle_user(data)
+    );
     this.userService.checkin();
+    this.route.queryParams.subscribe(
+      params => this.queryParams = params
+    );
   }
 
 
   ngOnInit(): void {
-    this.userListener = this.userService.user$.subscribe(
-      data => this.handle_user(data)
-    );
+    if (this.queryParams && this.queryParams['id']) {
+      if (this.owners) {
+        this.extensionService.visitById(this.owners, this.queryParams['id']).subscribe(
+          data => this.handle_extension(data),
+          error => this.errorMessage = <any>error
+        );
+      }
+    }
   }
 
   ngOnDestroy(): void {
@@ -76,20 +88,21 @@ export class PrototypesComponent implements OnInit, OnDestroy {
     }
     this.owners = new Subjects();
     this.owners.id = user.username;
-    const parentPath = this.route.parent.snapshot.url[0].path;
-    const currentPath = this.route.snapshot.url[0].path;
-    this.router.navigate([parentPath, currentPath]);
+    // const parentPath = this.route.parent.snapshot.url[0].path;
+    // const currentPath = this.route.snapshot.url[0].path;
+    // this.router.navigate([parentPath, currentPath]);
   }
 
   onSearchExtensionsChange(input: any) {
     if (input instanceof Object) {
       this.newExtensionModel = false;
-      this.extensionService.visit(input).subscribe(
-        data => this.handle_extension(data),
-        error => this.errorMessage = <any>error
-      );
+      if (this.extension == null) {
+        this.extensionService.visit(this.owners, input).subscribe(
+          data => this.handle_extension(data),
+          error => this.errorMessage = <any>error
+        );
+      }
     } else {
-      const authorization = localStorage.getItem('authorization');
       if (this.owners) {
         this.searchSpi.search(this.owners, input).subscribe(
           data => this.candidateExtensions = data,
@@ -101,12 +114,23 @@ export class PrototypesComponent implements OnInit, OnDestroy {
 
 
   displaySelectedExtensions(extensions: Extensions): string {
-    return extensions ? extensions.group + ' / ' + extensions.name + ' # ' + extensions.tree : '';
+    return extensions != null ? extensions.group + ' / ' + extensions.name + ' # ' + extensions.tree : '';
   }
 
 
   handle_extension(extension: Extension) {
-    this.extension = extension;
+    if (extension == null) {
+      return;
+    }
+    if (this.extension == null) {
+      this.extension = extension;
+      this.searchExtensionsCtl.setValue(extension);
+    } else {
+      if (this.extension.id !== extension.id) {
+        this.extension = extension;
+        this.searchExtensionsCtl.setValue(extension);
+      }
+    }
   }
 
 }

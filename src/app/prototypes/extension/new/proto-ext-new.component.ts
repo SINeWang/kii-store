@@ -7,6 +7,7 @@ import {Subscription} from 'rxjs/Subscription';
 import {Subjects} from '../../../shared/subjects/subjects.data';
 import {NewExtensionsService} from './proto-ext-new.service';
 import {UserService} from '../../../shared/user/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-proto-ext-new',
@@ -46,6 +47,7 @@ export class NewExtensionsComponent implements OnDestroy, OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
+              private router: Router,
               private newExtensionsService: NewExtensionsService) {
 
     this.newExtensionForm = formBuilder.group({
@@ -79,7 +81,7 @@ export class NewExtensionsComponent implements OnDestroy, OnInit {
 
     this.newExtensionsService.commit(extensions).subscribe(
       data => {
-        console.log(data);
+        this.router.navigate(['/workspace', 'prototypes'], {queryParams: {id: data.id}});
       },
       error => this.errorMessage = <any>error
     );
