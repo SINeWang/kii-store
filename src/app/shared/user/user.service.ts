@@ -18,7 +18,7 @@ export class UserService {
   constructor(private http: Http) {
   }
 
-  checkin() {
+  check_in() {
     const authorization = localStorage.getItem('authorization');
     this.visit(authorization).subscribe(
       data => this.observer.next(data)

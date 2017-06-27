@@ -36,7 +36,7 @@ export class Oauth2LoginComponent implements OnInit {
       this.router.navigate(['oauth2', 'redirect']);
       return;
     } else {
-      this.user.checkin();
+      this.user.check_in();
       this.router.navigate(['workspace']);
     }
   }

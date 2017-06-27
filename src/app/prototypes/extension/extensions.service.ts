@@ -6,6 +6,7 @@ import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../../environments/environment';
 import {Extension} from './extension.data';
 import {Subjects} from '../../shared/subjects/subjects.data';
+import {Extensions} from './extensions.data';
 
 @Injectable()
 export class ExtensionsService {
@@ -16,7 +17,7 @@ export class ExtensionsService {
   }
 
 
-  visit(owner: Subjects, extension: Extension): Observable<Extension> {
+  visit(owner: Subjects, extension: Extensions): Observable<Extension> {
     const headers = new Headers({
       'X-SUMMER-VisitorId': owner.id,
       'X-SUMMER-RequestId': Math.random()
