@@ -1,4 +1,4 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ModelsService} from '../models/models.service';
 import {ProtoPubSetvice} from './publication/proto-pub.service';
 import {ExtensionsService} from './extension/extensions.service';
@@ -13,6 +13,8 @@ import {SubjectsService} from '../shared/subjects/subjects.service';
 import {NewExtensionsService} from './extension/new/proto-ext-new.service';
 import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute, Router} from '@angular/router';
+import {User} from '../shared/user/user.data';
+import {UserService} from '../shared/user/user.service';
 @Component({
   selector: 'app-prototypes',
   providers: [
@@ -26,7 +28,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   ],
   templateUrl: 'prototypes.html',
 })
-export class PrototypesComponent implements OnDestroy {
+export class PrototypesComponent implements OnInit, OnDestroy {
 
 
   candidateExtensions: Extensions[];
@@ -34,8 +36,6 @@ export class PrototypesComponent implements OnDestroy {
   searchExtensionsCtl = new FormControl();
 
   newExtensionModel: boolean;
-
-  ownersListener: Subscription;
 
   owners: Subjects;
 
@@ -45,34 +45,40 @@ export class PrototypesComponent implements OnDestroy {
 
   extension: Extension;
 
+  userListener: Subscription;
 
   constructor(private searchSpi: SearchExtensionsService,
               private extensionService: ExtensionsService,
-              private subjectsService: SubjectsService,
+              private userService: UserService,
               private route: ActivatedRoute,
               private router: Router) {
-
-    this.ownersListener = subjectsService.announced$.subscribe(
-      data => this.handle_subjects(data)
-    );
 
     this.searchExtensionsCtl.valueChanges
       .startWith(null)
       .subscribe(name => this.onSearchExtensionsChange(name));
+    this.userService.checkin();
+  }
+
+
+  ngOnInit(): void {
+    this.userListener = this.userService.user$.subscribe(
+      data => this.handle_user(data)
+    );
   }
 
   ngOnDestroy(): void {
-    this.ownersListener.unsubscribe();
+    this.userListener.unsubscribe();
   }
 
-  handle_subjects(subjects: Subjects) {
-    if (subjects == null) {
+  handle_user(user: User) {
+    if (user == null) {
       return;
     }
-    this.owners = subjects;
+    this.owners = new Subjects();
+    this.owners.id = user.username;
     const parentPath = this.route.parent.snapshot.url[0].path;
     const currentPath = this.route.snapshot.url[0].path;
-    this.router.navigate([parentPath, currentPath, subjects.id]);
+    this.router.navigate([parentPath, currentPath]);
   }
 
   onSearchExtensionsChange(input: any) {

@@ -5,14 +5,27 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {User} from './user.data';
 import {environment} from '../../../environments/environment';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class UserService {
 
+
+  private observer = new BehaviorSubject<User>(null);
+
+  user$ = this.observer.asObservable();
+
   constructor(private http: Http) {
   }
 
-  checkin(authorization): Observable<User> {
+  checkin() {
+    const authorization = localStorage.getItem('authorization');
+    this.visit(authorization).subscribe(
+      data => this.observer.next(data)
+    );
+  }
+
+  visit(authorization: string): Observable<User> {
     const headers = new Headers({'Authorization': authorization});
     const options = new RequestOptions({headers: headers});
 
@@ -20,5 +33,5 @@ export class UserService {
       .map((res: Response) => res.json() || {})
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
-  
+
 }

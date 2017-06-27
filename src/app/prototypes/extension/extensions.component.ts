@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ExtensionsService} from './extensions.service';
 import {Intension} from '../intension/intensions.data';
 import {Model, Models, Snapshot} from '../../models/models.data';
@@ -11,13 +11,16 @@ import {Subjects} from '../../shared/subjects/subjects.data';
 import {ProtoPubSetvice} from '../publication/proto-pub.service';
 import {Extension} from './extension.data';
 import {ProtoPub} from '../publication/proto-pub.data';
+import {UserService} from '../../shared/user/user.service';
+import {User} from '../../shared/user/user.data';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-extensions',
   providers: [ExtensionsService, IntensionsService, ModelsService, ProtoPubSetvice],
   templateUrl: 'extensions.html',
 })
-export class ExtensionsComponent {
+export class ExtensionsComponent implements OnInit, OnDestroy {
 
   private intension = new Intension();
 
@@ -41,9 +44,14 @@ export class ExtensionsComponent {
 
   extension: Extension;
 
+  userListener: Subscription;
+
+  user: User;
+
   constructor(private modelsService: ModelsService,
               private intensionsService: IntensionsService,
-              private publicationService: ProtoPubSetvice) {
+              private publicationService: ProtoPubSetvice,
+              private userService: UserService) {
 
     this.intension.visibility = 'public';
     this.intension.single = true;
@@ -59,6 +67,20 @@ export class ExtensionsComponent {
       .startWith(null)
       .subscribe(name => this.onCandidateSnapshotsChange(name));
 
+  }
+
+  ngOnInit(): void {
+    this.userListener = this.userService.user$.subscribe(
+      user => {
+        if (user != null) {
+          this.user = user;
+        }
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.userListener.unsubscribe();
   }
 
   @Input()
