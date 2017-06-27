@@ -46,8 +46,6 @@ export class ExtensionsComponent implements OnInit, OnDestroy {
 
   userListener: Subscription;
 
-  user: User;
-
   constructor(private modelsService: ModelsService,
               private intensionsService: IntensionsService,
               private publicationService: ProtoPubSetvice,
@@ -73,7 +71,8 @@ export class ExtensionsComponent implements OnInit, OnDestroy {
     this.userListener = this.userService.user$.subscribe(
       user => {
         if (user != null) {
-          this.user = user;
+          this.owners = new Subjects();
+          this.owners.id = user.username;
         }
       }
     );
@@ -90,11 +89,6 @@ export class ExtensionsComponent implements OnInit, OnDestroy {
       this.protoPub.providerId = extension.ownerId;
       this.protoPub.extId = extension.id;
     }
-  }
-
-  @Input()
-  set the_owner(owner: Subjects) {
-    this.owners = owner;
   }
 
 
