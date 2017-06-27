@@ -6,8 +6,10 @@ import {UserService} from '../../user/user.service';
 
 
 @Component({
-  providers: [],
-  templateUrl: 'oauth2login.html'
+  providers: [
+    UserService
+  ],
+  template: ''
 })
 export class Oauth2LoginComponent implements OnInit {
 
@@ -36,8 +38,9 @@ export class Oauth2LoginComponent implements OnInit {
       this.router.navigate(['oauth2', 'redirect']);
       return;
     } else {
-      this.user.check_in();
-      this.router.navigate(['workspace']);
+      this.user.checkin(authorization).subscribe(
+        user => console.log(user)
+      );
     }
   }
 
