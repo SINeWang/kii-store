@@ -7,9 +7,7 @@ import {User} from './shared/user/user.data';
   selector: 'app-root',
   templateUrl: './app.root.html',
   styleUrls: ['./app.root.css'],
-  providers: [
-    UserService
-  ]
+  providers: []
 })
 export class AppComponent {
 

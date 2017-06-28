@@ -12,7 +12,6 @@ import {ProtoPubSetvice} from '../publication/proto-pub.service';
 import {Extension} from './extension.data';
 import {ProtoPub} from '../publication/proto-pub.data';
 import {UserService} from '../../shared/user/user.service';
-import {User} from '../../shared/user/user.data';
 import {Subscription} from 'rxjs/Subscription';
 
 @Component({
