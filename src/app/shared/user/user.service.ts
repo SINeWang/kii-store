@@ -19,18 +19,15 @@ export class UserService {
   constructor(private http: Http) {
   }
 
-  check_in(): Promise<User> {
-    const authorization = localStorage.getItem('authorization');
-    return this.visit(authorization);
-  }
 
-  private visit(authorization: string): Promise<User> {
+  visit(): Observable<User> {
+    const authorization = localStorage.getItem('authorization');
+
     const headers = new Headers({'Authorization': authorization});
     const options = new RequestOptions({headers: headers});
 
     return this.http.get(environment.OAUTH2_RESOURCE_USER_URL + '/user', options)
       .map(response => response.json())
-      .toPromise()
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 

@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ModelsService} from '../models/models.service';
 import {ProtoPubSetvice} from './publication/proto-pub.service';
 import {ExtensionsService} from './extension/extensions.service';
@@ -11,7 +11,6 @@ import {Extension} from 'app/prototypes/extension/extension.data';
 import {ProtoPub} from './publication/proto-pub.data';
 import {SubjectsService} from '../shared/subjects/subjects.service';
 import {NewExtensionsService} from './extension/new/proto-ext-new.service';
-import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../shared/user/user.data';
 import {UserService} from '../shared/user/user.service';
@@ -29,7 +28,7 @@ import {UserService} from '../shared/user/user.service';
   ],
   templateUrl: 'prototypes.html',
 })
-export class PrototypesComponent implements OnInit, OnDestroy {
+export class PrototypesComponent implements OnInit {
 
 
   candidateExtensions: Extensions[];
@@ -46,8 +45,6 @@ export class PrototypesComponent implements OnInit, OnDestroy {
 
   extension: Extension;
 
-  userListener: Subscription;
-
   queryParams: Object;
 
   constructor(private searchSpi: SearchExtensionsService,
@@ -59,11 +56,9 @@ export class PrototypesComponent implements OnInit, OnDestroy {
     this.searchExtensionsCtl.valueChanges
       .startWith(null)
       .subscribe(name => this.onSearchExtensionsChange(name));
-    this.userListener = this.userService.user$.subscribe(
-      data => this.handle_user(data)
-    );
-    this.userService.check_in().then(
-      user => this.handle_user(user)
+
+    this.userService.visit().subscribe(
+      user => this.check_in(user)
     );
     this.route.queryParams.subscribe(
       params => this.queryParams = params
@@ -72,14 +67,9 @@ export class PrototypesComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-
   }
 
-  ngOnDestroy(): void {
-    this.userListener.unsubscribe();
-  }
-
-  handle_user(user: User) {
+  check_in(user: User) {
     if (user == null) {
       return;
     }
@@ -88,13 +78,10 @@ export class PrototypesComponent implements OnInit, OnDestroy {
 
     const id = this.queryParams['id'];
     if (id != null) {
-      const parentPath = this.route.parent.snapshot.url[0].path;
-      const currentPath = this.route.snapshot.url[0].path;
       this.extensionService.visitById(this.owners, id).subscribe(
         data => this.handle_extension(data),
         error => this.errorMessage = <any>error
       );
-      this.router.navigate([parentPath, currentPath]);
     }
   }
 
