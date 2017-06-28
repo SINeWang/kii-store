@@ -11,7 +11,7 @@ import {Extension} from 'app/prototypes/extension/extension.data';
 import {ProtoPub} from './publication/proto-pub.data';
 import {SubjectsService} from '../shared/subjects/subjects.service';
 import {NewExtensionsService} from './extension/new/proto-ext-new.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {User} from '../shared/user/user.data';
 import {UserService} from '../shared/user/user.service';
 

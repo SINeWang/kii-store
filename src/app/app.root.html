@@ -3,8 +3,8 @@
     <mdl-layout-header-row>
       <mdl-layout-title>KiiStore</mdl-layout-title>
       <mdl-layout-spacer></mdl-layout-spacer>
-      <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="https://github.com/sinewang/kii-store">GitHub</a>
+      <nav class="mdl-navigation" *ngIf="user">
+        <a class="mdl-navigation__link" href="https://github.com/sinewang/kii-store">{{user.name}} ({{user.username}})</a>
       </nav>
     </mdl-layout-header-row>
   </mdl-layout-header>
