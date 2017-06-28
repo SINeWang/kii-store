@@ -1,20 +1,24 @@
 import {Component, ViewChild} from '@angular/core';
-import {SubjectsService} from '../shared/subjects/subjects.service';
-
-import {Subscription} from 'rxjs/Subscription';
-import {ActivatedRoute, Router} from '@angular/router';
 import {Subjects} from '../shared/subjects/subjects.data';
 
 import {InstancesService} from './instances.service';
-import {Statuses} from '../statuses/statuses.data';
 import {InstancesSearchService} from './search/inst-search.service';
 import {StatusesSerivce} from '../statuses/statuses.service';
 import {StatusPubService} from '../statuses/publication/status-pub.service';
 import {ModelSub} from '../models/subscription/model-sub.data';
+import {User} from '../shared/user/user.data';
+import {UserService} from '../shared/user/user.service';
+import {SubjectsService} from '../shared/subjects/subjects.service';
 
 @Component({
   selector: 'app-compose-instances',
-  providers: [InstancesSearchService, SubjectsService, InstancesService, StatusesSerivce, StatusPubService],
+  providers: [
+    InstancesSearchService,
+    InstancesService,
+    StatusesSerivce,
+    StatusPubService,
+    SubjectsService],
+
   templateUrl: 'instances.html'
 })
 export class InstancesComponent {
@@ -25,30 +29,25 @@ export class InstancesComponent {
   @ViewChild('subscriptionsEditor') subscriptionsEditor;
 
 
-  ownersListener: Subscription;
-
-  owners: Subjects;
-
   notifyEditor(instance: ModelSub) {
     this.subscriptionsEditor.selected_instance = instance;
   }
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private subjectsService: SubjectsService) {
-    this.ownersListener = subjectsService.announced$.subscribe(
-      data => this.handle_subjects(data)
+  constructor(private userService: UserService,
+              private subjectService: SubjectsService) {
+
+    this.userService.visit().subscribe(
+      user => this.check_in(user)
     );
   }
 
-  handle_subjects(subjects: Subjects) {
-    if (subjects == null) {
+  check_in(user: User) {
+    if (user == null) {
       return;
     }
-    this.owners = subjects;
-    const parentPath = this.route.parent.snapshot.url[0].path;
-    const currentPath = this.route.snapshot.url[0].path;
-    this.router.navigate([parentPath, currentPath, subjects.id]);
+    const subjects = new Subjects();
+    subjects.id = user.username;
+    this.subjectService.announce(subjects);
   }
 
 

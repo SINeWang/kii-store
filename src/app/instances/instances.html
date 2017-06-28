@@ -1,9 +1,6 @@
 <div mdl-shadow="2">
   <form>
     <div class="content-grid mdl-grid">
-      <div class="mdl-cell mdl-cell--3-col">
-        <app-subjects [object_type]="'Instance'" [access_type]="'Owner'" [subject_alias]="'owner-id'"></app-subjects>
-      </div>
       <div class="mdl-cell mdl-cell--4-col">
         <app-instances-search #subscriptionsSearch (onFound)="notifyEditor($event)"></app-instances-search>
       </div>
