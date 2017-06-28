@@ -1,11 +1,11 @@
 import {Component, ViewChild} from '@angular/core';
 import {SubjectsService} from '../shared/subjects/subjects.service';
-import {Subscription} from 'rxjs/Subscription';
 import {Subjects} from '../shared/subjects/subjects.data';
-import {ActivatedRoute, Router} from '@angular/router';
 import {GlimpsesSearchService} from './search/glimpses-search.service';
 import {Glimpses} from './glimpses.data';
 import {GlimpsesService} from './glimpses.service';
+import {User} from '../shared/user/user.data';
+import {UserService} from '../shared/user/user.service';
 
 
 @Component({
@@ -21,29 +21,25 @@ export class GlimpsesComponent {
 
   errorMessage: string;
 
-  ownersListener: Subscription;
-
   owners: Subjects;
 
   @ViewChild('glimpsesViewer') glimpsesViewer;
 
 
-  constructor(private ownersService: SubjectsService,
-              private route: ActivatedRoute,
-              private router: Router) {
-    this.ownersListener = ownersService.announced$.subscribe(
-      owners => this.handleOwners(owners)
+  constructor(private userService: UserService,
+              private subjectService: SubjectsService) {
+    this.userService.visit().subscribe(
+      user => this.check_in(user)
     );
   }
 
-  handleOwners(owners: Subjects) {
-    if (owners == null) {
+  check_in(user: User) {
+    if (user == null) {
       return;
     }
-    this.owners = owners;
-    const parentPath = this.route.parent.snapshot.url[0].path;
-    const currentPath = this.route.snapshot.url[0].path;
-    this.router.navigate([parentPath, currentPath, owners.id]);
+    const subjects = new Subjects();
+    subjects.id = user.username;
+    this.subjectService.announce(subjects);
   }
 
   notifyViewer(glimpses: Glimpses) {

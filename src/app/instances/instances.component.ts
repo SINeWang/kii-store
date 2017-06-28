@@ -35,7 +35,6 @@ export class InstancesComponent {
 
   constructor(private userService: UserService,
               private subjectService: SubjectsService) {
-
     this.userService.visit().subscribe(
       user => this.check_in(user)
     );
