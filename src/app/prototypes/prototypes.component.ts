@@ -45,24 +45,19 @@ export class PrototypesComponent implements OnInit {
 
   extension: Extension;
 
-  queryParams: Object;
-
   constructor(private searchSpi: SearchExtensionsService,
               private extensionService: ExtensionsService,
               private userService: UserService,
-              private router: Router,
               private route: ActivatedRoute) {
 
     this.searchExtensionsCtl.valueChanges
       .startWith(null)
-      .subscribe(name => this.onSearchExtensionsChange(name));
+      .subscribe(name => this.onSearchChange(name));
 
     this.userService.visit().subscribe(
       user => this.check_in(user)
     );
-    this.route.queryParams.subscribe(
-      params => this.queryParams = params
-    );
+
   }
 
 
@@ -76,16 +71,21 @@ export class PrototypesComponent implements OnInit {
     this.owners = new Subjects();
     this.owners.id = user.username;
 
-    const id = this.queryParams['id'];
-    if (id != null) {
-      this.extensionService.visitById(this.owners, id).subscribe(
-        data => this.handle_extension(data),
-        error => this.errorMessage = <any>error
-      );
-    }
+    this.route.queryParams.subscribe(
+      params => {
+        const id = params['id'];
+        if (id != null) {
+          this.extensionService.visitById(this.owners, id).subscribe(
+            data => this.handle_extension(data),
+            error => this.errorMessage = <any>error
+          );
+        }
+      }
+    );
+
   }
 
-  onSearchExtensionsChange(input: any) {
+  onSearchChange(input: any) {
     if (input instanceof Object) {
       this.newExtensionModel = false;
       const id = input['id'];
