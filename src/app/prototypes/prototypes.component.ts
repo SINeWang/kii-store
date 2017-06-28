@@ -15,7 +15,6 @@ import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../shared/user/user.data';
 import {UserService} from '../shared/user/user.service';
-import 'rxjs/add/observable/forkJoin';
 
 @Component({
   selector: 'app-prototypes',
@@ -63,7 +62,9 @@ export class PrototypesComponent implements OnInit, OnDestroy {
     this.userListener = this.userService.user$.subscribe(
       data => this.handle_user(data)
     );
-    this.userService.check_in();
+    this.userService.check_in().then(
+      user => this.handle_user(user)
+    );
     this.route.queryParams.subscribe(
       params => this.queryParams = params
     );
@@ -71,9 +72,7 @@ export class PrototypesComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    const parentPath = this.route.parent.snapshot.url[0].path;
-    const currentPath = this.route.snapshot.url[0].path;
-    this.router.navigate([parentPath, currentPath]);
+
   }
 
   ngOnDestroy(): void {
@@ -86,11 +85,26 @@ export class PrototypesComponent implements OnInit, OnDestroy {
     }
     this.owners = new Subjects();
     this.owners.id = user.username;
+
+    const id = this.queryParams['id'];
+    if (id != null) {
+      const parentPath = this.route.parent.snapshot.url[0].path;
+      const currentPath = this.route.snapshot.url[0].path;
+      this.extensionService.visitById(this.owners, id).subscribe(
+        data => this.handle_extension(data),
+        error => this.errorMessage = <any>error
+      );
+      this.router.navigate([parentPath, currentPath]);
+    }
   }
 
   onSearchExtensionsChange(input: any) {
     if (input instanceof Object) {
       this.newExtensionModel = false;
+      const id = input['id'];
+      if (id === this.extension.id) {
+        return;
+      }
       this.extensionService.visit(this.owners, input).subscribe(
         data => this.handle_extension(data),
         error => this.errorMessage = <any>error
