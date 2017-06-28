@@ -102,7 +102,7 @@ export class PrototypesComponent implements OnInit, OnDestroy {
     if (input instanceof Object) {
       this.newExtensionModel = false;
       const id = input['id'];
-      if (id === this.extension.id) {
+      if (this.extension != null && id === this.extension.id) {
         return;
       }
       this.extensionService.visit(this.owners, input).subscribe(
@@ -129,15 +129,10 @@ export class PrototypesComponent implements OnInit, OnDestroy {
     if (extension == null) {
       return;
     }
-    if (this.extension == null) {
-      this.extension = extension;
+    this.extension = extension;
+    if (this.searchExtensionsCtl.value == null) {
       this.searchExtensionsCtl.setValue(extension);
-    } else {
-      if (this.extension.id !== extension.id) {
-        this.extension = extension;
-        this.searchExtensionsCtl.setValue(extension);
-      }
     }
-  }
 
+  }
 }
