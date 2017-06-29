@@ -19,7 +19,7 @@ export class Oauth2RedirectComponent implements OnInit {
   ngOnInit() {
     const token = localStorage.getItem('authorization');
     if (token != null) {
-      this.router.navigate(['oauth2', 'login']);
+      this.router.navigate(['workspace']);
     } else {
       this.route.queryParams.subscribe(
         (params: Params) => {
