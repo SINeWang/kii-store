@@ -14,6 +14,7 @@ import {NewExtensionsService} from './extension/new/proto-ext-new.service';
 import {ActivatedRoute} from '@angular/router';
 import {User} from '../shared/user/user.data';
 import {UserService} from '../shared/user/user.service';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-prototypes',
@@ -53,36 +54,31 @@ export class PrototypesComponent implements OnInit {
     this.searchExtensionsCtl.valueChanges
       .startWith(null)
       .subscribe(name => this.onSearchChange(name));
-
-    this.userService.visit().subscribe(
-      user => this.check_in(user)
-    );
-
   }
 
 
   ngOnInit(): void {
+    Observable.combineLatest(
+      this.userService.visit(),
+      this.route.queryParams,
+    ).subscribe(bothParams => {
+      this.check_in(bothParams[0], bothParams[1]['id']);
+    });
   }
 
-  check_in(user: User) {
+  check_in(user: User, id: string) {
     if (user == null) {
       return;
     }
     this.owners = new Subjects();
     this.owners.id = user.username;
 
-    this.route.queryParams.subscribe(
-      params => {
-        const id = params['id'];
-        if (id != null) {
-          this.extensionService.visitById(this.owners, id).subscribe(
-            data => this.handle_extension(data),
-            error => this.errorMessage = <any>error
-          );
-        }
-      }
-    );
-
+    if (id != null) {
+      this.extensionService.visitById(this.owners, id).subscribe(
+        data => this.handle_extension(data),
+        error => this.errorMessage = <any>error
+      );
+    }
   }
 
   onSearchChange(input: any) {
