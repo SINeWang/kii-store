@@ -37,7 +37,7 @@ import {StatusComponent} from './statuses/status.component';
 import {PrototypesComponent} from './prototypes/prototypes.component';
 import {GlimpsesSearchComponent} from './glimpses/search/glimpses-search.component';
 import {GlimpsesViewerComponent} from './glimpses/viewer/glimpses-viewer.component';
-import {InstancesValueComponent} from './instances/reference/inst-value.component';
+import {InstancesValueComponent} from './instances/value/inst-value.component';
 import {Oauth2RedirectComponent} from './shared/oauth2/redirect/oauth2redirect.component';
 import {Oauth2LoginComponent} from './shared/oauth2/login/oauth2login.component';
 import {UserService} from './shared/user/user.service';

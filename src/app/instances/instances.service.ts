@@ -6,7 +6,7 @@ import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs/Observable';
 import {Instances} from './instances.data';
 import {ModelSub} from '../models/subscription/model-sub.data';
-import {Values} from './reference/inst-value.data';
+import {Values} from './value/inst-value.data';
 import {GlimpseIntensions} from '../glimpses/glimpses.data';
 import {Intension} from '../prototypes/intension/intensions.data';
 
