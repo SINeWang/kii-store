@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ExtensionsService} from './extensions.service';
 import {Intension} from '../intension/intensions.data';
 import {Model, Models, Snapshot} from '../../models/models.data';
@@ -12,14 +12,13 @@ import {ProtoPubSetvice} from '../publication/proto-pub.service';
 import {Extension} from './extension.data';
 import {ProtoPub} from '../publication/proto-pub.data';
 import {UserService} from '../../shared/user/user.service';
-import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-extensions',
   providers: [ExtensionsService, IntensionsService, ModelsService, ProtoPubSetvice],
   templateUrl: 'extensions.html',
 })
-export class ExtensionsComponent implements OnInit, OnDestroy {
+export class ExtensionsComponent implements OnInit {
 
   private intension = new Intension();
 
@@ -73,9 +72,6 @@ export class ExtensionsComponent implements OnInit, OnDestroy {
         }
       }
     );
-  }
-
-  ngOnDestroy(): void {
   }
 
   @Input()
