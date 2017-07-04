@@ -43,8 +43,6 @@ export class ExtensionsComponent implements OnInit, OnDestroy {
 
   extension: Extension;
 
-  userListener: Subscription;
-
   constructor(private modelsService: ModelsService,
               private intensionsService: IntensionsService,
               private publicationService: ProtoPubSetvice,
@@ -67,7 +65,7 @@ export class ExtensionsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.userListener = this.userService.user$.subscribe(
+    this.userService.visit().subscribe(
       user => {
         if (user != null) {
           this.owners = new Subjects();
@@ -78,7 +76,6 @@ export class ExtensionsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.userListener.unsubscribe();
   }
 
   @Input()
