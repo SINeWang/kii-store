@@ -1,8 +1,11 @@
 <div class="content-grid mdl-grid">
+  {{values | json }}
+</div>
+<div class="content-grid mdl-grid">
   <div class="mdl-cell mdl-cell--2-col">
     <md-checkbox [(ngModel)]="reference">Reference</md-checkbox>
   </div>
-  <div class="mdl-cell mdl-cell--6-col" *ngIf="reference">
+  <div class="mdl-cell mdl-cell--5-col" *ngIf="reference">
     <app-glimpses-search (onFound)="load_intensions($event)"></app-glimpses-search>
 
     <md-input-container style="width: 100%;">
@@ -15,17 +18,20 @@
     </md-autocomplete>
 
   </div>
-  <div class="mdl-cell mdl-cell--6-col" *ngIf="!reference">
+  <div class="mdl-cell mdl-cell--5-col" *ngIf="!reference">
     <mdl-textfield type="text" label="{{intension.field}}" name="{{intension.field}}" floating-label
                    [(ngModel)]="value">
     </mdl-textfield>
   </div>
-  <div class="mdl-cell mdl-cell--4-col">
-    <button (click)="save()" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>
+  <div class="mdl-cell mdl-cell--5-col">
+    <button (click)="add()" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>
+      <span *ngIf="intension.single">Save</span><span *ngIf="!intension.single">Add</span>
+    </button>
+    <button (click)="save()"  mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple *ngIf="!intension.single">
       Save
     </button>
-    <button  mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple *ngIf="!intension.single">
-      Add
+    <button (click)="reset()"  mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple *ngIf="!intension.single">
+      Reset
     </button>
   </div>
 

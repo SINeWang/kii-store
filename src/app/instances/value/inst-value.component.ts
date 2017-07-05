@@ -31,6 +31,8 @@ export class InstancesValueComponent {
 
   reference_intension: GlimpseIntensions;
 
+  values: Value[] = [];
+
   constructor(private instancesService: InstancesService,
               private glimpseService: GlimpsesService) {
 
@@ -77,9 +79,8 @@ export class InstancesValueComponent {
   }
 
 
-  save() {
+  add() {
     const value = new Value();
-    value.reference = this.reference;
     if (this.reference) {
       value.glimpseId = this.reference_glimpse.id;
       if (this.reference_intension) {
@@ -88,11 +89,24 @@ export class InstancesValueComponent {
     } else {
       value.value = this.value;
     }
+    this.values.push(value);
+    if (this.intension.single) {
+      this.save();
+    }
+  }
 
-    this.instancesService.commit([value], this.modelSub, this.intension).subscribe(
-      data => console.log(data),
+  save() {
+    this.instancesService.commit(this.values, this.modelSub, this.intension).subscribe(
+      data => {
+        this.reset();
+        console.log(data);
+      },
       error => this.errorMessage = <any>error
     );
+  }
+
+  reset() {
+    this.values = [];
   }
 
 
