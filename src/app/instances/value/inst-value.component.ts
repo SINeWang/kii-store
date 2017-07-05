@@ -5,7 +5,7 @@ import {ModelSub} from '../../models/subscription/model-sub.data';
 import {InstancesService} from '../instances.service';
 import {GlimpsesService} from '../../glimpses/glimpses.service';
 import {FormControl} from '@angular/forms';
-import {Values} from './inst-value.data';
+import {Value} from './inst-value.data';
 @Component({
   selector: 'app-instances-value',
   providers: [GlimpsesService],
@@ -78,17 +78,18 @@ export class InstancesValueComponent {
 
 
   save() {
-    const values = new Values();
-    values.reference = this.reference;
+    const value = new Value();
+    value.reference = this.reference;
     if (this.reference) {
-      values.glimpseId = this.reference_glimpse.id;
+      value.glimpseId = this.reference_glimpse.id;
       if (this.reference_intension) {
-        values.values = [this.reference_intension.field];
+        value.value = this.reference_intension.field;
       }
     } else {
-      values.values = [this.value];
+      value.value = this.value;
     }
-    this.instancesService.commit(values, this.modelSub, this.intension).subscribe(
+
+    this.instancesService.commit([value], this.modelSub, this.intension).subscribe(
       data => console.log(data),
       error => this.errorMessage = <any>error
     );

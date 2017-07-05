@@ -1,6 +1,6 @@
-export class Values {
+export class Value {
   reference: boolean;
   field: string;
-  values: string[];
+  value: string;
   glimpseId: string;
 }

@@ -6,8 +6,7 @@ import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs/Observable';
 import {Instances} from './instances.data';
 import {ModelSub} from '../models/subscription/model-sub.data';
-import {Values} from './value/inst-value.data';
-import {GlimpseIntensions} from '../glimpses/glimpses.data';
+import {Value} from './value/inst-value.data';
 import {Intension} from '../prototypes/intension/intensions.data';
 
 @Injectable()
@@ -32,7 +31,7 @@ export class InstancesService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  commit(value: Values, modelSub: ModelSub, intension: Intension): Observable<Instances> {
+  commit(values: Value[], modelSub: ModelSub, intension: Intension): Observable<Instances> {
     const headers = new Headers({
       // 'Authorization': authorization,
       'X-SUMMER-OperatorId': 'wangyj',
@@ -41,7 +40,7 @@ export class InstancesService {
     const options = new RequestOptions({headers: headers});
 
     const url = this.URL + '/' + modelSub.subscriberId + '/value/' + modelSub.id + '/fields/' + intension.field;
-    return this.http.put(url, value, options)
+    return this.http.put(url, values, options)
       .map((res: Response) => res.json() || [])
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
