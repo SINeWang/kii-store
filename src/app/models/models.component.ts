@@ -39,9 +39,7 @@ export class ModelsComponent implements OnInit {
 
   public subscribeForm: FormGroup;
 
-  public subscribePubSet = new FormControl('', Validators.required);
-
-  public subscribeOwnerId = new FormControl('', Validators.required);
+  public subscribeSet = new FormControl('', Validators.required);
 
   public subscribeGroup = new FormControl('', Validators.required);
 
@@ -58,8 +56,7 @@ export class ModelsComponent implements OnInit {
               private router: Router) {
 
     this.subscribeForm = formBuilder.group({
-      'pubSet': this.subscribePubSet,
-      'ownerId': this.subscribeOwnerId,
+      'set': this.subscribeSet,
       'group': this.subscribeGroup,
       'name': this.subscribeName,
       'tree': this.subscribeTree,
@@ -137,7 +134,7 @@ export class ModelsComponent implements OnInit {
     subscriptions.group = this.subscribeGroup.value;
     subscriptions.name = this.subscribeName.value;
     subscriptions.tree = this.subscribeTree.value;
-    subscribers.id = this.subscribeOwnerId.value;
+    subscribers.id = this.visitor.id;
     this.subscriptionsService.commit(subscribers, subscriptions).subscribe(
       error => this.errorMessage = <any>error
     );

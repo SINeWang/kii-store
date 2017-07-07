@@ -1,4 +1,7 @@
 <div class="content-grid mdl-grid">
+  {{values | json }}
+</div>
+<div class="content-grid mdl-grid">
   <div class="mdl-cell mdl-cell--2-col">
     <md-checkbox [(ngModel)]="reference">Reference</md-checkbox>
   </div>
@@ -20,9 +23,15 @@
                    [(ngModel)]="value">
     </mdl-textfield>
   </div>
-  <div class="mdl-cell mdl-cell--3-col">
-    <button type="submit" (click)="save()" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>
+  <div class="mdl-cell mdl-cell--5-col">
+    <button (click)="add()" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>
+      <span *ngIf="intension.single">Save</span><span *ngIf="!intension.single">Add</span>
+    </button>
+    <button (click)="save()"  mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple *ngIf="!intension.single">
       Save
+    </button>
+    <button (click)="reset()"  mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple *ngIf="!intension.single">
+      Reset
     </button>
   </div>
 
