@@ -13,11 +13,8 @@ import {UserService} from '../../user/user.service';
 })
 export class Oauth2LoginComponent implements OnInit {
 
-  state: string;
-
   constructor(private route: ActivatedRoute,
-              private router: Router,
-              private user: UserService) {
+              private router: Router) {
   }
 
   ngOnInit() {
