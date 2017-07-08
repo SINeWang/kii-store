@@ -8,7 +8,6 @@ import {environment} from '../../environments/environment';
 import {Subjects} from '../shared/subjects/subjects.data';
 import {Statuses} from './statuses.data';
 import {Status} from './status.data';
-import {Glimpses} from '../glimpses/glimpses.data';
 
 @Injectable()
 export class StatusesSerivce {
@@ -21,8 +20,7 @@ export class StatusesSerivce {
   search(owners: Subjects, query: string): Observable<Statuses[]> {
 
     const headers = new Headers({
-      // 'Authorization': authorization,
-      'X-SUMMER-VisitorId': '123',
+      'X-SUMMER-VisitorId': owners.id,
       'X-SUMMER-RequestId': Math.random()
     });
     const options = new RequestOptions({headers: headers});
@@ -35,16 +33,15 @@ export class StatusesSerivce {
 
   }
 
-  visit(owners: Subjects, status: Statuses): Observable<Status> {
+  visit(subscriber: Subjects, status: Statuses): Observable<Status> {
 
     const headers = new Headers({
-      // 'Authorization': authorization,
-      'X-SUMMER-VisitorId': owners.id,
+      'X-SUMMER-VisitorId': subscriber.id,
       'X-SUMMER-RequestId': Math.random()
     });
     const options = new RequestOptions({headers: headers});
     let url = this.URL + '/';
-    url += owners.id;
+    url += subscriber.id;
     url += '/status';
     url += '/' + status.group;
     url += '/' + status.name;

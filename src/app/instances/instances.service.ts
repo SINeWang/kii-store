@@ -33,7 +33,6 @@ export class InstancesService {
 
   commit(values: Value[], modelSub: ModelSub, intension: Intension): Observable<Instances> {
     const headers = new Headers({
-      // 'Authorization': authorization,
       'X-SUMMER-OperatorId': 'wangyj',
       'X-SUMMER-RequestId': Math.random()
     });

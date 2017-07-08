@@ -24,10 +24,8 @@ export class InstancesSearchService {
   search(query: string,
          subscribers: Subjects): Observable<ModelSub[]> {
     const headers = new Headers({
-      // 'Authorization': authorization,
       'X-SUMMER-VisitorId': '123',
       'X-SUMMER-RequestId': Math.random(),
-      'X-SUMMER-OperatorId': 'wangyj'
     });
     const options = new RequestOptions({headers: headers});
 
