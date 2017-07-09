@@ -20,7 +20,6 @@ export class ProtoPubSetvice {
   commit(publication: ProtoPub,
          subjects: Subjects): Observable<Model[]> {
     const headers = new Headers({
-      // 'Authorization': authorization,
       'X-SUMMER-VisitorId': '123',
       'X-SUMMER-RequestId': Math.random(),
       'X-SUMMER-OperatorId': 'wangyj'

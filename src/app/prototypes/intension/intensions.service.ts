@@ -20,7 +20,6 @@ export class IntensionsService {
          intension: Intension): Observable<IntensionsWithSchema> {
     const authorization = localStorage.getItem('authorization');
     const headers = new Headers({
-      // 'Authorization': authorization,
       'X-SUMMER-OperatorId': 'wangyj',
       'X-SUMMER-RequestId': Math.random()
     });

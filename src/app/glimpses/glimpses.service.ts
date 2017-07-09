@@ -19,7 +19,6 @@ export class GlimpsesService {
 
   visit(glimpses: Glimpses): Observable<Glimpse> {
     const headers = new Headers({
-      // 'Authorization': authorization,
       'X-SUMMER-VisitorId': 'wangyj',
       'X-SUMMER-RequestId': Math.random()
     });

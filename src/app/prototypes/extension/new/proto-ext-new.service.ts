@@ -18,7 +18,6 @@ export class NewExtensionsService {
 
   commit(form: Extensions): Observable<Extension> {
     const headers = new Headers({
-      // 'Authorization': authorization,
       'X-SUMMER-OperatorId': 'wangyj',
       'X-SUMMER-RequestId': Math.random()
     });

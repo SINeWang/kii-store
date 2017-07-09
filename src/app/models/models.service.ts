@@ -18,7 +18,6 @@ export class ModelsService {
   search(providers: Subjects, group: string): Observable<Models[]> {
 
     const headers = new Headers({
-      // 'Authorization': authorization,
       'X-SUMMER-VisitorId': '123',
       'X-SUMMER-RequestId': Math.random()
     });

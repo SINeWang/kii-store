@@ -19,7 +19,6 @@ export class InstancesService {
 
   visit(modelSub: ModelSub): Observable<Instances> {
     const headers = new Headers({
-      // 'Authorization': authorization,
       'X-SUMMER-VisitorId': 'wangyj',
       'X-SUMMER-RequestId': Math.random()
     });

@@ -24,7 +24,6 @@ export class SubjectsService {
          objectType: string,
          accessType: string): Observable<Subjects[]> {
     const headers = new Headers({
-      // 'Authorization': authorization,
       'X-SUMMER-VisitorId': 'wangyj',
       'X-SUMMER-RequestId': Math.random()
     });
