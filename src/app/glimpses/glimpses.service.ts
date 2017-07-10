@@ -32,7 +32,6 @@ export class GlimpsesService {
 
   load_intensions(glimpses: Glimpses): Observable<GlimpseIntensions[]> {
     const headers = new Headers({
-      // 'Authorization': authorization,
       'X-SUMMER-VisitorId': 'wangyj',
       'X-SUMMER-RequestId': Math.random()
     });
@@ -46,7 +45,6 @@ export class GlimpsesService {
 
   subscribe(subscriber: Subjects, status: Status): Observable<Glimpses> {
     const headers = new Headers({
-      // 'Authorization': authorization,
       'X-SUMMER-OperatorId': subscriber.id,
       'X-SUMMER-RequestId': Math.random()
     });
