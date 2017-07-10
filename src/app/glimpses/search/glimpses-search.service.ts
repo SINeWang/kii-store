@@ -22,14 +22,14 @@ export class GlimpsesSearchService {
   }
 
   search(query: string,
-         provider: Subjects): Observable<ModelSub[]> {
+         subscriber: Subjects): Observable<ModelSub[]> {
     const headers = new Headers({
-      'X-SUMMER-VisitorId': '123',
+      'X-SUMMER-VisitorId': subscriber.id,
       'X-SUMMER-RequestId': Math.random(),
     });
     const options = new RequestOptions({headers: headers});
 
-    let url = this.URL + '/glimpses?providerId=' + provider.id;
+    let url = this.URL + '/glimpses?providerId=' + subscriber.id;
     url += '&q=';
     if (query) {
       url += query;
