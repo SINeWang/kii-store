@@ -2,21 +2,12 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import {environment} from '../../../environments/environment';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Subjects} from '../../shared/subjects/subjects.data';
 import {ModelSub} from '../../models/subscription/model-sub.data';
 @Injectable()
 export class InstancesSearchService {
 
   private URL = environment.kiimate_url;
-
-  private subscriptionsSource = new BehaviorSubject<ModelSub>(null);
-
-  announced$ = this.subscriptionsSource.asObservable();
-
-  announce(subscriptions: ModelSub) {
-    this.subscriptionsSource.next(subscriptions);
-  }
 
   constructor(private http: Http) {
   }
