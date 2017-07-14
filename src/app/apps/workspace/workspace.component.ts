@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 @Component({
-  selector: 'app-workpspace',
+  selector: 'app-workspace',
   providers: [],
   templateUrl: 'workspace.html'
 })
