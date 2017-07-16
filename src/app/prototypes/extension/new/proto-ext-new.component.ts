@@ -62,7 +62,7 @@ export class NewExtensionsComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
-    this.userListener = this.userService.user$.subscribe(
+    this.userListener = this.userService.visit().subscribe(
       data => {
         this.owners = new Subjects();
         this.owners.id = data.username;
